@@ -1,17 +1,17 @@
-# mini-game
-Toying around with C9/JS/Phaser
+# Phaser 3 Webpack Project Template
 
-Based on scaffold project: https://github.com/rroylance/phaser-npm-webpack-typescript-starter-project
+A Phaser 3 Project Template
 
-Using phaser-ce as game engine:
-https://github.com/photonstorm/phaser-ce
+### Requirements
 
-# Getting started
+We need [Node.js](https://nodejs.org) to install and run scripts.
 
-The build system is based on the Node Package Manager (npm). There are a few simple commands, which get you started quickly. 
+## Install and run
 
-## Setting up a fresh workspace
+Run next commands in your terminal:
 
-nmp install
-npm run server:dev
-
+| Command | Description |
+|---------|-------------|
+| `npm install` | Install dependencies and launch browser with examples.|
+| `npm start` | Launch browser to show the examples. <br> Press `Ctrl + c` to kill **http-server** process. |
+=======
