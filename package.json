@@ -1,59 +1,35 @@
 {
-  "_from": "phaser3-project-template@^1.0.9",
-  "_id": "phaser3-project-template@1.0.9",
-  "_inBundle": false,
-  "_integrity": "sha1-LjcGrYyrmeviglDjCgHet6eZzhc=",
-  "_location": "/phaser3-project-template",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "range",
-    "registry": true,
-    "raw": "phaser3-project-template@^1.0.9",
-    "name": "phaser3-project-template",
-    "escapedName": "phaser3-project-template",
-    "rawSpec": "^1.0.9",
-    "saveSpec": null,
-    "fetchSpec": "^1.0.9"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/phaser3-project-template/-/phaser3-project-template-1.0.9.tgz",
-  "_shasum": "2e3706ad8cab99ebe28250e30a01deb7a799ce17",
-  "_spec": "phaser3-project-template@^1.0.9",
-  "_where": "/Users/oliver/Documents/Development/mini-game",
+  "name": "mini-game",
+  "version": "0.0.1",
+  "description": "Toying around with JS",
   "author": {
-    "name": "Richard Davey",
-    "email": "rdavey@gmail.com",
-    "url": "http://www.photonstorm.com"
+    "name": "Oliver and Noah",
+    "email": "mini-game@oliverlanz.ch",
+    "url": "http://www.oliverlanz.com"
   },
+  "main": "src/index.js",
+  "homepage": "https://github.com/olilanz/mini-game#readme",
+  "license": "MIT",
+  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "bugs": {
-    "url": "https://github.com/photonstorm/phaser3-project-template/issues"
+    "url": "https://github.com/olilanz/mini-game/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
     "phaser": "^3.3.0"
   },
   "deprecated": false,
-  "description": "A Phaser 3 Project Template",
   "devDependencies": {
     "raw-loader": "^0.5.1",
     "webpack": "^3.12.0",
     "webpack-dev-server": "^2.11.0"
   },
-  "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
-  "license": "MIT",
-  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
-  "main": "src/index.js",
-  "name": "phaser3-project-template",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/photonstorm/phaser3-project-template.git"
+    "url": "git+https://github.com/olilanz/mini-game.git"
   },
   "scripts": {
     "build": "webpack",
     "start": "npm run build && webpack-dev-server --port=8000"
-  },
-  "version": "1.0.9"
+  }
 }
