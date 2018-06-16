@@ -1,6 +1,6 @@
-# Phaser 3 Webpack Project Template
+# mini-game
 
-A Phaser 3 Project Template
+Toying around with JS
 
 ### Requirements
 
@@ -12,6 +12,15 @@ Run next commands in your terminal:
 
 | Command | Description |
 |---------|-------------|
-| `npm install` | Install dependencies and launch browser with examples.|
-| `npm start` | Launch browser to show the examples. <br> Press `Ctrl + c` to kill **http-server** process. |
+| `npm install` | Install dependencies.|
+| `npm start` | Builds game and startes server. Connect to http://localhost:8000. <br> Press `Ctrl + c` to kill **http-server** process. |
+=======
+
+## Build Docker image
+
+| Command | Description |
+|---------|-------------|
+| `docker run -v $(PWD):/usr/share/nginx/html/ -p 8000:80 -it nginx` | Run container on local source tree without building the image. Connect to http://localhost:8000. |
+| `docker build -t mini-game .` | Build the mini-game image.|
+| `docker run -p 8000:80 -it mini-game` | Runs the container. Connect to http://localhost:8000. <br> Press `Ctrl + c` to kill **http-server** process. |
 =======
