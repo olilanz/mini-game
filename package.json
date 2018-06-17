@@ -20,7 +20,7 @@
     "webpack-dev-server": "3.1.4"
   },
   "dependencies": {
-    "phaser": "3.9.0"
+    "phaser": "3.10.1"
   },
   "scripts": {
     "dev": "webpack --mode development && webpack-dev-server --mode development --port=8000",
