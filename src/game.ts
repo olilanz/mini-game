@@ -1,7 +1,8 @@
 /// <reference path="../typescript/phaser.d.ts"/>
 
 import "phaser";
-import { MainScene } from "./scenes/mainScene";
+import { Welcome } from "./scenes/Welcome";
+import { Menu } from "./scenes/Menu";
 
 // main game configuration
 const config: GameConfig = {
@@ -9,7 +10,7 @@ const config: GameConfig = {
   height: 600,
   type: Phaser.AUTO,
   parent: "game",
-  scene: MainScene,
+  scene: [ Welcome, Menu ],
   physics: {
     default: "arcade",
     arcade: {
