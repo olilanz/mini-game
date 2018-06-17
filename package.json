@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/olilanz/mini-game/issues"
   },
-  "bundleDependencies": false,
+  "bundleDependencies": [],
   "dependencies": {
     "phaser": "^3.3.0"
   },
