@@ -1,5 +1,8 @@
 export class Welcome extends Phaser.Scene {
   
+  private bgSprite: Phaser.GameObjects.Sprite;
+  private bgSpriteStars: Phaser.GameObjects.Sprite;
+  private bgSpriteStarsFar: Phaser.GameObjects.Sprite;
   private phaserSprite: Phaser.GameObjects.Sprite;
 
   constructor() {
@@ -10,9 +13,16 @@ export class Welcome extends Phaser.Scene {
 
   preload(): void {
     this.load.image('logo', './assets/images/stars.png');
+    this.load.image('bg', './assets/images/background.png');
+    this.load.image('bg_stars', './assets/images/background_stars.png');
+    this.load.image('bg_stars_far', './assets/images/background_stars_far.png');
   }
 
   create(): void {
+    this.bgSprite = this.add.sprite(400, 300, 'bg');
+    this.bgSpriteStars = this.add.sprite(400, 300, 'bg_stars');
+    this.bgSpriteStarsFar = this.add.sprite(400, 300, 'bg_stars_far');
+
     this.phaserSprite = this.add.sprite(400, 300, 'logo');
 
     this.tweens.add({

@@ -1,6 +1,7 @@
 export class Menu extends Phaser.Scene {
 
   private phaserSprite: Phaser.GameObjects.Sprite;
+  private titleText: Phaser.GameObjects.Text;
 
   constructor() {
     super({
@@ -31,6 +32,8 @@ export class Menu extends Phaser.Scene {
         this.scene.start('Menu');
       } 
     }, this);
+
+    this.titleText = this.add.text(16, 16, 'mytext', { fontSize: '32px', fill: '#fff' });
   }
 
   update(delta): void {
