@@ -5,8 +5,7 @@
 node_modules
 
 # Game
-dist
-build
+build/bundle.js
 
 # OSX
 .DS_Store

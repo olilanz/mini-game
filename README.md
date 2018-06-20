@@ -12,8 +12,9 @@ Run next commands in your terminal:
 
 | Command | Description |
 |---------|-------------|
+| `npm i -g npm` | Update npm to latest version.|
 | `npm install` | Install dependencies.|
-| `npm start dev` | Builds game and startes server. Connect to http://localhost:8000. <br> Press `Ctrl + c` to kill **http-server** process. |
+| `npm run dev` | Builds game and startes server. Connect to http://localhost:8000. <br> Press `Ctrl + c` to kill **http-server** process. |
 =======
 
 ## Build Docker image
