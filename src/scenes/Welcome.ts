@@ -1,9 +1,17 @@
+/**
+ * Welcome screen
+ * 
+ * Entry page of the game.
+ */
+
 export class Welcome extends Phaser.Scene {
   
+/*
   private bgSprite: Phaser.GameObjects.Sprite;
   private bgSpriteStars: Phaser.GameObjects.Sprite;
   private bgSpriteStarsFar: Phaser.GameObjects.Sprite;
   private phaserSprite: Phaser.GameObjects.Sprite;
+*/
 
   constructor() {
     super({
@@ -12,13 +20,22 @@ export class Welcome extends Phaser.Scene {
   }
 
   preload(): void {
+    /*
     this.load.image('logo', './assets/images/stars.png');
     this.load.image('bg', './assets/images/background.png');
     this.load.image('bg_stars', './assets/images/background_stars.png');
     this.load.image('bg_stars_far', './assets/images/background_stars_far.png');
+    */
   }
 
   create(): void {
+    var text = [
+      'Welcomem to Mini Game', 
+      'Oliver and Noah\'s playground'
+    ];
+    this.add.text(16, 16, text, { fontSize: '32px', fill: '#fff' });
+
+/*
     this.bgSprite = this.add.sprite(400, 300, 'bg');
     this.bgSpriteStars = this.add.sprite(400, 300, 'bg_stars');
     this.bgSpriteStarsFar = this.add.sprite(400, 300, 'bg_stars_far');
@@ -33,7 +50,7 @@ export class Welcome extends Phaser.Scene {
       yoyo: true,
       loop: -1
     });
-
+*/
     this.input.keyboard.on('keydown', function(e) {
       if (e.key == '1') {
         this.scene.start('Welcome');

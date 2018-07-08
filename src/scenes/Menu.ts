@@ -1,3 +1,8 @@
+/**
+ * Menu class
+ * 
+ * Select levels here
+ */
 export class Menu extends Phaser.Scene {
 
   private phaserSprite: Phaser.GameObjects.Sprite;

@@ -1,5 +1,12 @@
 /// <reference path="../typescript/phaser.d.ts"/>
 
+/**
+ * Main Game class
+ * 
+ * Constructs the game and anchors it in the HTML page.
+ * Global settigns are to be found here.
+ */
+
 import "phaser";
 import { Welcome } from "./scenes/Welcome";
 import { Menu } from "./scenes/Menu";
@@ -14,7 +21,7 @@ const config: GameConfig = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 200 }
+      gravity: { y: 201 }
     }
   },
   input: {
