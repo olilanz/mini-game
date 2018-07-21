@@ -1,6 +1,6 @@
 {
   "name": "mini-game",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Toying around with TypeScript",
   "keywords": [
     "Phaser",
@@ -20,9 +20,8 @@
     "phaser": "3.11.0"
   },
   "scripts": {
-    "start": "parcel index.html -p 1234",
-    "dev": "webpack --mode development && webpack-dev-server --mode development",
-    "build": "parcel build index.html --target browser",
+    "start": "parcel ./src/index.html -p 1234",
+    "build": "parcel build ./src/index.html --target browser",
     "clean": "rm ./dist/*.*"
   },
   "repository": {
