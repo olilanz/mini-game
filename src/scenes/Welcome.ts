@@ -31,7 +31,8 @@ export class Welcome extends Phaser.Scene {
   create(): void {
     var text = [
       'Welcomem to Mini Game', 
-      'Oliver and Noah\'s playground'
+      'Oliver and Noah\'s playground',
+      'Type "2" to switch scene.'
     ];
     this.add.text(16, 16, text, { fontSize: '32px', fill: '#fff' });
 

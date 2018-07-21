@@ -7,25 +7,23 @@
     "Phaser 3",
     "Phaser3",
     "TypeScript",
-    "Webpack",
-    "Tutorials",
+    "Parcel",
     "Game Examples"
   ],
   "devDependencies": {
-    "npm": "^6.1.0",
-    "expose-loader": "0.7.5",
+    "npm": "^6.2.0",
     "ts-loader": "4.4.2",
     "typescript": "2.9.2",
-    "webpack": "^4.15.1",
-    "webpack-cli": "3.0.8",
-    "webpack-dev-server": "3.1.4"
+    "parcel-bundler": "1.9.7"
   },
   "dependencies": {
-    "phaser": "3.10.1"
+    "phaser": "3.11.0"
   },
   "scripts": {
+    "start": "parcel index.html -p 1234",
     "dev": "webpack --mode development && webpack-dev-server --mode development",
-    "build": "webpack --mode production && webpack-dev-server --mode production"
+    "build": "parcel build index.html --target browser",
+    "clean": "rm ./dist/*.*"
   },
   "repository": {
     "type": "git",

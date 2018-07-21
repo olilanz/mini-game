@@ -26,6 +26,17 @@ Run next commands in your terminal:
 | `docker run -p 8000:80 -it mini-game` | Runs the container. Connect to http://localhost:8000. <br> Press `Ctrl + c` to kill **http-server** process. |
 =======
 
+
+## Updating packages
+
+| Command | Description |
+|---------|-------------|
+| `npm outdated` | Shows which packages have new releases that could possibly be upgraded to. |
+| `npm upgrade -g` | Updates all top level packages to the latest version. |
+=======
+
+
+
 ## Notes
 
 Bootstrapped from here: https://github.com/digitsensitive/phaser3-typescript
