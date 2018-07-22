@@ -4,10 +4,12 @@
  * Entry page of the game.
  */
 
+import imageTitle from '../assets/images/title.png';
+
 export class Welcome extends Phaser.Scene {
   
+  private spriteTitle: Phaser.GameObjects.Sprite;
 /*
-  private bgSprite: Phaser.GameObjects.Sprite;
   private bgSpriteStars: Phaser.GameObjects.Sprite;
   private bgSpriteStarsFar: Phaser.GameObjects.Sprite;
   private phaserSprite: Phaser.GameObjects.Sprite;
@@ -20,8 +22,8 @@ export class Welcome extends Phaser.Scene {
   }
 
   preload(): void {
+    this.load.image('title', imageTitle);
     /*
-    this.load.image('logo', './assets/images/stars.png');
     this.load.image('bg', './assets/images/background.png');
     this.load.image('bg_stars', './assets/images/background_stars.png');
     this.load.image('bg_stars_far', './assets/images/background_stars_far.png');
@@ -31,11 +33,12 @@ export class Welcome extends Phaser.Scene {
   create(): void {
     var text = [
       'Welcomem to Mini Game', 
-      'Oliver and Noah\'s playground',
-      'Type "2" to switch scene.'
+      'Oliver and Noah\'s playground'
     ];
     this.add.text(16, 16, text, { fontSize: '32px', fill: '#fff' });
 
+    this.spriteTitle = this.add.sprite(400, 300, 'title');
+    this.spriteTitle.setInteractive();
 /*
     this.bgSprite = this.add.sprite(400, 300, 'bg');
     this.bgSpriteStars = this.add.sprite(400, 300, 'bg_stars');

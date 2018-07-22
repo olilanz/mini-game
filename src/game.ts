@@ -1,5 +1,3 @@
-/// <reference path="../typescript/phaser.d.ts"/>
-
 /**
  * Main Game class
  * 
