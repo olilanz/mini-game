@@ -18,7 +18,7 @@ export class Canvas extends Phaser.Scene {
   create(): void {
     this.add.text(16, 16, 'Canvas', { fontSize: '12px', fill: '#fff' });
 
-    this.input.keyboard.on('keydown', function(e) {
+    this.input.keyboard.on('keydown', function(this: Canvas, e: KeyboardEvent) {
       if (e.key == '1') {
         this.scene.start('Welcome');
       } else if (e.key == '2') {
@@ -29,7 +29,7 @@ export class Canvas extends Phaser.Scene {
     }, this);
   }
 
-  update(delta): void {
+  update(delta: number): void {
   }
 }
 

@@ -1,3 +1,9 @@
+declare module "*.png" {
+    const value: any;
+    export default value;
+}
 
-declare module '../assets/images/*.png';
-declare module '../assets/fonts/*.ttf';
+declare module "*.ttf" {
+    const value: any;
+    export default value;
+}

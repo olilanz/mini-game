@@ -27,13 +27,13 @@ export class Welcome extends Phaser.Scene {
 
     let title = this.add.sprite(400, 300, 'title') as Phaser.GameObjects.Sprite;
     title.setInteractive();
-    title.on('pointerdown', function (pointer) {
+    title.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
       this.scene.start('Menu');
       console.log("click"); 
       console.log(pointer); 
     }, this);
 
-    this.input.keyboard.on('keydown', function(e) {
+    this.input.keyboard.on('keydown', function(this: Welcome, e: KeyboardEvent) {
       if (e.key == '1') {
         this.scene.start('Welcome');
       } else if (e.key == '2') {
@@ -44,7 +44,7 @@ export class Welcome extends Phaser.Scene {
     }, this);
   }
 
-  update(delta): void {
+  update(delta: number): void {
   }
 }
 

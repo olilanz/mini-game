@@ -7,10 +7,6 @@ import imageLeft from '../assets/images/button_left.png';
 import imageRight from '../assets/images/button_right.png';
 
 export class Menu extends Phaser.Scene {
-
-  private phaserSprite: Phaser.GameObjects.Sprite;
-  private titleText: Phaser.GameObjects.Text;
-
   constructor() {
     super({
       key: 'Menu'
@@ -23,7 +19,7 @@ export class Menu extends Phaser.Scene {
   }
 
   create(): void {
-    this.input.keyboard.on('keydown', function(e) {
+    this.input.keyboard.on('keydown', function(this: Menu, e: KeyboardEvent) {
       if (e.key == '1') {
         this.scene.start('Welcome');
       } else if (e.key == '2') {
@@ -53,6 +49,6 @@ export class Menu extends Phaser.Scene {
     group.add(graphics2); // added directly to the group as a child    
   }
 
-  update(delta): void {
+  update(delta: number): void {
   }
 }
