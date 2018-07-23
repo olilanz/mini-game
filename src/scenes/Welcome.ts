@@ -8,13 +8,6 @@ import imageTitle from '../assets/images/title.png';
 
 export class Welcome extends Phaser.Scene {
   
-/*
-  private spriteTitle: Phaser.GameObjects.Sprite;
-  private bgSpriteStars: Phaser.GameObjects.Sprite;
-  private bgSpriteStarsFar: Phaser.GameObjects.Sprite;
-  private phaserSprite: Phaser.GameObjects.Sprite;
-*/
-
   constructor() {
     super({
       key: 'Welcome'
@@ -23,11 +16,6 @@ export class Welcome extends Phaser.Scene {
 
   preload(): void {
     this.load.image('title', imageTitle);
-    /*
-    this.load.image('bg', './assets/images/background.png');
-    this.load.image('bg_stars', './assets/images/background_stars.png');
-    this.load.image('bg_stars_far', './assets/images/background_stars_far.png');
-    */
   }
 
   create(): void {
@@ -45,28 +33,13 @@ export class Welcome extends Phaser.Scene {
       console.log(pointer); 
     }, this);
 
-/*
-    this.bgSprite = this.add.sprite(400, 300, 'bg');
-    this.bgSpriteStars = this.add.sprite(400, 300, 'bg_stars');
-    this.bgSpriteStarsFar = this.add.sprite(400, 300, 'bg_stars_far');
-
-    this.phaserSprite = this.add.sprite(400, 300, 'logo');
-
-    this.tweens.add({
-      targets: this.phaserSprite,
-      y: 450,
-      duration: 1000,
-      ease: 'Power2',
-      yoyo: true,
-      loop: -1
-    });
-*/
-
     this.input.keyboard.on('keydown', function(e) {
       if (e.key == '1') {
         this.scene.start('Welcome');
       } else if (e.key == '2') {
         this.scene.start('Menu');
+      } else if (e.key == '3') {
+        this.scene.start('Canvas');
       } 
     }, this);
   }

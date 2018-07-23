@@ -3,6 +3,9 @@
  * 
  * Select levels here
  */
+import imageLeft from '../assets/images/button_left.png';
+import imageRight from '../assets/images/button_right.png';
+
 export class Menu extends Phaser.Scene {
 
   private phaserSprite: Phaser.GameObjects.Sprite;
@@ -15,6 +18,8 @@ export class Menu extends Phaser.Scene {
   }
 
   preload(): void {
+    this.load.image('left', imageLeft);
+    this.load.image('right', imageRight);
   }
 
   create(): void {
@@ -23,10 +28,12 @@ export class Menu extends Phaser.Scene {
         this.scene.start('Welcome');
       } else if (e.key == '2') {
         this.scene.start('Menu');
+      } else if (e.key == '3') {
+        this.scene.start('Canvas');
       } 
     }, this);
 
-    this.titleText = this.add.text(16, 16, 'mytext', { fontSize: '32px', fill: '#fff' });
+    this.add.text(16, 16, 'Menu', { fontSize: '12px', fill: '#fff' });
 
     // drawing
     // create a group for our graphics
