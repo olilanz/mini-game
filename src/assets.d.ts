@@ -1,2 +1,3 @@
+
 declare module '../assets/images/*.png';
-declare module './assets/fonts/*.ttf';
+declare module '../assets/fonts/*.ttf';

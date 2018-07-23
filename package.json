@@ -17,8 +17,6 @@
     "parcel-bundler": "1.9.7"
   },
   "dependencies": {
-    "assets": "^3.0.0",
-    "images": "^3.0.1",
     "phaser": "3.11.0"
   },
   "scripts": {
@@ -34,7 +32,7 @@
     "name": "Oliver and Noah",
     "email": "mini-game@oliverlanz.ch"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/olilanz/mini-game/issues"
   },

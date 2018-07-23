@@ -9,7 +9,6 @@ import "phaser";
 import { Welcome } from "./scenes/Welcome";
 import { Menu } from "./scenes/Menu";
 
-
 // represents the entire game
 export class Game extends Phaser.Game {
   // main game configuration
@@ -27,8 +26,8 @@ export class Game extends Phaser.Game {
     },
     input: {
       keyboard: true,
-      mouse: false,
-      touch: false,
+      mouse: true,
+      touch: true,
       gamepad: false
     },
     "render.antialias": true,
