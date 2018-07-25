@@ -19,6 +19,29 @@ export class Menu extends Phaser.Scene {
   }
 
   create(): void {
+    this.configureStandardEvents();
+
+    this.add.text(16, 16, 'Menu', { fontSize: '12px', fill: '#fff' });
+
+    let btn = null;
+
+    btn = this.add.sprite(200, 300, 'left') as Phaser.GameObjects.Sprite;
+    btn.setInteractive();
+    btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
+      this.scene.start('Welcome');
+    }, this);
+
+    btn = this.add.sprite(600, 300, 'right') as Phaser.GameObjects.Sprite;
+    btn.setInteractive();
+    btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
+      this.scene.start('Canvas');
+    }, this);
+  }
+
+  update(delta: number): void {
+  }
+
+  configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Menu, e: KeyboardEvent) {
       if (e.key == '1') {
         this.scene.start('Welcome');
@@ -28,27 +51,5 @@ export class Menu extends Phaser.Scene {
         this.scene.start('Canvas');
       } 
     }, this);
-
-    this.add.text(16, 16, 'Menu', { fontSize: '12px', fill: '#fff' });
-
-    // drawing
-    // create a group for our graphics
-    let group = this.add.group();
-
-    // created on the world
-    let graphics = this.add.graphics(); // adds to the world stage
-    graphics.lineStyle(2, 0xFFFFFF, 1);
-    graphics.strokeRect(200, 200, 250, 250);
-    group.add(graphics) // moves from world stage to group as a child
-
-    // create an instance of graphics, then add it to a group
-    let graphics2 = this.add.graphics();
-    graphics2.x = 300;
-    graphics2.lineStyle(2, 0xFFFFFF, 1);
-    graphics2.strokeRect(200, 200, 250, 250);
-    group.add(graphics2); // added directly to the group as a child    
-  }
-
-  update(delta: number): void {
-  }
+  }  
 }

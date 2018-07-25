@@ -19,6 +19,8 @@ export class Welcome extends Phaser.Scene {
   }
 
   create(): void {
+    this.configureStandardEvents();
+
     let text = [
       'Welcomem to Mini Game', 
       'Oliver and Noah\'s playground'
@@ -32,7 +34,12 @@ export class Welcome extends Phaser.Scene {
       console.log("click"); 
       console.log(pointer); 
     }, this);
+  }
 
+  update(delta: number): void {
+  }
+
+  configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Welcome, e: KeyboardEvent) {
       if (e.key == '1') {
         this.scene.start('Welcome');
@@ -42,10 +49,7 @@ export class Welcome extends Phaser.Scene {
         this.scene.start('Canvas');
       } 
     }, this);
-  }
-
-  update(delta: number): void {
-  }
+  }  
 }
 
 
