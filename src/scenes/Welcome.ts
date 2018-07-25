@@ -31,8 +31,6 @@ export class Welcome extends Phaser.Scene {
     title.setInteractive();
     title.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
       this.scene.start('Menu');
-      console.log("click"); 
-      console.log(pointer); 
     }, this);
   }
 
