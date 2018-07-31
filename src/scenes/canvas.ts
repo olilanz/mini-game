@@ -4,8 +4,8 @@
  * Entry page of the game.
  */
 
-import imageLeft from '../assets/images/button_left.png';
-import imageRight from '../assets/images/button_retry.png';
+import imagePause from '../assets/images/button_pause.png';
+import imageComplete from '../assets/images/button_right.png';
 
 export class Canvas extends Phaser.Scene {
   
@@ -16,8 +16,8 @@ export class Canvas extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image('left', imageLeft);
-    this.load.image('retry', imageRight);
+    this.load.image('pause', imagePause);
+    this.load.image('complete', imageComplete);
   }
 
   create(): void {
@@ -27,16 +27,16 @@ export class Canvas extends Phaser.Scene {
 
     let btn = null;
 
-    btn = this.add.sprite(200, 300, 'left') as Phaser.GameObjects.Sprite;
+    btn = this.add.sprite(200, 300, 'pause') as Phaser.GameObjects.Sprite;
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
-      this.scene.start('Menu');
+      this.scene.start('Pause');
     }, this);
 
-    btn = this.add.sprite(600, 300, 'retry') as Phaser.GameObjects.Sprite;
+    btn = this.add.sprite(600, 300, 'complete') as Phaser.GameObjects.Sprite;
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
-      this.scene.start('Canvas');
+      this.scene.start('Scores');
     }, this);
   }
 

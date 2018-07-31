@@ -9,6 +9,8 @@ import "phaser";
 import { Welcome } from "./scenes/welcome";
 import { Menu } from "./scenes/menu";
 import { Canvas } from "./scenes/canvas";
+import { Scores } from "./scenes/scores";
+import { Pause } from "./scenes/pause";
 
 // represents the entire game
 export class Game extends Phaser.Game {
@@ -18,7 +20,7 @@ export class Game extends Phaser.Game {
     height: 600,
     type: Phaser.AUTO,
     parent: "game-canvas",
-    scene: [ Welcome, Menu, Canvas ],
+    scene: [ Welcome, Menu, Canvas, Pause, Scores ],
     physics: {
       default: "arcade",
       arcade: {
