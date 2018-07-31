@@ -22,7 +22,7 @@ export class Welcome extends Phaser.Scene {
     this.configureStandardEvents();
 
     let text = [
-      'Welcomem to Mini Game', 
+      'Welcome to Mini Game', 
       'Oliver and Noah\'s playground'
     ];
     this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });

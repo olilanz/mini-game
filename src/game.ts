@@ -6,9 +6,9 @@
  */
 
 import "phaser";
-import { Welcome } from "./scenes/Welcome";
-import { Menu } from "./scenes/Menu";
-import { Canvas } from "./scenes/Canvas";
+import { Welcome } from "./scenes/welcome";
+import { Menu } from "./scenes/menu";
+import { Canvas } from "./scenes/canvas";
 
 // represents the entire game
 export class Game extends Phaser.Game {

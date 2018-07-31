@@ -1,4 +1,4 @@
-import { Game } from './Game';
+import { Game } from './game';
 
 // when the page is loaded, create our game instance
 window.onload = () => {
