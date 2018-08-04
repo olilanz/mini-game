@@ -34,17 +34,13 @@ export class Welcome extends Phaser.Scene {
     }, this);
   }
 
-  update(delta: number): void {
+  update(time: number, delta: number): void {
   }
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Welcome, e: KeyboardEvent) {
-      if (e.key == '1') {
-        this.scene.start('Welcome');
-      } else if (e.key == '2') {
+      if (e.key == 'Enter') {
         this.scene.start('Menu');
-      } else if (e.key == '3') {
-        this.scene.start('Canvas');
       } 
     }, this);
   }  

@@ -5,7 +5,9 @@
  */
 
 import imageLeft from '../assets/images/button_left.png';
-import imageRight from '../assets/images/button_retry.png';
+import imageRetry from '../assets/images/button_retry.png';
+import imageRight from '../assets/images/button_right.png';
+import imageTrophy from '../assets/images/trophy.png';
 
 export class Scores extends Phaser.Scene {
   
@@ -17,26 +19,43 @@ export class Scores extends Phaser.Scene {
 
   preload(): void {
     this.load.image('left', imageLeft);
-    this.load.image('retry', imageRight);
+    this.load.image('retry', imageRetry);
+    this.load.image('next', imageRight);
+    this.load.image('trophy', imageTrophy);
   }
 
   create(): void {
     this.configureStandardEvents();
 
-    this.add.text(16, 16, 'Scores', { fontSize: '12px', fill: '#fff' });
+    let text = [
+      'Scores', 
+      'The level is completed. Scores are shown here.'
+    ];
+    this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
+
+    this.add.sprite(400, 300, 'trophy') as Phaser.GameObjects.Sprite;
 
     let btn = null;
 
-    btn = this.add.sprite(200, 300, 'left') as Phaser.GameObjects.Sprite;
+    btn = this.add.sprite(200, 400, 'left') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(50, 50);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
       this.scene.start('Menu');
     }, this);
 
-    btn = this.add.sprite(600, 300, 'retry') as Phaser.GameObjects.Sprite;
+    btn = this.add.sprite(400, 400, 'retry') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(50, 50);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
-      this.scene.start('Scores');
+      this.scene.start('Canvas');
+    }, this);
+
+    btn = this.add.sprite(600, 400, 'next') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(50, 50);
+    btn.setInteractive();
+    btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
+      this.scene.start('Canvas');
     }, this);
   }
 
@@ -45,12 +64,12 @@ export class Scores extends Phaser.Scene {
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Scores, e: KeyboardEvent) {
-      if (e.key == '1') {
-        this.scene.start('Welcome');
-      } else if (e.key == '2') {
+      if (e.key == 'Enter') {
+        this.scene.start('Canvas'); // next
+      } else if (e.key == 'r') {
+        this.scene.start('Canvas'); // retry
+      } else if (e.key == 'Escape') {
         this.scene.start('Menu');
-      } else if (e.key == '3') {
-        this.scene.start('Canvas');
       } 
     }, this);
   }  

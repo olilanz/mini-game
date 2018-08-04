@@ -21,17 +21,23 @@ export class Menu extends Phaser.Scene {
   create(): void {
     this.configureStandardEvents();
 
-    this.add.text(16, 16, 'Menu', { fontSize: '12px', fill: '#fff' });
+    let text = [
+      'Menu', 
+      'Select a level to enter'
+    ];
+    this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
 
     let btn = null;
 
     btn = this.add.sprite(200, 300, 'left') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(50, 50);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.scene.start('Welcome');
     }, this);
 
     btn = this.add.sprite(600, 300, 'right') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(50, 50);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.scene.start('Canvas');
@@ -43,12 +49,10 @@ export class Menu extends Phaser.Scene {
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Menu, e: KeyboardEvent) {
-      if (e.key == '1') {
-        this.scene.start('Welcome');
-      } else if (e.key == '2') {
-        this.scene.start('Menu');
-      } else if (e.key == '3') {
+      if (e.key == 'Enter') {
         this.scene.start('Canvas');
+      } else if (e.key == 'Escape') {
+        this.scene.start('Welcome');
       } 
     }, this);
   }  

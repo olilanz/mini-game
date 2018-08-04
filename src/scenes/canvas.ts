@@ -8,7 +8,10 @@ import imagePause from '../assets/images/button_pause.png';
 import imageComplete from '../assets/images/button_right.png';
 
 export class Canvas extends Phaser.Scene {
-  
+
+  private contdown: integer = 20000;
+  private contdownText: Phaser.GameObjects.Text;
+
   constructor() {
     super({
       key: 'Canvas'
@@ -23,34 +26,42 @@ export class Canvas extends Phaser.Scene {
   create(): void {
     this.configureStandardEvents();
 
-    this.add.text(16, 16, 'Canvas', { fontSize: '12px', fill: '#fff' });
+    let text = [
+      'Canvas', 
+      'Here is the game-play'
+    ];
+    this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
+
+    this.contdownText = this.add.text(400, 300, "#", { fontSize: '72px', fill: '#fff' });
 
     let btn = null;
 
-    btn = this.add.sprite(200, 300, 'pause') as Phaser.GameObjects.Sprite;
+    btn = this.add.sprite(700, 100, 'pause') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(50, 50);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
       this.scene.start('Pause');
     }, this);
 
-    btn = this.add.sprite(600, 300, 'complete') as Phaser.GameObjects.Sprite;
+    btn = this.add.sprite(700, 150, 'complete') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(50, 50);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
       this.scene.start('Scores');
     }, this);
   }
 
-  update(delta: number): void {
+  update(time: number, delta: number): void {
+    this.contdown -= delta;
+    this.contdownText.setText("+" + this.contdown);
   }
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Canvas, e: KeyboardEvent) {
-      if (e.key == '1') {
-        this.scene.start('Welcome');
-      } else if (e.key == '2') {
-        this.scene.start('Menu');
-      } else if (e.key == '3') {
-        this.scene.start('Canvas');
+      if (e.key == 'Escape') {
+        this.scene.start('Pause');
+      } else if (e.key == 'Enter') {
+        this.scene.start('Scores');
       } 
     }, this);
   }  
