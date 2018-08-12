@@ -11,10 +11,10 @@
     "Game Examples"
   ],
   "devDependencies": {
-    "npm": "^6.2.0",
+    "npm": "^6.3.0",
+    "parcel-bundler": "1.9.7",
     "ts-loader": "4.4.2",
-    "typescript": "3.0.1",
-    "parcel-bundler": "1.9.7"
+    "typescript": "3.0.1"
   },
   "dependencies": {
     "phaser": "3.11.0"
