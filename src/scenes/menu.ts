@@ -3,8 +3,8 @@
  * 
  * Select levels here
  */
-import imageLeft from '../assets/images/button_left.png';
-import imageRight from '../assets/images/button_right.png';
+import __imageLeft from '../assets/images/button_left.png';
+import __imageRight from '../assets/images/button_right.png';
 
 export class Menu extends Phaser.Scene {
   constructor() {
@@ -14,8 +14,8 @@ export class Menu extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image('left', imageLeft);
-    this.load.image('right', imageRight);
+    this.load.image('left', __imageLeft);
+    this.load.image('right', __imageRight);
   }
 
   create(): void {

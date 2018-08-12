@@ -4,10 +4,10 @@
  * This page is displayed when the game is paused.
  */
 
-import imageQuit from '../assets/images/button_left.png';
-import imageRetry from '../assets/images/button_retry.png';
-import imageResume from '../assets/images/button_right.png';
-import imagePause from '../assets/images/pause.png';
+import __imageQuit from '../assets/images/button_left.png';
+import __imageRetry from '../assets/images/button_retry.png';
+import __imageResume from '../assets/images/button_right.png';
+import __imagePause from '../assets/images/pause.png';
 
 export class Pause extends Phaser.Scene {
   
@@ -18,10 +18,10 @@ export class Pause extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image('quit', imageQuit);
-    this.load.image('retry', imageRetry);
-    this.load.image('resume', imageResume);
-    this.load.image('pause', imagePause);
+    this.load.image('quit', __imageQuit);
+    this.load.image('retry', __imageRetry);
+    this.load.image('resume', __imageResume);
+    this.load.image('pause', __imagePause);
   }
 
   create(): void {

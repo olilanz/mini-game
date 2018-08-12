@@ -4,7 +4,7 @@
  * Entry page of the game.
  */
 
-import imageTitle from '../assets/images/title.png';
+import __imageTitle from '../assets/images/title.png';
 
 export class Welcome extends Phaser.Scene {
   
@@ -15,7 +15,7 @@ export class Welcome extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image('title', imageTitle);
+    this.load.image('title', __imageTitle);
   }
 
   create(): void {

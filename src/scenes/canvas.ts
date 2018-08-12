@@ -4,13 +4,13 @@
  * Entry page of the game.
  */
 
-import imagePause from '../assets/images/button_pause.png';
-import imageComplete from '../assets/images/button_right.png';
+import __imagePause from '../assets/images/button_pause.png';
+import __imageComplete from '../assets/images/button_right.png';
 
 export class Canvas extends Phaser.Scene {
 
   private contdown: integer = 20000;
-  private contdownText: Phaser.GameObjects.Text;
+  private contdownText!: Phaser.GameObjects.Text;
 
   constructor() {
     super({
@@ -19,8 +19,8 @@ export class Canvas extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image('pause', imagePause);
-    this.load.image('complete', imageComplete);
+    this.load.image('pause', __imagePause);
+    this.load.image('complete', __imageComplete);
   }
 
   create(): void {

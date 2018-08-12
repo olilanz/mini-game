@@ -4,10 +4,10 @@
  * This scene is shown after the game completes.
  */
 
-import imageLeft from '../assets/images/button_left.png';
-import imageRetry from '../assets/images/button_retry.png';
-import imageRight from '../assets/images/button_right.png';
-import imageTrophy from '../assets/images/trophy.png';
+import __imageLeft from '../assets/images/button_left.png';
+import __imageRetry from '../assets/images/button_retry.png';
+import __imageRight from '../assets/images/button_right.png';
+import __imageTrophy from '../assets/images/trophy.png';
 
 export class Scores extends Phaser.Scene {
   
@@ -18,10 +18,10 @@ export class Scores extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image('left', imageLeft);
-    this.load.image('retry', imageRetry);
-    this.load.image('next', imageRight);
-    this.load.image('trophy', imageTrophy);
+    this.load.image('left', __imageLeft);
+    this.load.image('retry', __imageRetry);
+    this.load.image('next', __imageRight);
+    this.load.image('trophy', __imageTrophy);
   }
 
   create(): void {
