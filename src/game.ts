@@ -16,8 +16,8 @@ import { Pause } from "./scenes/pause";
 export class Game extends Phaser.Game {
   // main game configuration
   static config: GameConfig = {
-    width: 480,
-    height: 320,
+    width: 640,
+    height: 480,
     type: Phaser.AUTO,
     parent: "game-canvas",
     scene: [ Welcome, Menu, Canvas, Pause, Scores ],
@@ -35,7 +35,6 @@ export class Game extends Phaser.Game {
     },
     disableContextMenu: true,
     "render.antialias": true,
-    "render.autoResize": true,
     backgroundColor: '#111155'
   };
 

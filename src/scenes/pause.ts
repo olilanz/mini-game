@@ -4,12 +4,13 @@
  * This page is displayed when the game is paused.
  */
 
+import { BaseScene } from './basescene';
 import __imageQuit from '../assets/images/button_left.png';
 import __imageRetry from '../assets/images/button_retry.png';
 import __imageResume from '../assets/images/button_right.png';
 import __imagePause from '../assets/images/pause.png';
 
-export class Pause extends Phaser.Scene {
+export class Pause extends BaseScene {
   
   constructor() {
     super({

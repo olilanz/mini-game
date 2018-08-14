@@ -4,9 +4,10 @@
  * Entry page of the game.
  */
 
+import { BaseScene } from './basescene';
 import __imageTitle from '../assets/images/title.png';
 
-export class Welcome extends Phaser.Scene {
+export class Welcome extends BaseScene {
   
   constructor() {
     super({
@@ -25,9 +26,13 @@ export class Welcome extends Phaser.Scene {
       'Welcome to Mini Game', 
       'Oliver and Noah\'s playground'
     ];
+
+    let dims = this.getScreenDimension();
+
     this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
 
-    let title = this.add.sprite(400, 300, 'title') as Phaser.GameObjects.Sprite;
+    let title = this.add.sprite(dims.width / 2, dims.height / 2, 'title') as Phaser.GameObjects.Sprite;
+    title.setDisplaySize(640, 480);
     title.setInteractive();
     title.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
       this.scene.start('Menu');

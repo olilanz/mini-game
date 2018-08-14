@@ -4,12 +4,13 @@
  * This scene is shown after the game completes.
  */
 
+import { BaseScene } from './basescene';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageRetry from '../assets/images/button_retry.png';
 import __imageRight from '../assets/images/button_right.png';
 import __imageTrophy from '../assets/images/trophy.png';
 
-export class Scores extends Phaser.Scene {
+export class Scores extends BaseScene {
   
   constructor() {
     super({

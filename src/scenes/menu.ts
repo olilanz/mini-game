@@ -3,10 +3,11 @@
  * 
  * Select levels here
  */
+import { BaseScene } from './basescene';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageRight from '../assets/images/button_right.png';
 
-export class Menu extends Phaser.Scene {
+export class Menu extends BaseScene {
   constructor() {
     super({
       key: 'Menu'

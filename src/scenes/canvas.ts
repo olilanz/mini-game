@@ -4,10 +4,11 @@
  * Entry page of the game.
  */
 
+import { BaseScene } from './basescene';
 import __imagePause from '../assets/images/button_pause.png';
 import __imageComplete from '../assets/images/button_right.png';
 
-export class Canvas extends Phaser.Scene {
+export class Canvas extends BaseScene {
 
   private contdown: integer = 20000;
   private contdownText!: Phaser.GameObjects.Text;
