@@ -14,10 +14,8 @@ import { Pause } from "./scenes/pause";
 
 // represents the entire game
 export class Game extends Phaser.Game {
-  // main game configuration
+  // main game configuration (internal behaviour; external appearance/embedding should be defined in CSS)
   static config: GameConfig = {
-    width: 640,
-    height: 480,
     type: Phaser.AUTO,
     parent: "game-canvas",
     scene: [ Welcome, Menu, Canvas, Pause, Scores ],
