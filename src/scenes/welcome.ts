@@ -32,7 +32,7 @@ export class Welcome extends BaseScene {
     this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
 
     let title = this.add.sprite(dims.width / 2, dims.height / 2, 'title') as Phaser.GameObjects.Sprite;
-    title.setDisplaySize(640, 480);
+    title.setDisplaySize(dims.width * 0.6, dims.width * 0.75 * 0.6);
     title.setInteractive();
     title.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
       this.scene.start('Menu');

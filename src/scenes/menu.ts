@@ -28,17 +28,20 @@ export class Menu extends BaseScene {
     ];
     this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
 
+    let dims = this.getScreenDimension();
+    let margin = dims.width * 0.1;
+    let btnsize = dims.width * 0.08;
     let btn = null;
 
-    btn = this.add.sprite(200, 300, 'left') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    btn = this.add.sprite(margin, dims.height / 2, 'left') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.scene.start('Welcome');
     }, this);
 
-    btn = this.add.sprite(600, 300, 'right') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    btn = this.add.sprite(dims.width - margin, dims.height / 2, 'right') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.scene.start('Canvas');
