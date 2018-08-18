@@ -69,11 +69,11 @@ export class Scores extends BaseScene {
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Scores, e: KeyboardEvent) {
-      if (e.key == 'Enter') {
+      if (e.key == 'Enter' || e.key == 'ArrowRight') {
         this.scene.start('Canvas'); // next
-      } else if (e.key == 'r') {
+      } else if (e.key == 'r' || e.key == 'ArrowDown') {
         this.scene.start('Canvas'); // retry
-      } else if (e.key == 'Escape') {
+      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
         this.scene.start('Menu');
       } 
     }, this);

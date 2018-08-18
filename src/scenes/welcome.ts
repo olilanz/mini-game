@@ -44,7 +44,7 @@ export class Welcome extends BaseScene {
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Welcome, e: KeyboardEvent) {
-      if (e.key == 'Enter') {
+      if (e.key == 'Enter' || e.key == 'ArrowRight' ) {
         this.scene.start('Menu');
       } 
     }, this);

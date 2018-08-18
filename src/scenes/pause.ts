@@ -40,7 +40,7 @@ export class Pause extends BaseScene {
     let btn = null;
 
     let pause = this.add.sprite(dims.width / 2, dims.height / 2, 'pausestub') as Phaser.GameObjects.Sprite;
-    pause.setDisplaySize(dims.width / 2, dims.width / 2);
+    pause.setDisplaySize(dims.width / 2, dims.width * 0.75 / 2);
 
     btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'quit') as Phaser.GameObjects.Sprite;
     btn.setDisplaySize(btnsize, btnsize);
@@ -69,11 +69,11 @@ export class Pause extends BaseScene {
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Pause, e: KeyboardEvent) {
-      if (e.key == 'Enter') {
+      if (e.key == 'Enter' || e.key == 'ArrowRight') {
         this.scene.start('Canvas'); // next
-      } else if (e.key == 'r') {
+      } else if (e.key == 'r' || e.key == 'ArrowDown') {
         this.scene.start('Canvas'); // retry
-      } else if (e.key == 'Escape') {
+      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
         this.scene.start('Menu');
       } 
     }, this);

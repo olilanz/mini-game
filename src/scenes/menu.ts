@@ -46,6 +46,16 @@ export class Menu extends BaseScene {
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.scene.start('Canvas');
     }, this);
+
+    let cols = 5;
+    let rows = 4;
+    let btnmargin = dims.width * 0.2;
+    let btnspacing = Math.min(dims.width, dims.height) / Math.max(cols, rows);
+    for (let x = 0; x < cols; x++) {
+      for (let y = 0; y < rows; y++) {
+      this.add.text(btnmargin + (x * btnspacing), btnmargin + (y * btnspacing), ((x + 1) * (y + 1)).toString(), { fontSize: '12px', fill: '#fff' });
+      }
+    }
   }
 
   update(delta: number): void {
@@ -53,9 +63,9 @@ export class Menu extends BaseScene {
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Menu, e: KeyboardEvent) {
-      if (e.key == 'Enter') {
+      if (e.key == 'Enter' || e.key == 'ArrowRight') {
         this.scene.start('Canvas');
-      } else if (e.key == 'Escape') {
+      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
         this.scene.start('Welcome');
       } 
     }, this);
