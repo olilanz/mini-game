@@ -36,19 +36,22 @@ export class Canvas extends BaseScene {
     ];
     this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
 
-    this.countdownText = this.add.text(400, 300, "#", { fontSize: '72px', fill: '#fff' });
-
+    let dims = this.getScreenDimension();
+    let margin = dims.width * 0.1;
+    let btnsize = dims.width * 0.08;
     let btn = null;
 
-    btn = this.add.sprite(700, 100, 'pause') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    this.countdownText = this.add.text(dims.width / 2, dims.height / 2, "#", { fontSize: '72px', fill: '#fff' });
+
+    btn = this.add.sprite(dims.width - margin, margin, 'pause') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
       this.scene.start('Pause');
     }, this);
 
-    btn = this.add.sprite(700, 150, 'complete') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    btn = this.add.sprite(dims.width - margin, margin + btnsize + margin, 'complete') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
       this.scene.start('Scores');
