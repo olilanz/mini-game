@@ -34,26 +34,30 @@ export class Scores extends BaseScene {
     ];
     this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
 
-    this.add.sprite(400, 300, 'trophy') as Phaser.GameObjects.Sprite;
-
+    let dims = this.getScreenDimension();
+    let margin = dims.width * 0.1;
+    let btnsize = dims.width * 0.08;
     let btn = null;
 
-    btn = this.add.sprite(200, 400, 'left') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    let trophy = this.add.sprite(dims.width / 2, dims.height / 2, 'trophy') as Phaser.GameObjects.Sprite;
+    trophy.setDisplaySize(dims.width / 2, dims.width / 2);
+
+    btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'left') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
       this.scene.start('Menu');
     }, this);
 
-    btn = this.add.sprite(400, 400, 'retry') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    btn = this.add.sprite(dims.width * 0.5, dims.height - margin, 'retry') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
       this.scene.start('Canvas');
     }, this);
 
-    btn = this.add.sprite(600, 400, 'next') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'next') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
       this.scene.start('Canvas');
@@ -65,11 +69,11 @@ export class Scores extends BaseScene {
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Scores, e: KeyboardEvent) {
-      if (e.key == 'Enter') {
+      if (e.key == 'Enter' || e.key == 'ArrowRight') {
         this.scene.start('Canvas'); // next
-      } else if (e.key == 'r') {
+      } else if (e.key == 'r' || e.key == 'ArrowDown') {
         this.scene.start('Canvas'); // retry
-      } else if (e.key == 'Escape') {
+      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
         this.scene.start('Menu');
       } 
     }, this);

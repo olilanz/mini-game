@@ -22,7 +22,7 @@ export class Pause extends BaseScene {
     this.load.image('quit', __imageQuit);
     this.load.image('retry', __imageRetry);
     this.load.image('resume', __imageResume);
-    this.load.image('pause', __imagePause);
+    this.load.image('pausestub', __imagePause);
   }
 
   create(): void {
@@ -34,26 +34,30 @@ export class Pause extends BaseScene {
     ];
     this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
 
-    this.add.sprite(400, 300, 'pause') as Phaser.GameObjects.Sprite;
-
+    let dims = this.getScreenDimension();
+    let margin = dims.width * 0.1;
+    let btnsize = dims.width * 0.08;
     let btn = null;
 
-    btn = this.add.sprite(200, 150, 'quit') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    let pause = this.add.sprite(dims.width / 2, dims.height / 2, 'pausestub') as Phaser.GameObjects.Sprite;
+    pause.setDisplaySize(dims.width / 2, dims.width * 0.75 / 2);
+
+    btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'quit') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.scene.start('Menu');
     }, this);
 
-    btn = this.add.sprite(400, 150, 'retry') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    btn = this.add.sprite(dims.width * 0.5, dims.height - margin, 'retry') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.scene.start('Canvas');
     }, this);
 
-    btn = this.add.sprite(600, 150, 'resume') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(50, 50);
+    btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'resume') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.scene.start('Canvas');
@@ -65,11 +69,11 @@ export class Pause extends BaseScene {
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Pause, e: KeyboardEvent) {
-      if (e.key == 'Enter') {
+      if (e.key == 'Enter' || e.key == 'ArrowRight') {
         this.scene.start('Canvas'); // next
-      } else if (e.key == 'r') {
+      } else if (e.key == 'r' || e.key == 'ArrowDown') {
         this.scene.start('Canvas'); // retry
-      } else if (e.key == 'Escape') {
+      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
         this.scene.start('Menu');
       } 
     }, this);
