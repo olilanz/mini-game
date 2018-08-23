@@ -47,18 +47,39 @@ export class Menu extends BaseScene {
       this.scene.start('Canvas');
     }, this);
 
-    let cols = 5;
-    let rows = 4;
+    let cols = 4;
+    let rows = 3;
     let btnmargin = dims.width * 0.2;
-    let btnspacing = Math.min(dims.width, dims.height) / Math.max(cols, rows);
+    let btnspacing = Math.min(dims.width, dims.height) / Math.max(cols, rows) / 10;
+    let btnwidth = btnspacing * 9;
     for (let x = 0; x < cols; x++) {
       for (let y = 0; y < rows; y++) {
-      this.add.text(btnmargin + (x * btnspacing), btnmargin + (y * btnspacing), ((x + 1) * (y + 1)).toString(), { fontSize: '12px', fill: '#fff' });
+        this.createMenuButton(
+          ((x + 1) * (y + 1)).toString(), 
+          btnmargin + (x * btnwidth) + (x * btnspacing), 
+          btnmargin + (y * btnwidth) + (y * btnspacing),
+          btnwidth,
+          btnwidth);
       }
     }
   }
 
   update(delta: number): void {
+  }
+
+  createMenuButton(text: string, xpos: number, ypos: number, width: number, height: number): void {
+      this.add.text(
+        xpos, ypos, text,
+        { fontSize: '12px', fill: '#fff' }
+      );
+      let graphics = this.add.graphics();
+      graphics.lineStyle(2, 0xFFFFFF, 1);
+      graphics.strokeRect(xpos, ypos, width, height);
+
+      graphics.setInteractive();
+      graphics.on('pointerdown', function (this: Menu, pointer: string | symbol) {
+        this.scene.start('Canvas');
+      }, this);
   }
 
   configureStandardEvents(): void {
