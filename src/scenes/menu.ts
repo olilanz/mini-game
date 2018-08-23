@@ -49,15 +49,17 @@ export class Menu extends BaseScene {
 
     let cols = 4;
     let rows = 3;
-    let btnmargin = dims.width * 0.2;
-    let btnspacing = Math.min(dims.width, dims.height) / Math.max(cols, rows) / 10;
-    let btnwidth = btnspacing * 9;
+    let xmargin = dims.width * 0.2;
+    let btncellwidth = (dims.width - (2 * xmargin)) / cols;
+    let btnspacing = btncellwidth * 0.1;
+    let btnwidth = btncellwidth * 0.9;
+    let ymargin = (dims.height - (rows * btnwidth) + ((rows - 1) * btnspacing)) / 2;
     for (let x = 0; x < cols; x++) {
       for (let y = 0; y < rows; y++) {
         this.createMenuButton(
           ((x + 1) * (y + 1)).toString(), 
-          btnmargin + (x * btnwidth) + (x * btnspacing), 
-          btnmargin + (y * btnwidth) + (y * btnspacing),
+          xmargin + (x * btnwidth) + (x * btnspacing), 
+          ymargin + (y * btnwidth) + (y * btnspacing),
           btnwidth,
           btnwidth);
       }
