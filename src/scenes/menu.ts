@@ -6,6 +6,7 @@
 import { BaseScene } from './basescene';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageRight from '../assets/images/button_right.png';
+import __imageMenu from '../assets/images/button_menu.png';
 
 export class Menu extends BaseScene {
   constructor() {
@@ -17,6 +18,7 @@ export class Menu extends BaseScene {
   preload(): void {
     this.load.image('left', __imageLeft);
     this.load.image('right', __imageRight);
+    this.load.image('menu', __imageMenu);
   }
 
   create(): void {
@@ -70,19 +72,20 @@ export class Menu extends BaseScene {
   }
 
   createMenuButton(text: string, xpos: number, ypos: number, width: number, height: number): void {
-      this.add.text(
-        xpos, ypos, text,
-        { fontSize: '12px', fill: '#fff' }
-      );
-      let graphics = this.add.graphics();
-      graphics.lineStyle(2, 0xFFFFFF, 1);
-      graphics.strokeRect(xpos, ypos, width, height);
-
-      graphics.setInteractive();
-      graphics.on('pointerdown', function (this: Menu, pointer: string | symbol) {
+      let btn = this.add.sprite(xpos, ypos, 'menu') as Phaser.GameObjects.Sprite;
+      btn.setOrigin(0, 0);
+      btn.setDisplaySize(width, height);
+      btn.setInteractive();
+      btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
         this.scene.start('Canvas');
       }, this);
-  }
+
+      let tx = this.add.text(
+        xpos + (width / 2), ypos + (height / 2), text,
+        { fontSize: '24px', fill: '#000' }
+      );
+      tx.setAlign('center');
+    }
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Menu, e: KeyboardEvent) {
