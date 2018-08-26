@@ -7,6 +7,8 @@ import { BaseScene } from './basescene';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageRight from '../assets/images/button_right.png';
 import __imageMenu from '../assets/images/button_menu.png';
+import __musicTheme from '../assets/music/theme.mp3';
+import __soundBlop from '../assets/sounds/blop.mp3';
 
 export class Menu extends BaseScene {
   constructor() {
@@ -19,6 +21,8 @@ export class Menu extends BaseScene {
     this.load.image('left', __imageLeft);
     this.load.image('right', __imageRight);
     this.load.image('menu', __imageMenu);
+    this.load.audio('theme', [__musicTheme]);
+    this.load.audio('blop', __soundBlop);
   }
 
   create(): void {
@@ -39,6 +43,7 @@ export class Menu extends BaseScene {
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
       this.scene.start('Welcome');
     }, this);
 
@@ -46,6 +51,7 @@ export class Menu extends BaseScene {
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
       this.scene.start('Canvas');
     }, this);
 
@@ -66,6 +72,12 @@ export class Menu extends BaseScene {
           btnwidth);
       }
     }
+
+    // this.sound.stopAll();
+    this.sound.add('theme');
+    this.sound.play('theme', {});
+
+    this.sound.add('blop');
   }
 
   update(delta: number): void {
@@ -77,6 +89,7 @@ export class Menu extends BaseScene {
       btn.setDisplaySize(width, height);
       btn.setInteractive();
       btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Canvas');
       }, this);
 
@@ -84,14 +97,15 @@ export class Menu extends BaseScene {
         xpos + (width / 2), ypos + (height / 2), text,
         { fontSize: '24px', fill: '#000' }
       );
-      tx.setAlign('center');
     }
 
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Menu, e: KeyboardEvent) {
       if (e.key == 'Enter' || e.key == 'ArrowRight') {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Canvas');
       } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Welcome');
       } 
     }, this);

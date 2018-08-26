@@ -6,6 +6,8 @@
 
 import { BaseScene } from './basescene';
 import __imageTitle from '../assets/images/title.png';
+import __musicTheme from '../assets/music/theme.mp3';
+import __soundBlop from '../assets/sounds/blop.mp3';
 
 export class Welcome extends BaseScene {
   
@@ -17,6 +19,8 @@ export class Welcome extends BaseScene {
 
   preload(): void {
     this.load.image('title', __imageTitle);
+    this.load.audio('theme', [__musicTheme]);
+    this.load.audio('blop', __soundBlop);
   }
 
   create(): void {
@@ -35,8 +39,15 @@ export class Welcome extends BaseScene {
     title.setDisplaySize(dims.width * 0.6, dims.width * 0.75 * 0.6);
     title.setInteractive();
     title.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
       this.scene.start('Menu');
     }, this);
+
+    // this.sound.stopAll();
+    this.sound.add('theme');
+    this.sound.play('theme', {});
+
+    this.sound.add('blop');
   }
 
   update(time: number, delta: number): void {
@@ -45,10 +56,9 @@ export class Welcome extends BaseScene {
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Welcome, e: KeyboardEvent) {
       if (e.key == 'Enter' || e.key == 'ArrowRight' ) {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Menu');
       } 
     }, this);
   }  
 }
-
-

@@ -9,6 +9,8 @@ import __imageLeft from '../assets/images/button_left.png';
 import __imageRetry from '../assets/images/button_retry.png';
 import __imageRight from '../assets/images/button_right.png';
 import __imageTrophy from '../assets/images/trophy.png';
+import __musicTheme from '../assets/music/theme.mp3';
+import __soundBlop from '../assets/sounds/blop.mp3';
 
 export class Scores extends BaseScene {
   
@@ -23,6 +25,8 @@ export class Scores extends BaseScene {
     this.load.image('retry', __imageRetry);
     this.load.image('next', __imageRight);
     this.load.image('trophy', __imageTrophy);
+    this.load.audio('theme', [__musicTheme]);
+    this.load.audio('blop', __soundBlop);
   }
 
   create(): void {
@@ -46,6 +50,7 @@ export class Scores extends BaseScene {
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
       this.scene.start('Menu');
     }, this);
 
@@ -53,6 +58,7 @@ export class Scores extends BaseScene {
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
       this.scene.start('Canvas');
     }, this);
 
@@ -60,8 +66,15 @@ export class Scores extends BaseScene {
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
       this.scene.start('Canvas');
     }, this);
+
+    // this.sound.stopAll();
+    this.sound.add('theme');
+    this.sound.play('theme', {});
+
+    this.sound.add('blop');
   }
 
   update(delta: number): void {
@@ -70,10 +83,13 @@ export class Scores extends BaseScene {
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Scores, e: KeyboardEvent) {
       if (e.key == 'Enter' || e.key == 'ArrowRight') {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Canvas'); // next
       } else if (e.key == 'r' || e.key == 'ArrowDown') {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Canvas'); // retry
       } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Menu');
       } 
     }, this);

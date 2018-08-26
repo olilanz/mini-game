@@ -7,6 +7,8 @@
 import { BaseScene } from './basescene';
 import __imagePause from '../assets/images/button_pause.png';
 import __imageComplete from '../assets/images/button_right.png';
+import __musicLevel from '../assets/music/levelsong.mp3';
+import __soundBlop from '../assets/sounds/blop.mp3';
 
 export class Canvas extends BaseScene {
 
@@ -25,6 +27,8 @@ export class Canvas extends BaseScene {
   preload(): void {
     this.load.image('pause', __imagePause);
     this.load.image('complete', __imageComplete);
+    this.load.audio('levelsong', [__musicLevel]);
+    this.load.audio('blop', __soundBlop);
   }
 
   create(): void {
@@ -47,6 +51,7 @@ export class Canvas extends BaseScene {
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
       this.scene.start('Pause');
     }, this);
 
@@ -54,8 +59,15 @@ export class Canvas extends BaseScene {
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
       this.scene.start('Scores');
     }, this);
+
+    // this.sound.stopAll();
+    this.sound.add('levelsong');
+    this.sound.play('levelsong', {});
+
+    this.sound.add('blop');
   }
 
   update(time: number, delta: number): void {
@@ -63,6 +75,7 @@ export class Canvas extends BaseScene {
     this.countdownText.setText("+" + this.countdown);
     if (this.countdown < 0) {
       this.countdown = this.DURATION;
+      this.sound.play('blop', { loop: false });
       this.scene.start('Scores');
     }
   }
@@ -70,8 +83,10 @@ export class Canvas extends BaseScene {
   configureStandardEvents(): void {
     this.input.keyboard.on('keydown', function(this: Canvas, e: KeyboardEvent) {
       if (e.key == 'Escape' || e.key == 'ArrowLeft' || e.key == 'ArrowUp') {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Pause');
       } else if (e.key == 'Enter' || e.key == 'ArrowRight') {
+        this.sound.play('blop', { loop: false });
         this.scene.start('Scores');
       } 
     }, this);
