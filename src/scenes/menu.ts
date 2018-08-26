@@ -56,12 +56,12 @@ export class Menu extends BaseScene {
     let btnspacing = btncellwidth * 0.1;
     let btnwidth = btncellwidth * 0.9;
     let ymargin = (dims.height - (rows * btnwidth) + ((rows - 1) * btnspacing)) / 2;
-    for (let x = 0; x < cols; x++) {
-      for (let y = 0; y < rows; y++) {
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows; row++) {
         this.createMenuButton(
-          ((x + 1) * (y + 1)).toString(), 
-          xmargin + (x * btnwidth) + (x * btnspacing), 
-          ymargin + (y * btnwidth) + (y * btnspacing),
+          (col + 1 + (row * cols)).toString(), 
+          xmargin + (col * btnwidth) + (col * btnspacing), 
+          ymargin + (row * btnwidth) + (row * btnspacing),
           btnwidth,
           btnwidth);
       }
