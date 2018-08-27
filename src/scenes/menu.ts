@@ -4,6 +4,7 @@
  * Select levels here
  */
 import { BaseScene } from './basescene';
+import { SoundHelper } from '../helpers/soundhelper';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageRight from '../assets/images/button_right.png';
 import __imageMenu from '../assets/images/button_menu.png';
@@ -21,7 +22,7 @@ export class Menu extends BaseScene {
     this.load.image('left', __imageLeft);
     this.load.image('right', __imageRight);
     this.load.image('menu', __imageMenu);
-    this.load.audio('theme', [__musicTheme]);
+    this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
   }
 
@@ -73,9 +74,8 @@ export class Menu extends BaseScene {
       }
     }
 
-    // this.sound.stopAll();
-    this.sound.add('theme');
-    this.sound.play('theme', {});
+    let music = this.sound.add('theme');
+    SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
   }

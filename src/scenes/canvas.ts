@@ -5,6 +5,7 @@
  */
 
 import { BaseScene } from './basescene';
+import { SoundHelper } from '../helpers/soundhelper';
 import __imagePause from '../assets/images/button_pause.png';
 import __imageComplete from '../assets/images/button_right.png';
 import __musicLevel from '../assets/music/levelsong.mp3';
@@ -27,7 +28,7 @@ export class Canvas extends BaseScene {
   preload(): void {
     this.load.image('pause', __imagePause);
     this.load.image('complete', __imageComplete);
-    this.load.audio('levelsong', [__musicLevel]);
+    this.load.audio('levelsong', __musicLevel);
     this.load.audio('blop', __soundBlop);
   }
 
@@ -63,9 +64,8 @@ export class Canvas extends BaseScene {
       this.scene.start('Scores');
     }, this);
 
-    // this.sound.stopAll();
-    this.sound.add('levelsong');
-    this.sound.play('levelsong', {});
+    let music = this.sound.add('levelsong');
+    SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
   }

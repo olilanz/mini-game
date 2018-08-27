@@ -5,6 +5,7 @@
  */
 
 import { BaseScene } from './basescene';
+import { SoundHelper } from '../helpers/soundhelper';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageRetry from '../assets/images/button_retry.png';
 import __imageRight from '../assets/images/button_right.png';
@@ -25,7 +26,7 @@ export class Scores extends BaseScene {
     this.load.image('retry', __imageRetry);
     this.load.image('next', __imageRight);
     this.load.image('trophy', __imageTrophy);
-    this.load.audio('theme', [__musicTheme]);
+    this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
   }
 
@@ -70,9 +71,8 @@ export class Scores extends BaseScene {
       this.scene.start('Canvas');
     }, this);
 
-    // this.sound.stopAll();
-    this.sound.add('theme');
-    this.sound.play('theme', {});
+    let music = this.sound.add('theme');
+    SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
   }

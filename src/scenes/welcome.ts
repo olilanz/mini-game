@@ -5,6 +5,7 @@
  */
 
 import { BaseScene } from './basescene';
+import { SoundHelper } from '../helpers/soundhelper';
 import __imageTitle from '../assets/images/title.png';
 import __musicTheme from '../assets/music/theme.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
@@ -19,7 +20,7 @@ export class Welcome extends BaseScene {
 
   preload(): void {
     this.load.image('title', __imageTitle);
-    this.load.audio('theme', [__musicTheme]);
+    this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
   }
 
@@ -43,9 +44,8 @@ export class Welcome extends BaseScene {
       this.scene.start('Menu');
     }, this);
 
-    // this.sound.stopAll();
-    this.sound.add('theme');
-    this.sound.play('theme', {});
+    let music = this.sound.add('theme');
+    SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
   }
