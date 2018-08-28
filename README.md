@@ -23,9 +23,9 @@ Run next commands in your terminal:
 
 | Command | Description |
 |---------|-------------|
-| `docker run -v $(PWD):/usr/share/nginx/html/ -p 8000:80 -it nginx` | Run container on local source tree without building the image. Connect to http://localhost:8000. |
-| `docker build -t mini-game .` | Build the mini-game image.|
-| `docker run -p 8000:80 -it mini-game` | Runs the container. Connect to http://localhost:8000. <br> Press `Ctrl + c` to kill **http-server** process. |
+| `docker run -v $(PWD)/dist:/usr/share/nginx/html/ -p 8000:80 -it nginx` | Run container on local source tree without building the image. Connect to http://localhost:8000. |
+| `docker build -t olilanz/mini-game .` | Build the mini-game image.|
+| `docker run -p 8000:80 -it olilanz/mini-game` | Runs the container. Connect to http://localhost:8000. <br> Press `Ctrl + c` to kill **http-server** process. |
 
 
 ## Updating packages
