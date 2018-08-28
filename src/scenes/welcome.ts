@@ -29,7 +29,7 @@ export class Welcome extends BaseScene {
 
     let text = [
       'Welcome to Mini Game', 
-      'Oliver and Noah\'s playground'
+      'Oliver and Noah\'s playground!'
     ];
 
     let dims = this.getScreenDimension();
