@@ -17,6 +17,7 @@ Run next commands in your terminal:
 | `npm i -g npm` | Update npm to latest version.|
 | `npm install` | Install dependencies.|
 | `npm start` | Builds game and startes server. Connect to http://localhost:1234. <br> Press `Ctrl + c` to kill **http-server** process. |
+| `npm run build` | Builds game. |
 
 
 ## Build Docker image
