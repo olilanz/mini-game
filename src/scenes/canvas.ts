@@ -26,6 +26,8 @@ export class Canvas extends BaseScene {
   }
 
   preload(): void {
+    console.log('canvas preload');
+
     this.load.image('pause', __imagePause);
     this.load.image('complete', __imageComplete);
     this.load.audio('levelsong', __musicLevel);
@@ -33,6 +35,8 @@ export class Canvas extends BaseScene {
   }
 
   create(): void {
+    console.log('canvas preload');
+
     this.configureStandardEvents();
 
     let text = [
