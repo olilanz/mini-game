@@ -1,3 +1,5 @@
+import { GameState } from '../gamestate'
+
 interface CanvasDimension {
     height: number,
     width: number,
@@ -15,5 +17,13 @@ export class BaseScene extends Phaser.Scene {
             deviceWidth: this.sys.canvas.width * window.devicePixelRatio, 
             devicePixelRatio: window.devicePixelRatio
         };
+    }
+
+    protected getGameState(): GameState {
+        return this.registry.get("gamestate") as GameState;
+    }
+
+    protected setGameState(state: GameState): void {
+        this.registry.set("gamestate", state);
     }
 }

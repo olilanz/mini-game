@@ -22,6 +22,9 @@ export class Welcome extends BaseScene {
     this.load.image('title', __imageTitle);
     this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
+
+    let state = this.getGameState();
+    console.log(state);
   }
 
   create(): void {

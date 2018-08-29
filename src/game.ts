@@ -6,6 +6,7 @@
  */
 
 import "phaser";
+import { GameState } from "./gamestate";
 import { Welcome } from "./scenes/welcome";
 import { Menu } from "./scenes/menu";
 import { Canvas } from "./scenes/canvas";
@@ -39,5 +40,13 @@ export class Game extends Phaser.Game {
   // constructs the game based on the game configuration
   constructor() {
     super(Game.config);
+    this.InitGamestate();
+  }
+
+  InitGamestate(): void {
+    let state = { 
+      currentLevel: 12,
+      nextLevel: 13 } as GameState;
+    this.registry.set("gamestate", state);
   }
 }
