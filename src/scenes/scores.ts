@@ -31,8 +31,6 @@ export class Scores extends BaseScene {
   }
 
   create(): void {
-    this.configureStandardEvents();
-
     let text = [
       'Scores', 
       'The level is completed. Scores are shown here.'
@@ -79,21 +77,6 @@ export class Scores extends BaseScene {
 
   update(delta: number): void {
   }
-
-  configureStandardEvents(): void {
-    this.input.keyboard.on('keydown', function(this: Scores, e: KeyboardEvent) {
-      if (e.key == 'Enter' || e.key == 'ArrowRight') {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Canvas'); // next
-      } else if (e.key == 'r' || e.key == 'ArrowDown') {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Canvas'); // retry
-      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Menu');
-      } 
-    }, this);
-  }  
 }
 
 

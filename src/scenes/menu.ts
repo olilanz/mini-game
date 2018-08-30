@@ -4,6 +4,7 @@
  * Select levels here
  */
 import { BaseScene } from './basescene';
+import { CanvasConfig } from '../scenes/canvas';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageRight from '../assets/images/button_right.png';
@@ -27,8 +28,6 @@ export class Menu extends BaseScene {
   }
 
   create(): void {
-    this.configureStandardEvents();
-
     let text = [
       'Menu', 
       'Select a level to enter'
@@ -68,6 +67,7 @@ export class Menu extends BaseScene {
         let level = col + 1 + (row * cols);
         this.createMenuButton(
           level.toString(), 
+          level,
           xmargin + (col * btnwidth) + (col * btnspacing), 
           ymargin + (row * btnwidth) + (row * btnspacing),
           btnwidth,
@@ -77,38 +77,24 @@ export class Menu extends BaseScene {
 
     let music = this.sound.add('theme');
     SoundHelper.playBackgroundMusic(music);
-
-    this.sound.add('blop');
   }
 
   update(delta: number): void {
   }
 
-  createMenuButton(text: string, xpos: number, ypos: number, width: number, height: number): void {
-      let btn = this.add.sprite(xpos, ypos, 'menu') as Phaser.GameObjects.Sprite;
-      btn.setOrigin(0, 0);
-      btn.setDisplaySize(width, height);
-      btn.setInteractive();
-      btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Canvas');
-      }, this);
-
-      let tx = this.add.text(
-        xpos + (width / 2), ypos + (height / 2), text,
-        { fontSize: '24px', fill: '#000' }
-      );
-    }
-
-  configureStandardEvents(): void {
-    this.input.keyboard.on('keydown', function(this: Menu, e: KeyboardEvent) {
-      if (e.key == 'Enter' || e.key == 'ArrowRight') {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Canvas');
-      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Welcome');
-      } 
+  createMenuButton(text: string, level: number, xpos: number, ypos: number, width: number, height: number): void {
+    let btn = this.add.sprite(xpos, ypos, 'menu') as Phaser.GameObjects.Sprite;
+    btn.setOrigin(0, 0);
+    btn.setDisplaySize(width, height);
+    btn.setInteractive();
+    btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
+      this.scene.start('Canvas', { level: level } as CanvasConfig);
     }, this);
-  }  
+
+    let tx = this.add.text(
+      xpos + (width / 2), ypos + (height / 2), text,
+      { fontSize: '24px', fill: '#000' }
+    );
+  }
 }

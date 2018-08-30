@@ -22,14 +22,9 @@ export class Welcome extends BaseScene {
     this.load.image('title', __imageTitle);
     this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
-
-    let state = this.getGameState();
-    console.log(state);
   }
 
   create(): void {
-    this.configureStandardEvents();
-
     let text = [
       'Welcome to Mini Game', 
       'Oliver and Noah\'s playground!'
@@ -55,13 +50,4 @@ export class Welcome extends BaseScene {
 
   update(time: number, delta: number): void {
   }
-
-  configureStandardEvents(): void {
-    this.input.keyboard.on('keydown', function(this: Welcome, e: KeyboardEvent) {
-      if (e.key == 'Enter' || e.key == 'ArrowRight' ) {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Menu');
-      } 
-    }, this);
-  }  
 }

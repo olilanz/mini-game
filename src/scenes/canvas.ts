@@ -11,6 +11,10 @@ import __imageComplete from '../assets/images/button_right.png';
 import __musicLevel from '../assets/music/levelsong.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
+export type CanvasConfig = {
+  level: number
+}
+
 export class Canvas extends BaseScene {
 
   readonly DURATION: integer = 5000;
@@ -25,9 +29,12 @@ export class Canvas extends BaseScene {
     this.countdown = this.DURATION;
   }
 
-  preload(): void {
-    console.log('canvas preload');
+  init(config: object) {
+    let data = config as CanvasConfig;
+    this.data.values.level = data.level;
+  }
 
+  preload(): void {
     this.load.image('pause', __imagePause);
     this.load.image('complete', __imageComplete);
     this.load.audio('levelsong', __musicLevel);
@@ -35,10 +42,6 @@ export class Canvas extends BaseScene {
   }
 
   create(): void {
-    console.log('canvas preload');
-
-    this.configureStandardEvents();
-
     let text = [
       'Canvas', 
       'Here is the game-play'
@@ -70,31 +73,17 @@ export class Canvas extends BaseScene {
 
     let music = this.sound.add('levelsong');
     SoundHelper.playBackgroundMusic(music);
-
-    this.sound.add('blop');
   }
 
   update(time: number, delta: number): void {
     this.countdown -= delta;
-    this.countdownText.setText("+" + this.countdown);
+    this.countdownText.setText("Level " + this.data.values.level + "\n+" + this.countdown);
     if (this.countdown < 0) {
       this.countdown = this.DURATION;
       this.sound.play('blop', { loop: false });
       this.scene.start('Scores');
     }
   }
-
-  configureStandardEvents(): void {
-    this.input.keyboard.on('keydown', function(this: Canvas, e: KeyboardEvent) {
-      if (e.key == 'Escape' || e.key == 'ArrowLeft' || e.key == 'ArrowUp') {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Pause');
-      } else if (e.key == 'Enter' || e.key == 'ArrowRight') {
-        this.sound.play('blop', { loop: false });
-        this.scene.start('Scores');
-      } 
-    }, this);
-  }  
 }
 
 

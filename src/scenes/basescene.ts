@@ -1,6 +1,6 @@
 import { GameState } from '../gamestate'
 
-interface CanvasDimension {
+type CanvasDimension = {
     height: number,
     width: number,
     deviceHeight: number,
@@ -19,11 +19,11 @@ export class BaseScene extends Phaser.Scene {
         };
     }
 
-    protected getGameState(): GameState {
+    protected getGlobalState(): GameState {
         return this.registry.get("gamestate") as GameState;
     }
 
-    protected setGameState(state: GameState): void {
+    protected setGlobalState(state: GameState): void {
         this.registry.set("gamestate", state);
     }
 }
