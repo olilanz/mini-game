@@ -40,10 +40,7 @@ export class Game extends Phaser.Game {
   // constructs the game based on the game configuration
   constructor() {
     super(Game.config);
-    this.InitGamestate();
-  }
 
-  InitGamestate(): void {
     let state = { 
       currentLevel: 12,
       nextLevel: 13 } as GameState;
