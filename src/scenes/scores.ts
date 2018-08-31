@@ -58,16 +58,21 @@ export class Scores extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.start('Canvas');
+      this.scene.start('Canvas').restart();
     }, this);
 
-    btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'next') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.scene.start('Canvas');
-    }, this);
+    let navstate = this.getNavigationState();
+    if (navstate.currentLevel < navstate.numberOfLevels) {
+      btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'next') as Phaser.GameObjects.Sprite;
+      btn.setDisplaySize(btnsize, btnsize);
+      btn.setInteractive();
+      btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
+        navstate.currentLevel++;
+        this.setNavigationState(navstate);
+        this.sound.play('blop', { loop: false });
+        this.scene.start('Canvas');
+      }, this);
+    }
 
     let music = this.sound.add('theme');
     SoundHelper.playBackgroundMusic(music);

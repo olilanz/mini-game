@@ -11,14 +11,10 @@ import __imageComplete from '../assets/images/button_right.png';
 import __musicLevel from '../assets/music/levelsong.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
-export type CanvasConfig = {
-  level: number
-}
-
 export class Canvas extends BaseScene {
 
-  readonly DURATION: integer = 5000;
-  private countdown: integer = 0;
+  readonly DURATION: number = 5000;
+  private countdown: number = 0;
   private countdownText!: Phaser.GameObjects.Text;
 
   constructor() {
@@ -30,8 +26,9 @@ export class Canvas extends BaseScene {
   }
 
   init(config: object) {
-    let data = config as CanvasConfig;
-    this.data.values.level = data.level;
+    let navstate = this.getNavigationState();
+    this.data.values.level = navstate.currentLevel;
+    this.countdown = this.DURATION;
   }
 
   preload(): void {

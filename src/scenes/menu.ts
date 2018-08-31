@@ -4,7 +4,6 @@
  * Select levels here
  */
 import { BaseScene } from './basescene';
-import { CanvasConfig } from '../scenes/canvas';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageRight from '../assets/images/button_right.png';
@@ -13,10 +12,20 @@ import __musicTheme from '../assets/music/theme.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
 export class Menu extends BaseScene {
+
+  readonly COLS: integer = 4;
+  readonly ROWS: integer = 3;
+
   constructor() {
     super({
       key: 'Menu'
     });
+  }
+
+  init(): void {
+    let navstate = this.getNavigationState();
+    navstate.numberOfLevels = this.COLS * this.ROWS;
+    this.setNavigationState(navstate);
   }
 
   preload(): void {
@@ -55,16 +64,14 @@ export class Menu extends BaseScene {
       this.scene.start('Canvas');
     }, this);
 
-    let cols = 4;
-    let rows = 3;
     let xmargin = dims.width * 0.2;
-    let btncellwidth = (dims.width - (2 * xmargin)) / cols;
+    let btncellwidth = (dims.width - (2 * xmargin)) / this.COLS;
     let btnspacing = btncellwidth * 0.1;
     let btnwidth = btncellwidth * 0.9;
-    let ymargin = (dims.height - (rows * btnwidth) + ((rows - 1) * btnspacing)) / 2;
-    for (let col = 0; col < cols; col++) {
-      for (let row = 0; row < rows; row++) {
-        let level = col + 1 + (row * cols);
+    let ymargin = (dims.height - (this.ROWS * btnwidth) + ((this.ROWS - 1) * btnspacing)) / 2;
+    for (let col = 0; col < this.COLS; col++) {
+      for (let row = 0; row < this.ROWS; row++) {
+        let level = col + 1 + (row * this.COLS);
         this.createMenuButton(
           level.toString(), 
           level,
@@ -89,7 +96,12 @@ export class Menu extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.start('Canvas', { level: level } as CanvasConfig);
+
+      let navstate = this.getNavigationState();
+      navstate.currentLevel = level;
+      this.setNavigationState(navstate);  
+
+      this.scene.start('Canvas');
     }, this);
 
     let tx = this.add.text(

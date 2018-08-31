@@ -1,5 +1,10 @@
 import { GameState } from '../gamestate'
 
+type NavigationState = {
+    currentLevel: number,
+    numberOfLevels: number
+}
+
 type CanvasDimension = {
     height: number,
     width: number,
@@ -25,5 +30,17 @@ export class BaseScene extends Phaser.Scene {
 
     protected setGlobalState(state: GameState): void {
         this.registry.set("gamestate", state);
+    }
+
+    protected getNavigationState(): NavigationState {
+        let state = this.registry.get("navigationstate") as NavigationState;
+        if (state === undefined) {
+            state = { currentLevel: 0, numberOfLevels: 0 } as NavigationState;
+        }
+        return state;
+    }
+
+    protected setNavigationState(state: NavigationState): void {
+        this.registry.set("navigationstate", state);
     }
 }
