@@ -50,7 +50,7 @@ export class Canvas extends BaseScene {
     let btnsize = dims.width * 0.08;
     let btn = null;
 
-    this.countdownText = this.add.text(dims.width / 2, dims.height / 2, "#", { fontSize: '72px', fill: '#fff' });
+    this.countdownText = this.add.text(dims.width / 5, dims.height / 5, "#", { fontSize: '72px', fill: '#fff' });
 
     btn = this.add.sprite(dims.width - margin, margin, 'pause') as Phaser.GameObjects.Sprite;
     btn.setDisplaySize(btnsize, btnsize);
