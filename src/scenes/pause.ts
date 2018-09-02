@@ -6,7 +6,7 @@
 
 import { BaseScene } from './basescene';
 import { SoundHelper } from '../helpers/soundhelper';
-import __imageQuit from '../assets/images/button_left.png';
+import __imageMenu from '../assets/images/button_menu.png';
 import __imageRetry from '../assets/images/button_retry.png';
 import __imageResume from '../assets/images/button_right.png';
 import __imagePause from '../assets/images/pause.png';
@@ -22,7 +22,7 @@ export class Pause extends BaseScene {
   }
 
   preload(): void {
-    this.load.image('quit', __imageQuit);
+    this.load.image('menu', __imageMenu);
     this.load.image('retry', __imageRetry);
     this.load.image('resume', __imageResume);
     this.load.image('pausestub', __imagePause);
@@ -45,7 +45,7 @@ export class Pause extends BaseScene {
     let pause = this.add.sprite(dims.width / 2, dims.height / 2, 'pausestub') as Phaser.GameObjects.Sprite;
     pause.setDisplaySize(dims.width / 2, dims.width * 0.75 / 2);
 
-    btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'quit') as Phaser.GameObjects.Sprite;
+    btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'menu') as Phaser.GameObjects.Sprite;
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {

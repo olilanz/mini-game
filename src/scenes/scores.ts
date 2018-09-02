@@ -6,7 +6,7 @@
 
 import { BaseScene } from './basescene';
 import { SoundHelper } from '../helpers/soundhelper';
-import __imageLeft from '../assets/images/button_left.png';
+import __imageMenu from '../assets/images/button_menu.png';
 import __imageRetry from '../assets/images/button_retry.png';
 import __imageRight from '../assets/images/button_right.png';
 import __imageTrophy from '../assets/images/trophy.png';
@@ -22,7 +22,7 @@ export class Scores extends BaseScene {
   }
 
   preload(): void {
-    this.load.image('left', __imageLeft);
+    this.load.image('menu', __imageMenu);
     this.load.image('retry', __imageRetry);
     this.load.image('next', __imageRight);
     this.load.image('trophy', __imageTrophy);
@@ -45,7 +45,7 @@ export class Scores extends BaseScene {
     let trophy = this.add.sprite(dims.width / 2, dims.height / 2, 'trophy') as Phaser.GameObjects.Sprite;
     trophy.setDisplaySize(dims.width / 2, dims.width / 2);
 
-    btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'left') as Phaser.GameObjects.Sprite;
+    btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'menu') as Phaser.GameObjects.Sprite;
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
