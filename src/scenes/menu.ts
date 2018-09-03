@@ -6,7 +6,6 @@
 import { BaseScene } from './basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageLeft from '../assets/images/button_left.png';
-import __imageRight from '../assets/images/button_right.png';
 import __imageMenu from '../assets/images/button_menu_level.png';
 import __musicTheme from '../assets/music/theme.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
@@ -30,7 +29,6 @@ export class Menu extends BaseScene {
 
   preload(): void {
     this.load.image('left', __imageLeft);
-    this.load.image('right', __imageRight);
     this.load.image('menulvl', __imageMenu);
     this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
@@ -54,14 +52,6 @@ export class Menu extends BaseScene {
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
       this.scene.start('Welcome');
-    }, this);
-
-    btn = this.add.sprite(dims.width - margin, dims.height / 2, 'right') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.scene.start('Canvas');
     }, this);
 
     let xmargin = dims.width * 0.2;
