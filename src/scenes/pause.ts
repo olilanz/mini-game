@@ -50,7 +50,7 @@ export class Pause extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.stop('Canvas'); // shuts the canvas down
+      this.scene.stop('LevelCanvas'); // shuts the canvas down
       this.scene.start('Menu');
     }, this);
 
@@ -59,7 +59,7 @@ export class Pause extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.switch('Canvas');
+      this.scene.wake('LevelCanvas');
       this.scene.stop('Pause');
     }, this);
 
@@ -68,8 +68,8 @@ export class Pause extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.stop('Canvas');
-      this.scene.start('Canvas');
+      this.scene.stop('LevelCanvas');
+      this.scene.start('LevelCanvas');
     }, this);
 
     let music = this.sound.add('theme');

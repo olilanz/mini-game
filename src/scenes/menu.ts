@@ -91,7 +91,7 @@ export class Menu extends BaseScene {
       navstate.currentLevel = level;
       this.setNavigationState(navstate);  
 
-      this.scene.start('Canvas');
+      this.scene.start('LevelCanvas');
     }, this);
 
     let tx = this.add.text(

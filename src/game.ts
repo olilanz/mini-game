@@ -9,9 +9,10 @@ import "phaser";
 import { GameState } from "./gamestate";
 import { Welcome } from "./scenes/welcome";
 import { Menu } from "./scenes/menu";
-import { Canvas } from "./scenes/canvas";
+import { LevelCanvas } from "./scenes/levelcanvas";
 import { Scores } from "./scenes/scores";
 import { Pause } from "./scenes/pause";
+import { Level } from "./scenes/level";
 
 // represents the entire game
 export class Game extends Phaser.Game {
@@ -19,7 +20,7 @@ export class Game extends Phaser.Game {
   static config: GameConfig = {
     type: Phaser.AUTO,
     parent: "game-canvas",
-    scene: [ Welcome, Menu, Canvas, Pause, Scores ],
+    scene: [ Welcome, Menu, LevelCanvas, Level, Pause, Scores ],
     physics: {
       default: "arcade",
       arcade: {

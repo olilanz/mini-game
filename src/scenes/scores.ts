@@ -58,7 +58,7 @@ export class Scores extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.start('Canvas');
+      this.scene.start('LevelCanvas');
     }, this);
 
     let navstate = this.getNavigationState();
@@ -70,7 +70,7 @@ export class Scores extends BaseScene {
         navstate.currentLevel++;
         this.setNavigationState(navstate);
         this.sound.play('blop', { loop: false });
-        this.scene.start('Canvas');
+        this.scene.start('LevelCanvas');
       }, this);
     }
 

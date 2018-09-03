@@ -10,24 +10,24 @@ import __imagePause from '../assets/images/button_pause.png';
 import __musicLevel from '../assets/music/levelsong.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
-export class Canvas extends BaseScene {
-
-  readonly DURATION: number = 5000;
-  private countdown: number = 0;
-  private countdownText!: Phaser.GameObjects.Text;
+export class LevelCanvas extends BaseScene {
 
   constructor() {
     super({
-      key: 'Canvas'
+      key: 'LevelCanvas'
     });
-
-    this.countdown = this.DURATION;
   }
+
+  private music: Phaser.Sound.BaseSound | undefined;
 
   init(config: object) {
     let navstate = this.getNavigationState();
     this.data.values.level = navstate.currentLevel;
-    this.countdown = this.DURATION;
+
+    this.startLevel();
+
+    this.events.on('wake', this.resumeLevel, this);
+    this.events.on('sleep', this.pauseLevel, this);
   }
 
   preload(): void {
@@ -38,7 +38,7 @@ export class Canvas extends BaseScene {
 
   create(): void {
     let text = [
-      'Canvas', 
+      'LevelCanvas', 
       'Here is the game-play'
     ];
     this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
@@ -48,28 +48,34 @@ export class Canvas extends BaseScene {
     let btnsize = dims.width * 0.08;
     let btn = null;
 
-    this.countdownText = this.add.text(dims.width / 5, dims.height / 5, "#", { fontSize: '72px', fill: '#fff' });
-
     btn = this.add.sprite(dims.width - margin, margin, 'pause') as Phaser.GameObjects.Sprite;
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
-    btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
+    btn.on('pointerdown', function (this: LevelCanvas, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
       this.scene.switch('Pause'); // puts this scene to sleep (no render, no update), and starts the pause scene
+      // this.scene.pause('Level');
     }, this);
 
-    let music = this.sound.add('levelsong');
-    SoundHelper.playBackgroundMusic(music);
+    this.music = this.sound.add('levelsong');
+    SoundHelper.playBackgroundMusic(this.music);
   }
 
   update(time: number, delta: number): void {
-    this.countdown -= delta;
-    this.countdownText.setText("Level " + this.data.values.level + "\n+" + this.countdown);
-    if (this.countdown < 0) {
-      this.countdown = this.DURATION;
-      this.sound.play('blop', { loop: false });
-      this.scene.start('Scores');
-    }
+  }
+
+  private startLevel(): void {    
+    this.scene.stop('Level');
+    this.scene.launch('Level');
+  }
+
+  private pauseLevel(): void {
+    this.scene.sleep('Level');
+  }
+
+  private resumeLevel(): void {
+    this.scene.wake('Level');
+    SoundHelper.playBackgroundMusic(this.music);
   }
 }
 
