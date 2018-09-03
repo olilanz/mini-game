@@ -10,7 +10,7 @@ export abstract class SoundHelper {
 
     static backgroundMusic: Phaser.Sound.BaseSound | null = null;
 
-    static playBackgroundMusic(music: Phaser.Sound.BaseSound): void {
+    static playBackgroundMusic(music: Phaser.Sound.BaseSound | undefined): void {
         if (!music) {
             return; // cannot play null
         }
