@@ -17,12 +17,15 @@
     "typescript": "3.0.3"
   },
   "dependencies": {
+    "helpers": "0.0.6",
     "phaser": "3.11.0"
   },
   "scripts": {
     "start": "parcel ./src/index.html -p 1234",
     "build": "parcel build ./src/index.html --target browser",
-    "clean": "rm ./dist/*.*"
+    "clean": "rm ./dist/*.*",
+    "docker-build": "docker build -t olilanz/mini-game .",
+    "docker-push": "docker push olilanz/mini-game"
   },
   "repository": {
     "type": "git",
