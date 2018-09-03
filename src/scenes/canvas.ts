@@ -7,7 +7,6 @@
 import { BaseScene } from './basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imagePause from '../assets/images/button_pause.png';
-import __imageComplete from '../assets/images/button_right.png';
 import __musicLevel from '../assets/music/levelsong.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
@@ -33,7 +32,6 @@ export class Canvas extends BaseScene {
 
   preload(): void {
     this.load.image('pause', __imagePause);
-    this.load.image('complete', __imageComplete);
     this.load.audio('levelsong', __musicLevel);
     this.load.audio('blop', __soundBlop);
   }
@@ -58,14 +56,6 @@ export class Canvas extends BaseScene {
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
       this.scene.switch('Pause'); // puts this scene to sleep (no render, no update), and starts the pause scene
-    }, this);
-
-    btn = this.add.sprite(dims.width - margin, margin + btnsize + margin, 'complete') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.scene.start('Scores');
     }, this);
 
     let music = this.sound.add('levelsong');
