@@ -57,7 +57,7 @@ export class Canvas extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Canvas, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.start('Pause');
+      this.scene.switch('Pause'); // puts this scene to sleep (no render, no update), and starts the pause scene
     }, this);
 
     btn = this.add.sprite(dims.width - margin, margin + btnsize + margin, 'complete') as Phaser.GameObjects.Sprite;
