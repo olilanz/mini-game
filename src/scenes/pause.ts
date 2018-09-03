@@ -54,15 +54,6 @@ export class Pause extends BaseScene {
       this.scene.start('Menu');
     }, this);
 
-    btn = this.add.sprite(dims.width * 0.5, dims.height - margin, 'retry') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.scene.stop('Canvas');
-      this.scene.start('Canvas');
-    }, this);
-
     btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'resume') as Phaser.GameObjects.Sprite;
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
@@ -70,6 +61,15 @@ export class Pause extends BaseScene {
       this.sound.play('blop', { loop: false });
       this.scene.switch('Canvas');
       this.scene.stop('Pause');
+    }, this);
+
+    btn = this.add.sprite(dims.width * 0.5, dims.height - margin, 'retry') as Phaser.GameObjects.Sprite;
+    btn.setDisplaySize(btnsize, btnsize);
+    btn.setInteractive();
+    btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
+      this.sound.play('blop', { loop: false });
+      this.scene.stop('Canvas');
+      this.scene.start('Canvas');
     }, this);
 
     let music = this.sound.add('theme');
