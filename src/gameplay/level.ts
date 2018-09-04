@@ -4,7 +4,7 @@
  * Entry page of the game.
  */
 
-import { BaseScene } from './basescene';
+import { BaseScene } from '../scenes/basescene';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
 export class Level extends BaseScene {

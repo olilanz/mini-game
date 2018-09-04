@@ -6,13 +6,12 @@
  */
 
 import "phaser";
-import { GameState } from "./gamestate";
 import { Welcome } from "./scenes/welcome";
 import { Menu } from "./scenes/menu";
 import { LevelCanvas } from "./scenes/levelcanvas";
 import { Scores } from "./scenes/scores";
 import { Pause } from "./scenes/pause";
-import { Level } from "./scenes/level";
+import { Level } from "./gameplay/level";
 
 // represents the entire game
 export class Game extends Phaser.Game {

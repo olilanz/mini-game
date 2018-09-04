@@ -17,7 +17,6 @@
     "typescript": "3.0.3"
   },
   "dependencies": {
-    "helpers": "0.0.6",
     "phaser": "3.11.0"
   },
   "scripts": {
