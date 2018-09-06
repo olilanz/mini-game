@@ -51,7 +51,7 @@ export class Menu extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.start('Welcome');
+      this.transitionToWelcome();
     }, this);
 
     let xmargin = dims.width * 0.2;
@@ -61,7 +61,7 @@ export class Menu extends BaseScene {
     let ymargin = (dims.height - (this.ROWS * btnwidth) + ((this.ROWS - 1) * btnspacing)) / 2;
     for (let col = 0; col < this.COLS; col++) {
       for (let row = 0; row < this.ROWS; row++) {
-        let level = col + 1 + (row * this.COLS);
+        let level: integer = col + 1 + (row * this.COLS);
         this.createMenuButton(
           level.toString(), 
           level,
@@ -79,24 +79,30 @@ export class Menu extends BaseScene {
   update(delta: number): void {
   }
 
-  createMenuButton(text: string, level: number, xpos: number, ypos: number, width: number, height: number): void {
+  createMenuButton(text: string, level: integer, xpos: number, ypos: number, width: number, height: number): void {
     let btn = this.add.sprite(xpos, ypos, 'menulvl') as Phaser.GameObjects.Sprite;
     btn.setOrigin(0, 0);
     btn.setDisplaySize(width, height);
     btn.setInteractive();
     btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-
-      let navstate = this.getNavigationState();
-      navstate.currentLevel = level;
-      this.setNavigationState(navstate);  
-
-      this.scene.start('LevelCanvas');
+      this.transitionToLevel(level);
     }, this);
 
     let tx = this.add.text(
       xpos + (width / 2), ypos + (height / 2), text,
       { fontSize: '24px', fill: '#000' }
     );
+  }
+
+  transitionToWelcome(): void {
+    this.scene.start('Welcome');
+  }
+
+  transitionToLevel(level: integer): void {
+    let navstate = this.getNavigationState();
+    navstate.currentLevel = level;
+    this.setNavigationState(navstate);  
+    this.scene.start('Level');
   }
 }

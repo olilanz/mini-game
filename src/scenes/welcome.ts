@@ -39,7 +39,7 @@ export class Welcome extends BaseScene {
     title.setInteractive();
     title.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.start('Menu');
+      this.transitionToMenu();
     }, this);
 
     let music = this.sound.add('theme');
@@ -49,5 +49,9 @@ export class Welcome extends BaseScene {
   }
 
   update(time: number, delta: number): void {
+  }
+
+  transitionToMenu(): void {
+    this.scene.start('Menu');
   }
 }

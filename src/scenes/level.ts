@@ -10,24 +10,22 @@ import __imagePause from '../assets/images/button_pause.png';
 import __musicLevel from '../assets/music/levelsong.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
-export class LevelCanvas extends BaseScene {
-
-  constructor() {
-    super({
-      key: 'LevelCanvas'
-    });
-  }
+export class Level extends BaseScene {
 
   private music: Phaser.Sound.BaseSound | undefined;
 
+  constructor() {
+    super({
+      key: 'Level'
+    });
+  }
+
   init(config: object) {
+    this.attacheEventHandlers();
+    this.startLevelStage();
+
     let navstate = this.getNavigationState();
     this.data.values.level = navstate.currentLevel;
-
-    this.startLevel();
-
-    this.events.on('wake', this.resumeLevel, this);
-    this.events.on('sleep', this.pauseLevel, this);
   }
 
   preload(): void {
@@ -51,10 +49,9 @@ export class LevelCanvas extends BaseScene {
     btn = this.add.sprite(dims.width - margin, margin, 'pause') as Phaser.GameObjects.Sprite;
     btn.setDisplaySize(btnsize, btnsize);
     btn.setInteractive();
-    btn.on('pointerdown', function (this: LevelCanvas, pointer: string | symbol) {
+    btn.on('pointerdown', function (this: Level, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.switch('Pause'); // puts this scene to sleep (no render, no update), and starts the pause scene
-      // this.scene.pause('Level');
+      this.transitionToPause();
     }, this);
 
     this.music = this.sound.add('levelsong');
@@ -64,18 +61,43 @@ export class LevelCanvas extends BaseScene {
   update(time: number, delta: number): void {
   }
 
-  private startLevel(): void {    
-    this.scene.stop('Level');
-    this.scene.launch('Level');
+  private attacheEventHandlers() {
+    this.events.on('shutdown', this.shutdown, this);
+    this.events.on('wake', this.resumeLevelStage, this);
+    this.events.on('complete', this.transitionToScores, this);
   }
 
-  private pauseLevel(): void {
-    this.scene.sleep('Level');
+  private detacheEventHandlers() {
+    this.events.off('shutdown', this.stopLevelStage, this, false);
+    this.events.off('wake', this.resumeLevelStage, this, false);
+    this.events.off('complete', this.transitionToScores, this, false);
   }
 
-  private resumeLevel(): void {
-    this.scene.wake('Level');
+  private shutdown() {
+    this.detacheEventHandlers();
+    this.stopLevelStage();
+  }
+
+  private startLevelStage(): void {    
+    this.scene.launch('GamePlay');
+  }
+
+  private stopLevelStage(): void {
+    this.scene.stop('GamePlay');
+  }
+
+  private resumeLevelStage(): void {
+    this.scene.wake('GamePlay');
+  }
+
+  private transitionToPause(): void {
+    this.scene.sleep('GamePlay');
+    this.scene.switch('Pause'); 
+  }
+
+  private transitionToScores(): void {
     SoundHelper.playBackgroundMusic(this.music);
+    this.scene.start('Scores');
   }
 }
 

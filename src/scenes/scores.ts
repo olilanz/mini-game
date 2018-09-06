@@ -50,7 +50,7 @@ export class Scores extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.start('Menu');
+      this.navigateToMenu();
     }, this);
 
     btn = this.add.sprite(dims.width * 0.5, dims.height - margin, 'retry') as Phaser.GameObjects.Sprite;
@@ -58,7 +58,7 @@ export class Scores extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.start('LevelCanvas');
+      this.navigateToNewLevel();
     }, this);
 
     let navstate = this.getNavigationState();
@@ -67,10 +67,11 @@ export class Scores extends BaseScene {
       btn.setDisplaySize(btnsize, btnsize);
       btn.setInteractive();
       btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
+        // todo: not nice to increment level here; move into navigetToNextLevel() instead..
         navstate.currentLevel++;
         this.setNavigationState(navstate);
         this.sound.play('blop', { loop: false });
-        this.scene.start('LevelCanvas');
+        this.navigateToNextLevel();
       }, this);
     }
 
@@ -81,6 +82,18 @@ export class Scores extends BaseScene {
   }
 
   update(delta: number): void {
+  }
+
+  navigateToNewLevel(): void {
+    this.scene.start('Level');
+  }
+
+  navigateToNextLevel(): void {
+    this.scene.start('Level');
+  }
+
+  navigateToMenu(): void {
+    this.scene.start('Menu');
   }
 }
 

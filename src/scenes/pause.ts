@@ -50,8 +50,7 @@ export class Pause extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.stop('LevelCanvas'); // shuts the canvas down
-      this.scene.start('Menu');
+      this.transitionToMenu();
     }, this);
 
     btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'resume') as Phaser.GameObjects.Sprite;
@@ -59,8 +58,7 @@ export class Pause extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.wake('LevelCanvas');
-      this.scene.stop('Pause');
+      this.transitionToLevel();
     }, this);
 
     btn = this.add.sprite(dims.width * 0.5, dims.height - margin, 'retry') as Phaser.GameObjects.Sprite;
@@ -68,8 +66,7 @@ export class Pause extends BaseScene {
     btn.setInteractive();
     btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.scene.stop('LevelCanvas');
-      this.scene.start('LevelCanvas');
+      this.transitionToNewLevel();
     }, this);
 
     let music = this.sound.add('theme');
@@ -79,6 +76,21 @@ export class Pause extends BaseScene {
   }
 
   update(delta: number): void {
+  }
+
+  transitionToMenu(): void {
+    this.scene.stop('Level'); // shuts the canvas down
+    this.scene.start('Menu');
+  }
+
+  transitionToLevel(): void {
+    this.scene.wake('Level');
+    this.scene.stop('Pause');  
+  }
+
+  transitionToNewLevel(): void {
+    this.scene.stop('Level');
+    this.scene.start('Level');
   }
 }
 
