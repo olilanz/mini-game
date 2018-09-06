@@ -6,6 +6,7 @@
 
 import { BaseScene } from '../scenes/basescene';
 import __imageMonster from '../assets/images/monster.png';
+import __imageCookie from '../assets/images/cookie.png';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
 export class GamePlay extends BaseScene {
@@ -26,6 +27,7 @@ export class GamePlay extends BaseScene {
   preload(): void {
     this.load.audio('blop', __soundBlop);
     this.load.image('monster', __imageMonster);
+    this.load.image('cookie', __imageCookie);
   }
 
   create(): void {
@@ -43,6 +45,16 @@ export class GamePlay extends BaseScene {
       this.sound.play('blop', { loop: false });
       this.complete();
     }, this);
+
+    this.createCookies(20);
+  }
+
+  createCookies(count: integer): void {
+    for (let i = 0; i < count; i++) {
+      let cookie = this.physics.add.sprite(i * 4, i * 2, 'cookie');
+      cookie.setBounce(0.4);
+      cookie.setCollideWorldBounds(true);   
+    }
   }
 
   update(time: number, delta: number): void {
