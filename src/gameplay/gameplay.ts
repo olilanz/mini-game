@@ -43,7 +43,7 @@ export class GamePlay extends BaseScene {
     this.monster.setInteractive();
     this.monster.on('pointerdown', function (this: GamePlay, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
-      this.complete();
+      this.conclude(false);
     }, this);
 
     this.createCookies(this.data.values.level);
@@ -53,15 +53,20 @@ export class GamePlay extends BaseScene {
     for (let i = 0; i < count; i++) {
       let cookie = this.physics.add.sprite(i * Phaser.Math.Between(30, 60), i * Phaser.Math.Between(20, 40), 'cookie');
       cookie.setBounce(0.6);
-      cookie.setCollideWorldBounds(true);   
+      cookie.setCollideWorldBounds(true);
+      cookie.setInteractive();
+      cookie.on('pointerdown', function (this: GamePlay, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.conclude(true);
+      }, this);  
     }
   }
 
   update(time: number, delta: number): void {
   }
 
-  complete(): void {
-    this.scene.get('Level').events.emit('complete');
+  conclude(success: boolean): void {
+    this.scene.get('Level').events.emit('conclude', success);
   }
 }
 

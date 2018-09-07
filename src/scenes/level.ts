@@ -64,13 +64,13 @@ export class Level extends BaseScene {
   private attacheEventHandlers() {
     this.events.on('shutdown', this.shutdown, this);
     this.events.on('wake', this.resumeLevelStage, this);
-    this.events.on('complete', this.transitionToScores, this);
+    this.events.on('conclude', this.transitionToScores, this);
   }
 
   private detacheEventHandlers() {
     this.events.off('shutdown', this.stopLevelStage, this, false);
     this.events.off('wake', this.resumeLevelStage, this, false);
-    this.events.off('complete', this.transitionToScores, this, false);
+    this.events.off('conclude', this.transitionToScores, this, false);
   }
 
   private shutdown() {
@@ -95,9 +95,9 @@ export class Level extends BaseScene {
     this.scene.switch('Pause'); 
   }
 
-  private transitionToScores(): void {
+  private transitionToScores(success: boolean): void {
     SoundHelper.playBackgroundMusic(this.music);
-    this.scene.start('Scores');
+    this.scene.start('Scores', { success });
   }
 }
 

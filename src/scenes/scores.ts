@@ -10,15 +10,22 @@ import __imageMenu from '../assets/images/button_menu.png';
 import __imageRetry from '../assets/images/button_retry.png';
 import __imageRight from '../assets/images/button_right.png';
 import __imageTrophy from '../assets/images/trophy.png';
+import __imageTrophyFail from '../assets/images/trophy_fail.png';
 import __musicTheme from '../assets/music/theme.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
 export class Scores extends BaseScene {
   
+  private success: boolean = true;
+
   constructor() {
     super({
       key: 'Scores'
     });
+  }
+
+  init(config: { success: boolean }) {
+    this.success = config.success;
   }
 
   preload(): void {
@@ -26,6 +33,7 @@ export class Scores extends BaseScene {
     this.load.image('retry', __imageRetry);
     this.load.image('next', __imageRight);
     this.load.image('trophy', __imageTrophy);
+    this.load.image('trophy_fail', __imageTrophyFail);
     this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
   }
@@ -42,8 +50,8 @@ export class Scores extends BaseScene {
     let btnsize = dims.width * 0.08;
     let btn = null;
 
-    let trophy = this.add.sprite(dims.width / 2, dims.height / 2, 'trophy') as Phaser.GameObjects.Sprite;
-    trophy.setDisplaySize(dims.width / 2, dims.width / 2);
+    let trophy = this.add.sprite(dims.width / 2, dims.height / 2, this.success ? 'trophy' : 'trophy_fail') as Phaser.GameObjects.Sprite;
+    trophy.setDisplaySize(dims.width / 2, dims.width / 3);
 
     btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'menu') as Phaser.GameObjects.Sprite;
     btn.setDisplaySize(btnsize, btnsize);
@@ -62,7 +70,7 @@ export class Scores extends BaseScene {
     }, this);
 
     let navstate = this.getNavigationState();
-    if (navstate.currentLevel < navstate.numberOfLevels) {
+    if (navstate.currentLevel < navstate.numberOfLevels && this.success) {
       btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'next') as Phaser.GameObjects.Sprite;
       btn.setDisplaySize(btnsize, btnsize);
       btn.setInteractive();
