@@ -1,22 +1,22 @@
 # mini-game
 
-Toying around with TypeScript
+Toying around with TypeScript and Phaser 3.
 
 
 ### Requirements
 
-We need [Node.js](https://nodejs.org) to install and run scripts.
+We need [Node.js](https://nodejs.org) to install packages and to run scripts.
 
 
 ## Install and run
 
-Run next commands in your terminal:
+The following commands will get you started:
 
 | Command | Description |
 |---------|-------------|
-| `npm i -g npm` | Update npm to latest version.|
+| `npm i -g npm` | Update npm to required version.|
 | `npm install` | Install dependencies.|
-| `npm start` | Builds game and startes server. Connect to http://localhost:1234. <br> Press `Ctrl + c` to kill **http-server** process. |
+| `npm start` | Builds game and startes server. Connect to http://localhost:1234. |
 | `npm run build` | Builds game. |
 
 
@@ -35,8 +35,3 @@ Run next commands in your terminal:
 |---------|-------------|
 | `npm outdated` | Shows which packages have new releases that could possibly be upgraded to. |
 | `npm upgrade -g` | Updates all top level packages to the latest version. |
-
-
-## Notes
-
-Bootstrapped from here: https://github.com/digitsensitive/phaser3-typescript

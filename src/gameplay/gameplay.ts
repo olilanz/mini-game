@@ -46,13 +46,13 @@ export class GamePlay extends BaseScene {
       this.complete();
     }, this);
 
-    this.createCookies(20);
+    this.createCookies(this.data.values.level);
   }
 
   createCookies(count: integer): void {
     for (let i = 0; i < count; i++) {
-      let cookie = this.physics.add.sprite(i * 4, i * 2, 'cookie');
-      cookie.setBounce(0.4);
+      let cookie = this.physics.add.sprite(i * Phaser.Math.Between(30, 60), i * Phaser.Math.Between(20, 40), 'cookie');
+      cookie.setBounce(0.6);
       cookie.setCollideWorldBounds(true);   
     }
   }
