@@ -35,12 +35,6 @@ export class Level extends BaseScene {
   }
 
   create(): void {
-    let text = [
-      'LevelCanvas', 
-      'Here is the game-play'
-    ];
-    this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
-
     let dims = this.getScreenDimension();
     let margin = dims.width * 0.1;
     let btnsize = dims.width * 0.08;

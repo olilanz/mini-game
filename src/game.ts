@@ -23,7 +23,7 @@ export class Game extends Phaser.Game {
     physics: {
       default: "matter",
       matter: {
-        debug: true
+        // debug: true
       }
     },
     input: {
