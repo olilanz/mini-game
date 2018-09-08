@@ -33,8 +33,7 @@ export class Game extends Phaser.Game {
       gamepad: false
     },
     disableContextMenu: true,
-    "render.antialias": true,
-    backgroundColor: '#111155'
+    backgroundColor: '#222244'
   };
 
   // constructs the game based on the game configuration
