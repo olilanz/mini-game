@@ -21,9 +21,9 @@ export class Game extends Phaser.Game {
     parent: "game-canvas",
     scene: [ Welcome, Menu, Level, GamePlay, Pause, Scores ],
     physics: {
-      default: "arcade",
-      arcade: {
-        gravity: { y: 200 }
+      default: "matter",
+      matter: {
+        debug: true
       }
     },
     input: {
