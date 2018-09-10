@@ -81,6 +81,9 @@ export class Level extends BaseScene {
   }
 
   private resumeLevelStage(): void {
+    this.music = this.sound.add('levelsong');
+    SoundHelper.playBackgroundMusic(this.music);
+
     this.scene.wake('GamePlay');
   }
 
