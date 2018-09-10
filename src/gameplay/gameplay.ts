@@ -63,16 +63,16 @@ export class GamePlay extends BaseScene {
   }
 
   clickHandler(pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]): void {
+    this.sound.play('blop', { loop: false });
+
     let monster = gameObjects.find(monster => monster.name == this.MONSTER_NAME);
     if (monster) {
-      this.sound.play('blop', { loop: false });
       this.conclude(false);
       return;
     }
 
     let cookie = gameObjects.find(cookie => cookie.name.startsWith(this.COOKIE_NAME_PREFIX));
     if (cookie) {
-      this.sound.play('blop', { loop: false });
       let remaining = this.removeCookie(cookie.name);
       this.updateText();
       if (remaining<= 0) {
