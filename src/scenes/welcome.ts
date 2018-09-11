@@ -18,6 +18,8 @@ export class Welcome extends BaseScene {
     });
   }
 
+  private titleText!: Phaser.GameObjects.Text;
+
   preload(): void {
     this.load.image('title', __imageTitle);
     this.load.audio('theme', __musicTheme);
@@ -25,14 +27,10 @@ export class Welcome extends BaseScene {
   }
 
   create(): void {
-    let text = [
-      'Welcome to Mini Game', 
-      'Oliver and Noah\'s playground!'
-    ];
-
     let dims = this.getScreenDimension();
 
-    this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
+    this.titleText = this.add.text(16, 16, "..", { fontSize: '12px', fill: '#fff' });
+    this.updateText();
 
     let title = this.add.sprite(dims.width / 2, dims.height / 2, 'title') as Phaser.GameObjects.Sprite;
     title.setDisplaySize(dims.width * 0.6, dims.width * 0.75 * 0.6);
@@ -49,6 +47,19 @@ export class Welcome extends BaseScene {
   }
 
   update(time: number, delta: number): void {
+  }
+
+  updateText(): void {
+    let text = [
+      'Welcome to Mini Game', 
+      'Oliver and Noah\'s playground!',
+      '',
+      'window size: ' + window.innerWidth + 'x' + window.innerHeight,
+      'screen size: ' + window.screenX + 'x' + window.screenY,
+      'canvas size: ' + this.game.config.width + 'x' + this.game.config.height
+    ];
+
+    this.titleText.setText(text);
   }
 
   transitionToMenu(): void {

@@ -6,6 +6,7 @@
  */
 
 import "phaser";
+import "phaser-plugin-game-scale";
 import { Welcome } from "./scenes/welcome";
 import { Menu } from "./scenes/menu";
 import { Level } from "./scenes/level";
@@ -33,7 +34,12 @@ export class Game extends Phaser.Game {
       gamepad: false
     },
     disableContextMenu: true,
-    backgroundColor: '#222244'
+    backgroundColor: '#222244',
+/*
+    plugins: {
+      global: [{ key: 'GameScalePlugin', plugin: Phaser.Plugins.GameScalePlugin, mapping: 'gameScale' }]
+    }
+*/
   };
 
   // constructs the game based on the game configuration
