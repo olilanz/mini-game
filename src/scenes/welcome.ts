@@ -44,6 +44,16 @@ export class Welcome extends BaseScene {
     SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
+
+    this.events.on('resize', function (this: Welcome, width: number, height: number, context: Welcome) {
+      this.updateText();
+    }, this);
+
+/*
+    this.sys.game.events.on('resize', function (this: Welcome, width: number, height: number) {
+      console.log('Game "resize" event', width, height);
+    }, this);
+*/
   }
 
   update(time: number, delta: number): void {

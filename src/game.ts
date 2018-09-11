@@ -34,12 +34,7 @@ export class Game extends Phaser.Game {
       gamepad: false
     },
     disableContextMenu: true,
-    backgroundColor: '#222244',
-/*
-    plugins: {
-      global: [{ key: 'GameScalePlugin', plugin: Phaser.Plugins.GameScalePlugin, mapping: 'gameScale' }]
-    }
-*/
+    backgroundColor: '#222244'
   };
 
   // constructs the game based on the game configuration
