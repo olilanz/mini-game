@@ -24,6 +24,14 @@ export class BaseScene extends Phaser.Scene {
         };
     }
 
+    protected attachDefaultHandlers(): void {
+        this.events.on('resize', function (this: BaseScene, width: number, height: number) {
+                this.onResize(width, height);
+          }, this);
+    }
+
+    protected onResize(width: number, height: number) {}
+
     protected getGlobalState(): GameState {
         return this.registry.get("gamestate") as GameState;
     }

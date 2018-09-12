@@ -19,6 +19,11 @@ export class Welcome extends BaseScene {
   }
 
   private titleText!: Phaser.GameObjects.Text;
+  private titleImage!: Phaser.GameObjects.Sprite;
+
+  init(): void {
+    this.attachDefaultHandlers();
+  }
 
   preload(): void {
     this.load.image('title', __imageTitle);
@@ -29,34 +34,37 @@ export class Welcome extends BaseScene {
   create(): void {
     let dims = this.getScreenDimension();
 
-    this.titleText = this.add.text(16, 16, "..", { fontSize: '12px', fill: '#fff' });
-    this.updateText();
+    this.titleText = this.add.text(0, 0, "..", { fontSize: '12px', fill: '#fff' });
 
-    let title = this.add.sprite(dims.width / 2, dims.height / 2, 'title') as Phaser.GameObjects.Sprite;
-    title.setDisplaySize(dims.width * 0.6, dims.width * 0.75 * 0.6);
-    title.setInteractive();
-    title.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
+    this.titleImage = this.add.sprite(0, 0, 'title') as Phaser.GameObjects.Sprite;
+    this.titleImage.setInteractive();
+    this.titleImage.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
       this.sound.play('blop', { loop: false });
       this.transitionToMenu();
     }, this);
+
+    this.updateLayout(dims.width, dims.height);
+    this.updateText();
 
     let music = this.sound.add('theme');
     SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
+  }
 
-    this.events.on('resize', function (this: Welcome, width: number, height: number) {
-      this.updateText();
-    }, this);
+  updateLayout(width: number, height: number): void {
+    this.titleText.setPosition(16, 16);
 
-/*
-    this.sys.game.events.on('resize', function (this: Welcome, width: number, height: number) {
-      console.log('Game "resize" event', width, height);
-    }, this);
-*/
+    this.titleImage.setPosition(width / 2, height / 2);
+    this.titleImage.setDisplaySize(width * 0.6, width * 0.75 * 0.6);
   }
 
   update(time: number, delta: number): void {
+  }
+
+  onResize(width: number, height: number) {
+    this.updateLayout(width, height);
+    this.updateText();
   }
 
   updateText(): void {
