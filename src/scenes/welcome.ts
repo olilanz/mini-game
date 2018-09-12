@@ -45,7 +45,7 @@ export class Welcome extends BaseScene {
 
     this.sound.add('blop');
 
-    this.events.on('resize', function (this: Welcome, width: number, height: number, context: Welcome) {
+    this.events.on('resize', function (this: Welcome, width: number, height: number) {
       this.updateText();
     }, this);
 
