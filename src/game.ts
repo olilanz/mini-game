@@ -6,7 +6,7 @@
  */
 
 import "phaser";
-import "phaser-plugin-game-scale";
+
 import { Welcome } from "./scenes/welcome";
 import { Menu } from "./scenes/menu";
 import { Level } from "./scenes/level";

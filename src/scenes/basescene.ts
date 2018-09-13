@@ -25,9 +25,15 @@ export class BaseScene extends Phaser.Scene {
     }
 
     protected attachDefaultHandlers(): void {
-        this.events.on('resize', function (this: BaseScene, width: number, height: number) {
-                this.onResize(width, height);
-          }, this);
+        let fnResize = function (this: BaseScene, width: number, height: number) {
+            this.onResize(width, height);
+        }
+
+        this.events.on('shutdown', function (this: BaseScene) {
+            this.events.off('resize', fnResize, this, false);
+        }, this);
+        
+        this.events.on('resize', fnResize, this);
     }
 
     protected onResize(width: number, height: number) {}

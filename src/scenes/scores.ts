@@ -26,6 +26,7 @@ export class Scores extends BaseScene {
 
   init(config: { success: boolean }) {
     this.success = config.success;
+    this.attachDefaultHandlers();
   }
 
   preload(): void {
@@ -90,6 +91,9 @@ export class Scores extends BaseScene {
   }
 
   update(delta: number): void {
+  }
+
+  updateLayout(width: number, height: number): void {
   }
 
   navigateToNewLevel(): void {

@@ -22,6 +22,8 @@ export class Menu extends BaseScene {
   }
 
   init(): void {
+    this.attachDefaultHandlers();
+
     let navstate = this.getNavigationState();
     navstate.numberOfLevels = this.COLS * this.ROWS;
     this.setNavigationState(navstate);
@@ -39,60 +41,79 @@ export class Menu extends BaseScene {
       'Menu', 
       'Select a level to enter'
     ];
-    this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
+    this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' }).setName('titleText');
 
-    let dims = this.getScreenDimension();
-    let margin = dims.width * 0.1;
-    let btnsize = dims.width * 0.08;
-    let btn = null;
+    this.add.sprite(0, 0, 'left')
+      .setName('menu').setInteractive()
+      .on('pointerdown', function (this: Menu, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.transitionToWelcome();
+      }, this);
 
-    btn = this.add.sprite(margin, dims.height / 2, 'left') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.transitionToWelcome();
-    }, this);
-
-    let xmargin = dims.width * 0.2;
-    let btncellwidth = (dims.width - (2 * xmargin)) / this.COLS;
-    let btnspacing = btncellwidth * 0.1;
-    let btnwidth = btncellwidth * 0.9;
-    let ymargin = (dims.height - (this.ROWS * btnwidth) + ((this.ROWS - 1) * btnspacing)) / 2;
     for (let col = 0; col < this.COLS; col++) {
       for (let row = 0; row < this.ROWS; row++) {
         let level: integer = col + 1 + (row * this.COLS);
-        this.createMenuButton(
-          level.toString(), 
-          level,
-          xmargin + (col * btnwidth) + (col * btnspacing), 
-          ymargin + (row * btnwidth) + (row * btnspacing),
-          btnwidth,
-          btnwidth);
+        this.createMenuButton(level.toString(), level);
       }
     }
+
+    let dims = this.getScreenDimension();
+    this.updateLayout(dims.width, dims.height);
 
     let music = this.sound.add('theme');
     SoundHelper.playBackgroundMusic(music);
   }
 
+  onResize(width: number, height: number) {
+    this.updateLayout(width, height);
+  }
+
   update(delta: number): void {
   }
 
-  createMenuButton(text: string, level: integer, xpos: number, ypos: number, width: number, height: number): void {
-    let btn = this.add.sprite(xpos, ypos, 'menulvl') as Phaser.GameObjects.Sprite;
-    btn.setOrigin(0, 0);
-    btn.setDisplaySize(width, height);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Menu, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.transitionToLevel(level);
-    }, this);
+  updateLayout(width: number, height: number): void {
+    let margin = width * 0.1;
+    let btnsize = width * 0.08;
 
-    let tx = this.add.text(
-      xpos + (width / 2), ypos + (height / 2), text,
-      { fontSize: '24px', fill: '#000' }
-    );
+    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
+      .setPosition(16, 16);
+
+    (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
+      .setPosition(margin, height / 2)
+      .setDisplaySize(btnsize, btnsize);
+
+    let xmargin = width * 0.2;
+    let btncellwidth = (width - (2 * xmargin)) / this.COLS;
+    let btnspacing = btncellwidth * 0.1;
+    let btnwidth = btncellwidth * 0.9;
+    let ymargin = (height - (this.ROWS * btnwidth) + ((this.ROWS - 1) * btnspacing)) / 2;
+
+    for (let col = 0; col < this.COLS; col++) {
+      for (let row = 0; row < this.ROWS; row++) {
+        let level: integer = col + 1 + (row * this.COLS);
+        let xpos = xmargin + (col * btnwidth) + (col * btnspacing);
+        let ypos = ymargin + (row * btnwidth) + (row * btnspacing);
+        (this.children.getByName('btn_' + level) as Phaser.GameObjects.Sprite)
+          .setPosition(xpos, ypos)
+          .setDisplaySize(btnwidth, btnwidth);
+        (this.children.getByName('txt_' + level) as Phaser.GameObjects.Text)
+          .setPosition(xpos + (btnwidth / 2), ypos + (btnwidth / 2));    
+      }
+    }
+  }
+
+  createMenuButton(text: string, level: integer): void {
+    this.add.sprite(0, 0, 'menulvl')
+      .setName('btn_' + text)
+      .setOrigin(0, 0)
+      .setInteractive()
+      .on('pointerdown', function (this: Menu, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.transitionToLevel(level);
+      }, this);
+
+    this.add.text(0, 0, text, { fontSize: '24px', fill: '#000' })
+      .setName('txt_' + text);
   }
 
   transitionToWelcome(): void {

@@ -32,8 +32,6 @@ export class Welcome extends BaseScene {
   }
 
   create(): void {
-    let dims = this.getScreenDimension();
-
     this.titleText = this.add.text(0, 0, "..", { fontSize: '12px', fill: '#fff' });
 
     this.titleImage = this.add.sprite(0, 0, 'title') as Phaser.GameObjects.Sprite;
@@ -43,6 +41,7 @@ export class Welcome extends BaseScene {
       this.transitionToMenu();
     }, this);
 
+    let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
     this.updateText();
 

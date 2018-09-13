@@ -21,6 +21,10 @@ export class Pause extends BaseScene {
     });
   }
 
+  init(): void {
+    this.attachDefaultHandlers();
+  }
+
   preload(): void {
     this.load.image('menu', __imageMenu);
     this.load.image('retry', __imageRetry);
@@ -73,6 +77,9 @@ export class Pause extends BaseScene {
     SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
+  }
+
+  updateLayout(width: number, height: number): void {
   }
 
   update(delta: number): void {

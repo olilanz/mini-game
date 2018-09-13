@@ -21,6 +21,8 @@ export class Level extends BaseScene {
   }
 
   init(config: object) {
+    this.attachDefaultHandlers();
+
     this.attacheEventHandlers();
     this.startLevelStage();
 
@@ -53,6 +55,9 @@ export class Level extends BaseScene {
   }
 
   update(time: number, delta: number): void {
+  }
+
+  updateLayout(width: number, height: number): void {
   }
 
   private attacheEventHandlers() {
