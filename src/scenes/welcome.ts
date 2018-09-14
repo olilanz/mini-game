@@ -18,9 +18,6 @@ export class Welcome extends BaseScene {
     });
   }
 
-  private titleText!: Phaser.GameObjects.Text;
-  private titleImage!: Phaser.GameObjects.Sprite;
-
   init(): void {
     this.attachDefaultHandlers();
   }
@@ -32,14 +29,16 @@ export class Welcome extends BaseScene {
   }
 
   create(): void {
-    this.titleText = this.add.text(0, 0, "..", { fontSize: '12px', fill: '#fff' });
+    this.add.text(0, 0, "..", { fontSize: '12px', fill: '#fff' }).
+      setName('titleText');
 
-    this.titleImage = this.add.sprite(0, 0, 'title') as Phaser.GameObjects.Sprite;
-    this.titleImage.setInteractive();
-    this.titleImage.on('pointerdown', function (this: Welcome, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.transitionToMenu();
-    }, this);
+    this.add.sprite(0, 0, 'title')
+      .setName('title')
+      .setInteractive()
+      .on('pointerdown', function (this: Welcome, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.transitionToMenu();
+      }, this);
 
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
@@ -52,10 +51,12 @@ export class Welcome extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
-    this.titleText.setPosition(16, 16);
+    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
+      .setPosition(16, 16);
 
-    this.titleImage.setPosition(width / 2, height / 2);
-    this.titleImage.setDisplaySize(width * 0.6, width * 0.75 * 0.6);
+    (this.children.getByName('title') as Phaser.GameObjects.Sprite)
+      .setPosition(width / 2, height / 2)
+      .setDisplaySize(width * 0.6, width * 0.75 * 0.6);
   }
 
   update(time: number, delta: number): void {
@@ -76,7 +77,8 @@ export class Welcome extends BaseScene {
       'canvas size: ' + this.game.config.width + 'x' + this.game.config.height
     ];
 
-    this.titleText.setText(text);
+    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
+      .setText(text);
   }
 
   transitionToMenu(): void {

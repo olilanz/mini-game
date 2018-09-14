@@ -39,39 +39,38 @@ export class Pause extends BaseScene {
       'Pause', 
       'The game is paused'
     ];
-    this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
+    this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' })
+      .setName('titleText');
+
+    this.add.sprite(0, 0, 'pausestub')
+      .setName('stub');
+
+    this.add.sprite(0, 0, 'menu')
+      .setName('menu')
+      .setInteractive()
+      .on('pointerdown', function (this: Pause, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.transitionToMenu();
+      }, this);
+
+    this.add.sprite(0, 0, 'resume')
+      .setName('resume')
+      .setInteractive()
+      .on('pointerdown', function (this: Pause, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.transitionToLevel();
+      }, this);
+
+    this.add.sprite(0, 0, 'retry')
+      .setName('retry')
+      .setInteractive()
+      .on('pointerdown', function (this: Pause, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.transitionToNewLevel();
+      }, this);
 
     let dims = this.getScreenDimension();
-    let margin = dims.width * 0.1;
-    let btnsize = dims.width * 0.08;
-    let btn = null;
-
-    let pause = this.add.sprite(dims.width / 2, dims.height / 2, 'pausestub') as Phaser.GameObjects.Sprite;
-    pause.setDisplaySize(dims.width / 2, dims.width * 0.75 / 2);
-
-    btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'menu') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.transitionToMenu();
-    }, this);
-
-    btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'resume') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.transitionToLevel();
-    }, this);
-
-    btn = this.add.sprite(dims.width * 0.5, dims.height - margin, 'retry') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Pause, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.transitionToNewLevel();
-    }, this);
+    this.updateLayout(dims.width, dims.height);
 
     let music = this.sound.add('theme');
     SoundHelper.playBackgroundMusic(music);
@@ -80,9 +79,34 @@ export class Pause extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
+    let margin = width * 0.1;
+    let btnsize = width * 0.08;
+
+    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
+      .setPosition(16, 16);
+
+    (this.children.getByName('stub') as Phaser.GameObjects.Sprite)
+      .setPosition(width / 2, height / 2)
+      .setDisplaySize(width / 2, width / 3);
+
+    (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
+      .setPosition(width * 0.3, height - margin)
+      .setDisplaySize(btnsize, btnsize);
+
+    (this.children.getByName('retry') as Phaser.GameObjects.Sprite)
+      .setPosition(width * 0.5, height - margin)
+      .setDisplaySize(btnsize, btnsize);
+
+    (this.children.getByName('resume') as Phaser.GameObjects.Sprite)
+      .setPosition(width * 0.7, height - margin)
+      .setDisplaySize(btnsize, btnsize);  
   }
 
-  update(delta: number): void {
+  update(time: number, delta: number): void {
+  }
+
+  onResize(width: number, height: number) {
+    this.updateLayout(width, height);
   }
 
   transitionToMenu(): void {

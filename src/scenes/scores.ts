@@ -44,36 +44,29 @@ export class Scores extends BaseScene {
       'Scores', 
       'The level is completed. Scores are shown here.'
     ];
-    this.add.text(16, 16, text, { fontSize: '12px', fill: '#fff' });
+    this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' }).setName('titleText');
 
-    let dims = this.getScreenDimension();
-    let margin = dims.width * 0.1;
-    let btnsize = dims.width * 0.08;
-    let btn = null;
+    this.add.sprite(0, 0, this.success ? 'trophy' : 'trophy_fail').setName('trophy');
 
-    let trophy = this.add.sprite(dims.width / 2, dims.height / 2, this.success ? 'trophy' : 'trophy_fail') as Phaser.GameObjects.Sprite;
-    trophy.setDisplaySize(dims.width / 2, dims.width / 3);
+    this.add.sprite(0, 0, 'menu')
+      .setName('menu')
+      .setInteractive()
+      .on('pointerdown', function (this: Scores, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.navigateToMenu();
+      }, this);
 
-    btn = this.add.sprite(dims.width * 0.3, dims.height - margin, 'menu') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.navigateToMenu();
-    }, this);
-
-    btn = this.add.sprite(dims.width * 0.5, dims.height - margin, 'retry') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.navigateToNewLevel();
-    }, this);
+    this.add.sprite(0, 0, 'retry')
+      .setName('retry')
+      .setInteractive()
+      .on('pointerdown', function (this: Scores, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.navigateToNewLevel();
+      }, this);
 
     let navstate = this.getNavigationState();
+    let btn = this.add.sprite(0, 0, 'next').setName('next') as Phaser.GameObjects.Sprite;
     if (navstate.currentLevel < navstate.numberOfLevels && this.success) {
-      btn = this.add.sprite(dims.width * 0.7, dims.height - margin, 'next') as Phaser.GameObjects.Sprite;
-      btn.setDisplaySize(btnsize, btnsize);
       btn.setInteractive();
       btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
         // todo: not nice to increment level here; move into navigetToNextLevel() instead..
@@ -84,16 +77,44 @@ export class Scores extends BaseScene {
       }, this);
     }
 
+    let dims = this.getScreenDimension();
+    this.updateLayout(dims.width, dims.height);
+
     let music = this.sound.add('theme');
     SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
   }
 
-  update(delta: number): void {
+  updateLayout(width: number, height: number): void {
+    let margin = width * 0.1;
+    let btnsize = width * 0.08;
+
+    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
+      .setPosition(16, 16);
+
+    (this.children.getByName('trophy') as Phaser.GameObjects.Sprite)
+      .setPosition(width / 2, height / 2)
+      .setDisplaySize(width / 2, width / 3);
+
+    (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
+      .setPosition(width * 0.3, height - margin)
+      .setDisplaySize(btnsize, btnsize);
+
+    (this.children.getByName('retry') as Phaser.GameObjects.Sprite)
+      .setPosition(width * 0.5, height - margin)
+      .setDisplaySize(btnsize, btnsize);
+
+    (this.children.getByName('next') as Phaser.GameObjects.Sprite)
+      .setPosition(width * 0.7, height - margin)
+      .setDisplaySize(btnsize, btnsize);  
   }
 
-  updateLayout(width: number, height: number): void {
+  update(time: number, delta: number): void {
+  }
+
+  onResize(width: number, height: number) {
+    this.updateLayout(width, height);
   }
 
   navigateToNewLevel(): void {
