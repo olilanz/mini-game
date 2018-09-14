@@ -14,7 +14,6 @@ export class GamePlay extends BaseScene {
   private readonly MONSTER_NAME: string = 'monster';
   private readonly COOKIE_NAME_PREFIX: string = 'cookie_';
 
-  private monster!: Phaser.Physics.Matter.Sprite;
   private cookieCount: integer = 0;
   private statusText!: Phaser.GameObjects.Text;
 
@@ -45,15 +44,17 @@ export class GamePlay extends BaseScene {
     let dims = this.getScreenDimension();
     this.updateWorldSize(dims.width, dims.height);
 
-    this.monster = this.matter.add.sprite(dims.width * 0.5, dims.height * 0.5, 'monster');
-    this.monster.setName(this.MONSTER_NAME);
-    this.monster.setDisplaySize(dims.width * 0.1, this.monster.width * (dims.width * 0.1) / this.monster.width);
-    this.monster.setBody({
-      type: 'circle',
-      radius: (this.monster.displayWidth / 2 - 5),
-    }, {});
-    this.monster.setStatic(true);
-    this.monster.setInteractive();
+    let monsterwidth = dims.width * 0.1;
+    let monsterheight = monsterwidth * 1.1;
+    let monster = this.matter.add.sprite(monsterwidth, monsterheight, 'monster') as Phaser.Physics.Matter.Sprite;
+    monster.setName(this.MONSTER_NAME)
+      .setDisplaySize(monsterwidth, monsterheight)
+      .setInteractive()
+      .setBody({
+        type: 'circle',
+        radius: (monsterwidth / 2 - 5),
+      }, {})
+    monster.setFixedRotation();
 
     this.input.setTopOnly(false);
     this.input.on('pointerdown', function (this: GamePlay, pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]) {
@@ -105,14 +106,17 @@ export class GamePlay extends BaseScene {
   }
 
   createCookie(name: string, x: number, y: number): integer {
+    let dims = this.getScreenDimension();
+    let cookiewidth = dims.width * Phaser.Math.FloatBetween(0.1, 0.15);
+
     console.log('create cookie: ' + name);
     let cookie = this.matter.add.sprite(x, y, 'cookie');
     cookie.setName(name);
-    cookie.setDisplaySize(this.monster.displayWidth, this.monster.displayWidth);
+    cookie.setDisplaySize(cookiewidth, cookiewidth);
     cookie.setAngularVelocity(Phaser.Math.FloatBetween(-5.0, 5.0));
     cookie.setBody({
       type: 'circle',
-      radius: (cookie.displayWidth / 2.4) 
+      radius: (cookiewidth / 2.4) 
     }, {});
     cookie.setBounce(0.6);
     cookie.setFriction(0.01, 0, 0);
