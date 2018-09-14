@@ -28,6 +28,8 @@ export class GamePlay extends BaseScene {
     let navstate = this.getNavigationState();
     this.data.values.level = navstate.currentLevel;
     this.cookieCount = 0;
+
+    this.attachDefaultHandlers();
   }
 
   preload(): void {
@@ -41,7 +43,7 @@ export class GamePlay extends BaseScene {
     this.updateText();
 
     let dims = this.getScreenDimension();
-    this.matter.world.setBounds(0, -200, dims.width, dims.height + 200);
+    this.updateWorldSize(dims.width, dims.height);
 
     this.monster = this.matter.add.sprite(dims.width * 0.5, dims.height * 0.5, 'monster');
     this.monster.setName(this.MONSTER_NAME);
@@ -62,6 +64,17 @@ export class GamePlay extends BaseScene {
     this.updateText();
   }
 
+  onResize(width: number, height: number) {
+    this.updateWorldSize(width, height);
+  }
+
+  updateWorldSize(width: number, height: number): void {
+    this.scene.get('GamePlay')
+      .matter
+      .world
+      .setBounds(0, -200, width, height + 200);
+  }
+
   clickHandler(pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]): void {
     this.sound.play('blop', { loop: false });
 
@@ -71,9 +84,9 @@ export class GamePlay extends BaseScene {
       return;
     }
 
-    let cookie = gameObjects.find(cookie => cookie.name.startsWith(this.COOKIE_NAME_PREFIX));
+    let cookie = gameObjects.find(cookie => cookie.name.startsWith(this.COOKIE_NAME_PREFIX)) as Phaser.GameObjects.Sprite;
     if (cookie) {
-      let remaining = this.removeCookie(cookie.name);
+      let remaining = this.destroyCookie(cookie);
       this.updateText();
       if (remaining<= 0) {
         this.conclude(true);
@@ -108,14 +121,11 @@ export class GamePlay extends BaseScene {
     return this.cookieCount;
   }
 
-  // removeCookie(cookie: Phaser.Physics.Matter.Sprite) {
-  removeCookie(name: string): integer {
-    let cookie = this.children.getByName(name);
-    if (cookie) {
-      this.matter.world.remove(cookie.body, true);
-      this.children.remove(cookie);
-      this.cookieCount--;
-    }
+  destroyCookie(cookie: Phaser.GameObjects.Sprite): integer {
+    this.matter.world.remove(cookie.body, true);
+    this.children.remove(cookie);
+    cookie.destroy();
+    this.cookieCount--;
     return this.cookieCount;
   }
 

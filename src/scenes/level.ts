@@ -63,11 +63,6 @@ export class Level extends BaseScene {
     (this.children.getByName('pause') as Phaser.GameObjects.Sprite)
       .setPosition(width - margin, margin)
       .setDisplaySize(btnsize, btnsize);
-
-    this.scene.get('GamePlay')
-      .matter
-      .world
-      .setBounds(0, 0, width, height);
   }
 
   update(time: number, delta: number): void {
