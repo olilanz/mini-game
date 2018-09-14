@@ -37,27 +37,40 @@ export class Level extends BaseScene {
   }
 
   create(): void {
-    let dims = this.getScreenDimension();
-    let margin = dims.width * 0.1;
-    let btnsize = dims.width * 0.08;
-    let btn = null;
+    this.add.sprite(0, 0, 'pause')
+      .setName('pause')
+      .setInteractive()
+      .on('pointerdown', function (this: Level, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.transitionToPause();
+      }, this);
 
-    btn = this.add.sprite(dims.width - margin, margin, 'pause') as Phaser.GameObjects.Sprite;
-    btn.setDisplaySize(btnsize, btnsize);
-    btn.setInteractive();
-    btn.on('pointerdown', function (this: Level, pointer: string | symbol) {
-      this.sound.play('blop', { loop: false });
-      this.transitionToPause();
-    }, this);
+    let dims = this.getScreenDimension();
+    this.updateLayout(dims.width, dims.height);
 
     this.music = this.sound.add('levelsong');
     SoundHelper.playBackgroundMusic(this.music);
   }
 
-  update(time: number, delta: number): void {
+  onResize(width: number, height: number) {
+    this.updateLayout(width, height);
   }
 
   updateLayout(width: number, height: number): void {
+    let margin = width * 0.1;
+    let btnsize = width * 0.08;
+
+    (this.children.getByName('pause') as Phaser.GameObjects.Sprite)
+      .setPosition(width - margin, margin)
+      .setDisplaySize(btnsize, btnsize);
+
+    this.scene.get('GamePlay')
+      .matter
+      .world
+      .setBounds(0, 0, width, height);
+  }
+
+  update(time: number, delta: number): void {
   }
 
   private attacheEventHandlers() {
