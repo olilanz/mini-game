@@ -75,6 +75,8 @@ export class Scores extends BaseScene {
         this.sound.play('blop', { loop: false });
         this.navigateToNextLevel();
       }, this);
+    } else {
+      btn.setVisible(false);
     }
 
     let dims = this.getScreenDimension();
