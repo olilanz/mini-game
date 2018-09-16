@@ -9,7 +9,6 @@ import { SoundHelper } from '../helpers/soundhelper';
 import __imageMenu from '../assets/images/button_menu.png';
 import __imageRetry from '../assets/images/button_retry.png';
 import __imageResume from '../assets/images/button_right.png';
-import __imagePause from '../assets/images/pause.png';
 import __musicTheme from '../assets/music/theme.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
 
@@ -29,7 +28,6 @@ export class Pause extends BaseScene {
     this.load.image('menu', __imageMenu);
     this.load.image('retry', __imageRetry);
     this.load.image('resume', __imageResume);
-    this.load.image('pausestub', __imagePause);
     this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
   }
@@ -41,9 +39,6 @@ export class Pause extends BaseScene {
     ];
     this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' })
       .setName('titleText');
-
-    this.add.sprite(0, 0, 'pausestub')
-      .setName('stub');
 
     this.add.sprite(0, 0, 'menu')
       .setName('menu')
@@ -79,26 +74,21 @@ export class Pause extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
-    let margin = width * 0.1;
     let btnsize = width * 0.08;
 
     (this.children.getByName('titleText') as Phaser.GameObjects.Text)
       .setPosition(16, 16);
 
-    (this.children.getByName('stub') as Phaser.GameObjects.Sprite)
-      .setPosition(width / 2, height / 2)
-      .setDisplaySize(width / 2, width / 3);
-
     (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.3, height - margin)
+      .setPosition(width * 0.3, height / 2)
       .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('retry') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.5, height - margin)
+      .setPosition(width * 0.5, height / 2)
       .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('resume') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.7, height - margin)
+      .setPosition(width * 0.7, height / 2)
       .setDisplaySize(btnsize, btnsize);  
   }
 
