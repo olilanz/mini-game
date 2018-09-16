@@ -25,15 +25,16 @@ export class BaseScene extends Phaser.Scene {
     }
 
     protected attachDefaultHandlers(): void {
+        // resize handler
         let fnResize = function (this: BaseScene, width: number, height: number) {
             this.onResize(width, height);
         }
+        this.events.on('resize', fnResize, this);
 
+        // remove all handlers, otherwise they still trigger
         this.events.on('shutdown', function (this: BaseScene) {
             this.events.off('resize', fnResize, this, false);
-        }, this);
-        
-        this.events.on('resize', fnResize, this);
+        }, this);        
     }
 
     protected onResize(width: number, height: number) {}

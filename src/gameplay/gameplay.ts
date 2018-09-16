@@ -76,12 +76,17 @@ export class GamePlay extends BaseScene {
       .setBounds(0, -200, width, height + 200);
   }
 
+  jump(object: Phaser.Physics.Matter.Sprite) {
+    object.setVelocity(Phaser.Math.Between(-5, 5), -10);
+  }
+
   clickHandler(pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]): void {
     this.sound.play('blop', { loop: false });
 
     let monster = gameObjects.find(monster => monster.name == this.MONSTER_NAME);
     if (monster) {
-      this.conclude(false);
+      this.jump(monster as Phaser.Physics.Matter.Sprite);
+      //this.conclude(false);
       return;
     }
 
@@ -113,11 +118,11 @@ export class GamePlay extends BaseScene {
     let cookie = this.matter.add.sprite(x, y, 'cookie');
     cookie.setName(name);
     cookie.setDisplaySize(cookiewidth, cookiewidth);
-    cookie.setAngularVelocity(Phaser.Math.FloatBetween(-5.0, 5.0));
     cookie.setBody({
       type: 'circle',
       radius: (cookiewidth / 2.4) 
     }, {});
+    cookie.setAngularVelocity(Phaser.Math.FloatBetween(-0.05, 0.05));
     cookie.setBounce(0.6);
     cookie.setFriction(0.01, 0, 0);
     cookie.setInteractive();
