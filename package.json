@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "phaser": "3.12.0",
-    "@aspnet/signalr": "1.1.0-preview2-35157"
+    "@aspnet/signalr": "1.0.3"
   },
   "scripts": {
     "start": "parcel ./frontend/index.html -p 1234",
