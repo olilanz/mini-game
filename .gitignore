@@ -4,5 +4,5 @@
 dist
 node_modules
 
-backend/obj
-backend/bin
+backend/src/obj
+backend/src/bin
