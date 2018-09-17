@@ -7,11 +7,11 @@
 
 import "phaser";
 
-import { Welcome } from "./scenes/welcome";
-import { Menu } from "./scenes/menu";
-import { Level } from "./scenes/level";
-import { Scores } from "./scenes/scores";
-import { Pause } from "./scenes/pause";
+import { Welcome } from "./screens/welcome";
+import { Menu } from "./screens/menu";
+import { Level } from "./screens/level";
+import { Scores } from "./screens/scores";
+import { Pause } from "./screens/pause";
 import { GamePlay } from "./gameplay/gameplay";
 
 // represents the entire game

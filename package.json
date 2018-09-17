@@ -13,15 +13,16 @@
   "devDependencies": {
     "npm": "^6.4.1",
     "parcel-bundler": "1.9.7",
-    "ts-loader": "^5.1.0",
+    "ts-loader": "^5.1.1",
     "typescript": "3.0.3"
   },
   "dependencies": {
-    "phaser": "3.12.0"
+    "phaser": "3.12.0",
+    "@aspnet/signalr": "1.1.0-preview2-35157"
   },
   "scripts": {
-    "start": "parcel ./src/index.html -p 1234",
-    "build": "parcel build ./src/index.html --target browser",
+    "start": "parcel ./frontend/index.html -p 1234",
+    "build": "parcel build ./frontend/index.html --target browser",
     "clean": "rm ./dist/*.*",
     "docker-build": "docker build -t olilanz/mini-game .",
     "docker-push": "docker push olilanz/mini-game"

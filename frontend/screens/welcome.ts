@@ -4,7 +4,7 @@
  * Entry page of the game.
  */
 
-import { BaseScene } from './basescene';
+import { BaseScene } from '../basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageTitle from '../assets/images/title.png';
 import __musicTheme from '../assets/music/theme.mp3';

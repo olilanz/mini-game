@@ -3,7 +3,7 @@
  * 
  * Select levels here
  */
-import { BaseScene } from './basescene';
+import { BaseScene } from '../basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageLeft from '../assets/images/button_left.png';
 import __imageMenu from '../assets/images/button_menu_level.png';

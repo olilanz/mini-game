@@ -4,7 +4,7 @@
  * This scene is shown after the game completes.
  */
 
-import { BaseScene } from './basescene';
+import { BaseScene } from '../basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageMenu from '../assets/images/button_menu.png';
 import __imageRetry from '../assets/images/button_retry.png';

@@ -4,7 +4,7 @@
  * Entry page of the game.
  */
 
-import { BaseScene } from './basescene';
+import { BaseScene } from '../basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imagePause from '../assets/images/button_pause.png';
 import __musicLevel from '../assets/music/levelsong.mp3';

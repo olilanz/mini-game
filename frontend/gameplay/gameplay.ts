@@ -4,7 +4,7 @@
  * This is the scene that harnesses tyhe actual gameplay. 
  */
 
-import { BaseScene } from '../scenes/basescene';
+import { BaseScene } from '../basescene';
 import __imageMonster from '../assets/images/monster.png';
 import __imageCookie from '../assets/images/cookie.png';
 import __soundBlop from '../assets/sounds/blop.mp3';

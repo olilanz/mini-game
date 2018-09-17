@@ -1,4 +1,4 @@
-import { GameState } from '../gamestate'
+import { GameState } from './gamestate'
 
 type NavigationState = {
     currentLevel: number,

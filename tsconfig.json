@@ -3,7 +3,7 @@
     "target": "ES2018",
     "module": "CommonJs",
     "strict": true,
-    "baseUrl": "./src",
+    "baseUrl": "./frontend",
     "paths": {
       "@app/*": ["./"]
     }

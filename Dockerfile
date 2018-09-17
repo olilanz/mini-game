@@ -4,7 +4,7 @@
 FROM node:latest AS builder
 
 COPY ./*.json /build/
-COPY ./src /build/src/
+COPY ./frontend /build/frontend/
 
 WORKDIR /build
 RUN npm i -g npm \

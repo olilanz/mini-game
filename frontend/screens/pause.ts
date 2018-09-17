@@ -4,7 +4,7 @@
  * This page is displayed when the game is paused.
  */
 
-import { BaseScene } from './basescene';
+import { BaseScene } from '../basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageMenu from '../assets/images/button_menu.png';
 import __imageRetry from '../assets/images/button_retry.png';
