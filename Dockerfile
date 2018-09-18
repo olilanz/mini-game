@@ -1,10 +1,10 @@
 ############################################################
-## build environment
+## build the front end
 ############################################################
-FROM node:latest AS builder
+FROM node:10.10.0 AS frontendbuilder
 
-COPY ./*.json /build/
-COPY ./frontend /build/frontend/
+COPY ./frontend/*.json /build/
+COPY ./frontend/src /build/src/
 
 WORKDIR /build
 RUN npm i -g npm \
@@ -12,9 +12,26 @@ RUN npm i -g npm \
     && npm run build
 
 ############################################################
-## runtime
+## build the front end
 ############################################################
-FROM nginx:1.12-alpine
-COPY --from=builder /build/dist /usr/share/nginx/html/
+FROM microsoft/dotnet:2.2-sdk AS backendbuilder
 
-EXPOSE 80
+COPY ./backend /build/
+
+WORKDIR /build
+RUN dotnet publish --output /dist
+
+############################################################
+## build runtime 
+############################################################
+FROM microsoft/dotnet:2.2-aspnetcore-runtime
+COPY --from=backendbuilder /dist /app
+COPY --from=frontendbuilder /build/dist /app/wwwroot
+
+############################################################
+## configure startup 
+############################################################
+ENV ASPNETCORE_URLS http://*:5000
+EXPOSE 5000/tcp
+WORKDIR /app
+ENTRYPOINT ["dotnet", "src.dll", "--server.urls", "http://*:5000"]

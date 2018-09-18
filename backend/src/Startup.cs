@@ -49,13 +49,13 @@ namespace Backend
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseMvc();
             app.UseSignalR(routes => {
                 routes.MapHub<GameHub>("/gameHub");
             });
-            app.UseMvc();
         }
     }
 }

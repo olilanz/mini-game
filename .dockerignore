@@ -1,5 +1,10 @@
-./node_modules
-./dist
-./artwork
-./.cache
-./.vscode
+./frontend/node_modules
+./frontend/dist
+./frontend/artwork
+./frontend/.cache
+./frontend/.vscode
+
+./backend/src/ob
+./backend/src/bin
+./backend/.vscode
+
