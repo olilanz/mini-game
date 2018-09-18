@@ -14,24 +14,28 @@ RUN npm i -g npm \
 ############################################################
 ## build the front end
 ############################################################
-FROM microsoft/dotnet:2.2-sdk AS backendbuilder
+FROM microsoft/dotnet:2.1-sdk AS backendbuilder
 
-COPY ./backend /build/
+COPY ./backend/src /build/
 
 WORKDIR /build
-RUN dotnet publish --output /dist
+RUN dotnet publish --output /dist --configuration Debug
 
 ############################################################
 ## build runtime 
 ############################################################
-FROM microsoft/dotnet:2.2-aspnetcore-runtime
+FROM microsoft/dotnet:2.1-aspnetcore-runtime
 COPY --from=backendbuilder /dist /app
 COPY --from=frontendbuilder /build/dist /app/wwwroot
 
 ############################################################
 ## configure startup 
 ############################################################
-ENV ASPNETCORE_URLS http://*:5000
-EXPOSE 5000/tcp
 WORKDIR /app
-ENTRYPOINT ["dotnet", "src.dll", "--server.urls", "http://*:5000"]
+
+ENV ASPNETCORE_ENVIRONMENT "Development"
+ENV ASPNETCORE_URLS http://*:80;
+
+EXPOSE 80/tcp
+
+ENTRYPOINT ["dotnet", "src.dll" ]
