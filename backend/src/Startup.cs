@@ -39,11 +39,19 @@ namespace Backend {
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+/**
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("index.html");
+            options.DefaultFileNames.Add("fallback.html");
+            app.UseDefaultFiles(options);
+ */
+
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSignalR(routes => {
-                routes.MapHub<GameHub>("/gameHub");
+                routes.MapHub<GameHub>("/gamehub");
             });
             app.UseMvc();
         }

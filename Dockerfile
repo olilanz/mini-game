@@ -26,7 +26,7 @@ RUN dotnet publish --output /dist --configuration Debug
 ############################################################
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
 COPY --from=backendbuilder /dist /app
-COPY --from=frontendbuilder /build/dist /app/wwwroot
+COPY --from=frontendbuilder /build/dist /app/wwwroot/gamecore
 
 ############################################################
 ## configure startup 
@@ -34,7 +34,7 @@ COPY --from=frontendbuilder /build/dist /app/wwwroot
 WORKDIR /app
 
 ENV ASPNETCORE_ENVIRONMENT "Development"
-ENV ASPNETCORE_URLS http://*:80;
+ENV ASPNETCORE_URLS http://*:80
 
 EXPOSE 80/tcp
 
