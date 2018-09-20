@@ -25,7 +25,7 @@ namespace Backend {
         public void ConfigureServices(IServiceCollection services) {
             services.Configure<CookiePolicyOptions>(options => {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -56,12 +56,13 @@ namespace Backend {
  */
 
             // app.UseHttpsRedirection();
-            app.UseResponseCompression();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
             app.UseSignalR(routes => {
                 routes.MapHub<GameHub>("/gamehub");
             });
+
+            app.UseResponseCompression();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
             app.UseMvc();
         }
     }
