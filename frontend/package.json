@@ -13,12 +13,14 @@
   "devDependencies": {
     "npm": "^6.4.1",
     "parcel-bundler": "1.9.7",
-    "ts-loader": "^5.1.1",
+    "ts-loader": "5.2.0",
     "typescript": "3.0.3"
   },
   "dependencies": {
-    "phaser": "3.12.0",
-    "@aspnet/signalr": "1.0.3"
+    "@aspnet/signalr": "1.0.3",
+    "communication": "^1.0.1",
+    "phaser": "3.13.0",
+    "tslib": "^1.9.3"
   },
   "scripts": {
     "start": "parcel ./src/index.html -p 1234 --public-url ./",
