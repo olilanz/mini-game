@@ -1,5 +1,3 @@
-import { Game } from "../game";
-
 /**
  * Game canvas
  * 
