@@ -4,8 +4,6 @@
  * Entry page of the game.
  */
 
-import * as Connection from "../communication/connection";
-
 import { BaseScene } from '../basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageTitle from '../assets/images/title.png';
@@ -24,8 +22,11 @@ export class Welcome extends BaseScene {
     this.attachDefaultHandlers();
 
     // communication test
-    let c = new Connection.Connection("./gamehub");
-    c.connect();
+    let cn = this.getServer();
+    cn.connect().then(function() {
+      console.log("Sending");
+      cn.sendMessage("UpdatePosition", "Hullabaloo", "This is the message")
+    });
   }
 
   preload(): void {

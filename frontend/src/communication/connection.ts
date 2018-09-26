@@ -2,15 +2,18 @@ import * as signalR from "@aspnet/signalr";
 
 export class Connection {
     // todo: no thread safe access!
+    private _url: string;
     private _connection: signalR.HubConnection | undefined;
 
     constructor(url: string) {
-        console.log("Initiating Server connection: " + url);
+        this._url = url;
+        console.log("Preparing connection: " + url);
     }
 
     connect(): Promise<void> {
+        console.log("Connecting connection: " + this._url);
         let connection = new signalR.HubConnectionBuilder()
-            .withUrl("/gamehub")
+            .withUrl(this._url)
             .configureLogging(signalR.LogLevel.Debug)
             .build();
 
@@ -18,12 +21,7 @@ export class Connection {
 
         // todo: error handling
         // detachEventHandlers(connection);
-        let promise = connection.start().catch(err => console.log(err)).then(
-            function () {
-                console.log(`Sending message from server...`);
-                connection.send("sendMessage", "Gagalarage", "This is a small message from the client...");
-            }
-        );
+        let promise = connection.start().catch(err => console.log(err));
               
         // todo: only if all went well
         this._connection = connection;
@@ -38,7 +36,7 @@ export class Connection {
     }
 
     private attachEventHandlers(connection: signalR.HubConnection) {
-        connection.on("ReceiveMessage", (username: string, message: string) => {
+        connection.on("JustInfo", (username: string, message: string) => {
             console.log(`Incoming message from server: ${username} - ${message}`);
         });   
 
@@ -46,7 +44,7 @@ export class Connection {
     }
 
     private detachEventHandlers(connection: signalR.HubConnection) {
-        connection.on("ReceiveMessage", (username: string, message: string) => {
+        connection.on("JustInfo", (username: string, message: string) => {
             console.log(`Incoming message from server: ${username} - ${message}`);
         });   
 
@@ -63,5 +61,15 @@ export class Connection {
             this.detachEventHandlers(this._connection);
         }
         this._connection = undefined;
+    }
+
+    public sendMessage(methodName: string, ...args: any[]): boolean {
+        if (!this._connection) {
+            return false;
+        }
+
+        this._connection.send(methodName, ...args)
+
+        return true;
     }
 }

@@ -1,4 +1,5 @@
-import { GameState } from './gamestate'
+import { GameState } from './gamestate';
+import { Connection } from './communication/connection';
 
 type NavigationState = {
     currentLevel: number,
@@ -39,12 +40,8 @@ export class BaseScene extends Phaser.Scene {
 
     protected onResize(width: number, height: number) {}
 
-    protected getGlobalState(): GameState {
-        return this.registry.get("gamestate") as GameState;
-    }
-
-    protected setGlobalState(state: GameState): void {
-        this.registry.set("gamestate", state);
+    protected getServer(): Connection {
+        return this.registry.get("server") as Connection;
     }
 
     protected getNavigationState(): NavigationState {
