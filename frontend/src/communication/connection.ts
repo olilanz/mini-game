@@ -36,17 +36,13 @@ export abstract class Connection {
     }
 
     private attachEventHandlers(connection: signalR.HubConnection) {
-        connection.on("JustInfo", (username: string, message: string) => {
-            console.log(`Incoming message from server: ${username} - ${message}`);
-        });   
+        connection.on("updateOpponentPosition", this.onUpdateOpponentPosition);
 
         connection.onclose(this.disconnectHandler);
     }
 
     private detachEventHandlers(connection: signalR.HubConnection) {
-        connection.on("JustInfo", (username: string, message: string) => {
-            console.log(`Incoming message from server: ${username} - ${message}`);
-        });   
+        connection.on("updateOpponentPosition", this.onUpdateOpponentPosition);   
 
         connection.onclose(this.disconnectHandler);
     }
@@ -71,5 +67,9 @@ export abstract class Connection {
         this._connection.send(methodName, ...args)
 
         return true;
+    }
+
+    private onUpdateOpponentPosition(username: string, x: number, y: number) {
+        console.log(`Incoming message from server: ${username} - ${x}/${y}`);
     }
 }

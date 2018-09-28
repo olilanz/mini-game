@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Backend.GameLogic;
 
 public interface IGameHubClient {
-        Task JustInfo(string user, string message);
+        Task updateOpponentPosition(string user, double x, double y);
 }
 
 namespace Backend.Hubs {
@@ -25,7 +25,7 @@ namespace Backend.Hubs {
             System.Console.WriteLine($"Incoming position update: {x} / {y}");
 
             System.Console.WriteLine($"Sending message back: {x} - {y}");
-            return Clients.All.JustInfo("Peter Piper", "Eats a peg of pickled pepper.");
+            return Clients.All.updateOpponentPosition(Context.ConnectionId, x, y);
         }
     }
 }
