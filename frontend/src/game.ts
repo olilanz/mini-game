@@ -6,7 +6,7 @@
  */
 
 import "phaser";
-import { Connection } from "./communication/connection";
+import { Engine } from "./gameplay/engine";
 
 import { Welcome } from "./screens/welcome";
 import { Menu } from "./screens/menu";
@@ -43,6 +43,6 @@ export class Game extends Phaser.Game {
     super(Game.config);
 
     // initialize server connection 
-    this.registry.set("server", new Connection("/gamehub"))
+    this.registry.set("engine", new Engine("/gamehub"))
   }
 }

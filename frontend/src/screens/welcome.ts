@@ -20,13 +20,6 @@ export class Welcome extends BaseScene {
 
   init(): void {
     this.attachDefaultHandlers();
-
-    // communication test
-    let cn = this.getServer();
-    cn.connect().then(function() {
-      console.log("Sending");
-      cn.sendMessage("UpdatePosition", "Hullabaloo", "This is the message")
-    });
   }
 
   preload(): void {

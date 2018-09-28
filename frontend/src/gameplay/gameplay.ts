@@ -86,7 +86,6 @@ export class GamePlay extends BaseScene {
     let monster = gameObjects.find(monster => monster.name == this.MONSTER_NAME);
     if (monster) {
       this.jump(monster as Phaser.Physics.Matter.Sprite);
-      //this.conclude(false);
       return;
     }
 
@@ -139,6 +138,13 @@ export class GamePlay extends BaseScene {
   }
 
   update(time: number, delta: number): void {
+    let monster = this.children.getByName(this.MONSTER_NAME) as Phaser.Physics.Matter.Sprite;
+    if (monster) {
+      let pos = monster.getCenter() as Phaser.Math.Vector2;
+      // todo: filter, and send real
+      this.getEngine().setMonsterPosition(pos.x, pos.y);
+      return;
+    }
   }
 
   conclude(success: boolean): void {

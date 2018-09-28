@@ -1,6 +1,6 @@
 import * as signalR from "@aspnet/signalr";
 
-export class Connection {
+export abstract class Connection {
     // todo: no thread safe access!
     private _url: string;
     private _connection: signalR.HubConnection | undefined;

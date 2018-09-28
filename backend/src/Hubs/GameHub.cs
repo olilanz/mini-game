@@ -2,8 +2,12 @@ using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 using Backend.GameLogic;
 
-namespace Backend {
-    public class GameHub : Hub {
+public interface IGameHubClient {
+        Task JustInfo(string user, string message);
+}
+
+namespace Backend.Hubs {
+    public class GameHub : Hub<IGameHubClient> {
 
         private readonly GameState _game = GameState.GetInstance();
         
@@ -17,11 +21,11 @@ namespace Backend {
             return base.OnDisconnectedAsync(exception);
         }
 
-        public async Task UpdatePosition(string user, string message) {
-            System.Console.WriteLine($"Incoming position update: {user} - {message}");
+        public Task UpdatePosition(double x, double y) {
+            System.Console.WriteLine($"Incoming position update: {x} / {y}");
 
-            System.Console.WriteLine($"Sending message back: {user} - {message}");
-            await Clients.All.SendAsync("JustInfo", "Peter Piper", "Eats a peg of pickled pepper.");
+            System.Console.WriteLine($"Sending message back: {x} - {y}");
+            return Clients.All.JustInfo("Peter Piper", "Eats a peg of pickled pepper.");
         }
     }
 }
