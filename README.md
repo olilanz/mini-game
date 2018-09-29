@@ -27,7 +27,7 @@ The production build is best created using the Dockerfile. It builds the softwar
 |---------|-------------|
 | `docker build -t olilanz/mini-game .` | Build the mini-game image.|
 | `docker run -p 8000:80 -it olilanz/mini-game` | Runs the container. Connect to http://localhost:8000. <br> Press `Ctrl + c` to kill the container. |
-| `docker pusch olilanz/mini-game .` | Pushes the image to DockerHub (if you have the privs to do so).|
+| `docker push olilanz/mini-game` | Pushes the image to DockerHub (if you have the privs to do so).|
 
 
 ## development flow
