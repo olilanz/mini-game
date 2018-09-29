@@ -6,6 +6,8 @@ window.onload = () => {
     let game = new Game();
     game.resize(window.innerWidth, window.innerHeight);
     
-    window.addEventListener('resize', () => { game.resize(window.innerWidth, window.innerHeight); }, false);
+    window.addEventListener('resize', () => { 
+        game.resize(window.innerWidth, window.innerHeight);
+    }, false);
 }
 

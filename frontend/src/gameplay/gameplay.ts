@@ -17,6 +17,8 @@ export class GamePlay extends BaseScene {
   private cookieCount: integer = 0;
   private statusText!: Phaser.GameObjects.Text;
 
+  private lastFps: integer = 0;
+
   constructor() {
     super({
       key: 'GamePlay',
@@ -143,18 +145,28 @@ export class GamePlay extends BaseScene {
       let pos = monster.getCenter() as Phaser.Math.Vector2;
       // todo: filter, and send real
       this.getEngine().setMonsterPosition(pos.x, pos.y);
-      return;
     }
+
+    this.updateFpsText(this.game.loop.actualFps);
   }
 
   conclude(success: boolean): void {
     this.scene.get('Level').events.emit('conclude', success);
   }
 
+  updateFpsText(actualFps: number) {
+    let fps: integer = Math.trunc(actualFps);
+    if (this.lastFps != fps) {
+      this.lastFps = fps;
+      this.updateText();
+    }
+  }
+
   updateText(): void {
     let text = [
-      'Level ' + this.data.values.level,
-      'Cookie count: ' + this.cookieCount
+      `Level ${this.data.values.level}`,
+      `Cookie count: ${this.cookieCount}`,
+      `FPS: ${this.lastFps}` 
     ];
     this.statusText.setText(text);
   }
