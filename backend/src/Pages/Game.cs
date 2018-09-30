@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace backend.Pages {
-    public class IndexModel : PageModel {
+    public class GameModel : PageModel {
         public string Message { get; set; }
 
         public void OnGet() {
-            Message = "Welcome.";
+            Message = "Embedded game.";
         }
     }
 }
