@@ -18,7 +18,7 @@ import { GamePlay } from "./gameplay/gameplay";
 // represents the entire game
 export class Game extends Phaser.Game {
   // main game configuration (internal behaviour; external appearance/embedding should be defined in CSS)
-  static config: GameConfig = {
+  static defaults: GameConfig = {
     type: Phaser.AUTO,
     parent: "game-canvas",
     scene: [ Welcome, Menu, Level, GamePlay, Pause, Scores ],
@@ -39,10 +39,14 @@ export class Game extends Phaser.Game {
   };
 
   // constructs the game based on the game configuration
-  constructor() {
-    super(Game.config);
+  constructor(config: [string, string][]) {
+    super(Game.defaults);
 
-    // initialize server connection 
+    // copy external config to game game regitry
+    config.forEach(e => this.registry.set(e["0"], e["1"]));
+    console.log(this.registry);
+
+    // initialize server connection and store in game registry
     this.registry.set("engine", new Engine("/gamehub"))
   }
 }

@@ -143,7 +143,6 @@ export class GamePlay extends BaseScene {
     let monster = this.children.getByName(this.MONSTER_NAME) as Phaser.Physics.Matter.Sprite;
     if (monster) {
       let pos = monster.getCenter() as Phaser.Math.Vector2;
-      // todo: filter, and send real
       this.getEngine().setMonsterPosition(pos.x, pos.y);
     }
 
