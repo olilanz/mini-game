@@ -8,7 +8,16 @@
 <h3>@Model.Message</h3>
 
 <p>
-    <iframe src="/gamecore/index.html" width="100%" height="640"></iframe>
+    <iframe id="gamecontainer" src="/gamecore/index.html" width="100%" height="640"></iframe>
 </p>
+
+<script>
+    // copies the url query string from the page into the iframe, 
+    // so that it can be picked up by the game
+    var params = window.location.search,
+    iframe = document.getElementById("gamecontainer");
+    iframe.src = iframe.src + params;
+    console.log(iframe.src);
+</script>
 
 <p>Open the game on its own: <a href="/gamecore/index.html">link</a></p>
