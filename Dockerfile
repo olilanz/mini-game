@@ -14,7 +14,7 @@ RUN npm i -g npm \
 ############################################################
 ## build the front end
 ############################################################
-FROM microsoft/dotnet:2.2-sdk AS backendbuilder
+FROM microsoft/dotnet:2.1-sdk AS backendbuilder
 
 COPY ./backend/src /build/
 
