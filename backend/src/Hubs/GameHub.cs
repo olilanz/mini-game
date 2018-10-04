@@ -22,9 +22,6 @@ namespace Backend.Hubs {
         }
 
         public Task UpdatePosition(double x, double y) {
-            System.Console.WriteLine($"Incoming position update: {x} / {y}");
-
-            System.Console.WriteLine($"Sending message back: {x} - {y}");
             return Clients.All.updateOpponentPosition(Context.ConnectionId, x, y);
         }
     }

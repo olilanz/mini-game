@@ -1,7 +1,7 @@
 ############################################################
 ## build the front end
 ############################################################
-FROM node:10.10.0 AS frontendbuilder
+FROM node:10.11.0 AS frontendbuilder
 
 COPY ./frontend/*.json /build/
 COPY ./frontend/src /build/src/
@@ -14,7 +14,7 @@ RUN npm i -g npm \
 ############################################################
 ## build the front end
 ############################################################
-FROM microsoft/dotnet:2.1-sdk AS backendbuilder
+FROM microsoft/dotnet:2.2-sdk AS backendbuilder
 
 COPY ./backend/src /build/
 

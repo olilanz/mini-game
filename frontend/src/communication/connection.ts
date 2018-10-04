@@ -70,6 +70,6 @@ export abstract class Connection {
     }
 
     private onUpdateOpponentPosition(username: string, x: number, y: number) {
-        console.log(`Incoming message from server: ${username} - ${x}/${y}`);
+//        console.log(`Incoming message from server: ${username} - ${x}/${y}`);
     }
 }
