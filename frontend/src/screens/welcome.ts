@@ -70,12 +70,17 @@ export class Welcome extends BaseScene {
   updateText(): void {
     let text = [
       'Welcome to Mini Game', 
-      'Oliver and Noah\'s playground!',
-      '',
-      'window size: ' + window.innerWidth + 'x' + window.innerHeight,
-      'screen size: ' + window.screenX + 'x' + window.screenY,
-      'canvas size: ' + this.game.config.width + 'x' + this.game.config.height
+      ''
     ];
+
+    let player = this.game.registry.get("playerName")
+    if (player) {
+      text.push("Player: " + player);
+    }
+    let team = this.game.registry.get("teamName")
+    if (team) {
+      text.push("Team: " + team);
+    }
 
     (this.children.getByName('titleText') as Phaser.GameObjects.Text)
       .setText(text);
