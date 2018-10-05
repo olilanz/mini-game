@@ -20,7 +20,7 @@ export class Engine  {
         if (this._lastX == xi && this._lastY == yi) {
             return;
         }
-        this._connection.sendMessage("UpdatePosition", x, y);
+        this._connection.updatePosition(x, y);
         this._lastX = xi;
         this._lastY = yi;
     }

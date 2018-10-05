@@ -2,7 +2,19 @@
  * Typse safe communication interface
  */
 
-import { Connection } from "./connection";
+import { AbstractConnection } from "./abstractconnection";
 
-export class GameProxy extends Connection {
+export class GameProxy extends AbstractConnection {
+    constructor(url: string) {
+        super(url);
+        this.registerCallback("updateOpponentPosition", this.onUpdateOpponentPosition);
+    }
+
+    public updatePosition(x: number, y: number) {
+        this.sendMessage("UpdatePosition", x, y);
+    }
+
+    private onUpdateOpponentPosition(username: string, x: number, y: number) {
+        console.log(`Incoming message from server: ${username} - ${x}/${y}`);
+    }        
 }

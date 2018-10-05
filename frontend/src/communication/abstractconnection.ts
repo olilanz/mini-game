@@ -1,9 +1,11 @@
 import * as signalR from "@aspnet/signalr";
 
-export abstract class Connection {
+export abstract class AbstractConnection {
     // todo: no thread safe access!
     private _url: string;
     private _connection: signalR.HubConnection | undefined;
+
+    private _callbacks = new Map<string, (...args: any[]) => void>();
 
     constructor(url: string) {
         this._url = url;
@@ -18,6 +20,7 @@ export abstract class Connection {
             .build();
 
         this.attachEventHandlers(connection);
+        connection.onclose(this.disconnectHandler);
 
         // todo: error handling
         // detachEventHandlers(connection);
@@ -35,16 +38,20 @@ export abstract class Connection {
         }
     }
 
-    private attachEventHandlers(connection: signalR.HubConnection) {
-        connection.on("updateOpponentPosition", this.onUpdateOpponentPosition);
+    protected registerCallback(methodName: string, method: (...args: any[]) => void): void {
+        this._callbacks.set(methodName, method);
+    }
 
-        connection.onclose(this.disconnectHandler);
+    private attachEventHandlers(connection: signalR.HubConnection) {
+        for (let callback of this._callbacks) {
+            connection.on(callback["0"], callback["1"]);
+        }
     }
 
     private detachEventHandlers(connection: signalR.HubConnection) {
-        connection.on("updateOpponentPosition", this.onUpdateOpponentPosition);   
-
-        connection.onclose(this.disconnectHandler);
+        for (let callback of this._callbacks) {
+            connection.off(callback["0"], callback["1"]);
+        }
     }
 
     private disconnectHandler(error: Error | undefined): void {
@@ -59,7 +66,7 @@ export abstract class Connection {
         this._connection = undefined;
     }
 
-    public sendMessage(methodName: string, ...args: any[]): boolean {
+    protected sendMessage(methodName: string, ...args: any[]): boolean {
         if (!this._connection) {
             return false;
         }
@@ -67,9 +74,5 @@ export abstract class Connection {
         this._connection.send(methodName, ...args)
 
         return true;
-    }
-
-    private onUpdateOpponentPosition(username: string, x: number, y: number) {
-//        console.log(`Incoming message from server: ${username} - ${x}/${y}`);
     }
 }
