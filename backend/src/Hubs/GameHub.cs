@@ -21,6 +21,13 @@ namespace Backend.Hubs {
             return base.OnDisconnectedAsync(exception);
         }
 
+        public Task UpdatePlayerDetails(string playerName, string teamName) {
+            return Task.Run(
+
+                () => System.Console.WriteLine($"New user logged on: {playerName} of {teamName} ({Context.User.Identity.ToString()})")
+            );
+        }
+
         public Task UpdatePosition(double x, double y) {
             return Clients.All.updateOpponentPosition(Context.ConnectionId, x, y);
         }

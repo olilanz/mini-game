@@ -7,9 +7,13 @@ export class Engine  {
     private _lastX: integer = 0;
     private _lastY: integer = 0;
 
-    constructor(serverUrl: string) {
+    constructor(serverUrl: string, playerName: string, teamName: string) {
         this._connection = new GameProxy(serverUrl);
-        this._connection.connect();
+        this._connection.connect().then(
+            () => {
+                this._connection.updatePlayerDetails(playerName, teamName);
+            }
+        )
     }
 
     public setMonsterPosition(x: number, y: number) {

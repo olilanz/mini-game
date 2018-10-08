@@ -39,14 +39,23 @@ export class Game extends Phaser.Game {
   };
 
   // constructs the game based on the game configuration
-  constructor(config: [string, string][]) {
+  constructor(externalConfig: [string, string][]) {
     super(Game.defaults);
 
     // copy external config to game game regitry
-    config.forEach(e => this.registry.set(e["0"], e["1"]));
-    console.log(this.registry);
+    this.validateExternalConfig(externalConfig);
+    externalConfig.forEach(e => this.registry.set(e["0"], e["1"]));
 
     // initialize server connection and store in game registry
-    this.registry.set("engine", new Engine("/gamehub"))
+    this.registry.set(
+      "engine", 
+      new Engine(
+        "/gamehub", 
+        this.registry.values.playerName, 
+        this.registry.values.teamName));
+  }
+
+  private validateExternalConfig(externalConfig: [string, string][]) {
+      console.log(externalConfig.keys);
   }
 }
