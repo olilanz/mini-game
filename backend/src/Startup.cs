@@ -58,6 +58,7 @@ namespace Backend {
             // app.UseHttpsRedirection();
             app.UseSignalR(routes => {
                 routes.MapHub<GameHub>("/gamehub");
+                routes.MapHub<ConsoleHub>("/consolehub");
             });
 
             app.UseResponseCompression();

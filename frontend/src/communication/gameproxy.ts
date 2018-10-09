@@ -10,8 +10,8 @@ export class GameProxy extends AbstractConnection {
         this.registerCallback("updateOpponentPosition", this.onUpdateOpponentPosition);
     }
 
-    public updatePlayerDetails(playerName: string, teamName: string) {
-        this.sendMessage("UpdatePlayerDetails", playerName, teamName);
+    public updatePlayerDetails(playerName: string) {
+        this.sendMessage("UpdatePlayerDetails", playerName);
     }
 
     public updatePosition(x: number, y: number) {

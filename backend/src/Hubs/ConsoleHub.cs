@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 using Backend.GameLogic;
 
-public interface IGameHubClient {
+public interface IConsoleHubClient {
         Task updateOpponentPosition(string user, double x, double y);
 }
 
 namespace Backend.Hubs {
-    public class GameHub : Hub<IGameHubClient> {
+    public class ConsoleHub : Hub<IConsoleHubClient> {
 
         private readonly GameState _game = GameState.GetInstance();
         
@@ -25,10 +25,6 @@ namespace Backend.Hubs {
             return Task.Run(
                 () => System.Console.WriteLine($"New user logged on: {playerName} ({Context.User.Identity.ToString()})")
             );
-        }
-
-        public Task UpdatePosition(double x, double y) {
-            return Clients.All.updateOpponentPosition(Context.ConnectionId, x, y);
         }
     }
 }

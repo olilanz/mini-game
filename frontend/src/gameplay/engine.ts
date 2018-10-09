@@ -7,11 +7,11 @@ export class Engine  {
     private _lastX: integer = 0;
     private _lastY: integer = 0;
 
-    constructor(serverUrl: string, playerName: string, teamName: string) {
+    constructor(serverUrl: string, playerName: string) {
         this._connection = new GameProxy(serverUrl);
         this._connection.connect().then(
             () => {
-                this._connection.updatePlayerDetails(playerName, teamName);
+                this._connection.updatePlayerDetails(playerName);
             }
         )
     }

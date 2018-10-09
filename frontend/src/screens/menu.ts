@@ -6,6 +6,7 @@
 import { BaseScene } from '../basescene';
 import { SoundHelper } from '../helpers/soundhelper';
 import __imageLeft from '../assets/images/button_left.png';
+import __imageConsole from '../assets/images/button_console.png';
 import __imageMenu from '../assets/images/button_menu_level.png';
 import __musicTheme from '../assets/music/theme.mp3';
 import __soundBlop from '../assets/sounds/blop.mp3';
@@ -31,6 +32,7 @@ export class Menu extends BaseScene {
 
   preload(): void {
     this.load.image('left', __imageLeft);
+    this.load.image('console', __imageConsole);
     this.load.image('menulvl', __imageMenu);
     this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
@@ -44,10 +46,18 @@ export class Menu extends BaseScene {
     this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' }).setName('titleText');
 
     this.add.sprite(0, 0, 'left')
-      .setName('menu').setInteractive()
+      .setName('welcome').setInteractive()
       .on('pointerdown', function (this: Menu, pointer: string | symbol) {
         this.sound.play('blop', { loop: false });
         this.transitionToWelcome();
+      }, this);
+
+      // todo: add console logo
+      this.add.sprite(0, 0, 'console')
+      .setName('console').setInteractive()
+      .on('pointerdown', function (this: Menu, pointer: string | symbol) {
+        this.sound.play('blop', { loop: false });
+        this.transitionToConsole();
       }, this);
 
     for (let col = 0; col < this.COLS; col++) {
@@ -78,8 +88,12 @@ export class Menu extends BaseScene {
     (this.children.getByName('titleText') as Phaser.GameObjects.Text)
       .setPosition(16, 16);
 
-    (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
+      (this.children.getByName('welcome') as Phaser.GameObjects.Sprite)
       .setPosition(margin, height / 2)
+      .setDisplaySize(btnsize, btnsize);
+
+      (this.children.getByName('console') as Phaser.GameObjects.Sprite)
+      .setPosition(width - margin, height / 2)
       .setDisplaySize(btnsize, btnsize);
 
     let xmargin = width * 0.2;
@@ -114,6 +128,10 @@ export class Menu extends BaseScene {
 
     this.add.text(0, 0, text, { fontSize: '24px', fill: '#000' })
       .setName('txt_' + text);
+  }
+
+  transitionToConsole(): void {
+    this.scene.start('ServerConsole');
   }
 
   transitionToWelcome(): void {

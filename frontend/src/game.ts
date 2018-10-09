@@ -9,6 +9,7 @@ import "phaser";
 import { Engine } from "./gameplay/engine";
 
 import { Welcome } from "./screens/welcome";
+import { ServerConsole } from "./screens/serverconsole";
 import { Menu } from "./screens/menu";
 import { Level } from "./screens/level";
 import { Scores } from "./screens/scores";
@@ -21,7 +22,7 @@ export class Game extends Phaser.Game {
   static defaults: GameConfig = {
     type: Phaser.AUTO,
     parent: "game-canvas",
-    scene: [ Welcome, Menu, Level, GamePlay, Pause, Scores ],
+    scene: [ Welcome, ServerConsole, Menu, Level, GamePlay, Pause, Scores ],
     physics: {
       default: "matter",
       matter: {
@@ -51,11 +52,11 @@ export class Game extends Phaser.Game {
       "engine", 
       new Engine(
         "/gamehub", 
-        this.registry.values.playerName, 
-        this.registry.values.teamName));
+        this.registry.values.playerName));
   }
 
   private validateExternalConfig(externalConfig: [string, string][]) {
+      // todo: make sure that required parameters are set...
       console.log(externalConfig.keys);
   }
 }
