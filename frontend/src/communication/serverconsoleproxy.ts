@@ -1,4 +1,4 @@
 import { AbstractConnection } from "./abstractconnection";
 
-export class ConsoleProxy extends AbstractConnection {
+export class ServerConsoleProxy extends AbstractConnection {
 }

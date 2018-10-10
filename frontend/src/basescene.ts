@@ -1,9 +1,7 @@
-import { Engine } from './gameplay/engine';
+import { ExternalGameConfig } from "./externalgameconfig";
+import { GlobalStateIdentifier, NavigationState } from "./gamestate";
 
-type NavigationState = {
-    currentLevel: number,
-    numberOfLevels: number
-}
+import { Engine } from './gameplay/engine';
 
 type CanvasDimension = {
     height: number,
@@ -34,17 +32,24 @@ export class BaseScene extends Phaser.Scene {
         // remove all handlers, otherwise they still trigger
         this.events.on('shutdown', function (this: BaseScene) {
             this.events.off('resize', fnResize, this, false);
+            this.onShutdown();
         }, this);        
     }
 
     protected onResize(width: number, height: number) {}
 
+    protected onShutdown() {}
+
     protected getEngine(): Engine {
-        return this.registry.get("engine") as Engine;
+        return this.registry.get(GlobalStateIdentifier.Engine) as Engine;
+    }
+
+    protected getExternalGameConfig(): ExternalGameConfig {
+        return this.registry.get(GlobalStateIdentifier.ExternalConfig) as ExternalGameConfig;
     }
 
     protected getNavigationState(): NavigationState {
-        let state = this.registry.get("navigationstate") as NavigationState;
+        let state = this.registry.get(GlobalStateIdentifier.NavigationState) as NavigationState;
         if (state === undefined) {
             state = { currentLevel: 0, numberOfLevels: 0 } as NavigationState;
         }
@@ -52,6 +57,6 @@ export class BaseScene extends Phaser.Scene {
     }
 
     protected setNavigationState(state: NavigationState): void {
-        this.registry.set("navigationstate", state);
+        this.registry.set(GlobalStateIdentifier.NavigationState, state);
     }
 }

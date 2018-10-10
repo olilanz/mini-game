@@ -14,7 +14,7 @@
 <script>
     // copies the url query string from the page into the iframe, 
     // so that it can be picked up by the game
-    var params = window.location.search,
+    var params = window.location.search;
     iframe = document.getElementById("gamecontainer");
     iframe.src = iframe.src + params;
     console.log(iframe.src);

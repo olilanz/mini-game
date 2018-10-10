@@ -6,6 +6,9 @@
  */
 
 import "phaser";
+import { ExternalGameConfig } from "./externalgameconfig";
+import { GlobalStateIdentifier } from "./gamestate";
+
 import { Engine } from "./gameplay/engine";
 
 import { Welcome } from "./screens/welcome";
@@ -40,23 +43,17 @@ export class Game extends Phaser.Game {
   };
 
   // constructs the game based on the game configuration
-  constructor(externalConfig: [string, string][]) {
+  constructor(externalConfig: ExternalGameConfig) {
     super(Game.defaults);
 
-    // copy external config to game game regitry
-    this.validateExternalConfig(externalConfig);
-    externalConfig.forEach(e => this.registry.set(e["0"], e["1"]));
-
-    // initialize server connection and store in game registry
     this.registry.set(
-      "engine", 
+      GlobalStateIdentifier.Engine, 
       new Engine(
         "/gamehub", 
         this.registry.values.playerName));
-  }
 
-  private validateExternalConfig(externalConfig: [string, string][]) {
-      // todo: make sure that required parameters are set...
-      console.log(externalConfig.keys);
+    this.registry.set(
+      GlobalStateIdentifier.ExternalConfig, 
+      externalConfig);  
   }
 }

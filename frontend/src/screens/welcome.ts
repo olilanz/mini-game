@@ -73,14 +73,8 @@ export class Welcome extends BaseScene {
       ''
     ];
 
-    let player = this.game.registry.get("playerName")
-    if (player) {
-      text.push("Player: " + player);
-    }
-    let team = this.game.registry.get("teamName")
-    if (team) {
-      text.push("Team: " + team);
-    }
+    let config = this.getExternalGameConfig();
+    text.push("Player: " + config.playerName);
 
     (this.children.getByName('titleText') as Phaser.GameObjects.Text)
       .setText(text);
