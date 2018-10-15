@@ -1,7 +1,7 @@
 ############################################################
 ## build the front end
 ############################################################
-FROM node:10.11.0 AS frontendbuilder
+FROM node:10.12.0 AS frontendbuilder
 
 COPY ./frontend/*.json /build/
 COPY ./frontend/src /build/src/
