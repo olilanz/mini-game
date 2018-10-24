@@ -6,14 +6,14 @@
             "type": "chrome",
             "request": "attach",
             "port": 9222,
-            "url": "http://localhost:1234",
+            "url": "http://localhost:5000",
             "webRoot": "${workspaceFolder}/dist"
         },
         {
             "name": "Launch in Chrome",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:1234",
+            "url": "http://localhost:5000",
             "webRoot": "${workspaceFolder}/dist"
         },
     ]

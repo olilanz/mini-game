@@ -5,13 +5,15 @@
 import { AbstractConnection } from "./abstractconnection";
 
 export class GameProxy extends AbstractConnection {
-    constructor(url: string) {
-        super(url);
-        this.registerCallback("updateOpponentPosition", this.onUpdateOpponentPosition);
+    constructor(url: string, playerName: string) {
+        super(url, playerName);
     }
 
-    public updatePlayerDetails(playerName: string) {
-        this.sendMessage("UpdatePlayerDetails", playerName);
+    protected getCallbacks(): Map<string, (...args: any[]) => void> {
+        // todo: attach the collbacks
+        let callbacks = new Map<string, (...args: any[]) => void>();
+        callbacks.set("updateOpponentPosition", this.onUpdateOpponentPosition);
+        return callbacks;
     }
 
     public updatePosition(x: number, y: number) {

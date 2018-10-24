@@ -8,12 +8,8 @@ export class Engine  {
     private _lastY: integer = 0;
 
     constructor(serverUrl: string, playerName: string) {
-        this._connection = new GameProxy(serverUrl);
-        this._connection.connect().then(
-            () => {
-                this._connection.updatePlayerDetails(playerName);
-            }
-        )
+        this._connection = new GameProxy(serverUrl, playerName);
+        this._connection.start();
     }
 
     public setMonsterPosition(x: number, y: number) {
