@@ -5,10 +5,11 @@
  */
 
 import { BaseScene } from '../basescene';
-import { SoundHelper } from '../helpers/soundhelper';
-import { ConsoleProxy } from '../communication/consoleproxy';
-import __imageBack from '../assets/images/button_left.png';
-import { ConnectionState } from '../communication/abstractconnection';
+import { SoundHelper } from '../../helpers/soundhelper';
+import { ConsoleProxy } from '../../communication/consoleproxy';
+import { ConnectionState } from '../../communication/abstractconnection';
+
+import __imageBack from '../../assets/images/button_left.png';
 
 export class ServerConsole extends BaseScene {
 

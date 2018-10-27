@@ -5,11 +5,12 @@
  */
 
 import { BaseScene } from '../basescene';
-import __imageMonster from '../assets/images/monster.png';
-import __imageCookie from '../assets/images/cookie.png';
-import __soundBlop from '../assets/sounds/blop.mp3';
 
-export class GamePlay extends BaseScene {
+import __imageMonster from '../../assets/images/monster.png';
+import __imageCookie from '../../assets/images/cookie.png';
+import __soundBlop from '../../assets/sounds/blop.mp3';
+
+export class Canvas extends BaseScene {
 
   private readonly MONSTER_NAME: string = 'monster';
   private readonly COOKIE_NAME_PREFIX: string = 'cookie_';
@@ -21,7 +22,7 @@ export class GamePlay extends BaseScene {
 
   constructor() {
     super({
-      key: 'GamePlay',
+      key: 'Canvas',
     });
   }
 
@@ -59,7 +60,7 @@ export class GamePlay extends BaseScene {
     monster.setFixedRotation();
 
     this.input.setTopOnly(false);
-    this.input.on('pointerdown', function (this: GamePlay, pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]) {
+    this.input.on('pointerdown', function (this: Canvas, pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]) {
       this.clickHandler(pointer, gameObjects);
     }, this);
 
@@ -72,7 +73,7 @@ export class GamePlay extends BaseScene {
   }
 
   updateWorldSize(width: number, height: number): void {
-    this.scene.get('GamePlay')
+    this
       .matter
       .world
       .setBounds(0, -200, width, height + 200);
@@ -150,7 +151,7 @@ export class GamePlay extends BaseScene {
   }
 
   conclude(success: boolean): void {
-    this.scene.get('Level').events.emit('conclude', success);
+    this.scene.get('Harness').events.emit('conclude', success);
   }
 
   updateFpsText(actualFps: number) {

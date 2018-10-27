@@ -9,15 +9,15 @@ import "phaser";
 import { ExternalGameConfig } from "./externalgameconfig";
 import { GlobalStateIdentifier } from "./gamestate";
 
-import { Engine } from "./gameplay/engine";
+import { Engine } from "./engine/engine";
 
-import { Welcome } from "./screens/welcome";
-import { ServerConsole } from "./screens/serverconsole";
-import { Menu } from "./screens/menu";
-import { Level } from "./screens/level";
-import { Scores } from "./screens/scores";
-import { Pause } from "./screens/pause";
-import { GamePlay } from "./gameplay/gameplay";
+import { Welcome } from "./scenes/welcome/welcome";
+import { ServerConsole } from "./scenes/serverconsole/serverconsole";
+import { Menu } from "./scenes/menu/menu";
+import { Harness } from "./scenes/gameplay/harness";
+import { Scores } from "./scenes/scores/scores";
+import { Pause } from "./scenes/pause/pause";
+import { Canvas } from "./scenes/gameplay/canvas";
 
 // represents the entire game
 export class Game extends Phaser.Game {
@@ -25,7 +25,7 @@ export class Game extends Phaser.Game {
   static defaults: GameConfig = {
     type: Phaser.AUTO,
     parent: "game-canvas",
-    scene: [ Welcome, ServerConsole, Menu, Level, GamePlay, Pause, Scores ],
+    scene: [ Welcome, ServerConsole, Menu, Harness, Canvas, Pause, Scores ],
     physics: {
       default: "matter",
       matter: {

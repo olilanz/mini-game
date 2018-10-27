@@ -5,18 +5,19 @@
  */
 
 import { BaseScene } from '../basescene';
-import { SoundHelper } from '../helpers/soundhelper';
-import __imagePause from '../assets/images/button_pause.png';
-import __musicLevel from '../assets/music/levelsong.mp3';
-import __soundBlop from '../assets/sounds/blop.mp3';
+import { SoundHelper } from '../../helpers/soundhelper';
 
-export class Level extends BaseScene {
+import __imagePause from '../../assets/images/button_pause.png';
+import __musicLevel from '../../assets/music/levelsong.mp3';
+import __soundBlop from '../../assets/sounds/blop.mp3';
+
+export class Harness extends BaseScene {
 
   private music: Phaser.Sound.BaseSound | undefined;
 
   constructor() {
     super({
-      key: 'Level'
+      key: 'Harness'
     });
   }
 
@@ -40,7 +41,7 @@ export class Level extends BaseScene {
     this.add.sprite(0, 0, 'pause')
       .setName('pause')
       .setInteractive()
-      .on('pointerdown', function (this: Level, pointer: string | symbol) {
+      .on('pointerdown', function (this: Harness, pointer: string | symbol) {
         this.sound.play('blop', { loop: false });
         this.transitionToPause();
       }, this);
@@ -86,22 +87,22 @@ export class Level extends BaseScene {
   }
 
   private startLevelStage(): void {    
-    this.scene.launch('GamePlay');
+    this.scene.launch('Canvas');
   }
 
   private stopLevelStage(): void {
-    this.scene.stop('GamePlay');
+    this.scene.stop('Canvas');
   }
 
   private resumeLevelStage(): void {
     this.music = this.sound.add('levelsong');
     SoundHelper.playBackgroundMusic(this.music);
 
-    this.scene.wake('GamePlay');
+    this.scene.wake('Canvas');
   }
 
   private transitionToPause(): void {
-    this.scene.sleep('GamePlay');
+    this.scene.sleep('Canvas');
     this.scene.switch('Pause'); 
   }
 

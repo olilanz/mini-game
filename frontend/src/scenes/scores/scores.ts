@@ -5,14 +5,16 @@
  */
 
 import { BaseScene } from '../basescene';
-import { SoundHelper } from '../helpers/soundhelper';
-import __imageMenu from '../assets/images/button_menu.png';
-import __imageRetry from '../assets/images/button_retry.png';
-import __imageRight from '../assets/images/button_right.png';
-import __imageTrophy from '../assets/images/trophy.png';
-import __imageTrophyFail from '../assets/images/trophy_fail.png';
-import __musicTheme from '../assets/music/theme.mp3';
-import __soundBlop from '../assets/sounds/blop.mp3';
+import { SoundHelper } from '../../helpers/soundhelper';
+
+import __imageMenu from '../../assets/images/button_menu.png';
+import __imageRetry from '../../assets/images/button_retry.png';
+import __imageRight from '../../assets/images/button_right.png';
+import __imageTrophy from '../../assets/images/trophy.png';
+import __imageTrophyFail from '../../assets/images/trophy_fail.png';
+
+import __musicTheme from '../../assets/music/theme.mp3';
+import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class Scores extends BaseScene {
   
@@ -120,11 +122,11 @@ export class Scores extends BaseScene {
   }
 
   navigateToNewLevel(): void {
-    this.scene.start('Level');
+    this.scene.start('Harness');
   }
 
   navigateToNextLevel(): void {
-    this.scene.start('Level');
+    this.scene.start('Harness');
   }
 
   navigateToMenu(): void {

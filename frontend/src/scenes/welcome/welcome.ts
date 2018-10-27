@@ -5,10 +5,11 @@
  */
 
 import { BaseScene } from '../basescene';
-import { SoundHelper } from '../helpers/soundhelper';
-import __imageTitle from '../assets/images/title.png';
-import __musicTheme from '../assets/music/theme.mp3';
-import __soundBlop from '../assets/sounds/blop.mp3';
+import { SoundHelper } from '../../helpers/soundhelper';
+
+import __imageTitle from '../../assets/images/title.png';
+import __musicTheme from '../../assets/music/theme.mp3';
+import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class Welcome extends BaseScene {
   

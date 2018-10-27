@@ -5,12 +5,14 @@
  */
 
 import { BaseScene } from '../basescene';
-import { SoundHelper } from '../helpers/soundhelper';
-import __imageMenu from '../assets/images/button_menu.png';
-import __imageRetry from '../assets/images/button_retry.png';
-import __imageResume from '../assets/images/button_right.png';
-import __musicTheme from '../assets/music/theme.mp3';
-import __soundBlop from '../assets/sounds/blop.mp3';
+import { SoundHelper } from '../../helpers/soundhelper';
+
+import __imageMenu from '../../assets/images/button_menu.png';
+import __imageRetry from '../../assets/images/button_retry.png';
+import __imageResume from '../../assets/images/button_right.png';
+
+import __musicTheme from '../../assets/music/theme.mp3';
+import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class Pause extends BaseScene {
   
@@ -100,18 +102,18 @@ export class Pause extends BaseScene {
   }
 
   transitionToMenu(): void {
-    this.scene.stop('Level'); // shuts the canvas down
+    this.scene.stop('Harness'); // shuts the canvas down
     this.scene.start('Menu');
   }
 
   transitionToLevel(): void {
-    this.scene.wake('Level');
+    this.scene.wake('Harness');
     this.scene.stop('Pause');  
   }
 
   transitionToNewLevel(): void {
-    this.scene.stop('Level');
-    this.scene.start('Level');
+    this.scene.stop('Harness');
+    this.scene.start('Harness');
   }
 }
 

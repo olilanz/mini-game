@@ -4,12 +4,14 @@
  * Select levels here
  */
 import { BaseScene } from '../basescene';
-import { SoundHelper } from '../helpers/soundhelper';
-import __imageLeft from '../assets/images/button_left.png';
-import __imageConsole from '../assets/images/button_console.png';
-import __imageMenu from '../assets/images/button_menu_level.png';
-import __musicTheme from '../assets/music/theme.mp3';
-import __soundBlop from '../assets/sounds/blop.mp3';
+import { SoundHelper } from '../../helpers/soundhelper';
+
+import __imageLeft from '../../assets/images/button_left.png';
+import __imageConsole from '../../assets/images/button_console.png';
+import __imageMenu from '../../assets/images/button_menu_level.png';
+
+import __musicTheme from '../../assets/music/theme.mp3';
+import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class Menu extends BaseScene {
 
@@ -142,6 +144,6 @@ export class Menu extends BaseScene {
     let navstate = this.getNavigationState();
     navstate.currentLevel = level;
     this.setNavigationState(navstate);  
-    this.scene.start('Level');
+    this.scene.start('Harness');
   }
 }

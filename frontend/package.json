@@ -1,6 +1,6 @@
 {
   "name": "mini-game",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Toying around with TypeScript",
   "keywords": [
     "Phaser",
@@ -32,7 +32,7 @@
     "start": "parcel ./src/index.html -p 1234 --public-url ./",
     "build": "parcel build ./src/index.html --target browser --public-url ./",
     "watch-build": "parcel watch ./src/index.html --target browser --public-url ./",
-    "clean": "rm ./dist/*.* && rm -rf ./.cache",
+    "clean": "rm -f ./dist/*.* && rm -rf ./.cache",
     "docker-build": "docker build -t olilanz/mini-game .",
     "docker-push": "docker push olilanz/mini-game"
   },
