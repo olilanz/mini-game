@@ -23,7 +23,7 @@ namespace Backend.Hubs {
 
         public Task UpdatePlayerDetails(string playerName) {
             return Task.Run(
-                () => System.Console.WriteLine($"New user logged on: {playerName} ({Context.User.Identity.ToString()})")
+                () => System.Console.WriteLine($"GameHub: New user logged on: {playerName} ({Context.User.Identity.ToString()})")
             );
         }
 

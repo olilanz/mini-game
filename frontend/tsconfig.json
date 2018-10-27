@@ -4,6 +4,7 @@
     "module": "CommonJs",
     "strict": true,
     "removeComments": true, 
+    "isolatedModules": true,
     "baseUrl": "./src",
     "paths": {
       "@app/*": ["./*"]

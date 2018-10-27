@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Backend.GameLogic;
 
 public interface IConsoleHubClient {
-        Task updateOpponentPosition(string user, double x, double y);
+        Task setStats(string stats);
 }
 
 namespace Backend.Hubs {
@@ -23,7 +23,13 @@ namespace Backend.Hubs {
 
         public Task UpdatePlayerDetails(string playerName) {
             return Task.Run(
-                () => System.Console.WriteLine($"New user logged on: {playerName} ({Context.User.Identity.ToString()})")
+                () => System.Console.WriteLine($"ConsoleHub: New user logged on: {playerName} ({Context.User.Identity.ToString()})")
+            );
+        }
+
+        public Task RequestStats() {
+            return Task.Run(
+                () => System.Console.WriteLine($"Stats requested...")
             );
         }
     }

@@ -6,13 +6,17 @@
 
 import { BaseScene } from '../basescene';
 import { SoundHelper } from '../helpers/soundhelper';
-import { ServerConsoleProxy } from '../communication/serverconsoleproxy';
+import { ConsoleProxy } from '../communication/consoleproxy';
 import __imageBack from '../assets/images/button_left.png';
+import { ConnectionState } from '../communication/abstractconnection';
 
 export class ServerConsole extends BaseScene {
 
-  private _server: ServerConsoleProxy = new ServerConsoleProxy("/consolehub");
+  private _server: ConsoleProxy = new ConsoleProxy("/consolehub", "anonymous");
   private _consoleText: string[] =  [];
+
+  private readonly REFRESH_INTERVAL = 1000; // milliseconds
+  private _countdown: integer = 0;          // 
 
   constructor() {
     super({
@@ -22,7 +26,9 @@ export class ServerConsole extends BaseScene {
 
   init(config: { success: boolean }) {
     this.attachDefaultHandlers();
-    this._server.connect();
+
+    this._server.onSetStats(this.onReceiveStats.bind(this));
+    this._server.start();
   }
 
   preload(): void {
@@ -73,6 +79,13 @@ export class ServerConsole extends BaseScene {
   }
 
   update(time: number, delta: number): void {
+    if (this._server.getConnectionState() == ConnectionState.connected) {
+      this._countdown -= delta;
+    }
+    if (this._countdown <= 0) {
+      this._server.requestStats();
+      this._countdown = this.REFRESH_INTERVAL;
+    }
   }
 
   updateConsoleText() {
@@ -87,7 +100,11 @@ export class ServerConsole extends BaseScene {
   }
 
   onShutdown(): void {
-    this._server.disconnect();
+    this._server.stop();
+  }
+
+  onReceiveStats(stats: string): void {
+
   }
 
   navigateToMenu(): void {
