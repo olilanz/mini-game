@@ -57,6 +57,9 @@ export class ServerConsole extends BaseScene {
         this.navigateToMenu();
       }, this);
 
+    this.add.circle(0, 0, 5, 0, 9)
+      .setName('connectionIndicator');
+
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
 
@@ -66,6 +69,7 @@ export class ServerConsole extends BaseScene {
     this.sound.add('blop');
 
     this.updateConsoleText();
+    this.setConnectionStateIndicator(this._server.getConnectionState());
   }
 
   updateLayout(width: number, height: number): void {
@@ -81,6 +85,9 @@ export class ServerConsole extends BaseScene {
     (this.children.getByName('back') as Phaser.GameObjects.Sprite)
     .setPosition(margin, height / 2)
     .setDisplaySize(btnsize, btnsize);
+
+    (this.children.getByName('connectionIndicator') as Phaser.GameObjects.Arc)
+      .setPosition(margin + btnsize + margin, margin);
   }
 
   update(time: number, delta: number): void {
@@ -90,6 +97,29 @@ export class ServerConsole extends BaseScene {
     if (this._countdown <= 0) {
       this._server.requestStats();
       this._countdown = this.REFRESH_INTERVAL;
+    }
+  }
+
+  setConnectionStateIndicator(state: ConnectionState) {
+    let color: number = 0;
+    switch (state) {
+      case ConnectionState.stopped: {
+        color = 0xff0000;
+        break;
+      }
+      case ConnectionState.connecting: {
+        color = 0xffff00;        
+        break;
+      }
+      case ConnectionState.connected: {
+        color = 0x00ff00;
+        break;
+      }
+    }
+
+    let cirlce = this.children.getByName('connectionIndicator') as Phaser.GameObjects.Arc | null;
+    if (cirlce) {
+      cirlce.setFillStyle(color, 1);
     }
   }
 
@@ -119,6 +149,7 @@ export class ServerConsole extends BaseScene {
   onConnectionStateChanged(newState: ConnectionState, oldState: ConnectionState) {
     this.addConsoleMessage(
       "Connection state changed from " + ConnectionState[oldState] + " to " + ConnectionState[newState]);
+    this.setConnectionStateIndicator(newState);
   }
 
   onReceiveStats(stats: string): void {
