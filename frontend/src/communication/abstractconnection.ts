@@ -19,6 +19,7 @@ export abstract class AbstractConnection {
     private _connection: signalR.HubConnection | null;
 
     private _connectionState: ConnectionState;
+    private _stateChangedCallback: ((newState: ConnectionState, oldState: ConnectionState) => void) | null;
 
     private _callbacks: Map<string, (...args: any[]) => void>;
 
@@ -27,6 +28,7 @@ export abstract class AbstractConnection {
         this._playerName = playerName;
         this._connection = null;
         this._connectionState = ConnectionState.stopped;
+        this._stateChangedCallback = null;
         this._callbacks = new Map<string, (...args: any[]) => void>();
     }
 
@@ -41,7 +43,7 @@ export abstract class AbstractConnection {
             .withUrl(this._url)
             .configureLogging(signalR.LogLevel.Debug)
             .build();
-        this._connection.onclose(this.onDisconnect.bind(this));
+        this._connection.onclose(this.disconnectHandler.bind(this));
         this.attachCallbacks();
         this.initiateConnection();
     }
@@ -108,7 +110,7 @@ export abstract class AbstractConnection {
      * Handles the connection loss
      * @param error Error that caused the connection loss
      */
-    private onDisconnect(error: Error | undefined): void {
+    private disconnectHandler(error: Error | undefined): void {
         if (error) {
             console.log("Connection lost: " + error.name + " - " + error.message);
         } else {
@@ -162,7 +164,18 @@ export abstract class AbstractConnection {
     }
 
     private setState(state: ConnectionState) {
+        let old = this._connectionState;
         this._connectionState = state;
-        console.log("Changed connection state to: " + ConnectionState[state]);
+        if (this._stateChangedCallback) {
+            this._stateChangedCallback(state, old);
+        }
+    }
+
+    /**
+     * 
+     * @param handler Register your callback here to get called when the connection changes state 
+     */
+    public onConnectionStateChanged(callback: ((newState: ConnectionState, oldState: ConnectionState) => void) | null) {
+        this._stateChangedCallback = callback;
     }
 }

@@ -10,13 +10,16 @@ import { ConsoleProxy } from '../../communication/consoleproxy';
 import { ConnectionState } from '../../communication/abstractconnection';
 
 import __imageBack from '../../assets/images/button_left.png';
+import { stat } from 'fs';
 
 export class ServerConsole extends BaseScene {
 
   private _server: ConsoleProxy = new ConsoleProxy("/consolehub", "anonymous");
   private _consoleText: string[] =  [];
 
+  private readonly MAX_MESSAGES = 50; // milliseconds
   private readonly REFRESH_INTERVAL = 1000; // milliseconds
+
   private _countdown: integer = 0;          // 
 
   constructor() {
@@ -28,6 +31,7 @@ export class ServerConsole extends BaseScene {
   init(config: { success: boolean }) {
     this.attachDefaultHandlers();
 
+    this._server.onConnectionStateChanged(this.onConnectionStateChanged.bind(this));
     this._server.onSetStats(this.onReceiveStats.bind(this));
     this._server.start();
   }
@@ -90,10 +94,18 @@ export class ServerConsole extends BaseScene {
   }
 
   updateConsoleText() {
-    this._consoleText.push("Lallala");
-
     (this.children.getByName('consoleText') as Phaser.GameObjects.Text)
       .setText(this._consoleText);
+  }
+
+  addConsoleMessage(message: string) {
+    // insert new messages in front
+    this._consoleText.unshift(message);
+
+    // drop last message if too many
+    if (this._consoleText.length > this.MAX_MESSAGES) {
+      this._consoleText.pop();
+    } 
   }
 
   onResize(width: number, height: number) {
@@ -104,8 +116,14 @@ export class ServerConsole extends BaseScene {
     this._server.stop();
   }
 
-  onReceiveStats(stats: string): void {
+  onConnectionStateChanged(newState: ConnectionState, oldState: ConnectionState) {
+    this.addConsoleMessage(
+      "Connection state changed from " + ConnectionState[oldState] + " to " + ConnectionState[newState]);
+  }
 
+  onReceiveStats(stats: string): void {
+    this.addConsoleMessage(stats);
+    this.updateConsoleText();
   }
 
   navigateToMenu(): void {

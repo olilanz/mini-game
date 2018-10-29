@@ -28,9 +28,9 @@ namespace Backend.Hubs {
         }
 
         public Task RequestStats() {
-            return Task.Run(
-                () => System.Console.WriteLine($"Stats requested...")
-            );
+            string ts = System.DateTime.UtcNow.ToLongTimeString();
+            string stats = "Server CPU time: " + System.Diagnostics.Process.GetCurrentProcess().TotalProcessorTime.Milliseconds.ToString() + "ms";
+            return Clients.Caller.setStats($"{ts}: {stats}");
         }
     }
 }
