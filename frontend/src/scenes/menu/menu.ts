@@ -41,12 +41,6 @@ export class Menu extends BaseScene {
   }
 
   create(): void {
-    let text = [
-      'Menu', 
-      'Select a level to enter'
-    ];
-    this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' }).setName('titleText');
-
     this.add.sprite(0, 0, 'left')
       .setName('welcome').setInteractive()
       .on('pointerdown', function (this: Menu, pointer: string | symbol) {
@@ -87,14 +81,11 @@ export class Menu extends BaseScene {
     let margin = width * 0.1;
     let btnsize = width * 0.08;
 
-    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
-      .setPosition(16, 16);
-
-      (this.children.getByName('welcome') as Phaser.GameObjects.Sprite)
+    (this.children.getByName('welcome') as Phaser.GameObjects.Sprite)
       .setPosition(margin, height / 2)
       .setDisplaySize(btnsize, btnsize);
 
-      (this.children.getByName('console') as Phaser.GameObjects.Sprite)
+    (this.children.getByName('console') as Phaser.GameObjects.Sprite)
       .setPosition(width - margin, height / 2)
       .setDisplaySize(btnsize, btnsize);
 

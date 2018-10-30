@@ -45,9 +45,9 @@ export class ServerConsole extends BaseScene {
       'Console', 
       'Server interactions will be available here.'
     ];
-    this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' }).setName('titleText');
 
-    this.add.text(0, 0, ["..."], { fontSize: '12px', fill: '#fff', backgroundcolor: '#aaa' }).setName('consoleText');
+    this.add.text(0, 0, ["..."], { fontSize: '12px', fill: '#fff', backgroundcolor: '#aaa' })
+      .setName('consoleText');
 
     this.add.sprite(0, 0, 'back')
       .setName('back')
@@ -75,9 +75,6 @@ export class ServerConsole extends BaseScene {
   updateLayout(width: number, height: number): void {
     let margin = width * 0.1;
     let btnsize = width * 0.08;
-
-    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
-      .setPosition(16, 16);
 
     (this.children.getByName('consoleText') as Phaser.GameObjects.Text)
       .setPosition(margin + btnsize + margin, margin);

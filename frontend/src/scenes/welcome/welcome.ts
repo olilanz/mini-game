@@ -30,9 +30,6 @@ export class Welcome extends BaseScene {
   }
 
   create(): void {
-    this.add.text(0, 0, "..", { fontSize: '12px', fill: '#fff' }).
-      setName('titleText');
-
     this.add.sprite(0, 0, 'title')
       .setName('title')
       .setInteractive()
@@ -52,9 +49,6 @@ export class Welcome extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
-    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
-      .setPosition(16, 16);
-
     (this.children.getByName('title') as Phaser.GameObjects.Sprite)
       .setPosition(width / 2, height / 2)
       .setDisplaySize(width * 0.6, width * 0.75 * 0.6);
@@ -76,9 +70,6 @@ export class Welcome extends BaseScene {
 
     let config = this.getExternalGameConfig();
     text.push("Player: " + config.playerName);
-
-    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
-      .setText(text);
   }
 
   transitionToMenu(): void {

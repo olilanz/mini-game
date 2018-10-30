@@ -35,13 +35,6 @@ export class Pause extends BaseScene {
   }
 
   create(): void {
-    let text = [
-      'Pause', 
-      'The game is paused'
-    ];
-    this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' })
-      .setName('titleText');
-
     this.add.sprite(0, 0, 'menu')
       .setName('menu')
       .setInteractive()
@@ -77,9 +70,6 @@ export class Pause extends BaseScene {
 
   updateLayout(width: number, height: number): void {
     let btnsize = width * 0.08;
-
-    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
-      .setPosition(16, 16);
 
     (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
       .setPosition(width * 0.3, height / 2)

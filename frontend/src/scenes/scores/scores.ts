@@ -42,13 +42,8 @@ export class Scores extends BaseScene {
   }
 
   create(): void {
-    let text = [
-      'Scores', 
-      'The level is completed. Scores are shown here.'
-    ];
-    this.add.text(0, 0, text, { fontSize: '12px', fill: '#fff' }).setName('titleText');
-
-    this.add.sprite(0, 0, this.success ? 'trophy' : 'trophy_fail').setName('trophy');
+    this.add.sprite(0, 0, this.success ? 'trophy' : 'trophy_fail')
+      .setName('trophy');
 
     this.add.sprite(0, 0, 'menu')
       .setName('menu')
@@ -93,9 +88,6 @@ export class Scores extends BaseScene {
   updateLayout(width: number, height: number): void {
     let margin = width * 0.1;
     let btnsize = width * 0.08;
-
-    (this.children.getByName('titleText') as Phaser.GameObjects.Text)
-      .setPosition(16, 16);
 
     (this.children.getByName('trophy') as Phaser.GameObjects.Sprite)
       .setPosition(width / 2, height / 2)
