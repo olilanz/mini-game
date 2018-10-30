@@ -82,11 +82,11 @@ export class Menu extends BaseScene {
     let btnsize = width * 0.08;
 
     (this.children.getByName('welcome') as Phaser.GameObjects.Sprite)
-      .setPosition(margin, height / 2)
+      .setPosition(width - margin, margin)
       .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('console') as Phaser.GameObjects.Sprite)
-      .setPosition(width - margin, height / 2)
+      .setPosition(width - margin, 1.3 * margin + btnsize)
       .setDisplaySize(btnsize, btnsize);
 
     let xmargin = width * 0.2;

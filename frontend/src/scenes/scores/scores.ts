@@ -94,15 +94,15 @@ export class Scores extends BaseScene {
       .setDisplaySize(width / 2, width / 3);
 
     (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.3, height - margin)
+      .setPosition(width - margin, margin)
       .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('retry') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.5, height - margin)
+      .setPosition(width - margin, 1.3 * margin + btnsize)
       .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('next') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.7, height - margin)
+      .setPosition(width - margin, 1.3 * 1.3 * margin + 2 * btnsize)
       .setDisplaySize(btnsize, btnsize);  
   }
 

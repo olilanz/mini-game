@@ -69,18 +69,19 @@ export class Pause extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
+    let margin = width * 0.1;
     let btnsize = width * 0.08;
 
     (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.3, height / 2)
+      .setPosition(width - margin, margin)
       .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('retry') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.5, height / 2)
+      .setPosition(width - margin, 1.3 * margin + btnsize)
       .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('resume') as Phaser.GameObjects.Sprite)
-      .setPosition(width * 0.7, height / 2)
+      .setPosition(width - margin, 1.3 * 1.3 * margin + 2 * btnsize)
       .setDisplaySize(btnsize, btnsize);  
   }
 
