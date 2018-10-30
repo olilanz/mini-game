@@ -77,14 +77,14 @@ export class ServerConsole extends BaseScene {
     let btnsize = width * 0.08;
 
     (this.children.getByName('consoleText') as Phaser.GameObjects.Text)
-      .setPosition(margin + btnsize + margin, margin);
+      .setPosition(margin, margin);
 
     (this.children.getByName('back') as Phaser.GameObjects.Sprite)
-    .setPosition(margin, height / 2)
+    .setPosition(width - margin, margin)
     .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('connectionIndicator') as Phaser.GameObjects.Arc)
-      .setPosition(margin + btnsize + margin, margin);
+      .setPosition(margin, margin / 2);
   }
 
   update(time: number, delta: number): void {
