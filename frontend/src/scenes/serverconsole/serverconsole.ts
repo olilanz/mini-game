@@ -6,7 +6,7 @@
 
 import { BaseScene } from '../basescene';
 import { SoundHelper } from '../../helpers/soundhelper';
-import { ConsoleProxy } from '../../communication/consoleproxy';
+import { ConsoleProxy, EngineStats } from '../../communication/consoleproxy';
 import { ConnectionState } from '../../communication/abstractconnection';
 
 import __imageBack from '../../assets/images/button_left.png';
@@ -17,11 +17,13 @@ export class ServerConsole extends BaseScene {
   private _server: ConsoleProxy = new ConsoleProxy("/consolehub", "anonymous");
   private _consoleText: string[] =  [];
 
-  private readonly MAX_MESSAGES = 50; // milliseconds
-  private readonly REFRESH_INTERVAL = 1000; // milliseconds
+  private readonly MAX_MESSAGES = 50;         // milliseconds
+  private readonly REFRESH_INTERVAL = 1000;   // milliseconds
 
-  private _countdown: integer = 0;          // 
+  private _countdown: integer = 0;            // 
 
+  private _statsPlayerCount: number | undefined = undefined;
+  
   constructor() {
     super({
       key: 'ServerConsole'
@@ -121,8 +123,16 @@ export class ServerConsole extends BaseScene {
   }
 
   updateConsoleText() {
+    let text = this._consoleText.splice(0);
+    text.unshift("");
+    if (this._statsPlayerCount) {
+      text.unshift(this._statsPlayerCount + " players online");
+    } else {
+      text.unshift("not connected...");
+    }
+
     (this.children.getByName('consoleText') as Phaser.GameObjects.Text)
-      .setText(this._consoleText);
+      .setText(text);
   }
 
   addConsoleMessage(message: string) {
@@ -144,13 +154,20 @@ export class ServerConsole extends BaseScene {
   }
 
   onConnectionStateChanged(newState: ConnectionState, oldState: ConnectionState) {
-    this.addConsoleMessage(
-      "Connection state changed from " + ConnectionState[oldState] + " to " + ConnectionState[newState]);
     this.setConnectionStateIndicator(newState);
+
+    if (ConnectionState.connected != newState) {
+      this._statsPlayerCount = undefined;
+    }
+
+    this.addConsoleMessage(
+      "Connection state changed from " + ConnectionState[oldState] + " to " + ConnectionState[newState]);    
   }
 
-  onReceiveStats(stats: string): void {
-    this.addConsoleMessage(stats);
+  onReceiveStats(stats: EngineStats): void {
+    this._statsPlayerCount = stats.playerCount;
+    
+    this.addConsoleMessage("Stats received: " + stats.statsTimeStampUtc + "; CPU Time: " + stats.cpuTimeMs);
     this.updateConsoleText();
   }
 

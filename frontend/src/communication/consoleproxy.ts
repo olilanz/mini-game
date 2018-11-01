@@ -1,5 +1,11 @@
  import { AbstractConnection } from "./abstractconnection";
 
+export type EngineStats = {
+    statsTimeStampUtc: number, 
+    playerCount: number,
+    cpuTimeMs: number
+}
+
  /**
  * Typed proxy for ConsoleHub
  */
@@ -8,7 +14,7 @@ export class ConsoleProxy extends AbstractConnection {
         this.sendMessage("RequestStats");
     }
 
-    public onSetStats(callback: (stats: string) => void) {
+    public onSetStats(callback: (stats: EngineStats) => void) {
         this.registerCallback("setStats", callback);
     }
 }

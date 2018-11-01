@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Backend.GameLogic;
 
 public interface IConsoleHubClient {
-        Task setStats(string stats);
+        Task setStats(EngineStats stats);
 }
 
 namespace Backend.Hubs {
@@ -28,9 +28,7 @@ namespace Backend.Hubs {
         }
 
         public Task RequestStats() {
-            string ts = System.DateTime.UtcNow.ToLongTimeString();
-            string stats = "Server CPU time: " + System.Diagnostics.Process.GetCurrentProcess().TotalProcessorTime.Milliseconds.ToString() + "ms";
-            return Clients.Caller.setStats($"{ts}: {stats}");
+            return Clients.Caller.setStats(_game.GetStats());
         }
     }
 }
