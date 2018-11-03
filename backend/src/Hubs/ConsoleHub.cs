@@ -12,12 +12,12 @@ namespace Backend.Hubs {
         private readonly GameState _game = GameState.GetInstance();
         
         public override Task OnConnectedAsync() {
-            _game.RegisterClient(Context.ConnectionId);
+            _game.RegisterClient(ClientType.Administrator, Context.ConnectionId);
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(System.Exception exception) {
-            _game.UnregisterClient(Context.ConnectionId);
+            _game.UnregisterClient(ClientType.Administrator, Context.ConnectionId);
             return base.OnDisconnectedAsync(exception);
         }
 

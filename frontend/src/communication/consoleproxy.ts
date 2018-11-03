@@ -3,6 +3,7 @@
 export type EngineStats = {
     statsTimeStampUtc: number, 
     playerCount: number,
+    adminCount: number,
     cpuTimeMs: number
 }
 

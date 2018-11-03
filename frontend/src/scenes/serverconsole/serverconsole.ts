@@ -23,6 +23,7 @@ export class ServerConsole extends BaseScene {
   private _countdown: integer = 0;            // 
 
   private _statsPlayerCount: number | undefined = undefined;
+  private _statsAdminCount: number | undefined = undefined;
   
   constructor() {
     super({
@@ -124,8 +125,8 @@ export class ServerConsole extends BaseScene {
 
   updateConsoleText() {
     let status: string = "not connected...";
-    if (this._statsPlayerCount) {
-      status = this._statsPlayerCount + " players online";
+    if (this._statsPlayerCount && this._statsAdminCount) {
+      status = this._statsPlayerCount + " players and " + this._statsAdminCount + " admins online";
     }
 
     let text = Array<string>().concat(status, "",this._consoleText);
@@ -170,6 +171,7 @@ export class ServerConsole extends BaseScene {
 
   onReceiveStats(stats: EngineStats): void {
     this._statsPlayerCount = stats.playerCount;
+    this._statsAdminCount = stats.adminCount;
 
     this.addConsoleMessage(
       "Stats received: " + stats.statsTimeStampUtc + "; CPU Time: " + stats.cpuTimeMs
