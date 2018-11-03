@@ -123,16 +123,17 @@ export class ServerConsole extends BaseScene {
   }
 
   updateConsoleText() {
-    let text = this._consoleText.splice(0);
-    text.unshift("");
+    let status: string = "not connected...";
     if (this._statsPlayerCount) {
-      text.unshift(this._statsPlayerCount + " players online");
-    } else {
-      text.unshift("not connected...");
+      status = this._statsPlayerCount + " players online";
     }
 
-    (this.children.getByName('consoleText') as Phaser.GameObjects.Text)
-      .setText(text);
+    let text = Array<string>().concat(status, "",this._consoleText);
+
+    let textObj = (this.children.getByName('consoleText') as Phaser.GameObjects.Text);
+    if (textObj) {
+      textObj.setText(text);
+    }
   }
 
   addConsoleMessage(message: string) {
@@ -142,7 +143,9 @@ export class ServerConsole extends BaseScene {
     // drop last message if too many
     if (this._consoleText.length > this.MAX_MESSAGES) {
       this._consoleText.pop();
-    } 
+    }
+
+    this.updateConsoleText();
   }
 
   onResize(width: number, height: number) {
@@ -161,14 +164,16 @@ export class ServerConsole extends BaseScene {
     }
 
     this.addConsoleMessage(
-      "Connection state changed from " + ConnectionState[oldState] + " to " + ConnectionState[newState]);    
+      "Connection state changed from " + ConnectionState[oldState] + " to " + ConnectionState[newState]
+      );    
   }
 
   onReceiveStats(stats: EngineStats): void {
     this._statsPlayerCount = stats.playerCount;
-    
-    this.addConsoleMessage("Stats received: " + stats.statsTimeStampUtc + "; CPU Time: " + stats.cpuTimeMs);
-    this.updateConsoleText();
+
+    this.addConsoleMessage(
+      "Stats received: " + stats.statsTimeStampUtc + "; CPU Time: " + stats.cpuTimeMs
+      );
   }
 
   navigateToMenu(): void {
