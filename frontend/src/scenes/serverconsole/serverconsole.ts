@@ -5,12 +5,8 @@
  */
 
 import { BaseScene } from '../basescene';
-import { SoundHelper } from '../../helpers/soundhelper';
 import { ConsoleProxy, EngineStats } from '../../communication/consoleproxy';
 import { ConnectionState } from '../../communication/abstractconnection';
-
-import __imageBack from '../../assets/images/button_left.png';
-import { stat } from 'fs';
 
 export class ServerConsole extends BaseScene {
 
@@ -40,7 +36,6 @@ export class ServerConsole extends BaseScene {
   }
 
   preload(): void {
-    this.load.image('back', __imageBack);
   }
 
   create(): void {
@@ -52,24 +47,11 @@ export class ServerConsole extends BaseScene {
     this.add.text(0, 0, ["..."], { fontSize: '12px', fill: '#fff', backgroundcolor: '#aaa' })
       .setName('consoleText');
 
-    this.add.sprite(0, 0, 'back')
-      .setName('back')
-      .setInteractive()
-      .on('pointerdown', function (this: ServerConsole, pointer: string | symbol) {
-        this.sound.play('blop', { loop: false });
-        this.navigateToMenu();
-      }, this);
-
     this.add.circle(0, 0, 5, 0, 9)
       .setName('connectionIndicator');
 
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
-
-    let music = this.sound.add('theme');
-    SoundHelper.playBackgroundMusic(music);
-
-    this.sound.add('blop');
 
     this.updateConsoleText();
     this.setConnectionStateIndicator(this._server.getConnectionState());
@@ -81,10 +63,6 @@ export class ServerConsole extends BaseScene {
 
     (this.children.getByName('consoleText') as Phaser.GameObjects.Text)
       .setPosition(margin, margin);
-
-    (this.children.getByName('back') as Phaser.GameObjects.Sprite)
-    .setPosition(width - margin, margin)
-    .setDisplaySize(btnsize, btnsize);
 
     (this.children.getByName('connectionIndicator') as Phaser.GameObjects.Arc)
       .setPosition(margin, margin / 2);
@@ -176,10 +154,6 @@ export class ServerConsole extends BaseScene {
     this.addConsoleMessage(
       "Stats received: " + stats.statsTimeStampUtc + "; CPU Time: " + stats.cpuTimeMs
       );
-  }
-
-  navigateToMenu(): void {
-    this.scene.start('Menu');
   }
 }
 
