@@ -66,6 +66,16 @@ export class Canvas extends BaseScene {
 
     this.createCookies(this.data.values.level);
     this.updateText();
+
+    this.add.circle(0, 0, 5, 0, 9)
+      .setName('otherPlayer')
+      .setFillStyle(0xffff00, 1);
+
+    this.getEngine().onUpdateOpponentPosition(this.onUpdateOpponentPosition.bind(this));
+  }
+
+  protected onShutdown() {
+    this.getEngine().onUpdateOpponentPosition(function() {});
   }
 
   onResize(width: number, height: number) {
@@ -110,6 +120,11 @@ export class Canvas extends BaseScene {
     for (let i = 0; i < count; i++) {
       this.createCookie(this.COOKIE_NAME_PREFIX + i, i * Phaser.Math.Between(30, 60), i * Phaser.Math.Between(20, 40));
     }
+  }
+
+  private onUpdateOpponentPosition(username: string, x: number, y: number): void {
+    (this.children.getByName('otherPlayer') as Phaser.GameObjects.Arc)
+      .setPosition(x, y);
   }
 
   createCookie(name: string, x: number, y: number): integer {

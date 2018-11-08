@@ -28,7 +28,7 @@ namespace Backend.Hubs {
         }
 
         public Task UpdatePosition(double x, double y) {
-            return Clients.All.updateOpponentPosition(Context.ConnectionId, x, y);
+            return Clients.Others.updateOpponentPosition(Context.ConnectionId, x, y);
         }
     }
 }

@@ -9,7 +9,6 @@ export class Engine  {
 
     constructor(serverUrl: string, playerName: string) {
         this._connection = new GameProxy(serverUrl, playerName);
-        this._connection.onUpdateOpponentPosition(this.onUpdateOpponentPosition.bind(this));
         this._connection.start();
     }
 
@@ -26,7 +25,7 @@ export class Engine  {
         this._lastY = yi;
     }
 
-    private onUpdateOpponentPosition(username: string, x: number, y: number): void {
-        console.log(`Incoming message from server: ${username} - ${x}/${y}`);
+    public onUpdateOpponentPosition(callback: (username: string, x: number, y: number) => void): void {
+        this._connection.onUpdateOpponentPosition(callback);
     }
 }

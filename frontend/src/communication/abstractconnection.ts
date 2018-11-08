@@ -41,7 +41,7 @@ export abstract class AbstractConnection {
         this.setState(ConnectionState.connecting);
         this._connection = new signalR.HubConnectionBuilder()
             .withUrl(this._url)
-            .configureLogging(signalR.LogLevel.Debug)
+            .configureLogging(signalR.LogLevel.Warning)
             .build();
         this._connection.onclose(this.disconnectHandler.bind(this));
         this.attachCallbacks();
