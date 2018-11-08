@@ -45,36 +45,29 @@ export class Scores extends BaseScene {
     this.add.sprite(0, 0, this.success ? 'trophy' : 'trophy_fail')
       .setName('trophy');
 
-    this.add.sprite(0, 0, 'menu')
-      .setName('menu')
-      .setInteractive()
-      .on('pointerdown', function (this: Scores, pointer: string | symbol) {
+    this.addButton('menu', 'menu', 
+      function (this: Scores) {
         this.sound.play('blop', { loop: false });
         this.navigateToMenu();
       }, this);
 
-    this.add.sprite(0, 0, 'retry')
-      .setName('retry')
-      .setInteractive()
-      .on('pointerdown', function (this: Scores, pointer: string | symbol) {
+    this.addButton('retry', 'retry',
+      function (this: Scores) {
         this.sound.play('blop', { loop: false });
         this.navigateToNewLevel();
       }, this);
 
     let navstate = this.getNavigationState();
-    let btn = this.add.sprite(0, 0, 'next').setName('next') as Phaser.GameObjects.Sprite;
-    if (navstate.currentLevel < navstate.numberOfLevels && this.success) {
-      btn.setInteractive();
-      btn.on('pointerdown', function (this: Scores, pointer: string | symbol) {
+    let btn = this.addButton('next', 'next',
+      function (this: Scores) {
         // todo: not nice to increment level here; move into navigetToNextLevel() instead..
         navstate.currentLevel++;
         this.setNavigationState(navstate);
         this.sound.play('blop', { loop: false });
         this.navigateToNextLevel();
       }, this);
-    } else {
-      btn.setVisible(false);
-    }
+    let showBtn = (navstate.currentLevel < navstate.numberOfLevels && this.success);
+    btn.setVisible(showBtn);
 
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);

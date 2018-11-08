@@ -39,9 +39,8 @@ export class Menu extends BaseScene {
   }
 
   create(): void {
-    this.add.sprite(0, 0, 'left')
-      .setName('welcome').setInteractive()
-      .on('pointerdown', function (this: Menu, pointer: string | symbol) {
+    this.addButton('welcome', 'left', 
+      function (this: Menu) {
         this.sound.play('blop', { loop: false });
         this.transitionToWelcome();
       }, this);
@@ -96,14 +95,12 @@ export class Menu extends BaseScene {
   }
 
   createMenuButton(text: string, level: integer): void {
-    this.add.sprite(0, 0, 'menulvl')
-      .setName('btn_' + text)
-      .setOrigin(0, 0)
-      .setInteractive()
-      .on('pointerdown', function (this: Menu, pointer: string | symbol) {
+    let btn = this.addButton('btn_' + text, 'menulvl', 
+      function (this: Menu) {
         this.sound.play('blop', { loop: false });
         this.transitionToLevel(level);
       }, this);
+    btn.setOrigin(0, 0);
 
     this.add.text(0, 0, text, { fontSize: '24px', fill: '#000' })
       .setName('txt_' + text);

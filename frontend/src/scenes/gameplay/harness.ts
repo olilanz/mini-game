@@ -38,10 +38,8 @@ export class Harness extends BaseScene {
   }
 
   create(): void {
-    this.add.sprite(0, 0, 'pause')
-      .setName('pause')
-      .setInteractive()
-      .on('pointerdown', function (this: Harness, pointer: string | symbol) {
+    this.addButton('pause', 'pause',
+      function (this: Harness) {
         this.sound.play('blop', { loop: false });
         this.transitionToPause();
       }, this);

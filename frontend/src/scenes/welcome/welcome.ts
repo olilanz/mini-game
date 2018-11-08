@@ -30,10 +30,8 @@ export class Welcome extends BaseScene {
   }
 
   create(): void {
-    this.add.sprite(0, 0, 'title')
-      .setName('title')
-      .setInteractive()
-      .on('pointerdown', function (this: Welcome, pointer: string | symbol) {
+    this.addButton('title', 'title', 
+      function (this: Welcome) {
         this.sound.play('blop', { loop: false });
         this.transitionToMenu();
       }, this);

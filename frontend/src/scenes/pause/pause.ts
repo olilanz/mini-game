@@ -35,26 +35,20 @@ export class Pause extends BaseScene {
   }
 
   create(): void {
-    this.add.sprite(0, 0, 'menu')
-      .setName('menu')
-      .setInteractive()
-      .on('pointerdown', function (this: Pause, pointer: string | symbol) {
+    this.addButton('menu', 'menu',
+      function (this: Pause) {
         this.sound.play('blop', { loop: false });
         this.transitionToMenu();
       }, this);
 
-    this.add.sprite(0, 0, 'resume')
-      .setName('resume')
-      .setInteractive()
-      .on('pointerdown', function (this: Pause, pointer: string | symbol) {
+    this.addButton('resume', 'resume',
+      function (this: Pause) {
         this.sound.play('blop', { loop: false });
         this.transitionToLevel();
       }, this);
 
-    this.add.sprite(0, 0, 'retry')
-      .setName('retry')
-      .setInteractive()
-      .on('pointerdown', function (this: Pause, pointer: string | symbol) {
+    this.addButton('retry', 'retry',
+      function (this: Pause) {
         this.sound.play('blop', { loop: false });
         this.transitionToNewLevel();
       }, this);

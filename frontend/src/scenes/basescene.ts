@@ -59,4 +59,12 @@ export class BaseScene extends Phaser.Scene {
     protected setNavigationState(state: NavigationState): void {
         this.registry.set(GlobalStateIdentifier.NavigationState, state);
     }
+
+    protected addButton(name: string, image: string, callback: () => void, context?: any): Phaser.GameObjects.Sprite {
+        let button = this.add.sprite(0, 0, image)
+            .setName(name)
+            .setInteractive();
+        button.on('pointerdown', callback, context);
+        return button;
+    }
 }
