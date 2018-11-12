@@ -6,6 +6,8 @@
 
 import { BaseScene } from '../basescene';
 
+import { IOpponent } from '../../engine/engine';
+
 import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 import __soundBlop from '../../assets/sounds/blop.mp3';
@@ -14,6 +16,9 @@ export class Canvas extends BaseScene {
 
   private readonly MONSTER_NAME: string = 'monster';
   private readonly COOKIE_NAME_PREFIX: string = 'cookie_';
+
+  private readonly OPPONENT_PREFIX: string = "opponent_";
+  private readonly OPPONENT_TEXT_POSTFIX: string = "_name";
 
   private cookieCount: integer = 0;
   private statusText!: Phaser.GameObjects.Text;
@@ -66,16 +71,6 @@ export class Canvas extends BaseScene {
 
     this.createCookies(this.data.values.level);
     this.updateText();
-
-    this.add.circle(0, 0, 5, 0, 9)
-      .setName('otherPlayer')
-      .setFillStyle(0xffff00, 1);
-
-    this.getEngine().onUpdateOpponentPosition(this.onUpdateOpponentPosition.bind(this));
-  }
-
-  protected onShutdown() {
-    this.getEngine().onUpdateOpponentPosition(function() {});
   }
 
   onResize(width: number, height: number) {
@@ -122,11 +117,6 @@ export class Canvas extends BaseScene {
     }
   }
 
-  private onUpdateOpponentPosition(username: string, x: number, y: number): void {
-    (this.children.getByName('otherPlayer') as Phaser.GameObjects.Arc)
-      .setPosition(x, y);
-  }
-
   createCookie(name: string, x: number, y: number): integer {
     let dims = this.getScreenDimension();
     let cookiewidth = dims.width * Phaser.Math.FloatBetween(0.1, 0.15);
@@ -162,6 +152,8 @@ export class Canvas extends BaseScene {
       this.getEngine().setMonsterPosition(pos.x, pos.y);
     }
 
+    this.updateOpponentPosition();
+
     this.updateFpsText(this.game.loop.actualFps);
   }
 
@@ -184,6 +176,39 @@ export class Canvas extends BaseScene {
       `FPS: ${this.lastFps}` 
     ];
     this.statusText.setText(text);
+  }
+
+  private updateOpponentPosition(): void {
+    let opponents = this.getEngine().getOpponents();
+    for (let id in opponents) {
+      let opponent = opponents[id];
+
+      let opponentName = this.OPPONENT_PREFIX + id;
+      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Arc | null);      
+      if (opponentSprite) {
+        // opponent found, update it position
+        opponentSprite.setPosition(opponent.posX, opponent.posY);
+      } else {
+        // opponent not found, so create it
+        this.add.circle(0, 0, 5, 0, 9)
+          .setName(opponentName)
+          .setFillStyle(0xffff00, 1)
+          .setPosition(opponent.posX, opponent.posY);
+      }
+
+      let opponentTextName = opponentName + this.OPPONENT_TEXT_POSTFIX;
+      let opponentTextSprite = (this.children.getByName(opponentTextName) as Phaser.GameObjects.Text | null);
+      if (opponentTextSprite) {
+        // opponent text found, update it position
+        opponentTextSprite.setPosition(opponent.posX, opponent.posY);
+      } else {
+        // opponent text not found, so create it
+        this.add.text(8, 8, opponent.name, { fontSize: '12px', fill: '#fff' })
+          .setName(opponentTextName)
+          .setPosition(opponent.posX, opponent.posY);
+      }
+    }
+    // todo: the opponents that were not in the list should be deleted.
   }
 }
 
