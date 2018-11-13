@@ -10,8 +10,14 @@ public enum ClientType {
     Administrator = 1
 }
 
+
 namespace Backend.GameLogic {
     
+    public struct Player {
+        public string Name;
+        public Vector2 Position;
+    }
+
     public struct EngineStats {
         public System.DateTime StatsTimeStampUtc; 
         public int PlayerCount;
@@ -21,7 +27,7 @@ namespace Backend.GameLogic {
 
     public class GameState {
         private static GameState _gameState;
-        private Dictionary<string, Vector2> _players = new Dictionary<string, Vector2>();
+        private Dictionary<string, Player> _players = new Dictionary<string, Player>();
         private int _adminCount;
 
         private GameState() {
@@ -34,10 +40,13 @@ namespace Backend.GameLogic {
             return _gameState;
         }
 
-        public void RegisterClient(ClientType client, string id) {
+        public void RegisterClient(ClientType client, string playerId) {
             switch (client) {
                 case ClientType.Player: {
-                    _players.Add(id, new Vector2(0, 0));
+                    _players.Add(playerId, new Player {
+                        Name = "playerId",
+                        Position = new Vector2(0, 0)
+                    });
                     break;
                 }
                 case ClientType.Administrator: {
@@ -47,10 +56,10 @@ namespace Backend.GameLogic {
             }
         }
 
-        public void UnregisterClient(ClientType client, string id) {
+        public void UnregisterClient(ClientType client, string playerId) {
             switch (client) {
                 case ClientType.Player: {
-                    _players.Remove(id);
+                    _players.Remove(playerId);
                     break;
                 }
                 case ClientType.Administrator: {
@@ -58,6 +67,22 @@ namespace Backend.GameLogic {
                     break;
                 }
             }
+        }
+
+        public void SetPlayerName(string playerId, string name) {
+            var player = _players[playerId];
+            player.Name = name;
+            _players[playerId] = player;
+        }
+
+        public string GetPlayerName(string playerId) {
+            return _players[playerId].Name;
+        }
+
+        public void SetPlayerPosition(string playerId, Vector2 position) {
+            var player = _players[playerId];
+            player.Position = position;
+            _players[playerId] = player;
         }
 
         public EngineStats GetStats() {

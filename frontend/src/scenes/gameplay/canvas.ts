@@ -208,7 +208,7 @@ export class Canvas extends BaseScene {
           .setPosition(opponent.posX, opponent.posY);
       }
     }
-    // todo: the opponents that were not in the list should be deleted.
+    // todo: the opponents that were not in the list should be eliminated.
   }
 }
 

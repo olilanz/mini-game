@@ -50,7 +50,7 @@ export class Game extends Phaser.Game {
       GlobalStateIdentifier.Engine, 
       new Engine(
         "/gamehub", 
-        this.registry.values.playerName));
+        externalConfig.playerName));
 
     this.registry.set(
       GlobalStateIdentifier.ExternalConfig, 

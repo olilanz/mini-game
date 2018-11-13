@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 using Backend.GameLogic;
+using System.Numerics;
 
 public interface IGameHubClient {
         Task updateOpponentPosition(string user, double x, double y);
@@ -23,12 +24,15 @@ namespace Backend.Hubs {
 
         public Task UpdatePlayerDetails(string playerName) {
             return Task.Run(
-                () => System.Console.WriteLine($"GameHub: New user logged on: {playerName} ({Context.User.Identity.ToString()})")
+                () => {
+                    _game.SetPlayerName(Context.ConnectionId, playerName);
+                }
             );
         }
 
         public Task UpdatePosition(double x, double y) {
-            return Clients.Others.updateOpponentPosition(Context.ConnectionId, x, y);
+            _game.SetPlayerPosition(Context.ConnectionId, new Vector2((float)x, (float)y));
+            return Clients.Others.updateOpponentPosition(_game.GetPlayerName(Context.ConnectionId), x, y);
         }
     }
 }
