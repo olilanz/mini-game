@@ -6,6 +6,7 @@
 
 import { BaseScene } from '../basescene';
 
+import __imageBackground from '../../assets/images/background.png';
 import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 import __soundBlop from '../../assets/sounds/blop.mp3';
@@ -39,11 +40,14 @@ export class Canvas extends BaseScene {
 
   preload(): void {
     this.load.audio('blop', __soundBlop);
+    this.load.image('background', __imageBackground);
     this.load.image('monster', __imageMonster);
     this.load.image('cookie', __imageCookie);
   }
 
   create(): void {
+    this.add.tileSprite(400, 300, 800, 600, 'background');
+
     this.statusText = this.add.text(16, 16, [], { fontSize: '24px', fill: '#fff' });
     this.updateText();
 
