@@ -9,7 +9,7 @@
 
 <form id="login_form" action="/Game" method="GET">
     <caption>Player Name:</caption>
-    <input type="text" name="playerName" value="Player1">
+    <input type="text" name="playerName" value="@Model.GetRandomPlayerName()">
     <br>
     <input type="submit" value="Start Game" />
 </form>

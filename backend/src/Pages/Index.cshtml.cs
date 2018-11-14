@@ -12,5 +12,39 @@ namespace backend.Pages {
         public void OnGet() {
             Message = "Login.";
         }
+
+        public string GetRandomPlayerName() {
+            string[] names = {
+                "Pete",
+                "Prince",
+                "Luke",
+                "Noah",
+                "Johnson",
+                "Kid",
+                "Fish",
+                "Swashbuckler",
+                "Hank",
+                "Kitkat"
+            };
+            string name = names[new Random().Next(0, names.Length)];
+
+            string[] adjectives = {
+                "Jolly",
+                "Ugly",
+                "Greedy",
+                "Filthy",
+                "Stingy",
+                "Smart",
+                "Exotic",
+                "Humpy",
+                "Hunky",
+                "Looney",
+                "Spunky",
+                "Sparkly"
+            };
+            string adjective = adjectives[new Random().Next(0, adjectives.Length)];
+
+            return $"{adjective} {name}";
+        }
     }
 }
