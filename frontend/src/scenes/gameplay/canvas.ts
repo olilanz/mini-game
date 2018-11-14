@@ -6,8 +6,6 @@
 
 import { BaseScene } from '../basescene';
 
-import { IOpponent } from '../../engine/engine';
-
 import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 import __soundBlop from '../../assets/sounds/blop.mp3';
@@ -184,16 +182,22 @@ export class Canvas extends BaseScene {
       let opponent = opponents[id];
 
       let opponentName = this.OPPONENT_PREFIX + id;
-      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Arc | null);      
+      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Sprite | null);      
       if (opponentSprite) {
         // opponent found, update it position
         opponentSprite.setPosition(opponent.posX, opponent.posY);
       } else {
         // opponent not found, so create it
-        this.add.circle(0, 0, 5, 0, 9)
+        let dims = this.getScreenDimension();
+        this.updateWorldSize(dims.width, dims.height);
+    
+        let monsterwidth = dims.width * 0.1;
+        let monsterheight = monsterwidth * 1.1;
+    
+        this.add.sprite(opponent.posX, opponent.posY, 'monster')
           .setName(opponentName)
-          .setFillStyle(0xffff00, 1)
-          .setPosition(opponent.posX, opponent.posY);
+          .setDisplaySize(monsterwidth, monsterheight)
+          .setAlpha(0.4);
       }
 
       let opponentTextName = opponentName + this.OPPONENT_TEXT_POSTFIX;
