@@ -46,7 +46,9 @@ export class Canvas extends BaseScene {
   }
 
   create(): void {
-    this.add.tileSprite(400, 300, 800, 600, 'background');
+    this.add.tileSprite(0, 0, 0, 0, 'background')
+      .setName('background')
+      .setOrigin(0, 0);
 
     this.statusText = this.add.text(16, 16, [], { fontSize: '24px', fill: '#fff' });
     this.updateText();
@@ -84,6 +86,10 @@ export class Canvas extends BaseScene {
       .matter
       .world
       .setBounds(0, -200, width, height + 200);
+
+    (this.children.getByName('background') as Phaser.GameObjects.TileSprite)
+      .setPosition(0, 0)
+      .setSize(width, height);
   }
 
   jump(object: Phaser.Physics.Matter.Sprite) {
