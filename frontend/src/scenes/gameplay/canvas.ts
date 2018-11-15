@@ -46,16 +46,20 @@ export class Canvas extends BaseScene {
   }
 
   create(): void {
-    this.add.tileSprite(0, 0, 0, 0, 'background')
-      .setName('background')
-      .setOrigin(0, 0);
 
     this.statusText = this.add.text(16, 16, [], { fontSize: '24px', fill: '#fff' });
     this.updateText();
 
-    let dims = this.getScreenDimension();
-    this.updateWorldSize(dims.width, dims.height);
+    this
+      .matter
+      .world
+      .setBounds(0, -200, 800, 600 + 200);
+    
+    this.add.tileSprite(0, 0, 800, 600, 'background')
+      .setName('background')
+      .setOrigin(0, 0);
 
+    let dims = this.getScreenDimension();
     let monsterwidth = dims.width * 0.1;
     let monsterheight = monsterwidth * 1.1;
     let monster = this.matter.add.sprite(monsterwidth, monsterheight, 'monster') as Phaser.Physics.Matter.Sprite;
@@ -68,6 +72,9 @@ export class Canvas extends BaseScene {
       }, {})
     monster.setFixedRotation();
 
+    this.cameras.main
+      .startFollow(monster, false, 0.1, 0.1);
+
     this.input.setTopOnly(false);
     this.input.on('pointerdown', function (this: Canvas, pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]) {
       this.clickHandler(pointer, gameObjects);
@@ -78,22 +85,11 @@ export class Canvas extends BaseScene {
   }
 
   onResize(width: number, height: number) {
-    this.updateWorldSize(width, height);
-  }
-
-  updateWorldSize(width: number, height: number): void {
-    this
-      .matter
-      .world
-      .setBounds(0, -200, width, height + 200);
-
-    (this.children.getByName('background') as Phaser.GameObjects.TileSprite)
-      .setPosition(0, 0)
-      .setSize(width, height);
+    //this.updateWorldSize(width, height);
   }
 
   jump(object: Phaser.Physics.Matter.Sprite) {
-    object.setVelocity(Phaser.Math.Between(-5, 5), -10);
+    object.setVelocity(Phaser.Math.Between(-3, 3), -20);
   }
 
   clickHandler(pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]): void {
@@ -129,8 +125,10 @@ export class Canvas extends BaseScene {
     let dims = this.getScreenDimension();
     let cookiewidth = dims.width * Phaser.Math.FloatBetween(0.1, 0.15);
 
+    let pos = this.cameras.main.getWorldPoint(x, y)
+
     console.log('create cookie: ' + name);
-    let cookie = this.matter.add.sprite(x, y, 'cookie');
+    let cookie = this.matter.add.sprite(pos.x, pos.y, 'cookie')
     cookie.setName(name);
     cookie.setDisplaySize(cookiewidth, cookiewidth);
     cookie.setBody({
@@ -161,7 +159,6 @@ export class Canvas extends BaseScene {
     }
 
     this.updateOpponentPosition();
-
     this.updateFpsText(this.game.loop.actualFps);
   }
 
@@ -198,9 +195,7 @@ export class Canvas extends BaseScene {
         opponentSprite.setPosition(opponent.posX, opponent.posY);
       } else {
         // opponent not found, so create it
-        let dims = this.getScreenDimension();
-        this.updateWorldSize(dims.width, dims.height);
-    
+        let dims = this.getScreenDimension();    
         let monsterwidth = dims.width * 0.1;
         let monsterheight = monsterwidth * 1.1;
     
