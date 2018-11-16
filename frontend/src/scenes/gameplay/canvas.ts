@@ -95,7 +95,8 @@ export class Canvas extends BaseScene {
   }
 
   onResize(width: number, height: number) {
-    //this.updateWorldSize(width, height);
+    // Adjust the cam's viewport to the size of the display.
+    this.cameras.main.setSize(width, height);
   }
 
   jump(object: Phaser.Physics.Matter.Sprite) {
