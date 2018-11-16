@@ -121,13 +121,17 @@ export class Canvas extends BaseScene {
       return;
     }
 
-    this.createCookie(this.COOKIE_NAME_PREFIX + Date.now() + '_' + Math.random(), pointer.x, pointer.y);
+    let pos = this.cameras.main.getWorldPoint(pointer.x, pointer.y);
+    this.createCookie(this.COOKIE_NAME_PREFIX + Date.now() + '_' + Math.random(), pos.x, pos.y);
     this.updateText();
   }
 
   createCookies(count: integer): void {
     for (let i = 0; i < count; i++) {
-      this.createCookie(this.COOKIE_NAME_PREFIX + i, i * Phaser.Math.Between(30, 60), i * Phaser.Math.Between(20, 40));
+      let pos = new Phaser.Math.Vector2(
+        i * Phaser.Math.Between(30, 60), 
+        i * Phaser.Math.Between(20, 40));
+      this.createCookie(this.COOKIE_NAME_PREFIX + i, pos.x, pos.y);
     }
   }
 
@@ -135,10 +139,8 @@ export class Canvas extends BaseScene {
     let dims = this.getScreenDimension();
     let cookiewidth = dims.width * Phaser.Math.FloatBetween(0.1, 0.15);
 
-    let pos = this.cameras.main.getWorldPoint(x, y)
-
     console.log('create cookie: ' + name);
-    let cookie = this.matter.add.sprite(pos.x, pos.y, 'cookie')
+    let cookie = this.matter.add.sprite(x, y, 'cookie')
     cookie.setName(name);
     cookie.setDisplaySize(cookiewidth, cookiewidth);
     cookie.setBody({
