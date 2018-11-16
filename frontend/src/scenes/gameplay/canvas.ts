@@ -46,19 +46,27 @@ export class Canvas extends BaseScene {
   }
 
   create(): void {
-
+    // title
     this.statusText = this.add.text(16, 16, [], { fontSize: '24px', fill: '#fff' });
     this.updateText();
+
+    // world
+    let worldsize = new Phaser.Math.Vector2(2000, 800);
 
     this
       .matter
       .world
-      .setBounds(0, -200, 800, 600 + 200);
+      .setBounds(0, 0, worldsize.x, worldsize.y);
     
-    this.add.tileSprite(0, 0, 800, 600, 'background')
+    this.add.tileSprite(0, 0, worldsize.x, worldsize.y, 'background')
       .setName('background')
       .setOrigin(0, 0);
 
+    this.cameras.main
+      .setZoom(1)
+      .setBounds(0, 0, worldsize.x, worldsize.y);
+
+    // moster
     let dims = this.getScreenDimension();
     let monsterwidth = dims.width * 0.1;
     let monsterheight = monsterwidth * 1.1;
@@ -72,9 +80,11 @@ export class Canvas extends BaseScene {
       }, {})
     monster.setFixedRotation();
 
+    // attach camera to momster
     this.cameras.main
       .startFollow(monster, false, 0.1, 0.1);
 
+    // input
     this.input.setTopOnly(false);
     this.input.on('pointerdown', function (this: Canvas, pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]) {
       this.clickHandler(pointer, gameObjects);
@@ -89,7 +99,7 @@ export class Canvas extends BaseScene {
   }
 
   jump(object: Phaser.Physics.Matter.Sprite) {
-    object.setVelocity(Phaser.Math.Between(-3, 3), -20);
+    object.setVelocity(Phaser.Math.Between(-7, 7), -10);
   }
 
   clickHandler(pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]): void {
