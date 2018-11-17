@@ -19,6 +19,10 @@ export class Canvas extends BaseScene {
   private readonly OPPONENT_PREFIX: string = "opponent_";
   private readonly OPPONENT_TEXT_POSTFIX: string = "_name";
 
+  private readonly WORLD_HEIGHT: integer = 800; // in world coords
+  private readonly WORLD_WIDTH: integer = 2000; // in world coords
+  private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
+
   private cookieCount: integer = 0;
   private statusText!: Phaser.GameObjects.Text;
 
@@ -51,20 +55,18 @@ export class Canvas extends BaseScene {
     this.updateText();
 
     // world
-    let worldsize = new Phaser.Math.Vector2(2000, 800);
-
     this
       .matter
       .world
-      .setBounds(0, 0, worldsize.x, worldsize.y);
+      .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
     
-    this.add.tileSprite(0, 0, worldsize.x, worldsize.y, 'background')
+    this.add.tileSprite(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT, 'background')
       .setName('background')
       .setOrigin(0, 0);
 
     this.cameras.main
-      .setZoom(1)
-      .setBounds(0, 0, worldsize.x, worldsize.y);
+      .setZoom(this.CAMERA_DEFAULT_ZOOM)
+      .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
 
     // moster
     let dims = this.getScreenDimension();
@@ -92,10 +94,25 @@ export class Canvas extends BaseScene {
 
     this.createCookies(this.data.values.level);
     this.updateText();
+
+    this.onResize(dims.width, dims.height);
   }
 
   onResize(width: number, height: number) {
-    //this.updateWorldSize(width, height);
+    /* todo: does snot work as intended...
+    let displayInWorld = this.cameras.main.getWorldPoint(width, height);
+    let widthFactor = displayInWorld.x / this.WORLD_WIDTH;
+    let heightFactor = displayInWorld.y / this.WORLD_HEIGHT;
+
+    let zoom = Math.max(widthFactor, heightFactor, this.CAMERA_DEFAULT_ZOOM);
+
+    if (this.cameras.main.zoom == zoom) {
+      // Zoom factor is already set up correctly. Don't mess with it.
+    } else {
+      this.cameras.main.setZoom(zoom);
+      this.cameras.main.useBounds = true;
+    }
+    */
   }
 
   jump(object: Phaser.Physics.Matter.Sprite) {
