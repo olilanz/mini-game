@@ -13,6 +13,10 @@ import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class Harness extends BaseScene {
 
+  private cookieCount: integer = 0;
+  private lastFps: integer = 0;
+  private statusText!: Phaser.GameObjects.Text;
+
   private music: Phaser.Sound.BaseSound | undefined;
 
   constructor() {
@@ -29,6 +33,8 @@ export class Harness extends BaseScene {
 
     let navstate = this.getNavigationState();
     this.data.values.level = navstate.currentLevel;
+
+    this.cookieCount = 0;
   }
 
   preload(): void {
@@ -38,6 +44,10 @@ export class Harness extends BaseScene {
   }
 
   create(): void {
+    this.statusText = this.add.text(16, 16, [], { fontSize: '24px', fill: '#fff' });
+    this.updateText();
+    
+    
     this.addButton('pause', 'pause',
       function (this: Harness) {
         this.sound.play('blop', { loop: false });
@@ -49,6 +59,8 @@ export class Harness extends BaseScene {
 
     this.music = this.sound.add('levelsong');
     SoundHelper.playBackgroundMusic(this.music);
+
+    this.updateText();
   }
 
   onResize(width: number, height: number) {
@@ -65,6 +77,24 @@ export class Harness extends BaseScene {
   }
 
   update(time: number, delta: number): void {
+    this.updateFpsText(this.game.loop.actualFps);
+  }
+
+  updateFpsText(actualFps: number) {
+    let fps: integer = Math.trunc(actualFps);
+    if (this.lastFps != fps) {
+      this.lastFps = fps;
+      this.updateText();
+    }
+  }
+
+  updateText(): void {
+    let text = [
+      `Level ${this.data.values.level}`,
+      `Cookie count: ${this.cookieCount}`,
+      `FPS: ${this.lastFps}` 
+    ];
+    this.statusText.setText(text);
   }
 
   private attacheEventHandlers() {
