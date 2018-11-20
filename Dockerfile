@@ -14,7 +14,7 @@ RUN npm run build
 ############################################################
 ## build the front end
 ############################################################
-FROM microsoft/dotnet:2.1.6-sdk AS backendbuilder
+FROM microsoft/dotnet:2.1-sdk AS backendbuilder
 WORKDIR /build
 
 COPY ./backend/src/*.csproj /build/
