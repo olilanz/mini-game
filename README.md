@@ -1,6 +1,6 @@
 # mini-game
 
-Toying around with TypeScript and Phaser 3.
+Toying around with TypeScript and Phaser 3. Multiplayer game with realtime backend.
 
 Hosted on: https://mini-game.oliverlanz.ch
 
