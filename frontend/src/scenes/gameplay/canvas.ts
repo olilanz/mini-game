@@ -24,14 +24,15 @@ export class Canvas extends BaseScene {
   private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
 
   private cookieCount: integer = 0;
-  private statusText!: Phaser.GameObjects.Text;
-
-  private lastFps: integer = 0;
 
   constructor() {
     super({
       key: 'Canvas',
     });
+  }
+
+  public getCookieCount(): integer {
+    return this.cookieCount;
   }
 
   init(config: object) {
@@ -50,10 +51,6 @@ export class Canvas extends BaseScene {
   }
 
   create(): void {
-    // title
-    this.statusText = this.add.text(16, 16, [], { fontSize: '24px', fill: '#fff' });
-    this.updateText();
-
     // world
     this
       .matter
@@ -93,8 +90,6 @@ export class Canvas extends BaseScene {
     }, this);
 
     this.createCookies(this.data.values.level);
-    this.updateText();
-
     this.onResize(dims.width, dims.height);
   }
 
@@ -131,7 +126,6 @@ export class Canvas extends BaseScene {
     let cookie = gameObjects.find(cookie => cookie.name.startsWith(this.COOKIE_NAME_PREFIX)) as Phaser.GameObjects.Sprite;
     if (cookie) {
       let remaining = this.destroyCookie(cookie);
-      this.updateText();
       if (remaining<= 0) {
         this.conclude(true);
       }
@@ -140,7 +134,6 @@ export class Canvas extends BaseScene {
 
     let pos = this.cameras.main.getWorldPoint(pointer.x, pointer.y);
     this.createCookie(this.COOKIE_NAME_PREFIX + Date.now() + '_' + Math.random(), pos.x, pos.y);
-    this.updateText();
   }
 
   createCookies(count: integer): void {
@@ -188,28 +181,10 @@ export class Canvas extends BaseScene {
     }
 
     this.updateOpponentPosition();
-    this.updateFpsText(this.game.loop.actualFps);
   }
 
   conclude(success: boolean): void {
     this.scene.get('Harness').events.emit('conclude', success);
-  }
-
-  updateFpsText(actualFps: number) {
-    let fps: integer = Math.trunc(actualFps);
-    if (this.lastFps != fps) {
-      this.lastFps = fps;
-      this.updateText();
-    }
-  }
-
-  updateText(): void {
-    let text = [
-      `Level ${this.data.values.level}`,
-      `Cookie count: ${this.cookieCount}`,
-      `FPS: ${this.lastFps}` 
-    ];
-    this.statusText.setText(text);
   }
 
   private updateOpponentPosition(): void {

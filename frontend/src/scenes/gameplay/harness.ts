@@ -5,6 +5,7 @@
  */
 
 import { BaseScene } from '../basescene';
+import { Canvas } from './canvas';
 import { SoundHelper } from '../../helpers/soundhelper';
 
 import __imagePause from '../../assets/images/button_pause.png';
@@ -13,11 +14,13 @@ import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class Harness extends BaseScene {
 
-  private cookieCount: integer = 0;
   private lastFps: integer = 0;
+  private lastCookieCount: integer = 0;
   private statusText!: Phaser.GameObjects.Text;
 
   private music: Phaser.Sound.BaseSound | undefined;
+
+  private _canvas: Canvas | undefined;
 
   constructor() {
     super({
@@ -29,12 +32,10 @@ export class Harness extends BaseScene {
     this.attachDefaultHandlers();
 
     this.attacheEventHandlers();
-    this.startLevelStage();
+    this.startCanvas();
 
     let navstate = this.getNavigationState();
     this.data.values.level = navstate.currentLevel;
-
-    this.cookieCount = 0;
   }
 
   preload(): void {
@@ -44,9 +45,9 @@ export class Harness extends BaseScene {
   }
 
   create(): void {
-    this.statusText = this.add.text(16, 16, [], { fontSize: '24px', fill: '#fff' });
+    this.statusText = this.add.text(0, 0, [], { fontSize: '24px', fill: '#fff' })
+      .setName("statusText");
     this.updateText();
-    
     
     this.addButton('pause', 'pause',
       function (this: Harness) {
@@ -71,6 +72,9 @@ export class Harness extends BaseScene {
     let margin = width * 0.1;
     let btnsize = width * 0.08;
 
+    (this.children.getByName('statusText') as Phaser.GameObjects.Text)
+      .setPosition(16, 16);
+
     (this.children.getByName('pause') as Phaser.GameObjects.Sprite)
       .setPosition(width - margin, margin)
       .setDisplaySize(btnsize, btnsize);
@@ -78,6 +82,7 @@ export class Harness extends BaseScene {
 
   update(time: number, delta: number): void {
     this.updateFpsText(this.game.loop.actualFps);
+    this.updateCookieCountText(this.getCookieCount());
   }
 
   updateFpsText(actualFps: number) {
@@ -88,41 +93,57 @@ export class Harness extends BaseScene {
     }
   }
 
+  updateCookieCountText(actualCookieCount: integer) {
+    if (this.lastCookieCount != actualCookieCount) {
+      this.lastCookieCount = actualCookieCount;
+      this.updateText();
+    }
+  }
+
   updateText(): void {
     let text = [
       `Level ${this.data.values.level}`,
-      `Cookie count: ${this.cookieCount}`,
+      `Cookie count: ${this.lastCookieCount}`,
       `FPS: ${this.lastFps}` 
     ];
     this.statusText.setText(text);
   }
 
+  private getCookieCount(): integer {
+    if (this._canvas)  {
+      return this._canvas.getCookieCount();
+    }
+    return 0;
+  }
+
   private attacheEventHandlers() {
     this.events.on('shutdown', this.shutdown, this);
-    this.events.on('wake', this.resumeLevelStage, this);
+    this.events.on('wake', this.resumeCanvas, this);
     this.events.on('conclude', this.transitionToScores, this);
   }
 
   private detacheEventHandlers() {
-    this.events.off('shutdown', this.stopLevelStage, this, false);
-    this.events.off('wake', this.resumeLevelStage, this, false);
+    this.events.off('shutdown', this.stopCanvas, this, false);
+    this.events.off('wake', this.resumeCanvas, this, false);
     this.events.off('conclude', this.transitionToScores, this, false);
   }
 
   private shutdown() {
     this.detacheEventHandlers();
-    this.stopLevelStage();
+    this.stopCanvas();
   }
 
-  private startLevelStage(): void {    
+  private startCanvas(): void {    
     this.scene.launch('Canvas');
+    this._canvas = this.scene.get('Canvas') as Canvas;
   }
 
-  private stopLevelStage(): void {
+  private stopCanvas(): void {
     this.scene.stop('Canvas');
+    this._canvas = undefined;
   }
 
-  private resumeLevelStage(): void {
+  private resumeCanvas(): void {
     this.music = this.sound.add('levelsong');
     SoundHelper.playBackgroundMusic(this.music);
 
