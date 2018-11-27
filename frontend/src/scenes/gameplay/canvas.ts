@@ -9,12 +9,11 @@ import { BaseScene } from '../basescene';
 import __imageBackground from '../../assets/images/background.png';
 import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
-import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class Canvas extends BaseScene {
 
-  private readonly MONSTER_NAME: string = 'monster';
-  private readonly COOKIE_NAME_PREFIX: string = 'cookie_';
+  public readonly MONSTER_NAME: string = 'monster';
+  public readonly COOKIE_NAME_PREFIX: string = 'cookie_';
 
   private readonly OPPONENT_PREFIX: string = "opponent_";
   private readonly OPPONENT_TEXT_POSTFIX: string = "_name";
@@ -44,7 +43,6 @@ export class Canvas extends BaseScene {
   }
 
   preload(): void {
-    this.load.audio('blop', __soundBlop);
     this.load.image('background', __imageBackground);
     this.load.image('monster', __imageMonster);
     this.load.image('cookie', __imageCookie);
@@ -83,18 +81,12 @@ export class Canvas extends BaseScene {
     this.cameras.main
       .startFollow(monster, false, 0.1, 0.1);
 
-    // input
-    this.input.setTopOnly(false);
-    this.input.on('pointerdown', function (this: Canvas, pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]) {
-      this.clickHandler(pointer, gameObjects);
-    }, this);
-
     this.createCookies(this.data.values.level);
     this.onResize(dims.width, dims.height);
   }
 
   onResize(width: number, height: number) {
-    /* todo: does snot work as intended...
+    /* todo: does not work as intended...
     let displayInWorld = this.cameras.main.getWorldPoint(width, height);
     let widthFactor = displayInWorld.x / this.WORLD_WIDTH;
     let heightFactor = displayInWorld.y / this.WORLD_HEIGHT;
@@ -112,28 +104,6 @@ export class Canvas extends BaseScene {
 
   jump(object: Phaser.Physics.Matter.Sprite) {
     object.setVelocity(Phaser.Math.Between(-7, 7), -10);
-  }
-
-  clickHandler(pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]): void {
-    this.sound.play('blop', { loop: false });
-
-    let monster = gameObjects.find(monster => monster.name == this.MONSTER_NAME);
-    if (monster) {
-      this.jump(monster as Phaser.Physics.Matter.Sprite);
-      return;
-    }
-
-    let cookie = gameObjects.find(cookie => cookie.name.startsWith(this.COOKIE_NAME_PREFIX)) as Phaser.GameObjects.Sprite;
-    if (cookie) {
-      let remaining = this.destroyCookie(cookie);
-      if (remaining<= 0) {
-        this.conclude(true);
-      }
-      return;
-    }
-
-    let pos = this.cameras.main.getWorldPoint(pointer.x, pointer.y);
-    this.createCookie(this.COOKIE_NAME_PREFIX + Date.now() + '_' + Math.random(), pos.x, pos.y);
   }
 
   createCookies(count: integer): void {

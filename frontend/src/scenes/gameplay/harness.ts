@@ -6,6 +6,7 @@
 
 import { BaseScene } from '../basescene';
 import { Canvas } from './canvas';
+import { InputController } from './inputcontroller';
 import { SoundHelper } from '../../helpers/soundhelper';
 
 import __imagePause from '../../assets/images/button_pause.png';
@@ -20,6 +21,7 @@ export class Harness extends BaseScene {
 
   private music: Phaser.Sound.BaseSound | undefined;
 
+  private _inputController: InputController = new InputController;
   private _canvas: Canvas | undefined;
 
   constructor() {
@@ -136,9 +138,11 @@ export class Harness extends BaseScene {
   private startCanvas(): void {    
     this.scene.launch('Canvas');
     this._canvas = this.scene.get('Canvas') as Canvas;
+    this._inputController.attach(this._canvas);
   }
 
   private stopCanvas(): void {
+    this._inputController.detach();
     this.scene.stop('Canvas');
     this._canvas = undefined;
   }
