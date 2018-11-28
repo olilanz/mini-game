@@ -3,11 +3,12 @@
 @{
     ViewData["Title"] = "Server";
 }
+
 <h2>@ViewData["Title"]</h2>
 <h3>@Model.Message</h3>
 
 <p>
-    <iframe id="gamecontainer" src="/gamecore/index.html" width="100%" height="640"></iframe>
+    <iframe id="gameContainer" src="/gamecore/index.html"></iframe>
 </p>
 
 <script>
@@ -21,7 +22,7 @@
     }
     params += "gameMode=server";
 
-    iframe = document.getElementById("gamecontainer");
+    iframe = document.getElementById("gameContainer");
     iframe.src = iframe.src + params;
     console.log(iframe.src);
 </script>
