@@ -22,7 +22,6 @@ namespace backend.Pages {
                 "Johnson",
                 "Kid",
                 "Fish",
-                "Swashbuckler",
                 "Hank",
                 "Kitkat",
                 "Brian",
@@ -33,7 +32,6 @@ namespace backend.Pages {
                 "Bob",
                 "Zombie",
                 "Mustache",
-                "Jim",
                 "Snoopy",
                 "Rumplestiltskin",
                 "Pork Chop",
@@ -45,7 +43,8 @@ namespace backend.Pages {
                 "Goonie",
                 "Wonka",
                 "Taco",
-                "Derp"
+                "Derp",
+                "Jimmy"
             };
             string name = names[new Random().Next(0, names.Length)];
 
