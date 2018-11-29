@@ -64,7 +64,7 @@ namespace backend.Pages {
                 "Spunky",
                 "Sparkly",
                 "Funny",
-                "Awesomew",
+                "Awesome",
                 "Smirky",
                 "Falling",
                 "Rolling",
