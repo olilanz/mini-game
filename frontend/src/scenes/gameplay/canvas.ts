@@ -103,7 +103,7 @@ export class Canvas extends BaseScene {
   }
 
   jump(object: Phaser.Physics.Matter.Sprite) {
-    object.setVelocity(Phaser.Math.Between(-7, 7), -10);
+    object.setVelocity(Phaser.Math.Between(-9, 9), -15);
   }
 
   createCookies(count: integer): void {
