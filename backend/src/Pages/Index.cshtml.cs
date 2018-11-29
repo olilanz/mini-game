@@ -44,7 +44,9 @@ namespace backend.Pages {
                 "Wonka",
                 "Taco",
                 "Derp",
-                "Jimmy"
+                "Jimmy",
+                "Bruce",
+                "Beaver"
             };
             string name = names[new Random().Next(0, names.Length)];
 
@@ -84,7 +86,8 @@ namespace backend.Pages {
                 "Mighty",
                 "Dramatic",
                 "Impossible",
-                "Crying"
+                "Crying",
+                "Sneezy"
             };
             string adjective = adjectives[new Random().Next(0, adjectives.Length)];
 
