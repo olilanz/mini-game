@@ -18,8 +18,8 @@ export class Canvas extends BaseScene {
   private readonly OPPONENT_PREFIX: string = "opponent_";
   private readonly OPPONENT_TEXT_POSTFIX: string = "_name";
 
-  private readonly WORLD_HEIGHT: integer = 800; // in world coords
-  private readonly WORLD_WIDTH: integer = 2000; // in world coords
+  private readonly WORLD_HEIGHT: integer = 1400; // in world coords
+  private readonly WORLD_WIDTH: integer = 2400; // in world coords
   private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
 
   private cookieCount: integer = 0;
