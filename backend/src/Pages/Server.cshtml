@@ -11,6 +11,8 @@
     <iframe id="gameContainer" src="/gamecore/index.html"></iframe>
 </p>
 
+<p>Open the game on its own: <a id="gameFullscreen" href="/gamecore/index.html">link</a></p>
+
 <script>
     // copies the url query string from the page into the iframe, 
     // so that it can be picked up by the game
@@ -24,7 +26,7 @@
 
     iframe = document.getElementById("gameContainer");
     iframe.src = iframe.src + params;
-    console.log(iframe.src);
-</script>
 
-<p>Open the game on its own: <a href="/gamecore/index.html">link</a></p>
+    a = document.getElementById("gameFullscreen");
+    a.href = a.href + params;
+</script>
