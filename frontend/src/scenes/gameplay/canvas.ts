@@ -6,6 +6,8 @@
 
 import { BaseScene } from '../basescene';
 
+import { InputController } from './inputcontroller';
+
 import __imageBackground from '../../assets/images/background.png';
 import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
@@ -24,14 +26,12 @@ export class Canvas extends BaseScene {
 
   private cookieCount: integer = 0;
 
+  private _inputController: InputController = new InputController;
+
   constructor() {
     super({
       key: 'Canvas',
     });
-  }
-
-  public getCookieCount(): integer {
-    return this.cookieCount;
   }
 
   init(config: object) {
@@ -40,6 +40,7 @@ export class Canvas extends BaseScene {
     this.cookieCount = 0;
 
     this.attachDefaultHandlers();
+    this._inputController.attach(this);
   }
 
   preload(): void {
@@ -86,6 +87,7 @@ export class Canvas extends BaseScene {
   }
 
   onShutdown() {
+    this._inputController.detach();
     this.detachDefaultHandlers();
   }
 
@@ -108,6 +110,10 @@ export class Canvas extends BaseScene {
 
   jump(object: Phaser.Physics.Matter.Sprite) {
     object.setVelocity(Phaser.Math.Between(-9, 9), -15);
+  }
+
+  public getCookieCount(): integer {
+    return this.cookieCount;
   }
 
   createCookies(count: integer): void {
