@@ -31,8 +31,6 @@ export class Harness extends BaseScene {
   }
 
   init(config: object) {
-    this.attachDefaultHandlers();
-
     this.attacheEventHandlers();
     this.startCanvas();
 
@@ -119,18 +117,18 @@ export class Harness extends BaseScene {
   }
 
   private attacheEventHandlers() {
-    this.events.on('shutdown', this.shutdown, this);
+    this.attachDefaultHandlers();
     this.events.on('wake', this.resumeCanvas, this);
     this.events.on('conclude', this.transitionToScores, this);
   }
 
   private detacheEventHandlers() {
-    this.events.off('shutdown', this.stopCanvas, this, false);
-    this.events.off('wake', this.resumeCanvas, this, false);
     this.events.off('conclude', this.transitionToScores, this, false);
+    this.events.off('wake', this.resumeCanvas, this, false);
+    this.detachDefaultHandlers();
   }
 
-  private shutdown() {
+  protected onShutdown() {
     this.detacheEventHandlers();
     this.stopCanvas();
   }

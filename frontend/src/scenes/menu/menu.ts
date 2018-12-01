@@ -59,6 +59,10 @@ export class Menu extends BaseScene {
     SoundHelper.playBackgroundMusic(music);
   }
 
+  onShutdown() {
+    this.detachDefaultHandlers();
+  }
+
   onResize(width: number, height: number) {
     this.updateLayout(width, height);
   }

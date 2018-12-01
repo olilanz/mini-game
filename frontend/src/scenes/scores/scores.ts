@@ -102,6 +102,10 @@ export class Scores extends BaseScene {
   update(time: number, delta: number): void {
   }
 
+  onShutdown() {
+    this.detachDefaultHandlers();
+  }
+
   onResize(width: number, height: number) {
     this.updateLayout(width, height);
   }

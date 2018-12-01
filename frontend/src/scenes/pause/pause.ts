@@ -82,23 +82,27 @@ export class Pause extends BaseScene {
   update(time: number, delta: number): void {
   }
 
+  onShutdown() {
+    this.detachDefaultHandlers();
+  }
+
   onResize(width: number, height: number) {
     this.updateLayout(width, height);
   }
 
   transitionToMenu(): void {
-    this.scene.stop('Harness'); // shuts the canvas down
+    this.scene.stop('Harness');  // shuts the canvas down
     this.scene.start('Menu');
   }
 
   transitionToLevel(): void {
-    this.scene.wake('Harness');
-    this.scene.stop('Pause');  
+    this.scene.wake('Harness');  // wake up existing harness
+    this.scene.stop('Pause');    // close this scene; resumed harness will take over
   }
 
   transitionToNewLevel(): void {
-    this.scene.stop('Harness');
-    this.scene.start('Harness');
+    this.scene.stop('Harness');  // stop existing harness
+    this.scene.start('Harness'); // close this scene; harness will reboot and take over
   }
 }
 

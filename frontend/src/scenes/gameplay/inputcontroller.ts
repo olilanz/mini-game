@@ -10,14 +10,16 @@ export class InputController {
         }
         this._canvas = canvas;
 
-        this._canvas.input.on('pointerdown', function (this: InputController, pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]) {
-            this.clickHandler(pointer, gameObjects);
-        }, this);
+        this._canvas.input.topOnly = false;
+        this._canvas.input.on('pointerdown', this.clickHandler, this);
     }
 
     public detach(): void {
+        if (!this._canvas) {
+            throw "Cannot detach input controller when it is not attached";
+        }
+        this._canvas.input.off('pointerdown', this.clickHandler, this, false);
         this._canvas = undefined;
-
     }
 
     clickHandler(pointer: Phaser.Input.Pointer, gameObjects: Phaser.GameObjects.GameObject[]): void {

@@ -85,6 +85,10 @@ export class Canvas extends BaseScene {
     this.onResize(dims.width, dims.height);
   }
 
+  onShutdown() {
+    this.detachDefaultHandlers();
+  }
+
   onResize(width: number, height: number) {
     /* todo: does not work as intended...
     let displayInWorld = this.cameras.main.getWorldPoint(width, height);

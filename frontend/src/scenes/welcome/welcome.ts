@@ -60,6 +60,10 @@ export class Welcome extends BaseScene {
     this.updateText();
   }
 
+  onShutdown() {
+    this.detachDefaultHandlers();
+  }
+
   updateText(): void {
     let text = [
       'Welcome to Mini Game', 

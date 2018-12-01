@@ -132,6 +132,7 @@ export class ServerConsole extends BaseScene {
 
   onShutdown(): void {
     this._server.stop();
+    this.detachDefaultHandlers();
   }
 
   onConnectionStateChanged(newState: ConnectionState, oldState: ConnectionState) {
