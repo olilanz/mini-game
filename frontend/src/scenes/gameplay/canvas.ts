@@ -145,6 +145,16 @@ export class Canvas extends BaseScene {
     return this.cookieCount;
   }
 
+  public pause() {
+    this.scene.pause();
+    this.cameras.main.alpha = 0.2;
+  }
+
+  public resume() {
+    this.scene.resume();
+    this.cameras.main.alpha = 1.0;
+  }
+
   destroyCookie(cookie: Phaser.GameObjects.Sprite): integer {
     this.matter.world.remove(cookie.body, true);
     this.children.remove(cookie);

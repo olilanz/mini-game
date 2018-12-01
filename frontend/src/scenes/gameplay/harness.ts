@@ -141,15 +141,21 @@ export class Harness extends BaseScene {
     this._canvas = undefined;
   }
 
+  private pauseCanvas() {
+    let canvas = this._canvas as Canvas;
+    canvas.pause();
+  }
+
   private resumeCanvas(): void {
     this.music = this.sound.add('levelsong');
     SoundHelper.playBackgroundMusic(this.music);
 
-    this.scene.wake('Canvas');
+    let canvas = this._canvas as Canvas;
+    canvas.resume();
   }
 
   private transitionToPause(): void {
-    this.scene.sleep('Canvas');
+    this.pauseCanvas();
     this.scene.switch('Pause'); 
   }
 
