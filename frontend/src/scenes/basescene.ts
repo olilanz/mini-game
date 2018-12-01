@@ -56,7 +56,7 @@ export class BaseScene extends Phaser.Scene {
         this.registry.set(GlobalStateIdentifier.NavigationState, state);
     }
 
-    protected addButton(name: string, image: string, callback: () => void, context?: any): Phaser.GameObjects.Sprite {
+    protected addButton(name: string, image: string, callback: (pointer: Phaser.Input.Pointer) => void, context?: any): Phaser.GameObjects.Sprite {
         let button = this.add.sprite(0, 0, image)
             .setName(name)
             .setInteractive();
