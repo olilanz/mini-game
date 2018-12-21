@@ -70,6 +70,7 @@ export class Canvas extends BaseScene {
     let monsterheight = monsterwidth * 1.1;
     let monster = this.matter.add.sprite(monsterwidth, monsterheight, 'monster') as Phaser.Physics.Matter.Sprite;
     monster.setName(this.MONSTER_NAME)
+      .setPosition(2 * monsterwidth, this.WORLD_HEIGHT - (2 * monsterheight))
       .setDisplaySize(monsterwidth, monsterheight)
       .setInteractive()
       .setBody({
