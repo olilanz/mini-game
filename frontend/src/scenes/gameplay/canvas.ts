@@ -93,6 +93,9 @@ export class Canvas extends BaseScene {
   }
 
   onResize(width: number, height: number) {
+    super.onResize(width, height);
+    //this.cameras.main.setViewport(0, 0, width, height);
+    //console.log("Camera resized: " + width + "x" + height);
     /* todo: does not work as intended...
     let displayInWorld = this.cameras.main.getWorldPoint(width, height);
     let widthFactor = displayInWorld.x / this.WORLD_WIDTH;

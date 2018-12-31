@@ -107,6 +107,7 @@ export class Scores extends BaseScene {
   }
 
   onResize(width: number, height: number) {
+    super.onResize(width, height);
     this.updateLayout(width, height);
   }
 

@@ -32,7 +32,9 @@ export class BaseScene extends Phaser.Scene {
         this.events.off('resize', this.onResize, this, false);
     }
 
-    protected onResize(width: number, height: number) {}
+    protected onResize(width: number, height: number) {
+        this.cameras.main.setViewport(0, 0, width, height);
+    }
 
     protected onShutdown() {}
 
