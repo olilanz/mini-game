@@ -14,15 +14,18 @@ import __imageCookie from '../../assets/images/cookie.png';
 
 export class Canvas extends BaseScene {
 
+  private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm])
+  private readonly WORLD_WIDTH: integer = 4000; // in world coords [cm]
+  private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
+
   public readonly MONSTER_NAME: string = 'monster';
+  public readonly MONSTER_SIZE: integer = 120; // [cm]
+  
   public readonly COOKIE_NAME_PREFIX: string = 'cookie_';
+  public readonly COOKIE_SIZE: integer = 80; // [cm]
 
   private readonly OPPONENT_PREFIX: string = "opponent_";
   private readonly OPPONENT_TEXT_POSTFIX: string = "_name";
-
-  private readonly WORLD_HEIGHT: integer = 1400; // in world coords
-  private readonly WORLD_WIDTH: integer = 2400; // in world coords
-  private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
 
   private cookieCount: integer = 0;
 
@@ -64,11 +67,11 @@ export class Canvas extends BaseScene {
       .setZoom(this.CAMERA_DEFAULT_ZOOM)
       .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
 
-    // moster
+    // monster
     let dims = this.getScreenDimension();
     let monsterwidth = dims.width * 0.1;
     let monsterheight = monsterwidth * 1.1;
-    let monster = this.matter.add.sprite(monsterwidth, monsterheight, 'monster') as Phaser.Physics.Matter.Sprite;
+    let monster = this.matter.add.sprite(0, 0, 'monster') as Phaser.Physics.Matter.Sprite;
     monster.setName(this.MONSTER_NAME)
       .setPosition(2 * monsterwidth, this.WORLD_HEIGHT - (2 * monsterheight))
       .setDisplaySize(monsterwidth, monsterheight)
@@ -134,13 +137,14 @@ export class Canvas extends BaseScene {
     let cookiewidth = dims.width * Phaser.Math.FloatBetween(0.1, 0.15);
 
     console.log('create cookie: ' + name);
-    let cookie = this.matter.add.sprite(x, y, 'cookie')
-    cookie.setName(name);
-    cookie.setDisplaySize(cookiewidth, cookiewidth);
-    cookie.setBody({
-      type: 'circle',
-      radius: (cookiewidth / 2.4) 
-    }, {});
+    let cookie = this.matter.add.sprite(0, 0, 'cookie')
+    cookie.setName(name)
+      .setPosition(x, y)
+      .setDisplaySize(cookiewidth, cookiewidth)
+      .setBody({
+        type: 'circle',
+        radius: (cookiewidth / 2.4) 
+      }, {})
     cookie.setAngularVelocity(Phaser.Math.FloatBetween(-0.05, 0.05));
     cookie.setBounce(0.6);
     cookie.setFriction(0.01, 0, 0);
