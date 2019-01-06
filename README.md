@@ -44,3 +44,21 @@ But more commonly I find that frontend and backend are developed simultaneously,
 * To enable continuous re-building and serving up of the backend, run `dotnet watch run` in `./backend/src`. This will serve up the backend with included frontend, and rebuild every time a sorce file changes. 
 * To see the output, connect a web browser to the backend at `http://localhost:5000`. This will bring up the full appication. Consult the browser's developer console to see logs of the frontend.
 
+
+## deployment
+
+### Local Kubernetes
+
+For local deployment there are multiple options. The source tree conatins a few files for a Kubernetes deployment. On Linux I found it most productive to use the snap based microk8s deployment. That gets the Kuberneter cluster up and running within seconds. Follow the steps:
+
+- Install and start cluster: 
+    - `sudo snap install microk8s --classic`
+- Convenience: 
+    - `sudo snap alias microk8s.docker docker`
+    - `sudo snap alias microk8s.kubectl kubectl`
+- Add infrastructure: 
+    - `sudo microk8s.enable dns dashboard`
+
+Deply the service using the `kubernetes.yml` deployment file.
+
+
