@@ -61,4 +61,4 @@ For local deployment there are multiple options. The source tree conatins a few 
 
 Deply the service using the `kubernetes.yml` deployment file.
 
-
+NOTE: To expose the deployment to the host network you can define an external IP, for example using: `kubectl expose deployment/mini-game-deployment --port=80 --target-port=80 --type=NodePort --external-ip 192.168.1.10 --name mini-game-ext`
