@@ -22,7 +22,7 @@ export class Canvas extends BaseScene {
   public readonly MONSTER_SIZE: integer = 120; // [cm]
   
   public readonly COOKIE_NAME_PREFIX: string = 'cookie_';
-  public readonly COOKIE_SIZE: integer = 80; // [cm]
+  public readonly COOKIE_SIZE: integer = 100; // [cm]
 
   private readonly OPPONENT_PREFIX: string = "opponent_";
   private readonly OPPONENT_TEXT_POSTFIX: string = "_name";
@@ -68,18 +68,14 @@ export class Canvas extends BaseScene {
       .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
 
     // monster
-    let dims = this.getScreenDimension();
-    let monsterwidth = dims.width * 0.1;
+    let monsterwidth = this.MONSTER_SIZE;
     let monsterheight = monsterwidth * 1.1;
     let monster = this.matter.add.sprite(0, 0, 'monster') as Phaser.Physics.Matter.Sprite;
     monster.setName(this.MONSTER_NAME)
       .setPosition(2 * monsterwidth, this.WORLD_HEIGHT - (2 * monsterheight))
       .setDisplaySize(monsterwidth, monsterheight)
       .setInteractive()
-      .setBody({
-        type: 'circle',
-        radius: (monsterwidth / 2 - 5),
-      }, {})
+      .setTrapezoid(monsterwidth, monsterheight, 0.5, {});
     monster.setFixedRotation();
 
     // attach camera to momster
@@ -87,6 +83,8 @@ export class Canvas extends BaseScene {
       .startFollow(monster, false, 0.1, 0.1);
 
     this.createCookies(this.data.values.level);
+
+    let dims = this.getScreenDimension();
     this.onResize(dims.width, dims.height);
   }
 
@@ -133,18 +131,15 @@ export class Canvas extends BaseScene {
   }
 
   createCookie(name: string, x: number, y: number): integer {
-    let dims = this.getScreenDimension();
-    let cookiewidth = dims.width * Phaser.Math.FloatBetween(0.1, 0.15);
+    let cookiewidth = this.COOKIE_SIZE * Phaser.Math.FloatBetween(0.9, 1.25);
 
     console.log('create cookie: ' + name);
+    console.log('cookiewidth: ' + cookiewidth);
     let cookie = this.matter.add.sprite(0, 0, 'cookie')
     cookie.setName(name)
       .setPosition(x, y)
       .setDisplaySize(cookiewidth, cookiewidth)
-      .setBody({
-        type: 'circle',
-        radius: (cookiewidth / 2.4) 
-      }, {})
+      .setCircle((cookiewidth / 2) * 0.85 /* adjust because graphic has a small margin */, {})
     cookie.setAngularVelocity(Phaser.Math.FloatBetween(-0.05, 0.05));
     cookie.setBounce(0.6);
     cookie.setFriction(0.01, 0, 0);
