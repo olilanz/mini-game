@@ -5,27 +5,33 @@
  */
 
 import { BaseScene } from '../basescene';
-import { Canvas } from './canvas';
+import { Canvas, ICanvasStats } from './canvas';
 import { SoundHelper } from '../../helpers/soundhelper';
 
 import __imagePause from '../../assets/images/button_pause.png';
 import __musicLevel from '../../assets/music/levelsong.mp3';
 import __soundBlop from '../../assets/sounds/blop.mp3';
+import { stat } from 'fs';
+
+interface IHarnessStats extends ICanvasStats {
+  harnessFps: integer;
+}
 
 export class Harness extends BaseScene {
-
-  private lastFps: integer = 0;
-  private lastCookieCount: integer = 0;
-  private statusText!: Phaser.GameObjects.Text;
-
-  private music: Phaser.Sound.BaseSound | undefined;
+  private _lastStats: IHarnessStats;
+  private _infoText!: Phaser.GameObjects.Text;
 
   private _canvas: Canvas | undefined;
+
+  private _music: Phaser.Sound.BaseSound | undefined;
+
 
   constructor() {
     super({
       key: 'Harness'
     });
+
+    this._lastStats = this.getDefaultHarnessStats();
   }
 
   init(config: object) {
@@ -43,9 +49,9 @@ export class Harness extends BaseScene {
   }
 
   create(): void {
-    this.statusText = this.add.text(0, 0, [], { fontSize: '24px', fill: '#fff' })
-      .setName("statusText");
-    this.updateText();
+    this._infoText = this.add.text(0, 0, [], { fontSize: '24px', fill: '#fff' })
+      .setName("infoText");
+    this.updateInfoText();
     
     this.addButton('pause', 'pause',
       function (this: Harness) {
@@ -56,10 +62,10 @@ export class Harness extends BaseScene {
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
 
-    this.music = this.sound.add('levelsong');
-    SoundHelper.playBackgroundMusic(this.music);
+    this._music = this.sound.add('levelsong');
+    SoundHelper.playBackgroundMusic(this._music);
 
-    this.updateText();
+    this.updateInfoText();
   }
 
   onResize(width: number, height: number) {
@@ -71,7 +77,7 @@ export class Harness extends BaseScene {
     let margin = width * 0.1;
     let btnsize = width * 0.08;
 
-    (this.children.getByName('statusText') as Phaser.GameObjects.Text)
+    (this.children.getByName('infoText') as Phaser.GameObjects.Text)
       .setPosition(16, 16);
 
     (this.children.getByName('pause') as Phaser.GameObjects.Sprite)
@@ -80,39 +86,55 @@ export class Harness extends BaseScene {
   }
 
   update(time: number, delta: number): void {
-    this.updateFpsText(this.game.loop.actualFps);
-    this.updateCookieCountText(this.getCookieCount());
+    this.updateInfoText();
   }
 
-  updateFpsText(actualFps: number) {
-    let fps: integer = Math.trunc(actualFps);
-    if (this.lastFps != fps) {
-      this.lastFps = fps;
-      this.updateText();
+  updateInfoText(): void {
+    let stats: IHarnessStats = this.getHarnessStats();
+    // todo: Really? Hardcoded fomratting? Make a bit more dynamic...
+    if (stats.cookieCount == this._lastStats.cookieCount
+      && stats.cameraZoom == this._lastStats.cameraZoom
+      && stats.harnessFps == this._lastStats.harnessFps) {
+        return;
     }
-  }
 
-  updateCookieCountText(actualCookieCount: integer) {
-    if (this.lastCookieCount != actualCookieCount) {
-      this.lastCookieCount = actualCookieCount;
-      this.updateText();
-    }
-  }
-
-  updateText(): void {
     let text = [
-      `Level ${this.data.values.level}`,
-      `Cookie count: ${this.lastCookieCount}`,
-      `FPS: ${this.lastFps}` 
+      `Level ${this.data.values.level}` 
     ];
-    this.statusText.setText(text);
+    // todo: Really? Hardcoded fomratting? Make a bit more dynamic...
+    text.push('Cookie count: ' + stats.cookieCount);
+    text.push('FPS: ' + stats.harnessFps);
+    text.push('Zoom: ' + stats.cameraZoom);
+    this._infoText.setText(text);
+
+    this._lastStats = stats;
   }
 
-  private getCookieCount(): integer {
-    if (this._canvas)  {
-      return this._canvas.getCookieCount();
+  private getDefaultHarnessStats(): IHarnessStats {
+    return {
+      cookieCount: -1,
+      cameraZoom: 0.0,
+      harnessFps: 0
+    };
+  }
+
+  private getHarnessStats(): IHarnessStats {
+    let stats: IHarnessStats = this.getDefaultHarnessStats();
+    stats.harnessFps = Math.trunc(this.game.loop.actualFps);
+
+    let canvasStats = this.getCanvasStats();
+    if (canvasStats) {
+      stats = Object.assign(stats, canvasStats);
     }
-    return 0;
+
+    return stats;
+  }
+
+  private getCanvasStats(): ICanvasStats | undefined {
+    if (this._canvas)  {
+      return this._canvas.getCanvasStats();
+    }
+    return undefined;
   }
 
   private attacheEventHandlers() {
@@ -148,8 +170,8 @@ export class Harness extends BaseScene {
   }
 
   private resumeCanvas(): void {
-    this.music = this.sound.add('levelsong');
-    SoundHelper.playBackgroundMusic(this.music);
+    this._music = this.sound.add('levelsong');
+    SoundHelper.playBackgroundMusic(this._music);
 
     let canvas = this._canvas as Canvas;
     canvas.resume();
@@ -161,7 +183,7 @@ export class Harness extends BaseScene {
   }
 
   private transitionToScores(success: boolean): void {
-    SoundHelper.playBackgroundMusic(this.music);
+    SoundHelper.playBackgroundMusic(this._music);
     this.scene.start('Scores', { success });
   }
 }

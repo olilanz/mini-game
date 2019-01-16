@@ -12,6 +12,11 @@ import __imageBackground from '../../assets/images/background.png';
 import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 
+export interface ICanvasStats {
+  cookieCount: integer;
+  cameraZoom: number;
+}
+
 export class Canvas extends BaseScene {
 
   private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm])
@@ -117,8 +122,11 @@ export class Canvas extends BaseScene {
     object.setVelocity(Phaser.Math.Between(-9, 9), -15);
   }
 
-  public getCookieCount(): integer {
-    return this.cookieCount;
+  public getCanvasStats(): ICanvasStats {
+    return {
+      cookieCount: this.cookieCount,
+      cameraZoom: this.cameras.main.zoom
+    };
   }
 
   createCookies(count: integer): void {
