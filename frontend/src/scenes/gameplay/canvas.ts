@@ -131,10 +131,10 @@ export class Canvas extends BaseScene {
 
   createCookies(count: integer): void {
     for (let i = 0; i < count; i++) {
-      let pos = new Phaser.Math.Vector2(
-        i * Phaser.Math.Between(30, 60), 
+      this.createCookie(
+        this.COOKIE_NAME_PREFIX + i, 
+        i * Phaser.Math.Between(30, 60),
         i * Phaser.Math.Between(20, 40));
-      this.createCookie(this.COOKIE_NAME_PREFIX + i, pos.x, pos.y);
     }
   }
 
