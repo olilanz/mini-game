@@ -4,7 +4,8 @@ using Backend.GameLogic;
 using System.Numerics;
 
 public interface IGameHubClient {
-        Task updateOpponentPosition(string user, double x, double y);
+        Task setGameConfig(int level, double x, double y);
+        Task updateOpponentPosition(string user, double worldwidth, double worldheight);
 }
 
 namespace Backend.Hubs {
@@ -28,6 +29,12 @@ namespace Backend.Hubs {
                     _game.SetPlayerName(Context.ConnectionId, playerName);
                 }
             );
+        }
+
+        Task RequestGameAdmission(int level) {
+            double worldwidth = 4000; // [m]
+            double worldheight = 1500; // [m]
+            return Clients.Caller.setGameConfig(level, worldwidth, worldheight);
         }
 
         public Task UpdatePosition(double x, double y) {
