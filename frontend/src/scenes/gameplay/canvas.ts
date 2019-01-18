@@ -13,6 +13,7 @@ import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 
 export interface ICanvasStats {
+  opponentCount: integer;
   cookieCount: integer;
   cameraZoom: number;
 }
@@ -32,7 +33,7 @@ export class Canvas extends BaseScene {
   private readonly OPPONENT_PREFIX: string = "opponent_";
   private readonly OPPONENT_TEXT_POSTFIX: string = "_name";
 
-  private cookieCount: integer = 0;
+  private _stats: ICanvasStats;
 
   private _inputController: InputController = new InputController;
 
@@ -40,12 +41,16 @@ export class Canvas extends BaseScene {
     super({
       key: 'Canvas',
     });
+    this._stats = {
+      opponentCount: 0,
+      cookieCount: 0,
+      cameraZoom: 0
+    };
   }
 
   init(config: object) {
     let navstate = this.getNavigationState();
     this.data.values.level = navstate.currentLevel;
-    this.cookieCount = 0;
 
     this.attachDefaultHandlers();
     this._inputController.attach(this);
@@ -71,6 +76,7 @@ export class Canvas extends BaseScene {
     this.cameras.main
       .setZoom(this.CAMERA_DEFAULT_ZOOM)
       .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
+    this._stats.cameraZoom = this.cameras.main.zoom;
 
     // monster
     let monsterwidth = this.MONSTER_SIZE;
@@ -123,10 +129,7 @@ export class Canvas extends BaseScene {
   }
 
   public getCanvasStats(): ICanvasStats {
-    return {
-      cookieCount: this.cookieCount,
-      cameraZoom: this.cameras.main.zoom
-    };
+    return this._stats;
   }
 
   createCookies(count: integer): void {
@@ -152,8 +155,8 @@ export class Canvas extends BaseScene {
     cookie.setBounce(0.6);
     cookie.setFriction(0.01, 0, 0);
     cookie.setInteractive();
-    this.cookieCount++;
-    return this.cookieCount;
+    this._stats.cookieCount++;
+    return this._stats.cookieCount;
   }
 
   public pause() {
@@ -170,8 +173,8 @@ export class Canvas extends BaseScene {
     this.matter.world.remove(cookie.body, true);
     this.children.remove(cookie);
     cookie.destroy();
-    this.cookieCount--;
-    return this.cookieCount;
+    this._stats.cookieCount--;
+    return this._stats.cookieCount;
   }
 
   update(time: number, delta: number): void {
@@ -190,7 +193,10 @@ export class Canvas extends BaseScene {
 
   private updateOpponentPosition(): void {
     let opponents = this.getEngine().getOpponents();
+
+    let opponentCount = 0;
     for (let id in opponents) {
+      opponentCount++;
       let opponent = opponents[id];
 
       let opponentName = this.OPPONENT_PREFIX + id;
@@ -222,6 +228,9 @@ export class Canvas extends BaseScene {
           .setPosition(opponent.posX, opponent.posY);
       }
     }
+
+    this._stats.opponentCount = opponentCount;
+
     // todo: the opponents that were not in the list should be eliminated.
   }
 }

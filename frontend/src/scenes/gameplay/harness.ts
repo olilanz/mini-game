@@ -103,6 +103,7 @@ export class Harness extends BaseScene {
     ];
     // todo: Really? Hardcoded fomratting? Make a bit more dynamic...
     text.push('Cookie count: ' + stats.cookieCount);
+    text.push('Player count: ' + (stats.opponentCount + 1));
     text.push('FPS: ' + stats.harnessFps);
     text.push('Zoom: ' + stats.cameraZoom);
     this._infoText.setText(text);
@@ -112,6 +113,7 @@ export class Harness extends BaseScene {
 
   private getDefaultHarnessStats(): IHarnessStats {
     return {
+      opponentCount: -1,
       cookieCount: -1,
       cameraZoom: 0.0,
       harnessFps: 0
