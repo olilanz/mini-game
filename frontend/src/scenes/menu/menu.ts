@@ -72,22 +72,27 @@ export class Menu extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
-    let margin = width * 0.1;
-    let btnsize = width * 0.08;
+    let size = Math.min(width, height);
+    let margin = size * 0.1;
+    let btnsize = size * 0.08;
 
     (this.children.getByName('welcome') as Phaser.GameObjects.Sprite)
       .setPosition(width - margin, margin)
       .setDisplaySize(btnsize, btnsize);
 
+    // swap dimensions, if portrait orientation
+    let cols = width > height ? this.COLS : this.ROWS;
+    let rows = width > height ? this.ROWS : this.COLS;
+
     let xmargin = width * 0.2;
-    let btncellwidth = (width - (2 * xmargin)) / this.COLS;
+    let btncellwidth = (size - (2 * size * 0.2)) / cols;
     let btnspacing = btncellwidth * 0.1;
     let btnwidth = btncellwidth * 0.9;
-    let ymargin = (height - (this.ROWS * btnwidth) + ((this.ROWS - 1) * btnspacing)) / 2;
+    let ymargin = (height - (rows * btnwidth) + ((rows - 1) * btnspacing)) / 2;
 
-    for (let col = 0; col < this.COLS; col++) {
-      for (let row = 0; row < this.ROWS; row++) {
-        let level: integer = col + 1 + (row * this.COLS);
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows; row++) {
+        let level: integer = col + 1 + (row * cols);
         let xpos = xmargin + (col * btnwidth) + (col * btnspacing);
         let ypos = ymargin + (row * btnwidth) + (row * btnspacing);
         (this.children.getByName('btn_' + level) as Phaser.GameObjects.Sprite)

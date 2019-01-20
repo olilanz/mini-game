@@ -79,8 +79,9 @@ export class Scores extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
-    let margin = width * 0.1;
-    let btnsize = width * 0.08;
+    let size = Math.min(width, height);
+    let margin = size * 0.1;
+    let btnsize = size * 0.08;
 
     (this.children.getByName('trophy') as Phaser.GameObjects.Sprite)
       .setPosition(width / 2, height / 2)

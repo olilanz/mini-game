@@ -47,12 +47,14 @@ export class Welcome extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
+    let size = Math.min(width, height);
+
     (this.children.getByName('title') as Phaser.GameObjects.Sprite)
       .setPosition(width / 2, height / 2)
-      .setDisplaySize(width * 0.6, width * 0.75 * 0.6);
+      .setDisplaySize(size * 0.6, size * 0.75 * 0.6);
   }
 
-  update(time: number, delta: number): void {
+  update(time: number, delta: number): void { 
   }
 
   onResize(width: number, height: number) {

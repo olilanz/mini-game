@@ -74,8 +74,9 @@ export class Harness extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
-    let margin = width * 0.1;
-    let btnsize = width * 0.08;
+    let size = Math.min(width, height);
+    let margin = size * 0.1;
+    let btnsize = size * 0.08;
 
     (this.children.getByName('infoText') as Phaser.GameObjects.Text)
       .setPosition(16, 16);

@@ -58,7 +58,8 @@ export class ServerConsole extends BaseScene {
   }
 
   updateLayout(width: number, height: number): void {
-    let margin = width * 0.1;
+    let size = Math.min(width, height);
+    let margin = size * 0.1;
 
     (this.children.getByName('consoleText') as Phaser.GameObjects.Text)
       .setPosition(margin, margin);
