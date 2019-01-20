@@ -85,7 +85,7 @@ export class Scores extends BaseScene {
 
     (this.children.getByName('trophy') as Phaser.GameObjects.Sprite)
       .setPosition(width / 2, height / 2)
-      .setDisplaySize(width / 2, width / 3);
+      .setDisplaySize(size / 2, size / 3);
 
     (this.children.getByName('menu') as Phaser.GameObjects.Sprite)
       .setPosition(width - margin, margin)
