@@ -12,7 +12,7 @@ COPY ./frontend/src /build/src/
 RUN npm run build
 
 ############################################################
-## build the front end
+## build the back end
 ############################################################
 FROM microsoft/dotnet:2.2-sdk AS backendbuilder
 WORKDIR /build
