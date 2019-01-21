@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
 using Backend.Hubs;
 
 namespace Backend {
@@ -61,8 +63,14 @@ namespace Backend {
                 routes.MapHub<ConsoleHub>("/consolehub");
             });
 
+            // Set up custom content types - associating file extension to MIME type
+            var provider = new FileExtensionContentTypeProvider();
+            provider.Mappings[".webmanifest"] = "application/manifest+json";
+
             app.UseResponseCompression();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions {
+                ContentTypeProvider = provider
+            });
             app.UseCookiePolicy();
             app.UseMvc();
         }
