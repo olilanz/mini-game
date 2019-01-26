@@ -14,6 +14,6 @@ self.addEventListener('load', () => {
       console.error('PWA support: Service worker registration failed! 😱', error);
     });
   } else {
-    console.warn('PWA support: service worker not supported 😣. Skipping PWA...');
+    console.warn('PWA support: service worker not supported 😣. Skipping PWA...', navigator);
   }
 })
