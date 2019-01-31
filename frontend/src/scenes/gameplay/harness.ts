@@ -35,7 +35,6 @@ export class Harness extends BaseScene {
 
   init(config: object) {
     this.attacheEventHandlers();
-    this.startCanvas();
 
     let navstate = this.getNavigationState();
     this.data.values.level = navstate.currentLevel;
@@ -65,6 +64,9 @@ export class Harness extends BaseScene {
     SoundHelper.playBackgroundMusic(this._music);
 
     this.updateInfoText();
+
+    // harness ready.. start the game
+    this.startCanvas();
   }
 
   onResize(width: number, height: number) {
