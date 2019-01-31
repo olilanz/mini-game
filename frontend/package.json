@@ -20,7 +20,6 @@
   "devDependencies": {
     "npm": "6.7.0",
     "parcel-bundler": "1.11.0",
-    "ts-loader": "5.3.3",
     "typescript": "3.2.4"
   },
   "dependencies": {

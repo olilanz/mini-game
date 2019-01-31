@@ -206,10 +206,9 @@ export class Canvas extends BaseScene {
         opponentSprite.setPosition(opponent.posX, opponent.posY);
       } else {
         // opponent not found, so create it
-        let dims = this.getScreenDimension();    
-        let monsterwidth = dims.width * 0.1;
+        let monsterwidth = this.MONSTER_SIZE;
         let monsterheight = monsterwidth * 1.1;
-    
+        
         this.add.sprite(opponent.posX, opponent.posY, 'monster')
           .setName(opponentName)
           .setDisplaySize(monsterwidth, monsterheight)

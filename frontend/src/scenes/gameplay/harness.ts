@@ -11,7 +11,6 @@ import { SoundHelper } from '../../helpers/soundhelper';
 import __imagePause from '../../assets/images/button_pause.png';
 import __musicLevel from '../../assets/music/levelsong.mp3';
 import __soundBlop from '../../assets/sounds/blop.mp3';
-import { stat } from 'fs';
 
 interface IHarnessStats extends ICanvasStats {
   harnessFps: integer;
