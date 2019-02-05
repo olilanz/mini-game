@@ -10,11 +10,11 @@ window.onload = () => {
     // initialize the game
     let config = buildExternalConfig(new URLSearchParams(window.location.search));
     let game = new Game(config);
-    game.resize(window.innerWidth, window.innerHeight);
+    game.scale.resize(window.innerWidth, window.innerHeight);
     
     // make sure that the game resizes when the browser resizes
     window.addEventListener('resize', () => { 
-        game.resize(window.innerWidth, window.innerHeight);
+        game.scale.resize(window.innerWidth, window.innerHeight);
     }, false);
 }
 
