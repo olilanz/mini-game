@@ -24,22 +24,26 @@ export class Game extends Phaser.Game {
   // main game configuration (internal behaviour; external appearance/embedding should be defined in CSS)
   static readonly defaults: GameConfig = {
     type: Phaser.AUTO,
-    parent: "game-canvas",
+    backgroundColor: '#222244',
     scene: [],
+    scale: {
+      parent: "game-canvas",
+      fullscreenTarget: "game-canvas",
+      //mode: Phaser.Scale.ENVELOP, 
+    },
     physics: {
       default: "matter",
       matter: {
         // debug: true
       }
     },
+    disableContextMenu: true,
     input: {
       keyboard: true,
       mouse: true,
       touch: true,
       gamepad: false
-    },
-    disableContextMenu: true,
-    backgroundColor: '#222244'
+    }
   };
 
   // constructs the game based on the game configuration
