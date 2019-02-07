@@ -74,7 +74,7 @@ export class Welcome extends BaseScene {
       .setVisible(!isFullscreen);
 
     (this.children.getByName('btnWindowed') as Phaser.GameObjects.Sprite)
-      .setPosition(width - margin, 1.3 * margin + btnsize)
+      .setPosition(width - margin, margin)
       .setDisplaySize(btnsize, btnsize)
       .setActive(isFullscreen)
       .setVisible(isFullscreen);
