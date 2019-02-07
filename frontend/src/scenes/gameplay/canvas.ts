@@ -89,7 +89,6 @@ export class Canvas extends BaseScene {
       .setTrapezoid(monsterwidth, monsterheight, 0.5, {});
     monster.setFixedRotation();
 
-    // attach camera to momster
     this.cameras.main
       .startFollow(monster, false, 0.1, 0.1);
 
@@ -104,26 +103,6 @@ export class Canvas extends BaseScene {
   onShutdown() {
     this._inputController.detach();
     this.detachDefaultHandlers();
-  }
-
-  onResize(gameSize: Phaser.Structs.Size, baseSize: Phaser.Structs.Size, displaySize: Phaser.Structs.Size, resolution: number) {
-    super.onResize(gameSize, baseSize, displaySize, resolution);
-    //this.cameras.main.setViewport(0, 0, width, height);
-    //console.log("Camera resized: " + width + "x" + height);
-    /* todo: does not work as intended...
-    let displayInWorld = this.cameras.main.getWorldPoint(width, height);
-    let widthFactor = displayInWorld.x / this.WORLD_WIDTH;
-    let heightFactor = displayInWorld.y / this.WORLD_HEIGHT;
-
-    let zoom = Math.max(widthFactor, heightFactor, this.CAMERA_DEFAULT_ZOOM);
-
-    if (this.cameras.main.zoom == zoom) {
-      // Zoom factor is already set up correctly. Don't mess with it.
-    } else {
-      this.cameras.main.setZoom(zoom);
-      this.cameras.main.useBounds = true;
-    }
-    */
   }
 
   jump(object: Phaser.Physics.Matter.Sprite) {

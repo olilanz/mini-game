@@ -33,7 +33,8 @@ export class BaseScene extends Phaser.Scene {
     }
 
     protected onResize(gameSize: Phaser.Structs.Size, baseSize: Phaser.Structs.Size, displaySize: Phaser.Structs.Size, resolution: number) {
-            this.cameras.main.setViewport(0, 0, displaySize.width, displaySize.height);
+        // make sure that the game renders on the full size of the canvas
+        this.cameras.main.setViewport(0, 0, displaySize.width, displaySize.height);
     }
 
     protected onShutdown() {}
