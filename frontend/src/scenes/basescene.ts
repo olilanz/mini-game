@@ -23,17 +23,17 @@ export class BaseScene extends Phaser.Scene {
     }
 
     protected attachDefaultHandlers(): void {
-        this.events.on('resize', this.onResize, this);
+        this.game.scale.on('resize', this.onResize, this);
         this.events.on('shutdown', this.onShutdown, this);        
     }
 
     protected detachDefaultHandlers(): void {
         this.events.off('shutdown', this.onShutdown, this, false);
-        this.events.off('resize', this.onResize, this, false);
+        this.game.scale.off('resize', this.onResize, this, false);
     }
 
-    protected onResize(width: number, height: number) {
-        this.cameras.main.setViewport(0, 0, width, height);
+    protected onResize(gameSize: Phaser.Structs.Size, baseSize: Phaser.Structs.Size, displaySize: Phaser.Structs.Size, resolution: number) {
+            this.cameras.main.setViewport(0, 0, displaySize.width, displaySize.height);
     }
 
     protected onShutdown() {}

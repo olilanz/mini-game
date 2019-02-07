@@ -95,8 +95,10 @@ export class Canvas extends BaseScene {
 
     this.createCookies(this.data.values.level);
 
-    let dims = this.getScreenDimension();
-    this.onResize(dims.width, dims.height);
+    this.onResize(this.game.scale.gameSize,
+      this.game.scale.baseSize, 
+      this.game.scale.displaySize, 
+      this.game.scale.resolution);
   }
 
   onShutdown() {
@@ -104,8 +106,8 @@ export class Canvas extends BaseScene {
     this.detachDefaultHandlers();
   }
 
-  onResize(width: number, height: number) {
-    super.onResize(width, height);
+  onResize(gameSize: Phaser.Structs.Size, baseSize: Phaser.Structs.Size, displaySize: Phaser.Structs.Size, resolution: number) {
+    super.onResize(gameSize, baseSize, displaySize, resolution);
     //this.cameras.main.setViewport(0, 0, width, height);
     //console.log("Camera resized: " + width + "x" + height);
     /* todo: does not work as intended...

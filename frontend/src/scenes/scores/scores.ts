@@ -107,9 +107,9 @@ export class Scores extends BaseScene {
     this.detachDefaultHandlers();
   }
 
-  onResize(width: number, height: number) {
-    super.onResize(width, height);
-    this.updateLayout(width, height);
+  onResize(gameSize: Phaser.Structs.Size, baseSize: Phaser.Structs.Size, displaySize: Phaser.Structs.Size, resolution: number) {
+    super.onResize(gameSize, baseSize, displaySize, resolution);
+    this.updateLayout(displaySize.width, displaySize.height);
   }
 
   navigateToNewLevel(): void {

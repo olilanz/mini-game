@@ -8,6 +8,8 @@ import { BaseScene } from '../basescene';
 import { SoundHelper } from '../../helpers/soundhelper';
 
 import __imageTitle from '../../assets/images/title.png';
+import __imageFullscreen from '../../assets/images/button_fullscreen.png';
+import __imageWindowed from '../../assets/images/button_windowed.png';
 import __musicTheme from '../../assets/music/theme.mp3';
 import __soundBlop from '../../assets/sounds/blop.mp3';
 
@@ -25,6 +27,8 @@ export class Welcome extends BaseScene {
 
   preload(): void {
     this.load.image('title', __imageTitle);
+    this.load.image('btnFullscreen', __imageFullscreen);
+    this.load.image('btnWindowed', __imageWindowed);
     this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
   }
@@ -35,6 +39,16 @@ export class Welcome extends BaseScene {
         this.sound.play('blop', { loop: false });
         this.transitionToMenu();
       }, this);
+
+      this.addButton('btnFullscreen', 'btnFullscreen', 
+      function (this: Welcome) {
+        this.setFullscreenMode(true);
+     }, this);
+
+     this.addButton('btnWindowed', 'btnWindowed', 
+     function (this: Welcome) {
+       this.setFullscreenMode(false);
+    }, this);
 
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
@@ -48,6 +62,22 @@ export class Welcome extends BaseScene {
 
   updateLayout(width: number, height: number): void {
     let size = Math.min(width, height);
+    let margin = size * 0.1;
+    let btnsize = size * 0.08;
+
+    let isFullscreen = this.game.scale.isFullscreen;
+
+    (this.children.getByName('btnFullscreen') as Phaser.GameObjects.Sprite)
+      .setPosition(width - margin, margin)
+      .setDisplaySize(btnsize, btnsize)
+      .setActive(!isFullscreen)
+      .setVisible(!isFullscreen);
+
+    (this.children.getByName('btnWindowed') as Phaser.GameObjects.Sprite)
+      .setPosition(width - margin, 1.3 * margin + btnsize)
+      .setDisplaySize(btnsize, btnsize)
+      .setActive(isFullscreen)
+      .setVisible(isFullscreen);
 
     (this.children.getByName('title') as Phaser.GameObjects.Sprite)
       .setPosition(width / 2, height / 2)
@@ -57,14 +87,26 @@ export class Welcome extends BaseScene {
   update(time: number, delta: number): void { 
   }
 
-  onResize(width: number, height: number) {
-    super.onResize(width, height);
-    this.updateLayout(width, height);
+  onResize(gameSize: Phaser.Structs.Size, baseSize: Phaser.Structs.Size, displaySize: Phaser.Structs.Size, resolution: number) {
+    super.onResize(gameSize, baseSize, displaySize, resolution);
+    this.updateLayout(displaySize.width, displaySize.height);
     this.updateText();
   }
 
   onShutdown() {
     this.detachDefaultHandlers();
+  }
+
+  setFullscreenMode(on: boolean) {
+    this.sound.play('blop', { loop: false });
+    if (this.game.scale.isFullscreen == on) {
+      return;
+    }
+    if (on) {
+      this.game.scale.startFullscreen();
+    } else {
+      this.game.scale.stopFullscreen();
+    }
   }
 
   updateText(): void {
