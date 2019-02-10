@@ -20,7 +20,7 @@
   "devDependencies": {
     "npm": "6.7.0",
     "parcel-bundler": "1.11.0",
-    "typescript": "3.3.1"
+    "typescript": "3.3.3"
   },
   "dependencies": {
     "@aspnet/signalr": "1.1.0",
