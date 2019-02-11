@@ -9,6 +9,7 @@ import { ConsoleProxy, EngineStats } from '../../communication/consoleproxy';
 import { ConnectionState } from '../../communication/abstractconnection';
 import __imageFullscreen from '../../assets/images/button_fullscreen.png';
 import __imageWindowed from '../../assets/images/button_windowed.png';
+import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class ServerConsole extends BaseScene {
 
@@ -40,6 +41,7 @@ export class ServerConsole extends BaseScene {
   preload(): void {
     this.load.image('btnFullscreen', __imageFullscreen);
     this.load.image('btnWindowed', __imageWindowed);
+    this.load.audio('blop', __soundBlop);
   }
 
   create(): void {
@@ -141,7 +143,7 @@ export class ServerConsole extends BaseScene {
       this.game.scale.stopFullscreen();
     }
   }
-  
+
   updateConsoleText() {
     let status: string = "not connected...";
     if (this._statsPlayerCount && this._statsAdminCount) {

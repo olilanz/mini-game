@@ -11,6 +11,8 @@
     <iframe id="gameContainer" src="/gamecore/index.html"></iframe>
 </p>
 
+<p>Open in standalon mode: <a id="gameFullscreen" href="/gamecore/index.html">link</a></p>
+
 <script>
     // copies the url query string from the page into the iframe, 
     // so that it can be picked up by the game
@@ -19,4 +21,7 @@
     iframe = document.getElementById("gameContainer");
     iframe.src = iframe.src + params;
 
+
+    iframe = document.getElementById("gameContainer");
+    iframe.src = iframe.src + params;
 </script>
