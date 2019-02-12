@@ -65,7 +65,7 @@ export class Welcome extends BaseScene {
     let margin = size * 0.1;
     let btnsize = size * 0.08;
 
-    let isFullscreen = this.game.scale.isFullscreen;
+    let isFullscreen = this.scale.isFullscreen;
 
     (this.children.getByName('btnFullscreen') as Phaser.GameObjects.Sprite)
       .setPosition(width - margin, margin)
@@ -99,13 +99,13 @@ export class Welcome extends BaseScene {
 
   setFullscreenMode(on: boolean) {
     this.sound.play('blop', { loop: false });
-    if (this.game.scale.isFullscreen == on) {
+    if (this.scale.isFullscreen == on) {
       return;
     }
     if (on) {
-      this.game.scale.startFullscreen();
+      this.scale.startFullscreen();
     } else {
-      this.game.scale.stopFullscreen();
+      this.scale.stopFullscreen();
     }
   }
 

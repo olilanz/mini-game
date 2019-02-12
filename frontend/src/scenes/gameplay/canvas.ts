@@ -94,10 +94,10 @@ export class Canvas extends BaseScene {
 
     this.createCookies(this.data.values.level);
 
-    this.onResize(this.game.scale.gameSize,
-      this.game.scale.baseSize, 
-      this.game.scale.displaySize, 
-      this.game.scale.resolution);
+    this.onResize(this.scale.gameSize,
+      this.scale.baseSize, 
+      this.scale.displaySize, 
+      this.scale.resolution);
   }
 
   onShutdown() {
