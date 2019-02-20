@@ -4,6 +4,8 @@
  * This is the scene that harnesses tyhe actual gameplay. 
  */
 
+import SpinePlugin from "./plugins/spine/SpineWebGLPlugin";
+
 import { BaseScene } from '../basescene';
 
 import { InputController } from './inputcontroller';
@@ -60,6 +62,12 @@ export class Canvas extends BaseScene {
     this.load.image('background', __imageBackground);
     this.load.image('monster', __imageMonster);
     this.load.image('cookie', __imageCookie);
+
+    this.load.scenePlugin(
+      'SpinePlugin',
+      SpinePlugin,
+      'spine',
+      this.scene.key);
   }
 
   create(): void {
