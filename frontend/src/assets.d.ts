@@ -1,5 +1,5 @@
 /**
- * The bumndlers (webpack or parcel, etc) work best for static assest if they are imported 
+ * The bundlers (webpack or parcel, etc) work best for static assest if they are imported 
  * in the TypeScript code. If done so, the bundlers will also include those imported static 
  * assets in the build - hence the build will be complete.
  * 
@@ -22,3 +22,14 @@ declare module "*.mp3" {
     const value: any;
     export default value;
 }
+
+declare module "*.json" {
+    const value: any;
+    export default value;
+}
+
+declare module "*.atlas" {
+    const value: any;
+    export default value;
+}
+
