@@ -4,8 +4,6 @@
  * This is the scene that harnesses tyhe actual gameplay. 
  */
 
-import SpinePlugin from "./plugins/spine/SpineWebGLPlugin";
-
 import { BaseScene } from '../basescene';
 
 import { InputController } from './inputcontroller';
@@ -13,6 +11,8 @@ import { InputController } from './inputcontroller';
 import __imageBackground from '../../assets/images/background.png';
 import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
+
+import __spineBoyAtlas from '../../assets/spine/spineboy/spineboy.atlas'
 
 export interface ICanvasStats {
   opponentCount: integer;
@@ -62,12 +62,6 @@ export class Canvas extends BaseScene {
     this.load.image('background', __imageBackground);
     this.load.image('monster', __imageMonster);
     this.load.image('cookie', __imageCookie);
-
-    this.load.scenePlugin(
-      'SpinePlugin',
-      SpinePlugin,
-      'spine',
-      this.scene.key);
   }
 
   create(): void {

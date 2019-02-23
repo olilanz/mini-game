@@ -9,6 +9,9 @@ import "phaser";
 import { ExternalGameConfig, GameMode } from "./externalgameconfig";
 import { GlobalStateIdentifier } from "./gamestate";
 
+// @ts-ignore
+import SpineWebGLPlugin from './plugins/spine/SpineWebGLPlugin'
+
 import { Engine } from "./engine/engine";
 
 import { Welcome } from "./scenes/welcome/welcome";
@@ -25,6 +28,16 @@ export class Game extends Phaser.Game {
   static readonly defaults: GameConfig = {
     type: Phaser.AUTO,
     backgroundColor: '#222244',
+    plugins: {
+      scene: [
+        {
+          key: 'SpineWebGLPlugin',
+          plugin: SpineWebGLPlugin,
+          start: true,
+          sceneKey: 'spine'
+        }
+      ]
+    },
     scene: [],
     scale: {
       parent: "game-canvas",

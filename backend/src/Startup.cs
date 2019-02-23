@@ -66,6 +66,7 @@ namespace Backend {
             // Set up custom content types - associating file extension to MIME type
             var provider = new FileExtensionContentTypeProvider();
             provider.Mappings[".webmanifest"] = "application/manifest+json";
+            provider.Mappings[".atlas"] = "text/plain";
 
             app.UseResponseCompression();
             app.UseStaticFiles(new StaticFileOptions {

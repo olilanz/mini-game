@@ -31,6 +31,11 @@ export class Welcome extends BaseScene {
     this.load.image('btnWindowed', __imageWindowed);
     this.load.audio('theme', __musicTheme);
     this.load.audio('blop', __soundBlop);
+
+    this.load.setPath('assets/spine/spineboy')
+
+    // @ts-ignore
+    this.load.spine('boy', 'spineboy.json', 'spineboy.atlas');
   }
 
   create(): void {
@@ -58,6 +63,9 @@ export class Welcome extends BaseScene {
     SoundHelper.playBackgroundMusic(music);
 
     this.sound.add('blop');
+
+    // @ts-ignore
+    this.add.spine(dims.width / 5, dims.height, 'boy', 'idle', true);   
   }
 
   updateLayout(width: number, height: number): void {
