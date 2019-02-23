@@ -2,7 +2,8 @@
 
 Toying around with TypeScript and Phaser 3. Multiplayer game with realtime backend.
 
-[![Build status](https://dev.azure.com/oliverlanz/mini-game/_apis/build/status/mini-game%20-%20CI)](https://dev.azure.com/oliverlanz/mini-game/_build/latest?definitionId=2)
+[![Build status](https://img.shields.io/docker/automated/olilanz/mini-game.svg)](https://hub.docker.com/r/olilanz/mini-game/builds/) 
+[![Build status](https://img.shields.io/docker/build/olilanz/mini-game.svg)](https://hub.docker.com/r/olilanz/mini-game/builds/)
 
 * Source Code: https://github.com/olilanz/mini-game
 * Public Docker image: https://hub.docker.com/r/olilanz/mini-game/
