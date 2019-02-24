@@ -29,9 +29,11 @@ export class InputController {
 
         let canvas = this._canvas;
 
-        let monster = gameObjects.find(monster => monster.name == canvas.MONSTER_NAME);
+        let monster = gameObjects.find(monster => monster.name == canvas.MONSTER_NAME) as Phaser.GameObjects.Sprite;
         if (monster) {
-          canvas.jump(monster as Phaser.Physics.Matter.Sprite);
+            let center = monster.getCenter();
+            let direction = center.subtract(new Phaser.Math.Vector2(pointer.worldX, pointer.worldY));
+          canvas.jump(monster as Phaser.Physics.Matter.Sprite, direction);
           return;
         }
 

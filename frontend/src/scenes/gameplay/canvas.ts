@@ -107,8 +107,8 @@ export class Canvas extends BaseScene {
     this.detachDefaultHandlers();
   }
 
-  jump(object: Phaser.Physics.Matter.Sprite) {
-    object.setVelocity(Phaser.Math.Between(-9, 9), -15);
+  jump(object: Phaser.Physics.Matter.Sprite, direction: Phaser.Math.Vector2) {
+    object.setVelocity(direction.x, direction.y);
   }
 
   public getCanvasStats(): ICanvasStats {
