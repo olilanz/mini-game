@@ -23,3 +23,10 @@ The following commands will get you started:
 |---------|-------------|
 | `npm outdated` | Shows which packages have new releases that could possibly be upgraded to. |
 | `npm upgrade -g` | Updates all top level packages to the latest version. |
+
+
+## Thaanks to
+
+* Richard Davey from [Photon Storm](https://twitter.com/photonstorm) for his dedication to creating Phaser
+* Nate from [EsotericSoftware](http://esotericsoftware.com/blog/building-spine) for bringing skeleton animations to all platforms.
+* Yannick for his providing his sample projects on [github](https://github.com/yandeu)

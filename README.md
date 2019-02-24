@@ -9,18 +9,10 @@ Toying around with TypeScript and Phaser 3. Multiplayer game with realtime backe
 * Hosted on: https://mini-game.oliverlanz.ch
 
 
-## frontend
+## overview
 
-Built as a pure TypeScript app, supporting flexible hosting options.
-
-Located in ./fronted folder. See [frontend](./frontend/README.md).
-
-
-## backend
-
-Built as .NET Core WebApp, which can selve the fontent, and respond to API calls. 
-
-Located in ./backend folder. See [backend](./backend/README.md).
+* [frontend](./frontend/README.md): Built as a pure TypeScript app, supporting flexible hosting options. Located in ./fronted folder.
+* [backend](./backend/README.md): Built as .NET Core WebApp, which can selve the fontent, and respond to API calls. Located in ./backend folder.
 
 
 ## production build
