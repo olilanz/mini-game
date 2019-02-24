@@ -9,6 +9,7 @@ RUN npm i -g npm \
     && npm i
 
 COPY ./frontend/src /build/src/
+COPY ./frontend/static /build/static/
 RUN npm run build
 
 ############################################################
