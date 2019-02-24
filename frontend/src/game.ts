@@ -6,11 +6,12 @@
  */
 
 import "phaser";
-import { ExternalGameConfig, GameMode } from "./externalgameconfig";
-import { GlobalStateIdentifier } from "./gamestate";
 
 // @ts-ignore
-import SpineWebGLPlugin from './plugins/spine/SpineWebGLPlugin'
+import SpineWebGLPlugin from "phaser/plugins/spine/dist/SpineWebGLPlugin";
+
+import { ExternalGameConfig, GameMode } from "./externalgameconfig";
+import { GlobalStateIdentifier } from "./gamestate";
 
 import { Engine } from "./engine/engine";
 

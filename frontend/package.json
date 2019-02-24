@@ -4,11 +4,10 @@
   "description": "Toying around with TypeScript",
   "keywords": [
     "Phaser",
-    "Phaser 3",
-    "Phaser3",
     "TypeScript",
-    "Parcel",
-    "Game Examples"
+    "Spine",
+    "MatterJS",
+    "Parcel"
   ],
   "browserslist": [
     "last 3 Chrome version",
