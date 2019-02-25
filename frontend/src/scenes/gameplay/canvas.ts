@@ -62,6 +62,11 @@ export class Canvas extends BaseScene {
     this.load.image('background', __imageBackground);
     this.load.image('monster', __imageMonster);
     this.load.image('cookie', __imageCookie);
+
+    this.load.setPath('assets/spine/spineboy')
+
+    // @ts-ignore
+    this.load.spine('boy', 'spineboy.json', 'spineboy.atlas');
   }
 
   create(): void {
@@ -90,6 +95,8 @@ export class Canvas extends BaseScene {
       .setInteractive()
       .setTrapezoid(monsterwidth, monsterheight, 0.5, {});
     monster.setFixedRotation();
+
+    this.createSpineBoy();
 
     this.cameras.main
       .startFollow(monster, false, 0.1, 0.1);
@@ -122,6 +129,26 @@ export class Canvas extends BaseScene {
         i * Phaser.Math.Between(30, 60),
         i * Phaser.Math.Between(20, 40));
     }
+  }
+
+  createSpineBoy() {
+    let offset = 100;
+
+    // @ts-ignore
+    let spine = this.add.spine(0, 0, 'boy', 'idle', true) as SpineGameObject;  
+    spine.setName("spine")
+      .setPosition(offset, this.WORLD_HEIGHT - offset);
+
+    let bodyConfig = { 
+      shape: { 
+        type: 'trapezoid',
+        width: this.MONSTER_SIZE,
+        height: this.MONSTER_SIZE * 1.5,
+        slope: 0.3
+      } 
+    };
+
+    let body = this.matter.add.gameObject(spine, bodyConfig);
   }
 
   createCookie(name: string, x: number, y: number): integer {
