@@ -97,7 +97,17 @@ export class Canvas extends BaseScene {
       .setTrapezoid(monsterwidth, monsterheight, 0.5, {});
     monster.setFixedRotation();
 
-    this.createSpineBoy();
+    // spineboy
+    let pos = new Phaser.Math.Vector2(100, this.WORLD_HEIGHT - 100);
+    let size = new Phaser.Math.Vector2(this.MONSTER_SIZE, this.MONSTER_SIZE * 1.7);
+    let spineboy = this.createSpineBoy(pos, size, 'boy', 'idle');
+    this.createSpineBoyBody(spineboy);
+    spineboy = this.createSpineBoy(pos, size, 'boy', 'run');
+    this.createSpineBoyBody(spineboy);
+    spineboy = this.createSpineBoy(pos, size, 'boy', 'shoot');
+    this.createSpineBoyBody(spineboy);
+    spineboy = this.createSpineBoy(pos, size, 'boy', 'walk');
+    this.createSpineBoyBody(spineboy);
 
     this.cameras.main
       .startFollow(monster, false, 0.1, 0.1);
@@ -132,51 +142,51 @@ export class Canvas extends BaseScene {
     }
   }
 
-  createSpineBoy() {
-    let width = this.MONSTER_SIZE;
-    let height = this.MONSTER_SIZE * 1.7;
-    let offset = 100;
-
+  // @ts-ignore
+  createSpineBoy(pos: Phaser.Math.Vector2, size: Phaser.Math.Vector2, asset: string, animation: string): SpineGameObject {
     // @ts-ignore
-    let spine = this.add.spine(0, 0, 'boy', 'idle', true) as SpineGameObject;  
+    let spine = this.add.spine(0, 0, asset, animation, true) as SpineGameObject;  
     spine.setName("spine")
-      .setPosition(offset, this.WORLD_HEIGHT - offset);
-    spine.drawDebug = true;
+      .setPosition(pos.x, pos.y);
+    // spine.drawDebug = true;
 
+    // resize, but maintain spine proportions
+    let scaleX = size.x / spine.getBounds().size.x;
+    let scaleY = size.y / spine.getBounds().size.y;
+    let scale = scaleX < scaleY ? scaleX : scaleY;
+    spine.setScale(scale, scale);
+
+    return spine;
+  }
+
+  // @ts-ignore
+  createSpineBoyBody(spine: SpineGameObject) {
     let anchorConfig = { 
       shape: { 
         type: 'rectangle',
         width: 1,
         height: 1
       },
-      isSensor: true
+      isSensor: true,
+      isActive: false
     };
     var anchor = this.matter.add.gameObject(spine, anchorConfig).body;
-
     var factory = new Phaser.Physics.Matter.Factory(this.matter.world); 
     
     let bodyConfig = { 
       inertia: Infinity
     };
-    var body = factory.trapezoid(0, 0, spine.getBounds().size.x, spine.getBounds().size.y, 0.3, bodyConfig );
+    var body = factory.trapezoid(0, 0, spine.getBounds().size.x * spine.scaleX, spine.getBounds().size.y * spine.scaleY, 0.3, bodyConfig );
 
     var jointConfig = {
       pointA: {
         x: 0,
-        y: spine.getBounds().size.y / 2
+        y: spine.getBounds().size.y * spine.scaleY / 2
       }
     };
 
-    var joint = factory.joint(body, anchor, 0, 0.8, jointConfig);
+    factory.joint(body, anchor, 0, 0.8, jointConfig);
     factory.destroy();
-
-/*
-    // resize, but maintain spine proportions
-    let scaleX = width / spine.getBounds().size.x;
-    let scaleY = height / spine.getBounds().size.y;
-    let scale = scaleX < scaleY ? scaleX : scaleY;
-    spine.setScale(scale, scale);
-*/
   }
 
   createCookie(name: string, x: number, y: number): integer {
