@@ -13,6 +13,7 @@ import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 
 import __spineBoyAtlas from '../../assets/spine/spineboy/spineboy.atlas'
+import { join } from 'path';
 
 export interface ICanvasStats {
   opponentCount: integer;
@@ -132,23 +133,39 @@ export class Canvas extends BaseScene {
   }
 
   createSpineBoy() {
+    let width = this.MONSTER_SIZE;
+    let height = this.MONSTER_SIZE * 1.7;
     let offset = 100;
 
     // @ts-ignore
     let spine = this.add.spine(0, 0, 'boy', 'idle', true) as SpineGameObject;  
     spine.setName("spine")
       .setPosition(offset, this.WORLD_HEIGHT - offset);
+    spine.drawDebug = true;
 
-    let bodyConfig = { 
+    let anchorConfig = { 
       shape: { 
-        type: 'trapezoid',
-        width: this.MONSTER_SIZE,
-        height: this.MONSTER_SIZE * 1.5,
-        slope: 0.3
-      } 
+        type: 'rectangle',
+        width: 50,
+        height: 50
+      }
     };
+    var anchor = this.matter.add.gameObject(spine, anchorConfig).body;
 
-    let body = this.matter.add.gameObject(spine, bodyConfig);
+    var factory = new Phaser.Physics.Matter.Factory(this.matter.world); 
+    // @ts-ignore
+    anchor.isSensor = true;
+    var body = factory.trapezoid(0, 0, spine.getBounds().size.x, spine.getBounds().size.y, 0.3, { } );
+    var joint = factory.joint(body, anchor, 0, 0.8, {} );
+    factory.destroy();
+
+/*
+    // resize, but maintain spine proportions
+    let scaleX = width / spine.getBounds().size.x;
+    let scaleY = height / spine.getBounds().size.y;
+    let scale = scaleX < scaleY ? scaleX : scaleY;
+    spine.setScale(scale, scale);
+*/
   }
 
   createCookie(name: string, x: number, y: number): integer {
