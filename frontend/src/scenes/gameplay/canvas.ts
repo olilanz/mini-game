@@ -146,17 +146,28 @@ export class Canvas extends BaseScene {
     let anchorConfig = { 
       shape: { 
         type: 'rectangle',
-        width: 50,
-        height: 50
-      }
+        width: 1,
+        height: 1
+      },
+      isSensor: true
     };
     var anchor = this.matter.add.gameObject(spine, anchorConfig).body;
 
     var factory = new Phaser.Physics.Matter.Factory(this.matter.world); 
-    // @ts-ignore
-    anchor.isSensor = true;
-    var body = factory.trapezoid(0, 0, spine.getBounds().size.x, spine.getBounds().size.y, 0.3, { } );
-    var joint = factory.joint(body, anchor, 0, 0.8, {} );
+    
+    let bodyConfig = { 
+      inertia: Infinity
+    };
+    var body = factory.trapezoid(0, 0, spine.getBounds().size.x, spine.getBounds().size.y, 0.3, bodyConfig );
+
+    var jointConfig = {
+      pointA: {
+        x: 0,
+        y: spine.getBounds().size.y / 2
+      }
+    };
+
+    var joint = factory.joint(body, anchor, 0, 0.8, jointConfig);
     factory.destroy();
 
 /*
