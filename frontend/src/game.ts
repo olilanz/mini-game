@@ -61,8 +61,8 @@ export class Game extends Phaser.Game {
   };
 
   // constructs the game based on the game configuration
-  constructor(externalConfig: ExternalGameConfig) {
-    super(Game.getGameConfig(externalConfig.gameMode));
+  constructor(renderTarget: string, externalConfig: ExternalGameConfig) {
+    super(Game.getGameConfig(renderTarget, externalConfig.gameMode));
 
     this.registry.set(
       GlobalStateIdentifier.Engine, 
@@ -75,13 +75,20 @@ export class Game extends Phaser.Game {
       externalConfig);  
   }
 
-  static getGameConfig(mode: GameMode): GameConfig {
+  static getGameConfig(renderTarget: string, mode: GameMode): GameConfig {
     let config = Game.defaults;
+
+    if (renderTarget !== "" && config.scale) {
+        config.scale.parent = renderTarget;
+        config.scale.fullscreenTarget = renderTarget;
+    }
+
     if (mode == GameMode.server) {
       config.scene = [ ServerConsole ];
     } else {
       config.scene = [ Welcome, Menu, Harness, Canvas, Pause, Scores ];
     }
+
     return config;    
   }
 }

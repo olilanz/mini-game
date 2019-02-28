@@ -9,7 +9,7 @@
         // todo: let url = ew URL(window.URLSearchParams)
         // initialize the game
         let config = buildExternalConfig(new URLSearchParams(window.location.search));
-        let game = new Game(config);
+        let game = new Game("game-ganvas", config);
         game.scale.resize(window.innerWidth, window.innerHeight);
         
         // make sure that the game resizes when the browser resizes
@@ -31,3 +31,4 @@
 
         return config;
     }
+    
