@@ -37,7 +37,7 @@ export class PlayerSpine {
 
         let scaleX = size.x / this.spine.getBounds().size.x;
         let scaleY = size.y / this.spine.getBounds().size.y;
-        let scale = scaleX < scaleY ? scaleX : scaleY;
+        let scale = scaleX < scaleY ? scaleY : scaleY;
         this.spine.setScale(scale, scale);
 
         this.spine.setScale(

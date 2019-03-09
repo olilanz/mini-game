@@ -25,7 +25,7 @@ export class Engine  {
         this._connection.start();
     }
 
-    public setMonsterPosition(x: number, y: number) {
+    public setPlayerPosition(x: number, y: number) {
         // filter out insignificant movement
         // compare on 1 decimal after separator only
         let xi = Math.trunc(x * 10.0) as integer;

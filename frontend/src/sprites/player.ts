@@ -1,11 +1,10 @@
-//import Controls from '../controls/controls'
 import { PlayerSpine } from './playerSpine'
 
 export class Player extends Phaser.Physics.Matter.Image {
     playerSpine: PlayerSpine
 
-    constructor(scene: Phaser.Scene, pos: Phaser.Math.Vector2, size: Phaser.Math.Vector2, texture: string, spine: string, animation: string) {
-        super(scene.matter.world, pos.x, pos.y, texture, undefined, {});
+    constructor(scene: Phaser.Scene, pos: Phaser.Math.Vector2, size: Phaser.Math.Vector2, spine: string, animation: string) {
+        super(scene.matter.world, pos.x, pos.y, '');
 
         // set up rendering of texture 
         // before body is added
@@ -15,7 +14,8 @@ export class Player extends Phaser.Physics.Matter.Image {
 
         // make texture invisible, 
         // since we are attaching a spine
-        this.setVisible(false);
+        this.setVisible(true);
+        this.setAlpha(0.001);
 
         // add customized body
         var factory = new Phaser.Physics.Matter.Factory(scene.matter.world); 
