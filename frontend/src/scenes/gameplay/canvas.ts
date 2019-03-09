@@ -4,6 +4,8 @@
  * This is the scene that harnesses tyhe actual gameplay. 
  */
 
+import { Player } from '../../sprites/player';
+
 import { BaseScene } from '../basescene';
 
 import { InputController } from './inputcontroller';
@@ -13,7 +15,6 @@ import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 
 import __spineBoyAtlas from '../../assets/spine/spineboy/spineboy.atlas'
-import { join } from 'path';
 
 export interface ICanvasStats {
   opponentCount: integer;
@@ -97,16 +98,17 @@ export class Canvas extends BaseScene {
       .setTrapezoid(monsterwidth, monsterheight, 0.5, {});
     monster.setFixedRotation();
 
+    // player
+    let player = new Player(
+      this, 
+      new Phaser.Math.Vector2(400, this.WORLD_HEIGHT - 200), 
+      new Phaser.Math.Vector2(this.MONSTER_SIZE, this.MONSTER_SIZE * 1.7), 
+      'monster', 'boy', 'idle'); // will regster itself in the scene, so no need to keep reference
+
     // spineboy
     let pos = new Phaser.Math.Vector2(100, this.WORLD_HEIGHT - 100);
     let size = new Phaser.Math.Vector2(this.MONSTER_SIZE, this.MONSTER_SIZE * 1.7);
     let spineboy = this.createSpineBoy(pos, size, 'boy', 'idle');
-    this.createSpineBoyBody(spineboy);
-    spineboy = this.createSpineBoy(pos, size, 'boy', 'run');
-    this.createSpineBoyBody(spineboy);
-    spineboy = this.createSpineBoy(pos, size, 'boy', 'shoot');
-    this.createSpineBoyBody(spineboy);
-    spineboy = this.createSpineBoy(pos, size, 'boy', 'walk');
     this.createSpineBoyBody(spineboy);
 
     this.cameras.main
@@ -185,7 +187,7 @@ export class Canvas extends BaseScene {
       }
     };
 
-    factory.joint(body, anchor, 0, 0.8, jointConfig);
+    factory.joint(body, anchor, 0, 0, jointConfig);
     factory.destroy();
   }
 
