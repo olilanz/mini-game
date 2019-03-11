@@ -9,6 +9,7 @@ import { Player } from '../../sprites/player';
 import { BaseScene } from '../basescene';
 
 import { InputController } from './inputcontroller';
+import { CoordinateGrid } from './coordinategrid';
 
 import __imageBackground from '../../assets/images/background.png';
 import __imageMonster from '../../assets/images/monster.png';
@@ -25,7 +26,7 @@ export interface ICanvasStats {
 export class Canvas extends BaseScene {
 
   private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm])
-  private readonly WORLD_WIDTH: integer = 4000; // in world coords [cm]
+  private readonly WORLD_WIDTH: integer = 3500; // in world coords [cm]
   private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
 
   public readonly PLAYER_NAME: string = 'player';
@@ -84,7 +85,12 @@ export class Canvas extends BaseScene {
     
     this.add.tileSprite(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT, 'background')
       .setName('background')
-      .setOrigin(0, 0);
+      .setOrigin(0, 0)
+      .setAlpha(0.2)
+      .setDepth(-2);
+
+    var grid = new CoordinateGrid(this, 0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
+    grid.setDepth(-1, 0);
 
     this.cameras.main
       .setZoom(this.CAMERA_DEFAULT_ZOOM)

@@ -158,9 +158,10 @@ export class Harness extends BaseScene {
     this.stopCanvas();
   }
 
-  private startCanvas(): void {    
+  private startCanvas(): void {
     this.scene.launch('Canvas');
     this._canvas = this.scene.get('Canvas') as Canvas;
+    this._canvas.scene.sendToBack();
   }
 
   private stopCanvas(): void {
