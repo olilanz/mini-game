@@ -1,6 +1,3 @@
-import { Scene } from "phaser";
-import { SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER } from "constants";
-
 /**
  * Displays a coordinate grid in teh scene
  * 

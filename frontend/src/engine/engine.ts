@@ -1,6 +1,4 @@
 import { GameProxy } from '../communication/gameproxy';
-import { posix } from 'path';
-
 
 export type IOpponent = {
     name: string,
