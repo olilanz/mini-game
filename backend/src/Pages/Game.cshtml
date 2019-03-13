@@ -18,9 +18,9 @@
     // so that it can be picked up by the game
     var params = window.location.search;
 
-    container = document.getElementById("gameContainer");
+    var container = document.getElementById("gameContainer");
     container.src = container.src + params;
 
-    container = document.getElementById("gameContainer");
-    container.src = container.src + params;
+    var link = document.getElementById("gameFullscreen");
+    link.href = link.href + params;
 </script>

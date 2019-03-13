@@ -12,7 +12,6 @@ import { InputController } from './inputcontroller';
 import { CoordinateGrid } from './coordinategrid';
 
 import __imageBackground from '../../assets/images/background.png';
-import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 
 import __spineBoyAtlas from '../../assets/spine/spineboy/spineboy.atlas'
@@ -33,9 +32,6 @@ export class Canvas extends BaseScene {
   public readonly PLAYER_WIDTH: integer = 120; // [cm]
   public readonly PLAYER_HEIGHT: integer = this.PLAYER_WIDTH * 1.7; // [cm]
   
-  public readonly MONSTER_NAME: string = 'monster';
-  public readonly MONSTER_SIZE: integer = 120; // [cm]
-
   public readonly COOKIE_NAME_PREFIX: string = 'cookie_';
   public readonly COOKIE_SIZE: integer = 100; // [cm]
 
@@ -67,7 +63,6 @@ export class Canvas extends BaseScene {
 
   preload(): void {
     this.load.image('background', __imageBackground);
-    this.load.image('monster', __imageMonster);
     this.load.image('cookie', __imageCookie);
 
     this.load.setPath('assets/spine/spineboy')
@@ -199,19 +194,20 @@ export class Canvas extends BaseScene {
       let opponent = opponents[id];
 
       let opponentName = this.OPPONENT_PREFIX + id;
-      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Sprite | null);      
+      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Image | null);      
       if (opponentSprite) {
         // opponent found, update it position
         opponentSprite.setPosition(opponent.posX, opponent.posY);
       } else {
-        // opponent not found, so create it
-        let monsterwidth = this.MONSTER_SIZE;
-        let monsterheight = monsterwidth * 1.1;
-        
-        this.add.sprite(opponent.posX, opponent.posY, 'monster')
-          .setName(opponentName)
-          .setDisplaySize(monsterwidth, monsterheight)
-          .setAlpha(0.4);
+        // opponent player
+        let player = new Player(
+          this,
+          new Phaser.Math.Vector2(opponent.posX, opponent.posY), 
+          new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT), 
+          'boy', 'idle');
+        player.setName(opponentName)
+          .setFixedRotation()
+          .setStatic(true);
       }
 
       let opponentTextName = opponentName + this.OPPONENT_TEXT_POSTFIX;
@@ -221,7 +217,7 @@ export class Canvas extends BaseScene {
         opponentTextSprite.setPosition(opponent.posX, opponent.posY);
       } else {
         // opponent text not found, so create it
-        this.add.text(8, 8, opponent.name, { fontSize: '12px', fill: '#fff' })
+        this.add.text(8, 8, opponent.name, { fontSize: '16px', fill: '#fff' })
           .setName(opponentTextName)
           .setPosition(opponent.posX, opponent.posY);
       }
