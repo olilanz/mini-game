@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
     "target": "es2018",
-    "module": "commonjs",
+    "module": "es2015",
     "strict": true,
     "removeComments": true, 
     "isolatedModules": true,
+    "noImplicitAny": true,
+    "allowUnreachableCode": false,
+    "sourceMap": true,
     "baseUrl": "./src",
     "paths": {
       "@app/*": ["./*"]
-    }
+    },
+    "typeRoots": ["node_modules/@types", "typings"]
   }
 }

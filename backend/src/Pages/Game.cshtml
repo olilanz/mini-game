@@ -18,10 +18,9 @@
     // so that it can be picked up by the game
     var params = window.location.search;
 
-    iframe = document.getElementById("gameContainer");
-    iframe.src = iframe.src + params;
+    var container = document.getElementById("gameContainer");
+    container.src = container.src + params;
 
-
-    iframe = document.getElementById("gameContainer");
-    iframe.src = iframe.src + params;
+    var link = document.getElementById("gameFullscreen");
+    link.href = link.href + params;
 </script>

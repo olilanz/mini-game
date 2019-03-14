@@ -4,16 +4,17 @@
  * This is the scene that harnesses tyhe actual gameplay. 
  */
 
+import { Player } from '../../sprites/player';
+
 import { BaseScene } from '../basescene';
 
 import { InputController } from './inputcontroller';
+import { CoordinateGrid } from './coordinategrid';
 
 import __imageBackground from '../../assets/images/background.png';
-import __imageMonster from '../../assets/images/monster.png';
 import __imageCookie from '../../assets/images/cookie.png';
 
 import __spineBoyAtlas from '../../assets/spine/spineboy/spineboy.atlas'
-import { join } from 'path';
 
 export interface ICanvasStats {
   opponentCount: integer;
@@ -24,11 +25,12 @@ export interface ICanvasStats {
 export class Canvas extends BaseScene {
 
   private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm])
-  private readonly WORLD_WIDTH: integer = 4000; // in world coords [cm]
+  private readonly WORLD_WIDTH: integer = 3500; // in world coords [cm]
   private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
 
-  public readonly MONSTER_NAME: string = 'monster';
-  public readonly MONSTER_SIZE: integer = 120; // [cm]
+  public readonly PLAYER_NAME: string = 'player';
+  public readonly PLAYER_WIDTH: integer = 120; // [cm]
+  public readonly PLAYER_HEIGHT: integer = this.PLAYER_WIDTH * 1.7; // [cm]
   
   public readonly COOKIE_NAME_PREFIX: string = 'cookie_';
   public readonly COOKIE_SIZE: integer = 100; // [cm]
@@ -61,7 +63,6 @@ export class Canvas extends BaseScene {
 
   preload(): void {
     this.load.image('background', __imageBackground);
-    this.load.image('monster', __imageMonster);
     this.load.image('cookie', __imageCookie);
 
     this.load.setPath('assets/spine/spineboy')
@@ -79,38 +80,30 @@ export class Canvas extends BaseScene {
     
     this.add.tileSprite(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT, 'background')
       .setName('background')
-      .setOrigin(0, 0);
+      .setOrigin(0, 0)
+      .setAlpha(0.2)
+      .setDepth(-2);
+
+    var grid = new CoordinateGrid(this, 0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
+    grid.setDepth(-1, 0);
 
     this.cameras.main
       .setZoom(this.CAMERA_DEFAULT_ZOOM)
       .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
     this._stats.cameraZoom = this.cameras.main.zoom;
 
-    // monster
-    let monsterwidth = this.MONSTER_SIZE;
-    let monsterheight = monsterwidth * 1.1;
-    let monster = this.matter.add.sprite(0, 0, 'monster') as Phaser.Physics.Matter.Sprite;
-    monster.setName(this.MONSTER_NAME)
-      .setPosition(2 * monsterwidth, this.WORLD_HEIGHT - (2 * monsterheight))
-      .setDisplaySize(monsterwidth, monsterheight)
+    // player
+    let player = new Player(
+      this, 
+      new Phaser.Math.Vector2(400, this.WORLD_HEIGHT - 200), 
+      new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT), 
+      'boy', 'idle');
+    player.setName(this.PLAYER_NAME)
       .setInteractive()
-      .setTrapezoid(monsterwidth, monsterheight, 0.5, {});
-    monster.setFixedRotation();
-
-    // spineboy
-    let pos = new Phaser.Math.Vector2(100, this.WORLD_HEIGHT - 100);
-    let size = new Phaser.Math.Vector2(this.MONSTER_SIZE, this.MONSTER_SIZE * 1.7);
-    let spineboy = this.createSpineBoy(pos, size, 'boy', 'idle');
-    this.createSpineBoyBody(spineboy);
-    spineboy = this.createSpineBoy(pos, size, 'boy', 'run');
-    this.createSpineBoyBody(spineboy);
-    spineboy = this.createSpineBoy(pos, size, 'boy', 'shoot');
-    this.createSpineBoyBody(spineboy);
-    spineboy = this.createSpineBoy(pos, size, 'boy', 'walk');
-    this.createSpineBoyBody(spineboy);
+      .setFixedRotation();
 
     this.cameras.main
-      .startFollow(monster, false, 0.1, 0.1);
+      .startFollow(player, false, 0.1, 0.1);
 
     this.createCookies(this.data.values.level);
 
@@ -125,7 +118,7 @@ export class Canvas extends BaseScene {
     this.detachDefaultHandlers();
   }
 
-  jump(object: Phaser.Physics.Matter.Sprite, direction: Phaser.Math.Vector2) {
+  jump(object: Phaser.Physics.Matter.Image, direction: Phaser.Math.Vector2) {
     object.setVelocity(direction.x, direction.y);
   }
 
@@ -140,53 +133,6 @@ export class Canvas extends BaseScene {
         i * Phaser.Math.Between(30, 60),
         i * Phaser.Math.Between(20, 40));
     }
-  }
-
-  // @ts-ignore
-  createSpineBoy(pos: Phaser.Math.Vector2, size: Phaser.Math.Vector2, asset: string, animation: string): SpineGameObject {
-    // @ts-ignore
-    let spine = this.add.spine(0, 0, asset, animation, true) as SpineGameObject;  
-    spine.setName("spine")
-      .setPosition(pos.x, pos.y);
-    // spine.drawDebug = true;
-
-    // resize, but maintain spine proportions
-    let scaleX = size.x / spine.getBounds().size.x;
-    let scaleY = size.y / spine.getBounds().size.y;
-    let scale = scaleX < scaleY ? scaleX : scaleY;
-    spine.setScale(scale, scale);
-
-    return spine;
-  }
-
-  // @ts-ignore
-  createSpineBoyBody(spine: SpineGameObject) {
-    let anchorConfig = { 
-      shape: { 
-        type: 'rectangle',
-        width: 1,
-        height: 1
-      },
-      isSensor: true,
-      isActive: false
-    };
-    var anchor = this.matter.add.gameObject(spine, anchorConfig).body;
-    var factory = new Phaser.Physics.Matter.Factory(this.matter.world); 
-    
-    let bodyConfig = { 
-      inertia: Infinity
-    };
-    var body = factory.trapezoid(0, 0, spine.getBounds().size.x * spine.scaleX, spine.getBounds().size.y * spine.scaleY, 0.3, bodyConfig );
-
-    var jointConfig = {
-      pointA: {
-        x: 0,
-        y: spine.getBounds().size.y * spine.scaleY / 2
-      }
-    };
-
-    factory.joint(body, anchor, 0, 0.8, jointConfig);
-    factory.destroy();
   }
 
   createCookie(name: string, x: number, y: number): integer {
@@ -226,10 +172,10 @@ export class Canvas extends BaseScene {
   }
 
   update(time: number, delta: number): void {
-    let monster = this.children.getByName(this.MONSTER_NAME) as Phaser.Physics.Matter.Sprite;
-    if (monster) {
-      let pos = monster.getCenter() as Phaser.Math.Vector2;
-      this.getEngine().setMonsterPosition(pos.x, pos.y);
+    let player = this.children.getByName(this.PLAYER_NAME) as Phaser.Physics.Matter.Image;
+    if (player) {
+      let pos = player.getCenter() as Phaser.Math.Vector2;
+      this.getEngine().setPlayerPosition(pos.x, pos.y);
     }
 
     this.updateOpponentPosition();
@@ -248,19 +194,20 @@ export class Canvas extends BaseScene {
       let opponent = opponents[id];
 
       let opponentName = this.OPPONENT_PREFIX + id;
-      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Sprite | null);      
+      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Image | null);      
       if (opponentSprite) {
         // opponent found, update it position
         opponentSprite.setPosition(opponent.posX, opponent.posY);
       } else {
-        // opponent not found, so create it
-        let monsterwidth = this.MONSTER_SIZE;
-        let monsterheight = monsterwidth * 1.1;
-        
-        this.add.sprite(opponent.posX, opponent.posY, 'monster')
-          .setName(opponentName)
-          .setDisplaySize(monsterwidth, monsterheight)
-          .setAlpha(0.4);
+        // opponent player
+        let player = new Player(
+          this,
+          new Phaser.Math.Vector2(opponent.posX, opponent.posY), 
+          new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT), 
+          'boy', 'idle');
+        player.setName(opponentName)
+          .setFixedRotation()
+          .setStatic(true);
       }
 
       let opponentTextName = opponentName + this.OPPONENT_TEXT_POSTFIX;
@@ -270,7 +217,7 @@ export class Canvas extends BaseScene {
         opponentTextSprite.setPosition(opponent.posX, opponent.posY);
       } else {
         // opponent text not found, so create it
-        this.add.text(8, 8, opponent.name, { fontSize: '12px', fill: '#fff' })
+        this.add.text(8, 8, opponent.name, { fontSize: '16px', fill: '#fff' })
           .setName(opponentTextName)
           .setPosition(opponent.posX, opponent.posY);
       }
