@@ -52,7 +52,6 @@ export class Welcome extends BaseScene {
 
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
-    this.updateText();
 
     let music = this.sound.add('theme');
     SoundHelper.playBackgroundMusic(music);
@@ -90,7 +89,6 @@ export class Welcome extends BaseScene {
   onResize(gameSize: Phaser.Structs.Size, baseSize: Phaser.Structs.Size, displaySize: Phaser.Structs.Size, resolution: number) {
     super.onResize(gameSize, baseSize, displaySize, resolution);
     this.updateLayout(displaySize.width, displaySize.height);
-    this.updateText();
   }
 
   onShutdown() {
@@ -107,16 +105,6 @@ export class Welcome extends BaseScene {
     } else {
       this.scale.stopFullscreen();
     }
-  }
-
-  updateText(): void {
-    let text = [
-      'Welcome to Mini Game', 
-      ''
-    ];
-
-    let config = this.getExternalGameConfig();
-    text.push("Player: " + config.playerName);
   }
 
   transitionToMenu(): void {

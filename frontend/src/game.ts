@@ -15,6 +15,7 @@ import { GlobalStateIdentifier } from "./gamestate";
 
 import { Engine } from "./engine/engine";
 
+import { Preloader } from "./scenes/preloader/preloader";
 import { Welcome } from "./scenes/welcome/welcome";
 import { ServerConsole } from "./scenes/serverconsole/serverconsole";
 import { Menu } from "./scenes/menu/menu";
@@ -86,7 +87,7 @@ export class Game extends Phaser.Game {
     if (mode == GameMode.server) {
       config.scene = [ ServerConsole ];
     } else {
-      config.scene = [ Welcome, Menu, Harness, Canvas, Pause, Scores ];
+      config.scene = [ Preloader, Welcome, Menu, Harness, Canvas, Pause, Scores ];
     }
 
     return config;    
