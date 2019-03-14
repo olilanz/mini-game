@@ -1,7 +1,7 @@
 ############################################################
 ## build the front end
 ############################################################
-FROM node:11.10.0 AS frontendbuilder
+FROM node:11.11.0 AS frontendbuilder
 WORKDIR /build
 
 COPY ./frontend/*.json /build/
@@ -15,7 +15,7 @@ RUN npm run build
 ############################################################
 ## build the back end
 ############################################################
-FROM microsoft/dotnet:2.2.104-sdk AS backendbuilder
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2.105 AS backendbuilder
 WORKDIR /build
 
 COPY ./backend/src/*.csproj /build/
@@ -27,7 +27,7 @@ RUN dotnet publish --output /dist --configuration Debug
 ############################################################
 ## build runtime 
 ############################################################
-FROM microsoft/dotnet:2.2.2-aspnetcore-runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2.2
 COPY --from=backendbuilder /dist /app
 COPY --from=frontendbuilder /build/dist /app/wwwroot/gamecore
 
