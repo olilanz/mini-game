@@ -84,7 +84,7 @@ export class Game extends Phaser.Game {
     }
 
     if (mode == GameMode.server) {
-      config.scene = [ ServerConsole ];
+      config.scene = [ Welcome, ServerConsole ];
     } else {
       config.scene = [ Welcome, Menu, Harness, Canvas, Pause, Scores ];
     }

@@ -7,12 +7,7 @@
 import { BaseScene } from '../basescene';
 import { SoundHelper } from '../../helpers/soundhelper';
 
-import __imageMenu from '../../assets/images/button_menu.png';
-import __imageRetry from '../../assets/images/button_retry.png';
-import __imageResume from '../../assets/images/button_right.png';
-
-import __musicTheme from '../../assets/music/theme.mp3';
-import __soundBlop from '../../assets/sounds/blop.mp3';
+import { Assets } from '../../assets/assets';
 
 export class Pause extends BaseScene {
   
@@ -26,28 +21,20 @@ export class Pause extends BaseScene {
     this.attachDefaultHandlers();
   }
 
-  preload(): void {
-    this.load.image('menu', __imageMenu);
-    this.load.image('retry', __imageRetry);
-    this.load.image('resume', __imageResume);
-    this.load.audio('theme', __musicTheme);
-    this.load.audio('blop', __soundBlop);
-  }
-
   create(): void {
-    this.addButton('menu', 'menu',
+    this.addButton('menu', Assets.IMAGE_BTN_MENU,
       function (this: Pause) {
-        this.sound.play('blop', { loop: false });
+        this.sound.play(Assets.SOUND_BLOP, { loop: false });
         this.transitionToMenu();
       }, this);
 
-    this.addButton('resume', 'resume',
+    this.addButton('resume', Assets.IMAGE_BTN_RIGHT,
       function (this: Pause) {
-        this.sound.play('blop', { loop: false });
+        this.sound.play(Assets.SOUND_BLOP, { loop: false });
         this.transitionToLevel();
       }, this);
 
-    this.addButton('retry', 'retry',
+    this.addButton('retry', Assets.IMAGE_BTN_RETRY,
       function (this: Pause) {
         this.sound.play('blop', { loop: false });
         this.transitionToNewLevel();
@@ -56,10 +43,10 @@ export class Pause extends BaseScene {
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
 
-    let music = this.sound.add('theme');
+    let music = this.sound.add(Assets.MUSIC_THEME);
     SoundHelper.playBackgroundMusic(music);
 
-    this.sound.add('blop');
+    this.sound.add(Assets.SOUND_BLOP);
   }
 
   updateLayout(width: number, height: number): void {

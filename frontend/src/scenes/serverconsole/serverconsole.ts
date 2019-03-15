@@ -7,9 +7,6 @@
 import { BaseScene } from '../basescene';
 import { ConsoleProxy, EngineStats } from '../../communication/consoleproxy';
 import { ConnectionState } from '../../communication/abstractconnection';
-import __imageFullscreen from '../../assets/images/button_fullscreen.png';
-import __imageWindowed from '../../assets/images/button_windowed.png';
-import __soundBlop from '../../assets/sounds/blop.mp3';
 
 export class ServerConsole extends BaseScene {
 
@@ -38,27 +35,11 @@ export class ServerConsole extends BaseScene {
     this._server.start();
   }
 
-  preload(): void {
-    this.load.image('btnFullscreen', __imageFullscreen);
-    this.load.image('btnWindowed', __imageWindowed);
-    this.load.audio('blop', __soundBlop);
-  }
-
   create(): void {
     let text = [
       'Console', 
       'Server interactions will be available here.'
     ];
-
-    this.addButton('btnFullscreen', 'btnFullscreen', 
-    function (this: ServerConsole) {
-      this.setFullscreenMode(true);
-    }, this);
-
-    this.addButton('btnWindowed', 'btnWindowed', 
-    function (this: ServerConsole) {
-      this.setFullscreenMode(false);
-    }, this);
 
     this.add.text(0, 0, ["..."], { fontSize: '12px', fill: '#fff', backgroundcolor: '#aaa' })
       .setName('consoleText');
@@ -76,21 +57,6 @@ export class ServerConsole extends BaseScene {
   updateLayout(width: number, height: number): void {
     let size = Math.min(width, height);
     let margin = size * 0.1;
-    let btnsize = size * 0.08;
-
-    let isFullscreen = this.scale.isFullscreen;
-
-    (this.children.getByName('btnFullscreen') as Phaser.GameObjects.Sprite)
-      .setPosition(width - margin, margin)
-      .setDisplaySize(btnsize, btnsize)
-      .setActive(!isFullscreen)
-      .setVisible(!isFullscreen);
-
-    (this.children.getByName('btnWindowed') as Phaser.GameObjects.Sprite)
-      .setPosition(width - margin, margin)
-      .setDisplaySize(btnsize, btnsize)
-      .setActive(isFullscreen)
-      .setVisible(isFullscreen);
 
     (this.children.getByName('consoleText') as Phaser.GameObjects.Text)
       .setPosition(margin, margin);
@@ -129,18 +95,6 @@ export class ServerConsole extends BaseScene {
     let cirlce = this.children.getByName('connectionIndicator') as Phaser.GameObjects.Arc | null;
     if (cirlce) {
       cirlce.setFillStyle(color, 1);
-    }
-  }
-
-  setFullscreenMode(on: boolean) {
-    this.sound.play('blop', { loop: false });
-    if (this.scale.isFullscreen == on) {
-      return;
-    }
-    if (on) {
-      this.scale.startFullscreen();
-    } else {
-      this.scale.stopFullscreen();
     }
   }
 

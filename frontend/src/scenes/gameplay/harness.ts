@@ -8,9 +8,7 @@ import { BaseScene } from '../basescene';
 import { Canvas, ICanvasStats } from './canvas';
 import { SoundHelper } from '../../helpers/soundhelper';
 
-import __imagePause from '../../assets/images/button_pause.png';
-import __musicLevel from '../../assets/music/levelsong.mp3';
-import __soundBlop from '../../assets/sounds/blop.mp3';
+import { Assets } from '../../assets/assets';
 
 interface IHarnessStats extends ICanvasStats {
   harnessFps: integer;
@@ -40,27 +38,21 @@ export class Harness extends BaseScene {
     this.data.values.level = navstate.currentLevel;
   }
 
-  preload(): void {
-    this.load.image('pause', __imagePause);
-    this.load.audio('levelsong', __musicLevel);
-    this.load.audio('blop', __soundBlop);
-  }
-
   create(): void {
     this._infoText = this.add.text(0, 0, [], { fontSize: '24px', fill: '#fff' })
       .setName("infoText");
     this.updateInfoText();
     
-    this.addButton('pause', 'pause',
+    this.addButton('pause', Assets.IMAGE_BTN_PAUSE,
       function (this: Harness) {
-        this.sound.play('blop', { loop: false });
+        this.sound.play(Assets.SOUND_BLOP, { loop: false });
         this.transitionToPause();
       }, this);
 
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
 
-    this._music = this.sound.add('levelsong');
+    this._music = this.sound.add(Assets.MUSIC_LEVEL);
     SoundHelper.playBackgroundMusic(this._music);
 
     this.updateInfoText();
@@ -175,7 +167,7 @@ export class Harness extends BaseScene {
   }
 
   private resumeCanvas(): void {
-    this._music = this.sound.add('levelsong');
+    this._music = this.sound.add(Assets.MUSIC_LEVEL);
     SoundHelper.playBackgroundMusic(this._music);
 
     let canvas = this._canvas as Canvas;

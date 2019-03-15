@@ -6,11 +6,7 @@
 import { BaseScene } from '../basescene';
 import { SoundHelper } from '../../helpers/soundhelper';
 
-import __imageLeft from '../../assets/images/button_left.png';
-import __imageMenu from '../../assets/images/button_menu_level.png';
-
-import __musicTheme from '../../assets/music/theme.mp3';
-import __soundBlop from '../../assets/sounds/blop.mp3';
+import { Assets } from '../../assets/assets';
 
 export class Menu extends BaseScene {
 
@@ -31,17 +27,10 @@ export class Menu extends BaseScene {
     this.setNavigationState(navstate);
   }
 
-  preload(): void {
-    this.load.image('left', __imageLeft);
-    this.load.image('menulvl', __imageMenu);
-    this.load.audio('theme', __musicTheme);
-    this.load.audio('blop', __soundBlop);
-  }
-
   create(): void {
-    this.addButton('welcome', 'left', 
+    this.addButton('welcome', Assets.IMAGE_BTN_LEFT, 
       function (this: Menu) {
-        this.sound.play('blop', { loop: false });
+        this.sound.play(Assets.SOUND_BLOP, { loop: false });
         this.transitionToWelcome();
       }, this);
 
@@ -55,7 +44,7 @@ export class Menu extends BaseScene {
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
 
-    let music = this.sound.add('theme');
+    let music = this.sound.add(Assets.MUSIC_THEME);
     SoundHelper.playBackgroundMusic(music);
   }
 
@@ -105,9 +94,9 @@ export class Menu extends BaseScene {
   }
 
   createMenuButton(text: string, level: integer): void {
-    let btn = this.addButton('btn_' + text, 'menulvl', 
+    let btn = this.addButton('btn_' + text, Assets.IMAGE_BTN_MENU_LEVEL, 
       function (this: Menu) {
-        this.sound.play('blop', { loop: false });
+        this.sound.play(Assets.SOUND_BLOP, { loop: false });
         this.transitionToLevel(level);
       }, this);
     btn.setOrigin(0, 0);

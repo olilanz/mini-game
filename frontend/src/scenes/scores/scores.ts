@@ -7,14 +7,7 @@
 import { BaseScene } from '../basescene';
 import { SoundHelper } from '../../helpers/soundhelper';
 
-import __imageMenu from '../../assets/images/button_menu.png';
-import __imageRetry from '../../assets/images/button_retry.png';
-import __imageRight from '../../assets/images/button_right.png';
-import __imageTrophy from '../../assets/images/trophy.png';
-import __imageTrophyFail from '../../assets/images/trophy_fail.png';
-
-import __musicTheme from '../../assets/music/theme.mp3';
-import __soundBlop from '../../assets/sounds/blop.mp3';
+import { Assets } from '../../assets/assets';
 
 export class Scores extends BaseScene {
   
@@ -31,39 +24,29 @@ export class Scores extends BaseScene {
     this.attachDefaultHandlers();
   }
 
-  preload(): void {
-    this.load.image('menu', __imageMenu);
-    this.load.image('retry', __imageRetry);
-    this.load.image('next', __imageRight);
-    this.load.image('trophy', __imageTrophy);
-    this.load.image('trophy_fail', __imageTrophyFail);
-    this.load.audio('theme', __musicTheme);
-    this.load.audio('blop', __soundBlop);
-  }
-
   create(): void {
-    this.add.sprite(0, 0, this.success ? 'trophy' : 'trophy_fail')
+    this.add.sprite(0, 0, this.success ? Assets.IMAGE_TROPHY : Assets.IMAGE_TROPHY_FAIL)
       .setName('trophy');
 
-    this.addButton('menu', 'menu', 
+    this.addButton('menu', Assets.IMAGE_BTN_MENU, 
       function (this: Scores) {
         this.sound.play('blop', { loop: false });
         this.navigateToMenu();
       }, this);
 
-    this.addButton('retry', 'retry',
+    this.addButton('retry', Assets.IMAGE_BTN_RETRY,
       function (this: Scores) {
-        this.sound.play('blop', { loop: false });
+        this.sound.play(Assets.SOUND_BLOP, { loop: false });
         this.navigateToNewLevel();
       }, this);
 
     let navstate = this.getNavigationState();
-    let btn = this.addButton('next', 'next',
+    let btn = this.addButton('next', Assets.IMAGE_BTN_RIGHT,
       function (this: Scores) {
         // todo: not nice to increment level here; move into navigetToNextLevel() instead..
         navstate.currentLevel++;
         this.setNavigationState(navstate);
-        this.sound.play('blop', { loop: false });
+        this.sound.play(Assets.SOUND_BLOP, { loop: false });
         this.navigateToNextLevel();
       }, this);
     let showBtn = (navstate.currentLevel < navstate.numberOfLevels && this.success);
@@ -72,10 +55,10 @@ export class Scores extends BaseScene {
     let dims = this.getScreenDimension();
     this.updateLayout(dims.width, dims.height);
 
-    let music = this.sound.add('theme');
+    let music = this.sound.add(Assets.MUSIC_THEME);
     SoundHelper.playBackgroundMusic(music);
 
-    this.sound.add('blop');
+    this.sound.add(Assets.SOUND_BLOP);
   }
 
   updateLayout(width: number, height: number): void {

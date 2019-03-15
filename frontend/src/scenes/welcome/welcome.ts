@@ -7,6 +7,7 @@
 import { Asset, Assets } from '../../assets/assets';
 import { BaseScene } from '../basescene';
 import { SoundHelper } from '../../helpers/soundhelper';
+import { GameMode } from '../../externalgameconfig';
 
 export class Welcome extends BaseScene {
 
@@ -29,7 +30,11 @@ export class Welcome extends BaseScene {
     this.addButton('title', Assets.IMAGE_TITLE,
       function (this: Welcome) {
         this.sound.play(Assets.SOUND_BLOP, { loop: false });
-        this.transitionToMenu();
+        if (GameMode.server == this.getExternalGameConfig().gameMode) {
+          this.transitionToServerConsole();
+        } else {
+          this.transitionToMenu();
+        }
       }, this);
 
     this.addButton('btnFullscreen', Assets.IMAGE_BTN_FULLSCREEN,
@@ -101,6 +106,10 @@ export class Welcome extends BaseScene {
 
   transitionToMenu(): void {
     this.scene.start('Menu');
+  }
+
+  transitionToServerConsole(): void {
+    this.scene.start('ServerConsole');
   }
 
   initProgressBar() {
