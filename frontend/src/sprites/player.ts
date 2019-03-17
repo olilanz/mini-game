@@ -19,13 +19,12 @@ export class Player extends Phaser.Physics.Matter.Image {
 
         // add customized body
         var factory = new Phaser.Physics.Matter.Factory(scene.matter.world); 
-        var bodyConfig = {
-            inertia: Infinity
-        };
-        //var body = factory.rectangle(pos.x, pos.y, size.x, size.y, bodyConfig);
-        var body = factory.trapezoid(pos.x, pos.y, size.x, size.y, 0.3, bodyConfig );
+        var body = factory.trapezoid(pos.x, pos.y, size.x, size.y, 0.3, {} );
         this.setExistingBody(body, true);
         factory.destroy();
+
+        // player behavior
+        this.setFixedRotation();
 
         // attach a spine animation to the body
         this.playerSpine = new PlayerSpine(this.scene, spine, animation);
@@ -33,6 +32,6 @@ export class Player extends Phaser.Physics.Matter.Image {
     }
 
     update(/*cursors: any, controls: Controls*/) {
-
+        var body = this.body;
     }
 }

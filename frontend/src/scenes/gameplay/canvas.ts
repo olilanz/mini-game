@@ -86,8 +86,7 @@ export class Canvas extends BaseScene {
       new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT), 
       Assets.SPINE_BOY, 'idle');
     player.setName(this.PLAYER_NAME)
-      .setInteractive()
-      .setFixedRotation();
+      .setInteractive();
 
     this.cameras.main
       .startFollow(player, false, 0.1, 0.1);
@@ -193,7 +192,6 @@ export class Canvas extends BaseScene {
           new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT), 
           'boy', 'idle');
         player.setName(opponentName)
-          .setFixedRotation()
           .setStatic(true);
       }
 
