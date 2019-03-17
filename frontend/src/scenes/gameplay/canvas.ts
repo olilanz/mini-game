@@ -11,10 +11,7 @@ import { BaseScene } from '../basescene';
 import { InputController } from './inputcontroller';
 import { CoordinateGrid } from './coordinategrid';
 
-import __imageBackground from '../../assets/images/background.png';
-import __imageCookie from '../../assets/images/cookie.png';
-
-import __spineBoyAtlas from '../../assets/spine/spineboy/spineboy.atlas'
+import { Assets } from '../../assets/assets';
 
 export interface ICanvasStats {
   opponentCount: integer;
@@ -62,9 +59,6 @@ export class Canvas extends BaseScene {
   }
 
   preload(): void {
-    this.load.image('background', __imageBackground);
-    this.load.image('cookie', __imageCookie);
-
     this.load.setPath('assets/spine/spineboy')
 
     // @ts-ignore
@@ -78,7 +72,7 @@ export class Canvas extends BaseScene {
       .world
       .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
     
-    this.add.tileSprite(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT, 'background')
+    this.add.tileSprite(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT, Assets.IMAGE_BACKGROUND)
       .setName('background')
       .setOrigin(0, 0)
       .setAlpha(0.2)
@@ -140,7 +134,7 @@ export class Canvas extends BaseScene {
 
     console.log('create cookie: ' + name);
     console.log('cookiewidth: ' + cookiewidth);
-    let cookie = this.matter.add.sprite(0, 0, 'cookie')
+    let cookie = this.matter.add.sprite(0, 0, Assets.IMAGE_COOKIE)
     cookie.setName(name)
       .setPosition(x, y)
       .setDisplaySize(cookiewidth, cookiewidth)
