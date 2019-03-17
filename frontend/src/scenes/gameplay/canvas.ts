@@ -58,13 +58,6 @@ export class Canvas extends BaseScene {
     this._inputController.attach(this);
   }
 
-  preload(): void {
-    this.load.setPath('assets/spine/spineboy')
-
-    // @ts-ignore
-    this.load.spine('boy', 'spineboy.json', 'spineboy.atlas');
-  }
-
   create(): void {
     // world
     this
@@ -91,7 +84,7 @@ export class Canvas extends BaseScene {
       this, 
       new Phaser.Math.Vector2(400, this.WORLD_HEIGHT - 200), 
       new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT), 
-      'boy', 'idle');
+      Assets.SPINE_BOY, 'idle');
     player.setName(this.PLAYER_NAME)
       .setInteractive()
       .setFixedRotation();

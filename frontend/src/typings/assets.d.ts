@@ -33,3 +33,8 @@ declare module "*.atlas" {
     export default value;
 }
 
+declare module "*.skeleton" {
+    const value: any;
+    export default value;
+}
+

@@ -67,6 +67,7 @@ namespace Backend {
             var provider = new FileExtensionContentTypeProvider();
             provider.Mappings[".webmanifest"] = "application/manifest+json";
             provider.Mappings[".atlas"] = "text/plain";
+            provider.Mappings[".skeleton"] = "text/json";
 
             app.UseResponseCompression();
             app.UseStaticFiles(new StaticFileOptions {

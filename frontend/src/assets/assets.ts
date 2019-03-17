@@ -14,6 +14,8 @@ import __imageBtnPause from './images/button_pause.png';
 
 import __atlasSpineBoy from './spine/spineboy/spineboy.atlas'
 
+import __skeletonSpineBoy from './spine/spineboy/spineboy.skeleton'
+
 import __musicTheme from './music/theme.mp3';
 import __musicLevel from './music/theme.mp3';
 
@@ -22,6 +24,8 @@ import __soundBlop from './sounds/blop.mp3';
 export type Asset = {
     kind: string;
     url: string;
+    url2?: string;
+    url3?: string;
 };
 
 export class Assets extends Map<string, Asset> {
@@ -40,14 +44,12 @@ export class Assets extends Map<string, Asset> {
     public static readonly IMAGE_BTN_RETRY: string = "imageBtnRetry";
     public static readonly IMAGE_BTN_PAUSE: string = "imageBtnPause";
 
-    public static readonly ATLAS_SPINE_BOY: string = "atlasSpineBoy";
+    public static readonly SPINE_BOY: string = "atlasSpineBoy";
 
     public static readonly MUSIC_THEME: string = "musicTheme";
     public static readonly MUSIC_LEVEL: string = "musicLevel";
 
     public static readonly SOUND_BLOP: string = "soundBlop";
-
-    private static readonly __instance: Assets = new Assets();
 
     private constructor() {
         super();
@@ -66,12 +68,12 @@ export class Assets extends Map<string, Asset> {
         this.set(Assets.IMAGE_BTN_RETRY, { kind: "image", url: __imageBtnRetry });
         this.set(Assets.IMAGE_BTN_PAUSE, { kind: "image", url: __imageBtnPause });
 
-        // this.set(Assets.ATLAS_SPINE_BOY, { kind: "atlas", url: __atlasSpineBoy });
-
         this.set(Assets.MUSIC_THEME, { kind: "music", url: __musicTheme });
         this.set(Assets.MUSIC_LEVEL, { kind: "music", url: __musicLevel });
 
         this.set(Assets.SOUND_BLOP, { kind: "sound", url: __soundBlop });
+
+        this.set(Assets.SPINE_BOY, { kind: "spine", url: 'assets/spine/spineboy', url2: __skeletonSpineBoy, url3: __atlasSpineBoy });
     }
 
     static getInstance() : Assets {
