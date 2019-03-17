@@ -31,7 +31,15 @@ export class Player extends Phaser.Physics.Matter.Image {
         this.playerSpine.attachBody(body);
     }
 
-    update(/*cursors: any, controls: Controls*/) {
-        var body = this.body;
+    preUpdate() {
+        const MARGIN = 0.1;
+        // @ts-ignore
+        var vx = this.body.velocity.x;
+        if (vx > MARGIN) {
+            this.playerSpine.setFlipX(false);            
+        } 
+        if (vx < -MARGIN) {
+            this.playerSpine.setFlipX(true);            
+        }
     }
 }

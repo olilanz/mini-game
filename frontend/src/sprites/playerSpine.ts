@@ -76,6 +76,10 @@ export class PlayerSpine {
         return this.spine.skeleton.slots
     }
 
+    setFlipX(flip: boolean) {
+        this.spine.flipX = flip;
+    }
+
     setAttachment(slotName: string, attachmentName: string) {
         this.spine.skeleton.setAttachment(slotName, attachmentName)
     }
