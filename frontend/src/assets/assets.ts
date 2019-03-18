@@ -12,9 +12,11 @@ import __imageBtnRight from './images/button_right.png';
 import __imageBtnRetry from './images/button_retry.png';
 import __imageBtnPause from './images/button_pause.png';
 
-import __atlasSpineBoy from './spine/spineboy/spineboy.atlas'
+import __atlasSpineBoy from './spine/spineboy.atlas'
+import __atlasTemplate from './spine/Template.atlas';
 
-import __skeletonSpineBoy from './spine/spineboy/spineboy.skeleton'
+import __skeletonSpineBoy from './spine/spineboy.skeleton'
+import __skeletonTemplate from './spine/Template.skeleton';
 
 import __musicTheme from './music/theme.mp3';
 import __musicLevel from './music/theme.mp3';
@@ -44,6 +46,7 @@ export class Assets extends Map<string, Asset> {
     public static readonly IMAGE_BTN_RETRY: string = "imageBtnRetry";
     public static readonly IMAGE_BTN_PAUSE: string = "imageBtnPause";
 
+    public static readonly SPINE_TEMPLATE: string = "spineTemplate";
     public static readonly SPINE_BOY: string = "atlasSpineBoy";
 
     public static readonly MUSIC_THEME: string = "musicTheme";
@@ -73,7 +76,8 @@ export class Assets extends Map<string, Asset> {
 
         this.set(Assets.SOUND_BLOP, { kind: "sound", url: __soundBlop });
 
-        this.set(Assets.SPINE_BOY, { kind: "spine", url: 'assets/spine/spineboy', url2: __skeletonSpineBoy, url3: __atlasSpineBoy });
+        this.set(Assets.SPINE_TEMPLATE, { kind: "spine", url: 'assets/spine', url2: __skeletonTemplate, url3: __atlasTemplate });
+        this.set(Assets.SPINE_BOY, { kind: "spine", url: 'assets/spine', url2: __skeletonSpineBoy, url3: __atlasSpineBoy });
     }
 
     static getInstance() : Assets {

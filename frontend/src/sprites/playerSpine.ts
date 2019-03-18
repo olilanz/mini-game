@@ -24,11 +24,12 @@ export class PlayerSpine {
             this.spine.setMix('kill', 'idle', 0.2)
             this.setSkin('blue')
         */
+       this.spine.drawDebug = true;
     }
 
     attachBody(body: MatterJS.Body) {
         // rescale spine to match the body
-        var size = new Phaser.Math.Vector2(
+        let size = new Phaser.Math.Vector2(
             // @ts-ignore
             body.bounds.max.x - body.bounds.min.x,
             // @ts-ignore
@@ -45,7 +46,7 @@ export class PlayerSpine {
             scale);
 
             // create anchor object with spine attached
-        var anchorConfig = {
+        let anchorConfig = {
             shape: {
                 type: 'rectangle',
                 width: 1,
@@ -54,12 +55,12 @@ export class PlayerSpine {
             isSensor: true,
             isActive: false
         };
-        var anchor = this.scene.matter.add.gameObject(this.spine, anchorConfig).body;
+        let anchor = this.scene.matter.add.gameObject(this.spine, anchorConfig).body;
 
         // connect anchor to the body
-        var factory = new Phaser.Physics.Matter.Factory(this.scene.matter.world); 
+        let factory = new Phaser.Physics.Matter.Factory(this.scene.matter.world); 
 
-        var jointConfig = {
+        let jointConfig = {
             pointA: { x: 0, y: size.y / 2 }, 
             pointB: { x: 0, y: 0 }
         };
@@ -94,31 +95,5 @@ export class PlayerSpine {
             this.spine.customParams.animation = animation
             this.spine.play(animation, loop)
         }
-    }
-
-    update(player: Player) {
-        if (!player || !player.body) return
-
-/*
-        // spine position
-        this.spine.x = player.getCenter().x
-        this.spine.y = player.getBottomLeft().y + 8
-*/
-
-        /*
-        // spine animation
-        if (player.body.blocked.down) {
-          this.spine.customParams.isKilling = false
-          const animation = Math.abs(player.body.velocity.x) >= 10 ? 'run' : 'idle'
-          this.setAnimation(animation, true)
-        }
-        if (!player.body.blocked.down) {
-          const animation = this.spine.customParams.isKilling ? 'kill' : 'jump'
-          this.setAnimation(animation)
-        }
-    
-        // spine flip
-        if (player.flipX !== this.spine.flipX) this.spine.flipX = player.flipX
-        */
     }
 }

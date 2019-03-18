@@ -71,7 +71,7 @@ export class Canvas extends BaseScene {
       .setAlpha(0.2)
       .setDepth(-2);
 
-    var grid = new CoordinateGrid(this, 0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
+    let grid = new CoordinateGrid(this, 0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
     grid.setDepth(-1, 0);
 
     this.cameras.main
@@ -83,8 +83,7 @@ export class Canvas extends BaseScene {
     let player = new Player(
       this, 
       new Phaser.Math.Vector2(400, this.WORLD_HEIGHT - 200), 
-      new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT), 
-      Assets.SPINE_BOY, 'idle');
+      new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT));
     player.setName(this.PLAYER_NAME)
       .setInteractive();
 
@@ -189,8 +188,7 @@ export class Canvas extends BaseScene {
         let player = new Player(
           this,
           new Phaser.Math.Vector2(opponent.posX, opponent.posY), 
-          new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT), 
-          'boy', 'idle');
+          new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT));
         player.setName(opponentName)
           .setStatic(true);
       }
