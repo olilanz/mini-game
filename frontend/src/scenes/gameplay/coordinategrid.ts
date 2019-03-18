@@ -16,13 +16,13 @@ export class CoordinateGrid extends Phaser.GameObjects.Group {
 
     const SPACE = 100; // space between lines
 
-    var graphics = scene.add.graphics();
+    let graphics = scene.add.graphics();
 
     // vertical lines
-    var linesx: integer = width / SPACE;
-    for (var x: integer = 0; x < linesx; x++) {
+    let linesx: integer = width / SPACE;
+    for (let x: integer = 0; x < linesx; x++) {
       this.setLineStyle(graphics, 0==x%5);
-      var offsetx = x * SPACE; 
+      let offsetx = x * SPACE; 
       graphics.lineBetween(
         posx + offsetx,
         posy, 
@@ -31,10 +31,10 @@ export class CoordinateGrid extends Phaser.GameObjects.Group {
     }
 
     // horizontal lines
-    var linesy: integer = height / SPACE;
-    for (var y: integer = 0; y < linesy; y++) {
+    let linesy: integer = height / SPACE;
+    for (let y: integer = 0; y < linesy; y++) {
       this.setLineStyle(graphics, 0==y%5);
-      var offsety = y * SPACE;
+      let offsety = y * SPACE;
       graphics.lineBetween(
         posx,
         posy + height - offsety, 
