@@ -1,0 +1,265 @@
+
+Fletch.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Fletch/Fletch_arm_lower_far
+  rotate: false
+  xy: 887, 257
+  size: 127, 102
+  orig: 127, 102
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_arm_lower_near
+  rotate: false
+  xy: 856, 153
+  size: 127, 102
+  orig: 127, 102
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_arm_upper_far
+  rotate: false
+  xy: 2, 2
+  size: 148, 139
+  orig: 148, 139
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_arm_upper_near
+  rotate: false
+  xy: 152, 2
+  size: 148, 139
+  orig: 148, 139
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_foot_far_1
+  rotate: false
+  xy: 1148, 351
+  size: 160, 86
+  orig: 160, 86
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_foot_near_1
+  rotate: false
+  xy: 1148, 351
+  size: 160, 86
+  orig: 160, 86
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_foot_far_2_bent
+  rotate: false
+  xy: 1148, 439
+  size: 151, 96
+  orig: 151, 96
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_foot_near_2_bent
+  rotate: false
+  xy: 1148, 439
+  size: 151, 96
+  orig: 151, 96
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_gun
+  rotate: false
+  xy: 388, 96
+  size: 302, 211
+  orig: 302, 211
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_gun_shoot
+  rotate: false
+  xy: 1097, 537
+  size: 302, 211
+  orig: 302, 211
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_hand_far_1_fistBack
+  rotate: true
+  xy: 302, 41
+  size: 100, 78
+  orig: 100, 78
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_hand_near_1_fistBack
+  rotate: true
+  xy: 302, 41
+  size: 100, 78
+  orig: 100, 78
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_hand_far_2_fistPalm
+  rotate: true
+  xy: 1965, 650
+  size: 100, 78
+  orig: 100, 78
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_hand_near_2_fistPalm
+  rotate: true
+  xy: 1965, 650
+  size: 100, 78
+  orig: 100, 78
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_hand_far_3_open
+  rotate: false
+  xy: 856, 43
+  size: 114, 108
+  orig: 114, 108
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_hand_near_3_open
+  rotate: false
+  xy: 856, 43
+  size: 114, 108
+  orig: 114, 108
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_head_1
+  rotate: false
+  xy: 1097, 750
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_head_2_injured
+  rotate: false
+  xy: 388, 309
+  size: 271, 271
+  orig: 271, 271
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_head_3_happy
+  rotate: false
+  xy: 1369, 751
+  size: 269, 269
+  orig: 269, 269
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_head_4_wideEyes
+  rotate: false
+  xy: 1640, 751
+  size: 269, 269
+  orig: 269, 269
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_head_5_sad
+  rotate: false
+  xy: 1694, 480
+  size: 269, 269
+  orig: 269, 269
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_leg_lower_far
+  rotate: false
+  xy: 1911, 859
+  size: 95, 161
+  orig: 95, 161
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_leg_lower_near_2
+  rotate: false
+  xy: 1911, 859
+  size: 95, 161
+  orig: 95, 161
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_leg_lower_near_1
+  rotate: false
+  xy: 1051, 374
+  size: 95, 161
+  orig: 95, 161
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_leg_upper_far
+  rotate: true
+  xy: 382, 7
+  size: 87, 134
+  orig: 87, 134
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_leg_upper_near
+  rotate: true
+  xy: 518, 8
+  size: 86, 134
+  orig: 86, 134
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_machineGun
+  rotate: false
+  xy: 765, 808
+  size: 330, 212
+  orig: 330, 212
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_machineGun_clip
+  rotate: false
+  xy: 1911, 752
+  size: 119, 105
+  orig: 119, 105
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_machineGun_shoot
+  rotate: false
+  xy: 765, 594
+  size: 330, 212
+  orig: 330, 212
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_neck
+  rotate: false
+  xy: 1301, 482
+  size: 63, 53
+  orig: 63, 53
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_pistol
+  rotate: true
+  xy: 887, 361
+  size: 231, 162
+  orig: 231, 162
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_pistol_shoot
+  rotate: true
+  xy: 692, 93
+  size: 231, 162
+  orig: 231, 162
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_sword_1
+  rotate: false
+  xy: 509, 582
+  size: 254, 438
+  orig: 254, 438
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_sword_2_swing
+  rotate: false
+  xy: 2, 143
+  size: 384, 437
+  orig: 384, 437
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_sword_3_bigSwing
+  rotate: false
+  xy: 2, 582
+  size: 505, 438
+  orig: 505, 438
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_torso
+  rotate: true
+  xy: 661, 326
+  size: 254, 224
+  orig: 254, 224
+  offset: 0, 0
+  index: -1
+Fletch/Fletch_waist
+  rotate: false
+  xy: 1401, 528
+  size: 291, 221
+  orig: 291, 221
+  offset: 0, 0
+  index: -1

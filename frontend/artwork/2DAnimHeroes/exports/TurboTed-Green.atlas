@@ -1,0 +1,244 @@
+
+TurboTed-Green.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TurboTed-Green/TurboTed-Green_arm_lower_far
+  rotate: true
+  xy: 2, 2
+  size: 43, 61
+  orig: 43, 61
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_arm_lower_near
+  rotate: true
+  xy: 2, 2
+  size: 43, 61
+  orig: 43, 61
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_arm_upper_far
+  rotate: false
+  xy: 223, 38
+  size: 67, 90
+  orig: 67, 90
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_arm_upper_near
+  rotate: true
+  xy: 292, 29
+  size: 66, 91
+  orig: 66, 91
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_foot_far_1
+  rotate: true
+  xy: 511, 38
+  size: 91, 44
+  orig: 91, 44
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_foot_near_1
+  rotate: true
+  xy: 511, 38
+  size: 91, 44
+  orig: 91, 44
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_foot_far_2_bent
+  rotate: true
+  xy: 456, 40
+  size: 90, 53
+  orig: 90, 53
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_foot_near_2_bent
+  rotate: true
+  xy: 456, 40
+  size: 90, 53
+  orig: 90, 53
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_gun
+  rotate: false
+  xy: 311, 226
+  size: 201, 80
+  orig: 201, 80
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_gun_shoot
+  rotate: false
+  xy: 631, 421
+  size: 234, 89
+  orig: 234, 89
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_hand_1_fistBack
+  rotate: true
+  xy: 557, 73
+  size: 56, 44
+  orig: 56, 44
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_hand_2_fistPalm
+  rotate: false
+  xy: 903, 135
+  size: 50, 46
+  orig: 50, 46
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_hand_3_open
+  rotate: false
+  xy: 385, 25
+  size: 69, 70
+  orig: 69, 70
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_head_1
+  rotate: false
+  xy: 631, 292
+  size: 141, 127
+  orig: 141, 127
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_head_2_injured
+  rotate: false
+  xy: 864, 282
+  size: 141, 132
+  orig: 141, 132
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_head_3_happy
+  rotate: false
+  xy: 617, 158
+  size: 141, 132
+  orig: 141, 132
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_head_4_wideEyes
+  rotate: false
+  xy: 760, 153
+  size: 141, 127
+  orig: 141, 127
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_head_5_sad
+  rotate: false
+  xy: 311, 97
+  size: 141, 127
+  orig: 141, 127
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_leg_lower_far
+  rotate: false
+  xy: 903, 183
+  size: 75, 97
+  orig: 75, 97
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_leg_lower_near_2
+  rotate: false
+  xy: 903, 183
+  size: 75, 97
+  orig: 75, 97
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_leg_lower_near_1
+  rotate: true
+  xy: 514, 231
+  size: 75, 101
+  orig: 75, 101
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_leg_upper_far
+  rotate: true
+  xy: 533, 191
+  size: 38, 82
+  orig: 38, 82
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_leg_upper_near
+  rotate: true
+  xy: 533, 191
+  size: 38, 82
+  orig: 38, 82
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_machineGun
+  rotate: false
+  xy: 2, 47
+  size: 219, 81
+  orig: 219, 81
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_machineGun_clip
+  rotate: false
+  xy: 557, 24
+  size: 44, 47
+  orig: 44, 47
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_machineGun_shoot
+  rotate: false
+  xy: 2, 130
+  size: 268, 81
+  orig: 268, 81
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_neck
+  rotate: true
+  xy: 65, 2
+  size: 43, 34
+  orig: 43, 34
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_pistol
+  rotate: true
+  xy: 774, 303
+  size: 116, 88
+  orig: 116, 88
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_pistol_shoot
+  rotate: false
+  xy: 867, 416
+  size: 149, 94
+  orig: 149, 94
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_sword_1
+  rotate: true
+  xy: 311, 308
+  size: 36, 313
+  orig: 36, 313
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_sword_2_swing
+  rotate: true
+  xy: 311, 346
+  size: 164, 318
+  orig: 164, 318
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_sword_3_bigSwing
+  rotate: false
+  xy: 2, 213
+  size: 307, 297
+  orig: 307, 297
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_torso
+  rotate: false
+  xy: 454, 132
+  size: 77, 92
+  orig: 77, 92
+  offset: 0, 0
+  index: -1
+TurboTed-Green/TurboTed-Green_waist
+  rotate: true
+  xy: 533, 131
+  size: 58, 60
+  orig: 58, 60
+  offset: 0, 0
+  index: -1

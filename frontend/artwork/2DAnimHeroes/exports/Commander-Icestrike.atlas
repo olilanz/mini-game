@@ -1,0 +1,265 @@
+
+Commander-Icestrike.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Commander-Icestrike/Commander-Icestrike_arm_lower_far
+  rotate: true
+  xy: 660, 289
+  size: 128, 103
+  orig: 128, 103
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_arm_lower_near
+  rotate: false
+  xy: 619, 185
+  size: 127, 102
+  orig: 127, 102
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_arm_upper_far
+  rotate: false
+  xy: 2, 2
+  size: 148, 139
+  orig: 148, 139
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_arm_upper_near
+  rotate: false
+  xy: 1703, 881
+  size: 148, 139
+  orig: 148, 139
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_foot_far_1
+  rotate: false
+  xy: 1853, 934
+  size: 160, 86
+  orig: 160, 86
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_foot_near_1
+  rotate: false
+  xy: 1853, 934
+  size: 160, 86
+  orig: 160, 86
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_foot_far_2_bent
+  rotate: false
+  xy: 152, 45
+  size: 151, 96
+  orig: 151, 96
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_foot_near_2_bent
+  rotate: false
+  xy: 152, 45
+  size: 151, 96
+  orig: 151, 96
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_gun
+  rotate: false
+  xy: 1095, 809
+  size: 302, 211
+  orig: 302, 211
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_gun_shoot
+  rotate: false
+  xy: 1399, 809
+  size: 302, 211
+  orig: 302, 211
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_hand_far_1_fistBack
+  rotate: false
+  xy: 1462, 621
+  size: 100, 78
+  orig: 100, 78
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_hand_near_1_fistBack
+  rotate: false
+  xy: 1462, 621
+  size: 100, 78
+  orig: 100, 78
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_hand_far_2_fistPalm
+  rotate: false
+  xy: 1095, 567
+  size: 100, 78
+  orig: 100, 78
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_hand_near_2_fistPalm
+  rotate: false
+  xy: 1095, 567
+  size: 100, 78
+  orig: 100, 78
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_hand_far_3_open
+  rotate: false
+  xy: 305, 31
+  size: 117, 110
+  orig: 117, 110
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_hand_near_3_open
+  rotate: false
+  xy: 424, 36
+  size: 117, 110
+  orig: 117, 110
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_head_1
+  rotate: false
+  xy: 388, 310
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_head_2_injured
+  rotate: false
+  xy: 388, 310
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_head_3_happy
+  rotate: false
+  xy: 388, 310
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_head_4_wideEyes
+  rotate: false
+  xy: 388, 310
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_head_5_sad
+  rotate: false
+  xy: 388, 310
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_leg_lower_far
+  rotate: false
+  xy: 660, 419
+  size: 95, 161
+  orig: 95, 161
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_leg_lower_near_2
+  rotate: false
+  xy: 660, 419
+  size: 95, 161
+  orig: 95, 161
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_leg_lower_near_1
+  rotate: true
+  xy: 1326, 712
+  size: 95, 161
+  orig: 95, 161
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_leg_upper_far
+  rotate: true
+  xy: 1703, 792
+  size: 87, 134
+  orig: 87, 134
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_leg_upper_near
+  rotate: true
+  xy: 1326, 624
+  size: 86, 134
+  orig: 86, 134
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_machineGun
+  rotate: false
+  xy: 765, 810
+  size: 328, 210
+  orig: 328, 210
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_machineGun_clip
+  rotate: true
+  xy: 543, 29
+  size: 117, 103
+  orig: 117, 103
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_machineGun_shoot
+  rotate: false
+  xy: 765, 598
+  size: 328, 210
+  orig: 328, 210
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_neck
+  rotate: true
+  xy: 1853, 847
+  size: 85, 114
+  orig: 85, 114
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_pistol
+  rotate: false
+  xy: 388, 148
+  size: 229, 160
+  orig: 229, 160
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_pistol_shoot
+  rotate: false
+  xy: 1095, 647
+  size: 229, 160
+  orig: 229, 160
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_sword_1
+  rotate: false
+  xy: 509, 582
+  size: 254, 438
+  orig: 254, 438
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_sword_2_swing
+  rotate: false
+  xy: 2, 143
+  size: 384, 437
+  orig: 384, 437
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_sword_3_bigSwing
+  rotate: false
+  xy: 2, 582
+  size: 505, 438
+  orig: 505, 438
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_torso
+  rotate: true
+  xy: 1197, 570
+  size: 75, 100
+  orig: 75, 100
+  offset: 0, 0
+  index: -1
+Commander-Icestrike/Commander-Icestrike_waist
+  rotate: false
+  xy: 1489, 701
+  size: 140, 106
+  orig: 140, 106
+  offset: 0, 0
+  index: -1
