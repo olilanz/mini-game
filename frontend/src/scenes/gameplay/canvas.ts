@@ -6,6 +6,7 @@
 
 import { Player } from '../../sprites/player';
 import { Bot } from '../../sprites/bot';
+import { Cookie } from '../../sprites/cookie';
 
 import { BaseScene } from '../basescene';
 
@@ -93,8 +94,8 @@ export class Canvas extends BaseScene {
     this.cameras.main
       .startFollow(player, false, 0.1, 0.1);
 
-    this.createCookies(this.data.values.level);
     this.createBots(this.data.values.level);
+    this.createCookies(this.data.values.level);
 
     this.onResize(this.scale.gameSize,
       this.scale.baseSize, 
@@ -136,19 +137,16 @@ export class Canvas extends BaseScene {
   }
 
   createCookie(name: string, x: number, y: number): integer {
-    let cookiewidth = this.COOKIE_SIZE * Phaser.Math.FloatBetween(0.9, 1.25);
-
     console.log('create cookie: ' + name);
-    console.log('cookiewidth: ' + cookiewidth);
-    let cookie = this.matter.add.sprite(0, 0, Assets.IMAGE_COOKIE)
+
+    let size = this.COOKIE_SIZE * Phaser.Math.FloatBetween(0.9, 1.25);
+    let cookie = new Cookie(
+      this,
+      new Phaser.Math.Vector2(x, y), 
+      size);
     cookie.setName(name)
-      .setPosition(x, y)
-      .setDisplaySize(cookiewidth, cookiewidth)
-      .setCircle((cookiewidth / 2) * 0.85 /* adjust because graphic has a small margin */, {})
-    cookie.setAngularVelocity(Phaser.Math.FloatBetween(-0.07, 0.07));
-    cookie.setBounce(0.6);
-    cookie.setFriction(0.01, 0, 0);
-    cookie.setInteractive();
+      .setInteractive();
+    
     this._stats.cookieCount++;
     return this._stats.cookieCount;
   }
