@@ -37,6 +37,14 @@ export class InputController {
           return;
         }
 
+        let bot = gameObjects.find(bot => bot.name.startsWith(canvas.BOT_NAME_PREFIX)) as Phaser.Physics.Matter.Image;
+        if (bot) {
+            let center = bot.getCenter();
+            let direction = center.subtract(new Phaser.Math.Vector2(pointer.worldX, pointer.worldY));
+          canvas.jump(bot, direction);
+          return;
+        }
+
         let cookie = gameObjects.find(cookie => cookie.name.startsWith(canvas.COOKIE_NAME_PREFIX)) as Phaser.GameObjects.Sprite;
         if (cookie) {
           let remaining = this._canvas.destroyCookie(cookie);

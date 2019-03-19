@@ -1,7 +1,7 @@
 import { MatterSpine } from './matterSpine'
 import { Assets } from '../assets/assets';
 
-export class Player extends Phaser.Physics.Matter.Image {
+export class Bot extends Phaser.Physics.Matter.Image {
     playerSpine: MatterSpine
 
     constructor(scene: Phaser.Scene, pos: Phaser.Math.Vector2, size: Phaser.Math.Vector2) {
@@ -28,8 +28,8 @@ export class Player extends Phaser.Physics.Matter.Image {
         this.setFixedRotation();
 
         // attach a spine animation to the body
-        this.playerSpine = new MatterSpine(this.scene, Assets.SPINE_TEMPLATE, 'idle');
-        this.playerSpine.setSkin("Template");
+        this.playerSpine = new MatterSpine(this.scene, Assets.SPINE_BOY, 'idle');
+        this.playerSpine.setSkin("default");
         this.playerSpine.attachBody(body);
     }
 

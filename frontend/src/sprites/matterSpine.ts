@@ -1,9 +1,15 @@
-import { Player } from './player'
+/**
+ * Helper class that attaches a spine animation to a matter physics object.
+ * It works by creating a small anchor physics object to which the animation is attached to, 
+ * abd then jopining that anchor to the phyics object that represents the body (using the attachBody() function). 
+ * This is a workaround until Phaser provides better Spine/Matter integration, e.g. through
+ * native support of Phaser.Physics.Matter.Spine (a class that does not yet exist)...
+ */
 
 // @ts-ignore
 import SpineGameObject from "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
-export class PlayerSpine {
+export class MatterSpine {
     spine: SpineGameObject;
     scene: Phaser.Scene;
 

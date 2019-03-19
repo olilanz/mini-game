@@ -5,6 +5,7 @@
  */
 
 import { Player } from '../../sprites/player';
+import { Bot } from '../../sprites/bot';
 
 import { BaseScene } from '../basescene';
 
@@ -28,6 +29,8 @@ export class Canvas extends BaseScene {
   public readonly PLAYER_NAME: string = 'player';
   public readonly PLAYER_WIDTH: integer = 120; // [cm]
   public readonly PLAYER_HEIGHT: integer = this.PLAYER_WIDTH * 1.7; // [cm]
+
+  public readonly BOT_NAME_PREFIX: string = 'bot_';
   
   public readonly COOKIE_NAME_PREFIX: string = 'cookie_';
   public readonly COOKIE_SIZE: integer = 100; // [cm]
@@ -91,6 +94,7 @@ export class Canvas extends BaseScene {
       .startFollow(player, false, 0.1, 0.1);
 
     this.createCookies(this.data.values.level);
+    this.createBots(this.data.values.level);
 
     this.onResize(this.scale.gameSize,
       this.scale.baseSize, 
@@ -109,6 +113,17 @@ export class Canvas extends BaseScene {
 
   public getCanvasStats(): ICanvasStats {
     return this._stats;
+  }
+
+  createBots(count: integer) {
+    for (let i = 0; i < count; i++) {
+      let bot = new Bot(
+        this, 
+        new Phaser.Math.Vector2(i * Phaser.Math.Between(100, 500), this.WORLD_HEIGHT - 500), 
+        new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT));
+      bot.setName(this.PLAYER_NAME)
+        .setInteractive();
+    }
   }
 
   createCookies(count: integer): void {
@@ -130,7 +145,7 @@ export class Canvas extends BaseScene {
       .setPosition(x, y)
       .setDisplaySize(cookiewidth, cookiewidth)
       .setCircle((cookiewidth / 2) * 0.85 /* adjust because graphic has a small margin */, {})
-    cookie.setAngularVelocity(Phaser.Math.FloatBetween(-0.05, 0.05));
+    cookie.setAngularVelocity(Phaser.Math.FloatBetween(-0.07, 0.07));
     cookie.setBounce(0.6);
     cookie.setFriction(0.01, 0, 0);
     cookie.setInteractive();
