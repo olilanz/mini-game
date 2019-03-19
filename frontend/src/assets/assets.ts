@@ -19,7 +19,7 @@ import __skeletonSpineBoy from './spine/spineboy.skeleton'
 import __skeletonTemplate from './spine/Template.skeleton';
 
 import __musicTheme from './music/theme.mp3';
-import __musicLevel from './music/theme.mp3';
+import __musicLevel from './music/level.mp3';
 
 import __soundBlop from './sounds/blop.mp3';
 
