@@ -30,7 +30,7 @@ export class Player extends Phaser.Physics.Matter.Image {
         // attach a spine animation to the body
         this.playerSpine = new MatterSpine(this.scene, Assets.SPINE_TEMPLATE, 'idle');
         this.playerSpine.setSkin("Template");
-        this.playerSpine.attachBody(body);
+        this.playerSpine.attachBody(body, 1.5);
     }
 
     preUpdate() {

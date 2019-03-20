@@ -30,7 +30,7 @@ export class Bot extends Phaser.Physics.Matter.Image {
         // attach a spine animation to the body
         this.playerSpine = new MatterSpine(this.scene, Assets.SPINE_BOY, 'idle');
         this.playerSpine.setSkin("default");
-        this.playerSpine.attachBody(body);
+        this.playerSpine.attachBody(body, 1.3);
     }
 
     preUpdate() {

@@ -30,10 +30,16 @@ export class MatterSpine {
             this.spine.setMix('kill', 'idle', 0.2)
             this.setSkin('blue')
         */
-       this.spine.drawDebug = true;
+       // this.spine.drawDebug = true;
     }
 
-    attachBody(body: MatterJS.Body) {
+    /**
+     * Atteches the spine aniomation to a MatterJS body.
+     * @param body Body to attached to.
+     * @param scaleCorrection Scale correction factor for the spine animation. 
+     *      Will be applied after scaling the spine to match the size of the object.
+     */
+    attachBody(body: MatterJS.Body, scaleCorrection: number = 1.0) {
         // rescale spine to match the body
         let size = new Phaser.Math.Vector2(
             // @ts-ignore
@@ -42,16 +48,15 @@ export class MatterSpine {
             body.bounds.max.y - body.bounds.min.y
         );
 
-        let scaleX = size.x / this.spine.getBounds().size.x;
-        let scaleY = size.y / this.spine.getBounds().size.y;
-        let scale = scaleX < scaleY ? scaleY : scaleY;
+        let scale = this.calculateScale(
+            this.spine.getBounds().size.x, 
+            this.spine.getBounds().size.y,
+            size.x, 
+            size.y
+        ) * scaleCorrection;
         this.spine.setScale(scale, scale);
 
-        this.spine.setScale(
-            scale, 
-            scale);
-
-            // create anchor object with spine attached
+        // create anchor object with spine attached
         let anchorConfig = {
             shape: {
                 type: 'rectangle',
@@ -75,6 +80,21 @@ export class MatterSpine {
         factory.destroy();
     }
 
+    /**
+     * Returns the scale to be applied to object 1, so it fits onto object 2.
+     * The sides of the objects are chosen as reference, where the relative difference is 
+     * smallest.
+     * @param x1 Width of object 1
+     * @param y1 height of object 1
+     * @param x2 width of object 2
+     * @param y2 width of object 2
+     */
+    private calculateScale(x1: number, y1: number, x2: number, y2: number): number {
+        let scaleX = x2 / x1;
+        let scaleY = y2 / y1;
+        return scaleX < scaleY ? scaleY : scaleX;
+    }
+        
     getAttachments() {
         return this.spine.skeleton.skin.attachments
     }
