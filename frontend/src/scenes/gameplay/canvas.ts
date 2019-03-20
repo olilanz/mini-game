@@ -92,7 +92,7 @@ export class Canvas extends BaseScene {
       .setInteractive();
 
     this.cameras.main
-      .startFollow(player, false, 0.1, 0.1);
+      .startFollow(player, false, 0.15, 0.15);
 
     this.createBots(this.data.values.level);
     this.createCookies(this.data.values.level);
