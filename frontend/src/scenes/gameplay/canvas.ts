@@ -25,7 +25,7 @@ export class Canvas extends BaseScene {
 
   private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm])
   private readonly WORLD_WIDTH: integer = 3500; // in world coords [cm]
-  private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
+  private readonly CAMERA_DEFAULT_ZOOM: number = 1.0;
 
   public readonly PLAYER_NAME: string = 'player';
   public readonly PLAYER_WIDTH: integer = 120; // [cm]
