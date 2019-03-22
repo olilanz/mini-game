@@ -11,6 +11,13 @@ import { GameMode } from '../../externalgameconfig';
 
 export class Welcome extends BaseScene {
 
+  private __loadCompleted = false;
+
+  private __progressBox!: Phaser.GameObjects.Graphics;
+  private __progressBar!: Phaser.GameObjects.Graphics;
+  private __loadingText!: Phaser.GameObjects.Text;
+  private __percentText!: Phaser.GameObjects.Text;
+
   constructor() {
     super({
       key: 'Welcome'
@@ -22,8 +29,10 @@ export class Welcome extends BaseScene {
   }
 
   preload(): void {
-    this.initProgressBar();
-    Assets.getInstance().forEach(this.loadAsset.bind(this));
+    if (!this.__loadCompleted) {
+      this.initProgressBar();
+      Assets.getInstance().forEach(this.loadAsset.bind(this));
+    }
   }
 
   create(): void {
@@ -114,15 +123,15 @@ export class Welcome extends BaseScene {
 
   initProgressBar() {
     // progress bar
-    let progressBar = this.add.graphics();
-    let progressBox = this.add.graphics();
-    progressBox.fillStyle(0x222222, 0.8);
-    progressBox.fillRect(240, 270, 320, 50);
+    this.__progressBar = this.add.graphics();
+    this.__progressBox = this.add.graphics();
+    this.__progressBox.fillStyle(0x222222, 0.8);
+    this.__progressBox.fillRect(240, 270, 320, 50);
 
     // loading text
     let width = this.cameras.main.width;
     let height = this.cameras.main.height;
-    let loadingText = this.make.text({
+    this.__loadingText = this.make.text({
       x: width / 2,
       y: height / 2 - 50,
       text: 'Loading...',
@@ -131,10 +140,10 @@ export class Welcome extends BaseScene {
         fill: '#ffffff'
       }
     });
-    loadingText.setOrigin(0.5, 0.5);
+    this.__loadingText.setOrigin(0.5, 0.5);
 
     // percentage text
-    let percentText = this.make.text({
+    this.__percentText = this.make.text({
       x: width / 2,
       y: height / 2 - 5,
       text: '0%',
@@ -143,40 +152,31 @@ export class Welcome extends BaseScene {
         fill: '#ffffff'
       }
     });
-    percentText.setOrigin(0.5, 0.5);
-
-    // asset text
-    let assetText = this.make.text({
-      x: width / 2,
-      y: height / 2 + 50,
-      text: '',
-      style: {
-        font: '18px monospace',
-        fill: '#ffffff'
-      }
-    });
-    assetText.setOrigin(0.5, 0.5);
+    this.__percentText.setOrigin(0.5, 0.5);
 
     // event handlers
-    this.load.on('progress', function (value: number) {
-      progressBar.clear();
-      progressBar.fillStyle(0xffffff, 1);
-      progressBar.fillRect(250, 280, 300 * value, 30);
+    this.load.on('progress', this.onProgress.bind(this));
+    this.load.on('complete', this.onLoadCompleted.bind(this));
+  }
 
-      percentText.setText(value * 100 + '%');
-    });
+  private destroyProgressBar() {
+    this.__progressBar.destroy();
+    this.__progressBox.destroy();
+    this.__loadingText.destroy();
+    this.__percentText.destroy();
+  }
 
-    this.load.on('fileprogress', function (file: any) {
-      assetText.setText('Loading asset \'' + file.key + '\' from \'' + file.src + '\'');
-    });
+  private onProgress(value: number) {
+    this.__progressBar.clear();
+    this.__progressBar.fillStyle(0xffffff, 1);
+    this.__progressBar.fillRect(250, 280, 300 * value, 30);
 
-    this.load.on('complete', function () {
-      progressBar.destroy();
-      progressBox.destroy();
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
+    this.__percentText.setText(value * 100 + '%');
+  }
+
+  private onLoadCompleted() {
+    this.__loadCompleted = true;
+    this.destroyProgressBar();
   }
 
   private loadAsset(asset: Asset, key: string, map: Assets) {
