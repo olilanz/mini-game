@@ -12,12 +12,16 @@ export class InputController {
 
         this._canvas.input.topOnly = false;
         this._canvas.input.on('pointerdown', this.clickHandler, this);
+        this._canvas.input.keyboard.on('keydown', this.keyHandler, this);
+        this._canvas.input.keyboard.on('keyup', this.keyHandler, this);
     }
 
     public detach(): void {
         if (!this._canvas) {
             throw "Cannot detach input controller when it is not attached";
         }
+        this._canvas.input.keyboard.off('keyup', this.keyHandler, this, false);
+        this._canvas.input.keyboard.off('keydown', this.keyHandler, this, false);
         this._canvas.input.off('pointerdown', this.clickHandler, this, false);
         this._canvas = undefined;
     }
@@ -56,5 +60,36 @@ export class InputController {
 
         let pos = canvas.cameras.main.getWorldPoint(pointer.x, pointer.y);
         canvas.createCookie(canvas.COOKIE_NAME_PREFIX + Date.now() + '_' + Math.random(), pos.x, pos.y);
+    }
+
+    keyHandler(event: KeyboardEvent) {
+      if (event.repeat) {
+        return;
+      }
+
+      let canvas = this._canvas;
+      if (!canvas) {
+        return;
+      }
+
+      if (event.type == 'keydown') {
+        let direction = new Phaser.Math.Vector2(0, 0);
+        if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.UP) {
+          direction.y = -30;
+        } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.DOWN) {
+          direction.y = 40;
+        } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.LEFT) {
+          direction.x = -20;
+        } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.RIGHT) {
+          direction.x = 20;
+        }
+
+        let player = canvas.children.getByName(canvas.PLAYER_NAME) as Phaser.Physics.Matter.Image;
+        if (player) {
+          canvas.jump(player, direction);
+          console.log("jump");
+          return;
+        }
+      }
     }
 }
