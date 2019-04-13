@@ -53,7 +53,16 @@ But more commonly I find that frontend and backend are developed simultaneously,
 
 ## Deployment Options
 
-### Local Kubernetes for Development
+### Docker Engine
+
+Not much fuzz. Just...
+
+`docker run -p 8000:80 -it olilanz/mini-game`
+
+That serves it up on port 8000.
+
+
+### Local Kubernetes
 
 For local deployment there are multiple options. The source tree conatins a few files for a Kubernetes deployment. On Linux I found it most productive to use the snap based microk8s deployment. That gets the Kuberneter cluster up and running within seconds. Follow the steps:
 
