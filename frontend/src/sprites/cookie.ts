@@ -18,6 +18,7 @@ export class Cookie extends Phaser.Physics.Matter.Image {
 
         // details
         this.setAngularVelocity(Phaser.Math.FloatBetween(-0.07, 0.07));
+        this.setDensity(0.01);
         this.setBounce(0.6);
         this.setFriction(0.01, 0, 0);
     }
