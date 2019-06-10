@@ -1,7 +1,7 @@
 ############################################################
 ## build the front end
 ############################################################
-FROM node:12.2.0 AS frontendbuilder
+FROM node:12.4.0 AS frontendbuilder
 WORKDIR /build
 
 COPY ./frontend/*.json /build/
@@ -15,7 +15,7 @@ RUN npm run build
 ############################################################
 ## build the back end
 ############################################################
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2.204 AS backendbuilder
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2.300 AS backendbuilder
 WORKDIR /build
 
 COPY ./backend/src/*.csproj /build/
