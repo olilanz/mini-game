@@ -72,15 +72,20 @@ export class InputController {
         return;
       }
 
+      const left = [Phaser.Input.Keyboard.KeyCodes.LEFT, Phaser.Input.Keyboard.KeyCodes.A];
+      const right = [Phaser.Input.Keyboard.KeyCodes.RIGHT, Phaser.Input.Keyboard.KeyCodes.D];
+      const up = [Phaser.Input.Keyboard.KeyCodes.UP, Phaser.Input.Keyboard.KeyCodes.W, Phaser.Input.Keyboard.KeyCodes.SPACE];
+      const down = [Phaser.Input.Keyboard.KeyCodes.DOWN, Phaser.Input.Keyboard.KeyCodes.S];
+
       if (event.type == 'keydown') {
         let direction = new Phaser.Math.Vector2(0, 0);
-        if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.UP) {
+        if (up.indexOf(event.keyCode) >= 0) {
           direction.y = -30;
-        } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.DOWN) {
+        } else if (down.indexOf(event.keyCode) >= 0) {
           direction.y = 40;
-        } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.LEFT) {
+        } else if (left.indexOf(event.keyCode) >= 0) {
           direction.x = -20;
-        } else if (event.keyCode == Phaser.Input.Keyboard.KeyCodes.RIGHT) {
+        } else if (right.indexOf(event.keyCode) >= 0) {
           direction.x = 20;
         }
 
