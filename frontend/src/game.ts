@@ -28,7 +28,7 @@ import { Canvas } from "./scenes/gameplay/canvas";
 // represents the entire game
 export class Game extends Phaser.Game {
   // main game configuration (internal behaviour; external appearance/embedding should be defined in CSS)
-  static readonly defaults: GameConfig = {
+  static readonly defaults: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     backgroundColor: '#222244',
     plugins: {
@@ -56,7 +56,7 @@ export class Game extends Phaser.Game {
     physics: {
       default: "matter",
       matter: {
-        // debug: true
+        debug: true
       }
     },
     disableContextMenu: true,
@@ -83,7 +83,7 @@ export class Game extends Phaser.Game {
       externalConfig);  
   }
 
-  static getGameConfig(renderTarget: string, mode: GameMode): GameConfig {
+  static getGameConfig(renderTarget: string, mode: GameMode): Phaser.Types.Core.GameConfig {
     let config = Game.defaults;
 
     if (renderTarget !== "" && config.scale) {
