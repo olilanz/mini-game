@@ -77,7 +77,7 @@ export class MatterSpine {
         };
 
         // joint leghth is very,  very small. 0 does unfortunately not work. Matter bug?
-        factory.joint(body, anchor, 0.0001, 1, jointConfig);
+        factory.joint(body, anchor, 0, 1, jointConfig);
         factory.destroy();
     }
 
