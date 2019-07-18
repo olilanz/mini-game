@@ -13,10 +13,10 @@ export class ServerConsole extends BaseScene {
   private _server: ConsoleProxy = new ConsoleProxy("/consolehub", "anonymous");
   private _consoleText: string[] =  [];
 
-  private readonly MAX_MESSAGES = 50;         // milliseconds
-  private readonly REFRESH_INTERVAL = 1000;   // milliseconds
+  private readonly MAX_MESSAGES = 50;                             // milliseconds
+  private readonly REFRESH_INTERVAL = 1000;                       // milliseconds
 
-  private _countdown: integer = 0;            // 
+  private _countdown: integer = this.REFRESH_INTERVAL;            // milliseconds
 
   private _statsPlayerCount: number | undefined = undefined;
   private _statsAdminCount: number | undefined = undefined;
