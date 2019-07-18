@@ -4,10 +4,10 @@
  * This scene is shown after the game completes.
  */
 
-import { BaseScene } from '../basescene';
-import { SoundHelper } from '../../helpers/soundhelper';
+import { BaseScene } from '~/scenes/basescene';
+import { SoundHelper } from '~/helpers/soundhelper';
 
-import { Assets } from '../../assets/assets';
+import { Assets } from '~/assets/assets';
 
 export class Scores extends BaseScene {
   

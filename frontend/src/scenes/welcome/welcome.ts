@@ -4,10 +4,10 @@
  * Entry page of the game.
  */
 
-import { Asset, Assets } from '../../assets/assets';
-import { BaseScene } from '../basescene';
-import { SoundHelper } from '../../helpers/soundhelper';
-import { GameMode } from '../../externalgameconfig';
+import { Asset, Assets } from '~/assets/assets';
+import { BaseScene } from '~/scenes/basescene';
+import { SoundHelper } from '~/helpers/soundhelper';
+import { GameMode } from '~/externalgameconfig';
 
 export class Welcome extends BaseScene {
 

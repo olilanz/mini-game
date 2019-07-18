@@ -4,16 +4,16 @@
  * This is the scene that harnesses tyhe actual gameplay. 
  */
 
-import { Player } from '../../sprites/player';
-import { Bot } from '../../sprites/bot';
-import { Cookie } from '../../sprites/cookie';
+import { Player } from '~/sprites/player';
+import { Bot } from '~/sprites/bot';
+import { Cookie } from '~/sprites/cookie';
 
-import { BaseScene } from '../basescene';
+import { BaseScene } from '~/scenes/basescene';
 
 import { InputController } from './inputcontroller';
 import { CoordinateGrid } from './coordinategrid';
 
-import { Assets } from '../../assets/assets';
+import { Assets } from '~/assets/assets';
 
 export interface ICanvasStats {
   opponentCount: integer;

@@ -1,7 +1,7 @@
-import { ExternalGameConfig } from "../externalgameconfig";
-import { GlobalStateIdentifier, NavigationState } from "../gamestate";
+import { ExternalGameConfig } from "~/externalgameconfig";
+import { GlobalStateIdentifier, NavigationState } from "~/gamestate";
 
-import { Engine } from '../engine/engine';
+import { Engine } from '~/engine/engine';
 
 type CanvasDimension = {
     height: number,

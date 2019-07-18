@@ -2,7 +2,7 @@
 
 The tooling is built around the Node Package Manager ([mpn](https://nodejs.org)). You need to get a recent version of npm in order to get going.
 
-Part of the [mini-game](../README.md).
+Part of the [mini-game](~/README.md).
 
 
 ## Install and run

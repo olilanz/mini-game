@@ -1,4 +1,4 @@
-import { Assets } from '../assets/assets';
+import { Assets } from '~/assets/assets';
 
 export class Cookie extends Phaser.Physics.Matter.Image {
     constructor(scene: Phaser.Scene, pos: Phaser.Math.Vector2, size: integer) {

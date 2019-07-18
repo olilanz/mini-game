@@ -1,5 +1,5 @@
 import { MatterSpine } from './matterSpine'
-import { Assets } from '../assets/assets';
+import { Assets } from '~/assets/assets';
 
 export class Bot extends Phaser.Physics.Matter.Image {
     playerSpine: MatterSpine

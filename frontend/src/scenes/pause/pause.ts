@@ -4,10 +4,10 @@
  * This page is displayed when the game is paused.
  */
 
-import { BaseScene } from '../basescene';
-import { SoundHelper } from '../../helpers/soundhelper';
+import { BaseScene } from '~/scenes/basescene';
+import { SoundHelper } from '~/helpers/soundhelper';
 
-import { Assets } from '../../assets/assets';
+import { Assets } from '~/assets/assets';
 
 export class Pause extends BaseScene {
   
