@@ -24,10 +24,11 @@ export interface ICanvasStats {
 
 export class Canvas extends BaseScene {
 
-  private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm])
+  private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm]
   private readonly WORLD_WIDTH: integer = 3500; // in world coords [cm]
 
-  private readonly FLOOR_HEIGHT: integer = 20; // in world coords [cm])
+  private readonly FLOOR_HEIGHT: integer = 40; // in world coords [cm] (floor visible above world x=0 axis)
+  private readonly FLOOR_DEPTH: integer = 200; // in world coords [cm] (floor invisible below world x=0 axis)
 
   private readonly CAMERA_DEFAULT_ZOOM: number = 1.0;
 
@@ -85,7 +86,7 @@ export class Canvas extends BaseScene {
     let floor = new Floor(
       this, 
       new Phaser.Math.Vector2(0, this.WORLD_HEIGHT - this.FLOOR_HEIGHT), 
-      new Phaser.Math.Vector2(this.WORLD_WIDTH, this.FLOOR_HEIGHT));
+      new Phaser.Math.Vector2(this.WORLD_WIDTH, this.FLOOR_HEIGHT + this.FLOOR_DEPTH));
     floor.setName('floor');
 
     // player
