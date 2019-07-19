@@ -24,13 +24,13 @@ export interface ICanvasStats {
 
 export class Canvas extends BaseScene {
 
-  private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm]
+  private readonly WORLD_HEIGHT: integer = 2000; // in world coords [cm]
   private readonly WORLD_WIDTH: integer = 3500; // in world coords [cm]
 
-  private readonly FLOOR_HEIGHT: integer = 40; // in world coords [cm] (floor visible above world x=0 axis)
+  private readonly FLOOR_HEIGHT: integer = 100; // in world coords [cm] (floor visible above world x=0 axis)
   private readonly FLOOR_DEPTH: integer = 200; // in world coords [cm] (floor invisible below world x=0 axis)
 
-  private readonly CAMERA_DEFAULT_ZOOM: number = 1.0;
+  private readonly CAMERA_DEFAULT_ZOOM: number = 0.75;
 
   public readonly PLAYER_NAME: string = 'player';
   public readonly PLAYER_WIDTH: integer = 120; // [cm]
