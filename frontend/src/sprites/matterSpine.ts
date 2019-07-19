@@ -76,8 +76,8 @@ export class MatterSpine {
             pointB: { x: 0, y: 0 }
         };
 
-        // joint leghth is very,  very small. 0 does unfortunately not work. Matter bug?
-        factory.joint(body, anchor, 0, 1, jointConfig);
+        // joint leghth is very,  very small. 0 does unfortunately not work. Bug will be fixed in Phaser 3.19
+        factory.joint(body, anchor, 0.0000001, 1, jointConfig);
         factory.destroy();
     }
 
