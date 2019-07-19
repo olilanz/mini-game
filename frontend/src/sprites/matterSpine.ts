@@ -77,6 +77,7 @@ export class MatterSpine {
         };
 
         // joint leghth is very,  very small. 0 does unfortunately not work. Bug will be fixed in Phaser 3.19
+        // TODO: Remove workaround when Phaser 3.19 is released
         factory.joint(body, anchor, 0.0000001, 1, jointConfig);
         factory.destroy();
     }

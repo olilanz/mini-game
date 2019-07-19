@@ -2,6 +2,7 @@ import __imageTitle from './images/title.png';
 import __imageTrophy from './images/trophy.png';
 import __imageTrophyFail from './images/trophy_fail.png';
 import __imageBackground from './images/background.png';
+import __imageFloorDirt from './images/floor_dirt.png';
 import __imageCookie from './images/cookie.png';
 import __imageBtnFullscreen from './images/button_fullscreen.png';
 import __imageBtnWindowed from './images/button_windowed.png';
@@ -36,6 +37,7 @@ export class Assets extends Map<string, Asset> {
     public static readonly IMAGE_TROPHY: string = "imageTrophy";
     public static readonly IMAGE_TROPHY_FAIL: string = "imageTrophyFail";
     public static readonly IMAGE_BACKGROUND: string = "imageBackground";
+    public static readonly IMAGE_FLOOR_DIRT: string = "imageFloorDirt";
     public static readonly IMAGE_COOKIE: string = "imageCookie";
     public static readonly IMAGE_BTN_FULLSCREEN: string = "imageBtnFullscreen";
     public static readonly IMAGE_BTN_WINDOWED: string = "imageBtnWindowed";
@@ -61,6 +63,7 @@ export class Assets extends Map<string, Asset> {
         this.set(Assets.IMAGE_TROPHY, { kind: "image", url: __imageTrophy });
         this.set(Assets.IMAGE_TROPHY_FAIL, { kind: "image", url: __imageTrophyFail });
         this.set(Assets.IMAGE_BACKGROUND, { kind: "image", url: __imageBackground });
+        this.set(Assets.IMAGE_FLOOR_DIRT, { kind: "image", url: __imageFloorDirt });
         this.set(Assets.IMAGE_COOKIE, { kind: "image", url: __imageCookie });
         this.set(Assets.IMAGE_BTN_FULLSCREEN, { kind: "image", url: __imageBtnFullscreen });
         this.set(Assets.IMAGE_BTN_WINDOWED, { kind: "image", url: __imageBtnWindowed });

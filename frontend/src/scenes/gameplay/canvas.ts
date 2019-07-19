@@ -7,6 +7,7 @@
 import { Player } from '~/sprites/player';
 import { Bot } from '~/sprites/bot';
 import { Cookie } from '~/sprites/cookie';
+import { Floor } from '~/sprites/floor';
 
 import { BaseScene } from '~/scenes/basescene';
 
@@ -25,6 +26,9 @@ export class Canvas extends BaseScene {
 
   private readonly WORLD_HEIGHT: integer = 1500; // in world coords [cm])
   private readonly WORLD_WIDTH: integer = 3500; // in world coords [cm]
+
+  private readonly FLOOR_HEIGHT: integer = 20; // in world coords [cm])
+
   private readonly CAMERA_DEFAULT_ZOOM: number = 1.0;
 
   public readonly PLAYER_NAME: string = 'player';
@@ -78,10 +82,11 @@ export class Canvas extends BaseScene {
     let grid = new CoordinateGrid(this, 0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
     grid.setDepth(-1, 0);
 
-    this.cameras.main
-      .setZoom(this.CAMERA_DEFAULT_ZOOM)
-      .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
-    this._stats.cameraZoom = this.cameras.main.zoom;
+    let floor = new Floor(
+      this, 
+      new Phaser.Math.Vector2(0, this.WORLD_HEIGHT - this.FLOOR_HEIGHT), 
+      new Phaser.Math.Vector2(this.WORLD_WIDTH, this.FLOOR_HEIGHT));
+    floor.setName('floor');
 
     // player
     let player = new Player(
@@ -91,11 +96,18 @@ export class Canvas extends BaseScene {
     player.setName(this.PLAYER_NAME)
       .setInteractive();
 
-    this.cameras.main
-      .startFollow(player, false, 0.15, 0.15);
-
+    // other game objects
     this.createBots(this.data.values.level);
     this.createCookies(this.data.values.level);
+
+    // camera
+    this.cameras.main
+      .setZoom(this.CAMERA_DEFAULT_ZOOM)
+      .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
+    this._stats.cameraZoom = this.cameras.main.zoom;
+
+    this.cameras.main
+      .startFollow(player, false, 0.15, 0.15);
 
     this.onResize(this.scale.gameSize,
       this.scale.baseSize, 
