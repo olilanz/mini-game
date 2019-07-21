@@ -8,15 +8,13 @@ import { Asset, Assets } from '~/assets/assets';
 import { BaseScene } from '~/scenes/basescene';
 import { SoundHelper } from '~/helpers/soundhelper';
 import { GameMode } from '~/externalgameconfig';
+import { ProgressBar } from './progressbar';
 
 export class Welcome extends BaseScene {
 
   private __loadCompleted = false;
 
-  private __progressBox!: Phaser.GameObjects.Graphics;
-  private __progressBar!: Phaser.GameObjects.Graphics;
-  private __loadingText!: Phaser.GameObjects.Text;
-  private __percentText!: Phaser.GameObjects.Text;
+  private __progressBar!: ProgressBar;
 
   constructor() {
     super({
@@ -122,61 +120,20 @@ export class Welcome extends BaseScene {
   }
 
   initProgressBar() {
-    // progress bar
-    this.__progressBar = this.add.graphics();
-    this.__progressBox = this.add.graphics();
-    this.__progressBox.fillStyle(0x222222, 0.8);
-    this.__progressBox.fillRect(240, 270, 320, 50);
+    this.__progressBar = new ProgressBar(this);
+    this.add.group(this.__progressBar);  
 
-    // loading text
-    let width = this.cameras.main.width;
-    let height = this.cameras.main.height;
-    this.__loadingText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: 'Loading...',
-      style: {
-        font: '20px monospace',
-        fill: '#ffffff'
-      }
-    });
-    this.__loadingText.setOrigin(0.5, 0.5);
-
-    // percentage text
-    this.__percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: '0%',
-      style: {
-        font: '18px monospace',
-        fill: '#ffffff'
-      }
-    });
-    this.__percentText.setOrigin(0.5, 0.5);
-
-    // event handlers
     this.load.on('progress', this.onProgress.bind(this));
     this.load.on('complete', this.onLoadCompleted.bind(this));
   }
 
-  private destroyProgressBar() {
-    this.__progressBar.destroy();
-    this.__progressBox.destroy();
-    this.__loadingText.destroy();
-    this.__percentText.destroy();
-  }
-
   private onProgress(value: number) {
-    this.__progressBar.clear();
-    this.__progressBar.fillStyle(0xffffff, 1);
-    this.__progressBar.fillRect(250, 280, 300 * value, 30);
-
-    this.__percentText.setText(value * 100 + '%');
+    this.__progressBar.setProgress(value);
   }
 
   private onLoadCompleted() {
     this.__loadCompleted = true;
-    this.destroyProgressBar();
+    this.__progressBar.destroy(true);
   }
 
   private loadAsset(asset: Asset, key: string, map: Assets) {
