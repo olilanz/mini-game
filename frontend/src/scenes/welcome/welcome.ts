@@ -204,7 +204,7 @@ export class Welcome extends BaseScene {
       this.load.spine(key, skeleton, atlas);
       //this.load.setPath(path);
     } else {
-      throw "Unhandled asset type " + asset.kind + " from " + asset.url;
+      throw new Error("Unhandled asset type " + asset.kind + " from " + asset.url);
     }
   }
 }

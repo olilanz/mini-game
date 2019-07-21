@@ -6,7 +6,7 @@ export class InputController {
 
     public attach(canvas: Canvas): void {
         if (this._canvas) {
-            throw "Cannot attach input controller when it is already attached";
+            throw new Error("Cannot attach input controller when it is already attached");
         }
         this._canvas = canvas;
 
@@ -18,7 +18,7 @@ export class InputController {
 
     public detach(): void {
         if (!this._canvas) {
-            throw "Cannot detach input controller when it is not attached";
+            throw new Error("Cannot detach input controller when it is not attached");
         }
         this._canvas.input.keyboard.off('keyup', this.keyHandler, this, false);
         this._canvas.input.keyboard.off('keydown', this.keyHandler, this, false);
