@@ -8,18 +8,20 @@ import { Asset, Assets } from '~/assets/assets';
 import { BaseScene } from '~/scenes/basescene';
 import { SoundHelper } from '~/helpers/soundhelper';
 import { GameMode } from '~/externalgameconfig';
-import { ProgressBar } from './progressbar';
+import { PercentageBar } from '~/widgets/percentagebar';
 
 export class Welcome extends BaseScene {
 
   private __loadCompleted = false;
 
-  private __progressBar!: ProgressBar;
+  private __progressBar: PercentageBar;
 
   constructor() {
     super({
       key: 'Welcome'
     });
+
+    this.__progressBar = new PercentageBar(this);
   }
 
   init(): void {
@@ -28,7 +30,15 @@ export class Welcome extends BaseScene {
 
   preload(): void {
     if (!this.__loadCompleted) {
-      this.initProgressBar();
+      this.__progressBar.create(
+        this.cameras.main.centerX - 350, 
+        this.cameras.main.centerY - 25, 
+        700, 
+        50);
+  
+      this.load.on('progress', this.onLoadProgress.bind(this));
+      this.load.on('complete', this.onLoadCompleted.bind(this));
+
       Assets.getInstance().forEach(this.loadAsset.bind(this));
     }
   }
@@ -119,21 +129,13 @@ export class Welcome extends BaseScene {
     this.scene.start('ServerConsole');
   }
 
-  initProgressBar() {
-    this.__progressBar = new ProgressBar(this);
-    this.add.group(this.__progressBar);  
-
-    this.load.on('progress', this.onProgress.bind(this));
-    this.load.on('complete', this.onLoadCompleted.bind(this));
-  }
-
-  private onProgress(value: number) {
-    this.__progressBar.setProgress(value);
+  private onLoadProgress(value: number) {
+    this.__progressBar.setValue(value);
   }
 
   private onLoadCompleted() {
     this.__loadCompleted = true;
-    this.__progressBar.destroy(true);
+    this.__progressBar.destroy();
   }
 
   private loadAsset(asset: Asset, key: string, map: Assets) {
