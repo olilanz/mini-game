@@ -58,8 +58,7 @@ export class InputController {
           return;
         }
 
-        let pos = canvas.cameras.main.getWorldPoint(pointer.x, pointer.y);
-        canvas.createCookie(canvas.COOKIE_NAME_PREFIX + Date.now() + '_' + Math.random(), pos.x, pos.y);
+        canvas.createCookie(canvas.COOKIE_NAME_PREFIX + Date.now() + '_' + Math.random(), pointer.worldX, pointer.worldY);
     }
 
     keyHandler(event: KeyboardEvent) {

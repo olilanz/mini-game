@@ -12,14 +12,14 @@ export class Cookie extends Phaser.Physics.Matter.Image {
 
         // add customized body
         let factory = new Phaser.Physics.Matter.Factory(scene.matter.world); 
-        let body = factory.circle(pos.x, pos.y, size / 2.2, {}, 12 );
+        let body = factory.circle(pos.x, pos.y, size / 2.3, {} );
         this.setExistingBody(body, true);
         factory.destroy();
 
         // details
         this.setAngularVelocity(Phaser.Math.FloatBetween(-0.07, 0.07));
-        this.setDensity(0.01);
-        this.setBounce(0.6);
-        this.setFriction(0.01, 0, 0);
+        this.setDensity(0.001);
+        this.setBounce(0.7);
+        this.setFriction(0.001, 0.01, 0.001);
     }
 }
