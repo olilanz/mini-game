@@ -2,7 +2,7 @@ import { MatterSpine } from './matterSpine'
 import { Assets } from '~/assets/assets';
 
 export class Player extends Phaser.Physics.Matter.Image {
-    playerSpine: MatterSpine
+    __playerSpine: MatterSpine;
 
     constructor(scene: Phaser.Scene, pos: Phaser.Math.Vector2, size: Phaser.Math.Vector2) {
         super(scene.matter.world, pos.x, pos.y, '');
@@ -28,9 +28,9 @@ export class Player extends Phaser.Physics.Matter.Image {
         this.setFixedRotation();
 
         // attach a spine animation to the body
-        this.playerSpine = new MatterSpine(this.scene, Assets.SPINE_TEMPLATE, 'idle');
-        this.playerSpine.setSkin("Template");
-        this.playerSpine.attachBody(body, 1.5);
+        this.__playerSpine = new MatterSpine(this.scene, Assets.SPINE_TEMPLATE, 'idle');
+        this.__playerSpine.setSkin("Template");
+        this.__playerSpine.attachBody(body, 1.5);
 
         // interactions
         this.configureCollisions(this.scene, body);
@@ -57,10 +57,30 @@ export class Player extends Phaser.Physics.Matter.Image {
         // @ts-ignore
         let vx = this.body.velocity.x;
         if (vx > MARGIN) {
-            this.playerSpine.setFlipX(false);            
+            this.__playerSpine.setFlipX(false);            
         } 
         if (vx < -MARGIN) {
-            this.playerSpine.setFlipX(true);            
+            this.__playerSpine.setFlipX(true);            
         }
+    }
+
+    public jump() {
+        this.setVelocity(0, -30);
+        this.__playerSpine.setAnimation("jump2");
+    }
+
+    public stomp() {
+        this.setVelocity(0, 40);
+        this.__playerSpine.setAnimation("land");
+    }
+
+    public leapLeft() {
+        this.setVelocity(-20, 0);
+        this.__playerSpine.setAnimation("run");
+    }
+
+    public leapRight() {
+        this.setVelocity(20, 0);
+        this.__playerSpine.setAnimation("run");
     }
 }

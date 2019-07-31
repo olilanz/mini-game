@@ -119,9 +119,6 @@ export class MatterSpine {
     }
 
     setAnimation(animation: string, loop: boolean = false) {
-        if (this.spine.customParams.animation !== animation) {
-            this.spine.customParams.animation = animation
-            this.spine.play(animation, loop)
-        }
+        this.spine.play(animation, loop);
     }
 }

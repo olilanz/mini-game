@@ -1,5 +1,6 @@
 
 import { Canvas } from './canvas';
+import { Player } from '~/sprites/player';
 
 export class InputController {
     private _canvas: Canvas | undefined;
@@ -33,11 +34,19 @@ export class InputController {
 
         let canvas = this._canvas;
 
-        let player = gameObjects.find(player => player.name == canvas.PLAYER_NAME) as Phaser.Physics.Matter.Image;
+        let player = gameObjects.find(player => player.name == canvas.PLAYER_NAME) as Player;
         if (player) {
-            let center = player.getCenter();
-            let direction = center.subtract(new Phaser.Math.Vector2(pointer.worldX, pointer.worldY));
-          canvas.jump(player, direction);
+          let center = player.getCenter();
+          let direction = center.subtract(new Phaser.Math.Vector2(pointer.worldX, pointer.worldY));
+          if (-direction.y > Math.abs(direction.x)) {
+            player.jump();
+          } else if (direction.y > Math.abs(direction.x)) {
+            player.stomp();
+          } else if (-direction.x > Math.abs(direction.y)) {
+            player.leapLeft();
+          } else if (direction.x > Math.abs(direction.y)) {
+            player.leapRight();
+          }
           return;
         }
 
@@ -76,23 +85,21 @@ export class InputController {
       const up = [Phaser.Input.Keyboard.KeyCodes.UP, Phaser.Input.Keyboard.KeyCodes.W, Phaser.Input.Keyboard.KeyCodes.SPACE];
       const down = [Phaser.Input.Keyboard.KeyCodes.DOWN, Phaser.Input.Keyboard.KeyCodes.S];
 
-      if (event.type == 'keydown') {
-        let direction = new Phaser.Math.Vector2(0, 0);
-        if (up.indexOf(event.keyCode) >= 0) {
-          direction.y = -30;
-        } else if (down.indexOf(event.keyCode) >= 0) {
-          direction.y = 40;
-        } else if (left.indexOf(event.keyCode) >= 0) {
-          direction.x = -20;
-        } else if (right.indexOf(event.keyCode) >= 0) {
-          direction.x = 20;
-        }
 
-        let player = canvas.children.getByName(canvas.PLAYER_NAME) as Phaser.Physics.Matter.Image;
-        if (player) {
-          canvas.jump(player, direction);
-          console.log("jump");
-          return;
+      let player = canvas.children.getByName(canvas.PLAYER_NAME) as Player;
+      if (!player) {
+        return;
+      }
+
+      if (event.type == 'keydown') {
+        if (up.indexOf(event.keyCode) >= 0) {
+          player.jump();
+        } else if (down.indexOf(event.keyCode) >= 0) {
+          player.stomp();
+        } else if (left.indexOf(event.keyCode) >= 0) {
+          player.leapLeft();
+        } else if (right.indexOf(event.keyCode) >= 0) {
+          player.leapRight();
         }
       }
     }
