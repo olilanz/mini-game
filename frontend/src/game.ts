@@ -6,9 +6,8 @@
  */
 
 import "phaser";
+import "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
-// @ts-ignore
-import SpineWebGLPlugin from "phaser/plugins/spine/dist/SpineWebGLPlugin";
 // @ts-ignore
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 
@@ -29,15 +28,15 @@ import { Canvas } from "./scenes/gameplay/canvas";
 export class Game extends Phaser.Game {
   // main game configuration (internal behaviour; external appearance/embedding should be defined in CSS)
   static readonly defaults: Phaser.Types.Core.GameConfig = {
-    type: Phaser.AUTO,
+    type: Phaser.WEBGL,
     backgroundColor: '#222244',
     plugins: {
       scene: [
         {
-          key: 'SpineWebGLPlugin',
-          plugin: SpineWebGLPlugin,
-          start: true,
-          sceneKey: 'spine'
+          key: 'SpinePlugin', 
+          // @ts-ignore
+          plugin: window.SpinePlugin, 
+          mapping: 'spine'
         },
         {
           // https://github.com/mikewesthad/phaser-matter-collision-plugin
