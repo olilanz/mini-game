@@ -8,7 +8,7 @@
 import "phaser";
 
 // @ts-ignore
-import SpineWebGLPlugin from "phaser/plugins/spine/dist/SpineWebGLPlugin";
+import SpineWebGLPlugin from "./plugins/spine/SpineWebGLPlugin";
 // @ts-ignore
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 
