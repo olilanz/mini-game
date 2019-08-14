@@ -49,7 +49,7 @@ export class Assets extends Map<string, Asset> {
     public static readonly IMAGE_BTN_PAUSE: string = "imageBtnPause";
 
     public static readonly SPINE_TEMPLATE: string = "spineTemplate";
-    public static readonly SPINE_BOY: string = "atlasSpineBoy";
+    public static readonly SPINE_BOY: string = "spineSpineBoy";
 
     public static readonly MUSIC_THEME: string = "musicTheme";
     public static readonly MUSIC_LEVEL: string = "musicLevel";
