@@ -46,6 +46,14 @@ export class Menu extends BaseScene {
 
     let music = this.sound.add(Assets.MUSIC_THEME);
     SoundHelper.playBackgroundMusic(music);
+
+    let spine = this.add.spine(200, 300, Assets.SPINE_BOY, "idle", true);
+    spine.scale = 0.5;
+
+    spine = this.add.spine(500, 700, Assets.SPINE_BOY, "run", true);
+    spine.depth = 2;
+    spine.drawDebug = true;
+    spine.drawBones = true;
   }
 
   onShutdown() {

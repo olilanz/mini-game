@@ -9,9 +9,6 @@ import "phaser";
 import "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
 // @ts-ignore
-import SpineWebGLPlugin from "./plugins/spine/SpineWebGLPlugin";
-// @ts-ignore
-
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 
 import { ExternalGameConfig, GameMode } from "./externalgameconfig";
@@ -36,10 +33,10 @@ export class Game extends Phaser.Game {
     plugins: {
       scene: [
         {
-          key: 'SpineWebGLPlugin',
-          plugin: SpineWebGLPlugin,
-          start: true,
-          sceneKey: 'spine'
+          key: 'SpinePlugin', 
+          // @ts-ignore
+          plugin: window.SpinePlugin, 
+          mapping: 'spine'
         },
         {
           // https://github.com/mikewesthad/phaser-matter-collision-plugin

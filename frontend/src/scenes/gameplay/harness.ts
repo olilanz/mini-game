@@ -59,6 +59,13 @@ export class Harness extends BaseScene {
 
     // harness ready.. start the game
     this.startCanvas();
+
+    
+    let spine = this.add.spine(400, 600, Assets.SPINE_BOY, "idle", true);
+    spine.depth = 2;
+    spine.drawDebug = true;
+    spine.drawBones = true;
+
   }
 
   onResize(gameSize: Phaser.Structs.Size, baseSize: Phaser.Structs.Size, displaySize: Phaser.Structs.Size, resolution: number) {
