@@ -23,7 +23,6 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "@aspnet/signalr": "1.1.4",
     "phaser": "3.19.0",
     "phaser-matter-collision-plugin": "0.10.2"
   },
