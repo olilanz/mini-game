@@ -8,8 +8,8 @@
 import "phaser";
 import "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
-import { Welcome } from "./scenes/welcome";
-import { Menu } from "./scenes/menu";
+import { Scene1 } from "scene1";
+import { Scene2 } from "scene2";
 
 // represents the entire game
 export class Game extends Phaser.Game {
@@ -27,17 +27,11 @@ export class Game extends Phaser.Game {
         }
       ]
     },
-    scene: [ Welcome, Menu ],
+    scene: [ Scene1, Scene2 ],
     scale: {
       parent: "game-canvas",
       fullscreenTarget: "game-canvas",
       //mode: Phaser.Scale.ENVELOP, 
-    },
-    physics: {
-      default: "matter",
-      matter: {
-        debug: true
-      }
     },
     disableContextMenu: true,
     input: {

@@ -4,8 +4,4 @@
 .cache
 
 node_modules
-
-frontend/dist
-
-backend/src/obj
-backend/src/bin
+dist

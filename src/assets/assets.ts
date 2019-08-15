@@ -1,15 +1,5 @@
-import __imageTitle from './images/title.png';
-import __imageBackground from './images/background.png';
-import __imageFloorDirt from './images/floor_dirt.png';
-import __imageCookie from './images/cookie.png';
-import __imageBtnFullscreen from './images/button_fullscreen.png';
-import __imageBtnWindowed from './images/button_windowed.png';
 import __imageBtnLeft from './images/button_left.png';
-import __imageBtnMenu from './images/button_menu.png';
-import __imageBtnMenuLevel from './images/button_menu_level.png';
 import __imageBtnRight from './images/button_right.png';
-import __imageBtnRetry from './images/button_retry.png';
-import __imageBtnPause from './images/button_pause.png';
 
 import __atlasSpineBoy from './spine/spineboy.atlas'
 import __skeletonSpineBoy from './spine/spineboy.skeleton'
@@ -41,18 +31,8 @@ export class Assets extends Map<string, Asset> {
     private constructor() {
         super();
 
-        this.set(Assets.IMAGE_TITLE, { kind: "image", url: __imageTitle });
-        this.set(Assets.IMAGE_BACKGROUND, { kind: "image", url: __imageBackground });
-        this.set(Assets.IMAGE_FLOOR_DIRT, { kind: "image", url: __imageFloorDirt });
-        this.set(Assets.IMAGE_COOKIE, { kind: "image", url: __imageCookie });
-        this.set(Assets.IMAGE_BTN_FULLSCREEN, { kind: "image", url: __imageBtnFullscreen });
-        this.set(Assets.IMAGE_BTN_WINDOWED, { kind: "image", url: __imageBtnWindowed });
         this.set(Assets.IMAGE_BTN_LEFT, { kind: "image", url: __imageBtnLeft });
-        this.set(Assets.IMAGE_BTN_MENU, { kind: "image", url: __imageBtnMenu });
-        this.set(Assets.IMAGE_BTN_MENU_LEVEL, { kind: "image", url: __imageBtnMenuLevel });
         this.set(Assets.IMAGE_BTN_RIGHT, { kind: "image", url: __imageBtnRight });
-        this.set(Assets.IMAGE_BTN_RETRY, { kind: "image", url: __imageBtnRetry });
-        this.set(Assets.IMAGE_BTN_PAUSE, { kind: "image", url: __imageBtnPause });
 
         this.set(Assets.SPINE_BOY, { kind: "spine", url: 'assets/spine', url2: __skeletonSpineBoy, url3: __atlasSpineBoy });
     }
