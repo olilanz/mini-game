@@ -13,19 +13,8 @@ export type Asset = {
 
 export class Assets extends Map<string, Asset> {
 
-    public static readonly IMAGE_TITLE: string = "imageTitle";
-    public static readonly IMAGE_BACKGROUND: string = "imageBackground";
-    public static readonly IMAGE_FLOOR_DIRT: string = "imageFloorDirt";
-    public static readonly IMAGE_COOKIE: string = "imageCookie";
-    public static readonly IMAGE_BTN_FULLSCREEN: string = "imageBtnFullscreen";
-    public static readonly IMAGE_BTN_WINDOWED: string = "imageBtnWindowed";
     public static readonly IMAGE_BTN_LEFT: string = "imageBtnLeft";
-    public static readonly IMAGE_BTN_MENU: string = "imageBtnMenu";
-    public static readonly IMAGE_BTN_MENU_LEVEL: string = "imageBtnMenuLevel";
     public static readonly IMAGE_BTN_RIGHT: string = "imageBtnRight";
-    public static readonly IMAGE_BTN_RETRY: string = "imageBtnRetry";
-    public static readonly IMAGE_BTN_PAUSE: string = "imageBtnPause";
-
     public static readonly SPINE_BOY: string = "spineSpineBoy";
 
     private constructor() {

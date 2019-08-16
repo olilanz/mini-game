@@ -8,8 +8,8 @@
 import "phaser";
 import "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
-import { Scene1 } from "scene1";
-import { Scene2 } from "scene2";
+import { Scene1 } from "./scene1";
+import { Scene2 } from "./scene2";
 
 // represents the entire game
 export class Game extends Phaser.Game {

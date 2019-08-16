@@ -1,12 +1,6 @@
-/**
- * Menu class
- * 
- * Select levels here
- */
-import { BaseScene } from 'basescene';
 import { Assets } from '~/assets/assets';
 
-export class Scene2 extends BaseScene {
+export class Scene2 extends Phaser.Scene {
 
   constructor() {
     super({
@@ -15,12 +9,12 @@ export class Scene2 extends BaseScene {
   }
 
   create(): void {
-    this.addButton('Scene1', Assets.IMAGE_BTN_LEFT, 
-      function (this: Scene2) {
-        this.scene.start('Scene1');
-      }, this)
-      .setPosition(100, 100)
-      .setDisplaySize(50, 50);
+    this.add.sprite(0, 0, Assets.IMAGE_BTN_LEFT)
+      .setName(name)
+      .setInteractive()
+      .setPosition(50, 50)
+      .setDisplaySize(50, 50)
+      .on('pointerdown', function (this: Scene2) { this.scene.start('Scene1'); }, this);
 
     let spine = this.add.spine(200, 300, Assets.SPINE_BOY, "idle", true);
     spine.scale = 0.5;

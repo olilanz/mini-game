@@ -1,12 +1,6 @@
-/**
- * Welcome screen
- * 
- * Entry page of the game.
- */
-import { BaseScene } from 'basescene';
 import { Asset, Assets } from '~/assets/assets';
 
-export class Scene1 extends BaseScene {
+export class Scene1 extends Phaser.Scene {
 
   private __loadCompleted = false;
 
@@ -24,17 +18,17 @@ export class Scene1 extends BaseScene {
   }
 
   create(): void {
-    this.addButton('Scene2', Assets.IMAGE_BTN_RIGHT,
-      function (this: Scene1) {
-        this.scene.start('Scene2');
-      }, this)
-      .setPosition(100, 100)
-      .setDisplaySize(50, 50);
+    this.add.sprite(0, 0, Assets.IMAGE_BTN_RIGHT)
+      .setName(name)
+      .setInteractive()
+      .setPosition(50, 50)
+      .setDisplaySize(50, 50)
+      .on('pointerdown', function (this: Scene1) { this.scene.start('Scene2'); }, this);
 
-    let spine = this.add.spine(200, 300, Assets.SPINE_BOY, "idle", true);
+    let spine = this.add.spine(100, 500, Assets.SPINE_BOY, "idle", true);
     spine.scale = 0.5;
 
-    spine = this.add.spine(500, 700, Assets.SPINE_BOY, "run", true);
+    spine = this.add.spine(500, 500, Assets.SPINE_BOY, "run", true);
     spine.depth = 2;
     spine.drawDebug = true;
     spine.drawBones = true;
