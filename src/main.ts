@@ -1,13 +1,6 @@
 import "phaser";
 import "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
-import __imageBtnLeft from './assets/images/button_left.png';
-import __imageBtnRight from './assets/images/button_right.png';
-
-const __atlasSpineBoy: string = 'spineboy.atlas';
-const __skeletonSpineBoy: string = 'spineboy.skeleton';
-
-const STATIC_ASSET_URL: string = "assets/spine";
 const IMAGE_BTN_LEFT: string = "imageBtnLeft";
 const IMAGE_BTN_RIGHT: string = "imageBtnRight";
 const SPINE_BOY: string = "spineSpineBoy";
@@ -19,29 +12,21 @@ class Scene1 extends Phaser.Scene {
     }
 
     preload(): void {
-        this.load.image(IMAGE_BTN_LEFT, __imageBtnLeft);
-        this.load.image(IMAGE_BTN_RIGHT, __imageBtnRight);
-
-        this.load.setPath(STATIC_ASSET_URL);
-        this.load.spine(SPINE_BOY, __skeletonSpineBoy, __atlasSpineBoy, false);
+        this.load.setPath('assets');
+        this.load.image("imageBtnRight", 'button_right.png');
+        this.load.spine("spineSpineBoy", 'spineboy.skeleton', 'spineboy.atlas', true);
     }
 
     create(): void {
-        this.add.sprite(0, 0, IMAGE_BTN_RIGHT)
-            .setName(name)
+        this.add.sprite(0, 0, "imageBtnRight")
             .setInteractive()
             .setPosition(50, 50)
             .setDisplaySize(50, 50)
             .on('pointerdown', function (this: Scene1) { this.scene.start('Scene2'); }, this);
 
-        let spine = this.add.spine(100, 500, SPINE_BOY, "idle", true);
-        spine.scale = 0.5;
-
-        spine = this.add.spine(500, 500, SPINE_BOY, "run", true);
-        spine.depth = 2;
-        spine.drawDebug = true;
-        spine.drawBones = true;
-    }
+            this.add.spine(200, 700, "spineSpineBoy", "idle", true);
+            this.add.spine(500, 700, "spineSpineBoy", "run", true);
+        }
 }
 
 class Scene2 extends Phaser.Scene {
@@ -51,28 +36,20 @@ class Scene2 extends Phaser.Scene {
     }
 
     preload(): void {
-        this.load.image(IMAGE_BTN_LEFT, __imageBtnLeft);
-        this.load.image(IMAGE_BTN_RIGHT, __imageBtnRight);
-
-        this.load.setPath(STATIC_ASSET_URL);
-        this.load.spine(SPINE_BOY, __skeletonSpineBoy, __atlasSpineBoy, false);
+        this.load.setPath('assets');
+        this.load.image("imageBtnLeft", 'button_left.png');
+        this.load.spine("spineSpineBoy", 'spineboy.skeleton', 'spineboy.atlas', true);
     }
 
     create(): void {
-        this.add.sprite(0, 0, IMAGE_BTN_LEFT)
-            .setName(name)
+        this.add.sprite(0, 0, "imageBtnLeft")
             .setInteractive()
             .setPosition(50, 50)
             .setDisplaySize(50, 50)
             .on('pointerdown', function (this: Scene2) { this.scene.start('Scene1'); }, this);
 
-        let spine = this.add.spine(200, 300, SPINE_BOY, "idle", true);
-        spine.scale = 0.5;
-
-        spine = this.add.spine(500, 700, SPINE_BOY, "run", true);
-        spine.depth = 2;
-        spine.drawDebug = true;
-        spine.drawBones = true;
+        this.add.spine(200, 700, "spineSpineBoy", "idle", true);
+        this.add.spine(500, 700, "spineSpineBoy", "run", true);
     }
 }
 
