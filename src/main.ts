@@ -1,10 +1,6 @@
 import "phaser";
 import "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
-const IMAGE_BTN_LEFT: string = "imageBtnLeft";
-const IMAGE_BTN_RIGHT: string = "imageBtnRight";
-const SPINE_BOY: string = "spineSpineBoy";
-
 class Scene1 extends Phaser.Scene {
 
     constructor() {
