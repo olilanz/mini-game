@@ -76,17 +76,15 @@ class Scene2 extends Phaser.Scene {
     }
 }
 
-// represents the entire game
-export class Game extends Phaser.Game {
-    // main game configuration (internal behaviour; external appearance/embedding should be defined in CSS)
-    static readonly defaults: Phaser.Types.Core.GameConfig = {
+window.onload = () => {
+    'use strict';
+
+    let config: Phaser.Types.Core.GameConfig = {
         type: Phaser.WEBGL,
-        backgroundColor: '#222244',
         plugins: {
             scene: [
                 {
                     key: 'SpinePlugin',
-                    // @ts-ignore
                     plugin: window.SpinePlugin,
                     mapping: 'spine'
                 }
@@ -94,40 +92,10 @@ export class Game extends Phaser.Game {
         },
         scene: [Scene1, Scene2],
         scale: {
-            parent: "game-canvas",
-            fullscreenTarget: "game-canvas",
-            //mode: Phaser.Scale.ENVELOP, 
-        },
-        disableContextMenu: true,
-        input: {
-            keyboard: true,
-            mouse: true,
-            touch: true,
-            gamepad: false
+            parent: "game-canvas"
         }
     };
 
-    // constructs the game based on the game configuration
-    constructor(renderTarget: string) {
-        super(Game.getGameConfig(renderTarget));
-    }
-
-    static getGameConfig(renderTarget: string): Phaser.Types.Core.GameConfig {
-        let config = Game.defaults;
-
-        if (renderTarget !== "" && config.scale) {
-            config.scale.parent = renderTarget;
-            config.scale.fullscreenTarget = renderTarget;
-        }
-
-        return config;
-    }
-}
-
-// when the page is loaded, create our game instance
-window.onload = () => {
-    'use strict';
-
-    let game = new Game("game-ganvas");
+    let game = new Phaser.Game(config);
     game.scale.resize(window.innerWidth, window.innerHeight);
 }
