@@ -36,18 +36,20 @@ namespace Backend {
             });
 
             services.AddResponseCompression();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddRazorPages();
             services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
-            if (env.IsDevelopment()) {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+            if (env.EnvironmentName.Equals("Development")) {
                 app.UseDeveloperExceptionPage();
             } else {
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            app.UseCookiePolicy();
 
 /** 
             DefaultFilesOptions options = new DefaultFilesOptions();
@@ -56,12 +58,6 @@ namespace Backend {
             options.DefaultFileNames.Add("fallback.html");
             app.UseDefaultFiles(options);
  */
-
-            // app.UseHttpsRedirection();
-            app.UseSignalR(routes => {
-                routes.MapHub<GameHub>("/gamehub");
-                routes.MapHub<ConsoleHub>("/consolehub");
-            });
 
             // Set up custom content types - associating file extension to MIME type
             var provider = new FileExtensionContentTypeProvider();
@@ -73,8 +69,15 @@ namespace Backend {
             app.UseStaticFiles(new StaticFileOptions {
                 ContentTypeProvider = provider
             });
-            app.UseCookiePolicy();
-            app.UseMvc();
+
+            app.UseRouting();
+            // app.UseHttpsRedirection();
+            app.UseEndpoints(endpoints => {
+                endpoints.MapRazorPages();
+                endpoints.MapHub<GameHub>("/gamehub");
+                endpoints.MapHub<ConsoleHub>("/consolehub");
+            });
+
         }
     }
 }
