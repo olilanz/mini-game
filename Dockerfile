@@ -27,7 +27,7 @@ RUN dotnet publish --output /dist --configuration Debug
 ############################################################
 ## build runtime 
 ############################################################
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-preview8
 COPY --from=backendbuilder /dist /app
 COPY --from=frontendbuilder /build/dist /app/wwwroot/gamecore
 
