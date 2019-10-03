@@ -31,25 +31,6 @@ export class Player extends Phaser.Physics.Matter.Image {
         this.__playerSpine = new MatterSpine(this.scene, Assets.SPINE_TEMPLATE, 'idle');
         this.__playerSpine.setSkin("Template");
         this.__playerSpine.attachBody(body, 1.5);
-
-        // interactions
-        this.configureCollisions(this.scene, body);
-    }
-
-    configureCollisions(scene: Phaser.Scene, body: MatterJS.Body) {
-        console.log("configuring collisions");
-        // @ts-ignore
-        scene.matterCollision.addOnCollideStart({
-            objectA: body,
-            callback: (eventData: any) => {
-                const { bodyB, gameObjectB } = eventData;
-                console.log("Player touched something.");
-                // bodyB will be the matter body that the player touched
-                // gameObjectB will be the game object that owns bodyB, or undefined if there's no game object
-                console.log("collision detected");
-                console.log(gameObjectB);
-            }
-          });
     }
 
     preUpdate() {
