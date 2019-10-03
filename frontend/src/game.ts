@@ -6,26 +6,20 @@
  */
 
 import "phaser";
-import "phaser/plugins/spine/dist/SpineWebGLPlugin";
+import "~/plugins/spine/SpineWebGLPlugin";
 
-// @ts-ignore
-import SpineWebGLPlugin from "./plugins/spine/SpineWebGLPlugin";
-// @ts-ignore
+import { ExternalGameConfig, GameMode } from "~/externalgameconfig";
+import { GlobalStateIdentifier } from "~/gamestate";
 
-import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
+import { Engine } from "~/engine/engine";
 
-import { ExternalGameConfig, GameMode } from "./externalgameconfig";
-import { GlobalStateIdentifier } from "./gamestate";
-
-import { Engine } from "./engine/engine";
-
-import { Welcome } from "./scenes/welcome/welcome";
-import { ServerConsole } from "./scenes/serverconsole/serverconsole";
-import { Menu } from "./scenes/menu/menu";
-import { Harness } from "./scenes/gameplay/harness";
-import { Scores } from "./scenes/scores/scores";
-import { Pause } from "./scenes/pause/pause";
-import { Canvas } from "./scenes/gameplay/canvas";
+import { Welcome } from "~/scenes/welcome/welcome";
+import { ServerConsole } from "~/scenes/serverconsole/serverconsole";
+import { Menu } from "~/scenes/menu/menu";
+import { Harness } from "~/scenes/gameplay/harness";
+import { Scores } from "~/scenes/scores/scores";
+import { Pause } from "~/scenes/pause/pause";
+import { Canvas } from "~/scenes/gameplay/canvas";
 
 // represents the entire game
 export class Game extends Phaser.Game {
@@ -36,16 +30,10 @@ export class Game extends Phaser.Game {
     plugins: {
       scene: [
         {
-          key: 'SpineWebGLPlugin',
-          plugin: SpineWebGLPlugin,
-          start: true,
+          key: 'SpinePlugin',
+          // @ts-ignore
+          plugin: window.SpinePlugin,
           sceneKey: 'spine'
-        },
-        {
-          // https://github.com/mikewesthad/phaser-matter-collision-plugin
-          plugin: PhaserMatterCollisionPlugin, // The plugin class
-          key: "matterCollision", // Where to store in Scene.Systems, e.g. scene.sys.matterCollision
-          mapping: "matterCollision" // Where to store in the Scene, e.g. scene.matterCollision
         }
       ]
     },
