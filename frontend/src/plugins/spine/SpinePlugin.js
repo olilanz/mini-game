@@ -478,6 +478,38 @@ module.exports = IsPlainObject;
  */
 
 /**
+ * Wrap the given `value` between `min` and `max.
+ *
+ * @function Phaser.Math.Wrap
+ * @since 3.0.0
+ *
+ * @param {number} value - The value to wrap.
+ * @param {number} min - The minimum value.
+ * @param {number} max - The maximum value.
+ *
+ * @return {number} The wrapped value.
+ */
+var Wrap = function (value, min, max)
+{
+    var range = max - min;
+
+    return (min + ((((value - min) % range) + range) % range));
+};
+
+module.exports = Wrap;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+/**
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2019 Photon Storm Ltd.
+ * @license      {@link https://opensource.org/licenses/MIT|MIT License}
+ */
+
+/**
  * Finds the key within the top level of the {@link source} object, or returns {@link defaultValue}
  *
  * @function Phaser.Utils.Objects.GetFastValue
@@ -511,8 +543,8 @@ module.exports = GetFastValue;
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
 
 /**
  * @author       Richard Davey <rich@photonstorm.com>
@@ -520,30 +552,73 @@ module.exports = GetFastValue;
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
-/**
- * Wrap the given `value` between `min` and `max.
- *
- * @function Phaser.Math.Wrap
- * @since 3.0.0
- *
- * @param {number} value - The value to wrap.
- * @param {number} min - The minimum value.
- * @param {number} max - The maximum value.
- *
- * @return {number} The wrapped value.
- */
-var Wrap = function (value, min, max)
-{
-    var range = max - min;
+var CONST = __webpack_require__(1);
 
-    return (min + ((((value - min) % range) + range) % range));
+/**
+ * Takes an angle in Phasers default clockwise format and converts it so that
+ * 0 is North, 90 is West, 180 is South and 270 is East,
+ * therefore running counter-clockwise instead of clockwise.
+ * 
+ * You can pass in the angle from a Game Object using:
+ * 
+ * ```javascript
+ * var converted = CounterClockwise(gameobject.rotation);
+ * ```
+ * 
+ * All values for this function are in radians.
+ *
+ * @function Phaser.Math.Angle.CounterClockwise
+ * @since 3.16.0
+ *
+ * @param {number} angle - The angle to convert, in radians.
+ *
+ * @return {number} The converted angle, in radians.
+ */
+var CounterClockwise = function (angle)
+{
+    if (angle > Math.PI)
+    {
+        angle -= CONST.PI2;
+    }
+
+    return Math.abs((((angle + CONST.TAU) % CONST.PI2) - CONST.PI2) % CONST.PI2);
 };
 
-module.exports = Wrap;
+module.exports = CounterClockwise;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2019 Photon Storm Ltd.
+ * @license      {@link https://opensource.org/licenses/MIT|MIT License}
+ */
+
+var CONST = __webpack_require__(1);
+
+/**
+ * Convert the given angle in radians, to the equivalent angle in degrees.
+ *
+ * @function Phaser.Math.RadToDeg
+ * @since 3.0.0
+ *
+ * @param {number} radians - The angle in radians to convert ot degrees.
+ *
+ * @return {integer} The given angle converted to degrees.
+ */
+var RadToDeg = function (radians)
+{
+    return radians * CONST.RAD_TO_DEG;
+};
+
+module.exports = RadToDeg;
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -1182,7 +1257,7 @@ module.exports = Vector2;
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 /**
@@ -1334,52 +1409,7 @@ module.exports = FILE_CONST;
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    2019 Photon Storm Ltd.
- * @license      {@link https://opensource.org/licenses/MIT|MIT License}
- */
-
-var CONST = __webpack_require__(1);
-
-/**
- * Takes an angle in Phasers default clockwise format and converts it so that
- * 0 is North, 90 is West, 180 is South and 270 is East,
- * therefore running counter-clockwise instead of clockwise.
- * 
- * You can pass in the angle from a Game Object using:
- * 
- * ```javascript
- * var converted = CounterClockwise(gameobject.rotation);
- * ```
- * 
- * All values for this function are in radians.
- *
- * @function Phaser.Math.Angle.CounterClockwise
- * @since 3.16.0
- *
- * @param {number} angle - The angle to convert, in radians.
- *
- * @return {number} The converted angle, in radians.
- */
-var CounterClockwise = function (angle)
-{
-    if (angle > Math.PI)
-    {
-        angle -= CONST.PI2;
-    }
-
-    return Math.abs((((angle + CONST.TAU) % CONST.PI2) - CONST.PI2) % CONST.PI2);
-};
-
-module.exports = CounterClockwise;
-
-
-/***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /**
@@ -1406,36 +1436,6 @@ var Clamp = function (value, min, max)
 };
 
 module.exports = Clamp;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    2019 Photon Storm Ltd.
- * @license      {@link https://opensource.org/licenses/MIT|MIT License}
- */
-
-var CONST = __webpack_require__(1);
-
-/**
- * Convert the given angle in radians, to the equivalent angle in degrees.
- *
- * @function Phaser.Math.RadToDeg
- * @since 3.0.0
- *
- * @param {number} radians - The angle in radians to convert ot degrees.
- *
- * @return {integer} The given angle converted to degrees.
- */
-var RadToDeg = function (radians)
-{
-    return radians * CONST.RAD_TO_DEG;
-};
-
-module.exports = RadToDeg;
 
 
 /***/ }),
@@ -2330,9 +2330,9 @@ module.exports = GetValue;
  */
 
 var Class = __webpack_require__(0);
-var CONST = __webpack_require__(6);
+var CONST = __webpack_require__(8);
 var Events = __webpack_require__(170);
-var GetFastValue = __webpack_require__(3);
+var GetFastValue = __webpack_require__(4);
 var GetURL = __webpack_require__(181);
 var MergeXHRSettings = __webpack_require__(29);
 var XHRLoader = __webpack_require__(182);
@@ -3106,7 +3106,7 @@ module.exports = Normalize;
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
-var MathWrap = __webpack_require__(4);
+var MathWrap = __webpack_require__(3);
 
 /**
  * Wrap an angle.
@@ -3138,7 +3138,7 @@ module.exports = Wrap;
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
-var Wrap = __webpack_require__(4);
+var Wrap = __webpack_require__(3);
 
 /**
  * Wrap an angle in degrees.
@@ -8102,7 +8102,7 @@ var PhaserMath = {
     Between: __webpack_require__(117),
     CatmullRom: __webpack_require__(21),
     CeilTo: __webpack_require__(118),
-    Clamp: __webpack_require__(8),
+    Clamp: __webpack_require__(9),
     DegToRad: __webpack_require__(25),
     Difference: __webpack_require__(119),
     Factorial: __webpack_require__(20),
@@ -8116,7 +8116,7 @@ var PhaserMath = {
     MaxAdd: __webpack_require__(126),
     MinSub: __webpack_require__(127),
     Percent: __webpack_require__(128),
-    RadToDeg: __webpack_require__(9),
+    RadToDeg: __webpack_require__(6),
     RandomXY: __webpack_require__(129),
     RandomXYZ: __webpack_require__(130),
     RandomXYZW: __webpack_require__(131),
@@ -8131,10 +8131,10 @@ var PhaserMath = {
     ToXY: __webpack_require__(138),
     TransformXY: __webpack_require__(139),
     Within: __webpack_require__(140),
-    Wrap: __webpack_require__(4),
+    Wrap: __webpack_require__(3),
 
     //  Vector classes
-    Vector2: __webpack_require__(5),
+    Vector2: __webpack_require__(7),
     Vector3: __webpack_require__(10),
     Vector4: __webpack_require__(141),
     Matrix3: __webpack_require__(26),
@@ -8173,7 +8173,7 @@ module.exports = {
     BetweenPoints: __webpack_require__(38),
     BetweenPointsY: __webpack_require__(39),
     BetweenY: __webpack_require__(40),
-    CounterClockwise: __webpack_require__(7),
+    CounterClockwise: __webpack_require__(5),
     Normalize: __webpack_require__(16),
     Reverse: __webpack_require__(41),
     RotateTo: __webpack_require__(42),
@@ -11531,7 +11531,7 @@ module.exports = FloorTo;
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
-var Clamp = __webpack_require__(8);
+var Clamp = __webpack_require__(9);
 
 /**
  * Return a value based on the range between `min` and `max` and the percentage given.
@@ -12135,7 +12135,7 @@ module.exports = SinCosTableGenerator;
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
-var Vector2 = __webpack_require__(5);
+var Vector2 = __webpack_require__(7);
 
 /**
  * Returns a Vec2 containing the x and y position of the given index in a `width` x `height` sized grid.
@@ -12193,7 +12193,7 @@ module.exports = ToXY;
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
-var Vector2 = __webpack_require__(5);
+var Vector2 = __webpack_require__(7);
 
 /**
  * Takes the `x` and `y` coordinates and transforms them into the same space as
@@ -21998,6 +21998,274 @@ var spine;
 })(spine || (spine = {}));
 var spine;
 (function (spine) {
+    var canvas;
+    (function (canvas) {
+        var AssetManager = (function (_super) {
+            __extends(AssetManager, _super);
+            function AssetManager(pathPrefix) {
+                if (pathPrefix === void 0) { pathPrefix = ""; }
+                return _super.call(this, function (image) { return new spine.canvas.CanvasTexture(image); }, pathPrefix) || this;
+            }
+            return AssetManager;
+        }(spine.AssetManager));
+        canvas.AssetManager = AssetManager;
+    })(canvas = spine.canvas || (spine.canvas = {}));
+})(spine || (spine = {}));
+var spine;
+(function (spine) {
+    var canvas;
+    (function (canvas) {
+        var CanvasTexture = (function (_super) {
+            __extends(CanvasTexture, _super);
+            function CanvasTexture(image) {
+                return _super.call(this, image) || this;
+            }
+            CanvasTexture.prototype.setFilters = function (minFilter, magFilter) { };
+            CanvasTexture.prototype.setWraps = function (uWrap, vWrap) { };
+            CanvasTexture.prototype.dispose = function () { };
+            return CanvasTexture;
+        }(spine.Texture));
+        canvas.CanvasTexture = CanvasTexture;
+    })(canvas = spine.canvas || (spine.canvas = {}));
+})(spine || (spine = {}));
+var spine;
+(function (spine) {
+    var canvas;
+    (function (canvas) {
+        var SkeletonRenderer = (function () {
+            function SkeletonRenderer(context) {
+                this.triangleRendering = false;
+                this.debugRendering = false;
+                this.vertices = spine.Utils.newFloatArray(8 * 1024);
+                this.tempColor = new spine.Color();
+                this.ctx = context;
+            }
+            SkeletonRenderer.prototype.draw = function (skeleton) {
+                if (this.triangleRendering)
+                    this.drawTriangles(skeleton);
+                else
+                    this.drawImages(skeleton);
+            };
+            SkeletonRenderer.prototype.drawImages = function (skeleton) {
+                var ctx = this.ctx;
+                var drawOrder = skeleton.drawOrder;
+                if (this.debugRendering)
+                    ctx.strokeStyle = "green";
+                ctx.save();
+                for (var i = 0, n = drawOrder.length; i < n; i++) {
+                    var slot = drawOrder[i];
+                    if (!slot.bone.active)
+                        continue;
+                    var attachment = slot.getAttachment();
+                    var regionAttachment = null;
+                    var region = null;
+                    var image = null;
+                    if (attachment instanceof spine.RegionAttachment) {
+                        regionAttachment = attachment;
+                        region = regionAttachment.region;
+                        image = region.texture.getImage();
+                    }
+                    else
+                        continue;
+                    var skeleton_1 = slot.bone.skeleton;
+                    var skeletonColor = skeleton_1.color;
+                    var slotColor = slot.color;
+                    var regionColor = regionAttachment.color;
+                    var alpha = skeletonColor.a * slotColor.a * regionColor.a;
+                    var color = this.tempColor;
+                    color.set(skeletonColor.r * slotColor.r * regionColor.r, skeletonColor.g * slotColor.g * regionColor.g, skeletonColor.b * slotColor.b * regionColor.b, alpha);
+                    var att = attachment;
+                    var bone = slot.bone;
+                    var w = region.width;
+                    var h = region.height;
+                    ctx.save();
+                    ctx.transform(bone.a, bone.c, bone.b, bone.d, bone.worldX, bone.worldY);
+                    ctx.translate(attachment.offset[0], attachment.offset[1]);
+                    ctx.rotate(attachment.rotation * Math.PI / 180);
+                    var atlasScale = att.width / w;
+                    ctx.scale(atlasScale * attachment.scaleX, atlasScale * attachment.scaleY);
+                    ctx.translate(w / 2, h / 2);
+                    if (attachment.region.rotate) {
+                        var t = w;
+                        w = h;
+                        h = t;
+                        ctx.rotate(-Math.PI / 2);
+                    }
+                    ctx.scale(1, -1);
+                    ctx.translate(-w / 2, -h / 2);
+                    if (color.r != 1 || color.g != 1 || color.b != 1 || color.a != 1) {
+                        ctx.globalAlpha = color.a;
+                    }
+                    ctx.drawImage(image, region.x, region.y, w, h, 0, 0, w, h);
+                    if (this.debugRendering)
+                        ctx.strokeRect(0, 0, w, h);
+                    ctx.restore();
+                }
+                ctx.restore();
+            };
+            SkeletonRenderer.prototype.drawTriangles = function (skeleton) {
+                var blendMode = null;
+                var vertices = this.vertices;
+                var triangles = null;
+                var drawOrder = skeleton.drawOrder;
+                for (var i = 0, n = drawOrder.length; i < n; i++) {
+                    var slot = drawOrder[i];
+                    var attachment = slot.getAttachment();
+                    var texture = null;
+                    var region = null;
+                    if (attachment instanceof spine.RegionAttachment) {
+                        var regionAttachment = attachment;
+                        vertices = this.computeRegionVertices(slot, regionAttachment, false);
+                        triangles = SkeletonRenderer.QUAD_TRIANGLES;
+                        region = regionAttachment.region;
+                        texture = region.texture.getImage();
+                    }
+                    else if (attachment instanceof spine.MeshAttachment) {
+                        var mesh = attachment;
+                        vertices = this.computeMeshVertices(slot, mesh, false);
+                        triangles = mesh.triangles;
+                        texture = mesh.region.renderObject.texture.getImage();
+                    }
+                    else
+                        continue;
+                    if (texture != null) {
+                        var slotBlendMode = slot.data.blendMode;
+                        if (slotBlendMode != blendMode) {
+                            blendMode = slotBlendMode;
+                        }
+                        var skeleton_2 = slot.bone.skeleton;
+                        var skeletonColor = skeleton_2.color;
+                        var slotColor = slot.color;
+                        var attachmentColor = attachment.color;
+                        var alpha = skeletonColor.a * slotColor.a * attachmentColor.a;
+                        var color = this.tempColor;
+                        color.set(skeletonColor.r * slotColor.r * attachmentColor.r, skeletonColor.g * slotColor.g * attachmentColor.g, skeletonColor.b * slotColor.b * attachmentColor.b, alpha);
+                        var ctx = this.ctx;
+                        if (color.r != 1 || color.g != 1 || color.b != 1 || color.a != 1) {
+                            ctx.globalAlpha = color.a;
+                        }
+                        for (var j = 0; j < triangles.length; j += 3) {
+                            var t1 = triangles[j] * 8, t2 = triangles[j + 1] * 8, t3 = triangles[j + 2] * 8;
+                            var x0 = vertices[t1], y0 = vertices[t1 + 1], u0 = vertices[t1 + 6], v0 = vertices[t1 + 7];
+                            var x1 = vertices[t2], y1 = vertices[t2 + 1], u1 = vertices[t2 + 6], v1 = vertices[t2 + 7];
+                            var x2 = vertices[t3], y2 = vertices[t3 + 1], u2 = vertices[t3 + 6], v2 = vertices[t3 + 7];
+                            this.drawTriangle(texture, x0, y0, u0, v0, x1, y1, u1, v1, x2, y2, u2, v2);
+                            if (this.debugRendering) {
+                                ctx.strokeStyle = "green";
+                                ctx.beginPath();
+                                ctx.moveTo(x0, y0);
+                                ctx.lineTo(x1, y1);
+                                ctx.lineTo(x2, y2);
+                                ctx.lineTo(x0, y0);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                }
+                this.ctx.globalAlpha = 1;
+            };
+            SkeletonRenderer.prototype.drawTriangle = function (img, x0, y0, u0, v0, x1, y1, u1, v1, x2, y2, u2, v2) {
+                var ctx = this.ctx;
+                u0 *= img.width;
+                v0 *= img.height;
+                u1 *= img.width;
+                v1 *= img.height;
+                u2 *= img.width;
+                v2 *= img.height;
+                ctx.beginPath();
+                ctx.moveTo(x0, y0);
+                ctx.lineTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.closePath();
+                x1 -= x0;
+                y1 -= y0;
+                x2 -= x0;
+                y2 -= y0;
+                u1 -= u0;
+                v1 -= v0;
+                u2 -= u0;
+                v2 -= v0;
+                var det = 1 / (u1 * v2 - u2 * v1), a = (v2 * x1 - v1 * x2) * det, b = (v2 * y1 - v1 * y2) * det, c = (u1 * x2 - u2 * x1) * det, d = (u1 * y2 - u2 * y1) * det, e = x0 - a * u0 - c * v0, f = y0 - b * u0 - d * v0;
+                ctx.save();
+                ctx.transform(a, b, c, d, e, f);
+                ctx.clip();
+                ctx.drawImage(img, 0, 0);
+                ctx.restore();
+            };
+            SkeletonRenderer.prototype.computeRegionVertices = function (slot, region, pma) {
+                var skeleton = slot.bone.skeleton;
+                var skeletonColor = skeleton.color;
+                var slotColor = slot.color;
+                var regionColor = region.color;
+                var alpha = skeletonColor.a * slotColor.a * regionColor.a;
+                var multiplier = pma ? alpha : 1;
+                var color = this.tempColor;
+                color.set(skeletonColor.r * slotColor.r * regionColor.r * multiplier, skeletonColor.g * slotColor.g * regionColor.g * multiplier, skeletonColor.b * slotColor.b * regionColor.b * multiplier, alpha);
+                region.computeWorldVertices(slot.bone, this.vertices, 0, SkeletonRenderer.VERTEX_SIZE);
+                var vertices = this.vertices;
+                var uvs = region.uvs;
+                vertices[spine.RegionAttachment.C1R] = color.r;
+                vertices[spine.RegionAttachment.C1G] = color.g;
+                vertices[spine.RegionAttachment.C1B] = color.b;
+                vertices[spine.RegionAttachment.C1A] = color.a;
+                vertices[spine.RegionAttachment.U1] = uvs[0];
+                vertices[spine.RegionAttachment.V1] = uvs[1];
+                vertices[spine.RegionAttachment.C2R] = color.r;
+                vertices[spine.RegionAttachment.C2G] = color.g;
+                vertices[spine.RegionAttachment.C2B] = color.b;
+                vertices[spine.RegionAttachment.C2A] = color.a;
+                vertices[spine.RegionAttachment.U2] = uvs[2];
+                vertices[spine.RegionAttachment.V2] = uvs[3];
+                vertices[spine.RegionAttachment.C3R] = color.r;
+                vertices[spine.RegionAttachment.C3G] = color.g;
+                vertices[spine.RegionAttachment.C3B] = color.b;
+                vertices[spine.RegionAttachment.C3A] = color.a;
+                vertices[spine.RegionAttachment.U3] = uvs[4];
+                vertices[spine.RegionAttachment.V3] = uvs[5];
+                vertices[spine.RegionAttachment.C4R] = color.r;
+                vertices[spine.RegionAttachment.C4G] = color.g;
+                vertices[spine.RegionAttachment.C4B] = color.b;
+                vertices[spine.RegionAttachment.C4A] = color.a;
+                vertices[spine.RegionAttachment.U4] = uvs[6];
+                vertices[spine.RegionAttachment.V4] = uvs[7];
+                return vertices;
+            };
+            SkeletonRenderer.prototype.computeMeshVertices = function (slot, mesh, pma) {
+                var skeleton = slot.bone.skeleton;
+                var skeletonColor = skeleton.color;
+                var slotColor = slot.color;
+                var regionColor = mesh.color;
+                var alpha = skeletonColor.a * slotColor.a * regionColor.a;
+                var multiplier = pma ? alpha : 1;
+                var color = this.tempColor;
+                color.set(skeletonColor.r * slotColor.r * regionColor.r * multiplier, skeletonColor.g * slotColor.g * regionColor.g * multiplier, skeletonColor.b * slotColor.b * regionColor.b * multiplier, alpha);
+                var numVertices = mesh.worldVerticesLength / 2;
+                if (this.vertices.length < mesh.worldVerticesLength) {
+                    this.vertices = spine.Utils.newFloatArray(mesh.worldVerticesLength);
+                }
+                var vertices = this.vertices;
+                mesh.computeWorldVertices(slot, 0, mesh.worldVerticesLength, vertices, 0, SkeletonRenderer.VERTEX_SIZE);
+                var uvs = mesh.uvs;
+                for (var i = 0, n = numVertices, u = 0, v = 2; i < n; i++) {
+                    vertices[v++] = color.r;
+                    vertices[v++] = color.g;
+                    vertices[v++] = color.b;
+                    vertices[v++] = color.a;
+                    vertices[v++] = uvs[u++];
+                    vertices[v++] = uvs[u++];
+                    v += 2;
+                }
+                return vertices;
+            };
+            SkeletonRenderer.QUAD_TRIANGLES = [0, 1, 2, 2, 3, 0];
+            SkeletonRenderer.VERTEX_SIZE = 2 + 2 + 4;
+            return SkeletonRenderer;
+        }());
+        canvas.SkeletonRenderer = SkeletonRenderer;
+    })(canvas = spine.canvas || (spine.canvas = {}));
+})(spine || (spine = {}));
+var spine;
+(function (spine) {
     var webgl;
     (function (webgl) {
         var AssetManager = (function (_super) {
@@ -24252,16 +24520,16 @@ var spine;
                 if (contextConfig === void 0) { contextConfig = { alpha: "true" }; }
                 this.restorables = new Array();
                 if (canvasOrContext instanceof HTMLCanvasElement) {
-                    var canvas = canvasOrContext;
-                    this.gl = (canvas.getContext("webgl2", contextConfig) || canvas.getContext("webgl", contextConfig));
-                    this.canvas = canvas;
-                    canvas.addEventListener("webglcontextlost", function (e) {
+                    var canvas_1 = canvasOrContext;
+                    this.gl = (canvas_1.getContext("webgl2", contextConfig) || canvas_1.getContext("webgl", contextConfig));
+                    this.canvas = canvas_1;
+                    canvas_1.addEventListener("webglcontextlost", function (e) {
                         var event = e;
                         if (e) {
                             e.preventDefault();
                         }
                     });
-                    canvas.addEventListener("webglcontextrestored", function (e) {
+                    canvas_1.addEventListener("webglcontextrestored", function (e) {
                         for (var i = 0, n = _this.restorables.length; i < n; i++) {
                             _this.restorables[i].restore();
                         }
@@ -24319,7 +24587,7 @@ var spine;
         webgl.WebGLBlendModeConverter = WebGLBlendModeConverter;
     })(webgl = spine.webgl || (spine.webgl = {}));
 })(spine || (spine = {}));
-//# sourceMappingURL=spine-webgl.js.map
+//# sourceMappingURL=spine-both.js.map
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = spine;
@@ -24336,7 +24604,7 @@ module.exports = spine;
  */
 
 var Class = __webpack_require__(0);
-var GetFastValue = __webpack_require__(3);
+var GetFastValue = __webpack_require__(4);
 var ImageFile = __webpack_require__(169);
 var IsPlainObject = __webpack_require__(2);
 var JSONFile = __webpack_require__(183);
@@ -24589,10 +24857,10 @@ module.exports = SpineFile;
  */
 
 var Class = __webpack_require__(0);
-var CONST = __webpack_require__(6);
+var CONST = __webpack_require__(8);
 var File = __webpack_require__(12);
 var FileTypesManager = __webpack_require__(13);
-var GetFastValue = __webpack_require__(3);
+var GetFastValue = __webpack_require__(4);
 var IsPlainObject = __webpack_require__(2);
 
 /**
@@ -25302,10 +25570,10 @@ module.exports = XHRLoader;
  */
 
 var Class = __webpack_require__(0);
-var CONST = __webpack_require__(6);
+var CONST = __webpack_require__(8);
 var File = __webpack_require__(12);
 var FileTypesManager = __webpack_require__(13);
-var GetFastValue = __webpack_require__(3);
+var GetFastValue = __webpack_require__(4);
 var GetValue = __webpack_require__(11);
 var IsPlainObject = __webpack_require__(2);
 
@@ -25756,10 +26024,10 @@ module.exports = MultiFile;
  */
 
 var Class = __webpack_require__(0);
-var CONST = __webpack_require__(6);
+var CONST = __webpack_require__(8);
 var File = __webpack_require__(12);
 var FileTypesManager = __webpack_require__(13);
-var GetFastValue = __webpack_require__(3);
+var GetFastValue = __webpack_require__(4);
 var IsPlainObject = __webpack_require__(2);
 
 /**
@@ -25931,7 +26199,7 @@ module.exports = TextFile;
  */
 
 var AngleBetween = __webpack_require__(15);
-var Clamp = __webpack_require__(8);
+var Clamp = __webpack_require__(9);
 var Class = __webpack_require__(0);
 var ComponentsComputedSize = __webpack_require__(187);
 var ComponentsDepth = __webpack_require__(188);
@@ -25939,10 +26207,10 @@ var ComponentsFlip = __webpack_require__(189);
 var ComponentsScrollFactor = __webpack_require__(190);
 var ComponentsTransform = __webpack_require__(191);
 var ComponentsVisible = __webpack_require__(193);
-var CounterClockwise = __webpack_require__(7);
+var CounterClockwise = __webpack_require__(5);
 var DegToRad = __webpack_require__(25);
 var GameObject = __webpack_require__(194);
-var RadToDeg = __webpack_require__(9);
+var RadToDeg = __webpack_require__(6);
 var SpineEvents = __webpack_require__(205);
 var SpineGameObjectRender = __webpack_require__(212);
 
@@ -28571,7 +28839,7 @@ module.exports = Transform;
 
 var Class = __webpack_require__(0);
 var MATH_CONST = __webpack_require__(1);
-var Vector2 = __webpack_require__(5);
+var Vector2 = __webpack_require__(7);
 
 /**
  * @classdesc
@@ -31646,8 +31914,10 @@ if (true)
     renderWebGL = __webpack_require__(213);
 }
 
-if (false)
-{}
+if (true)
+{
+    renderCanvas = __webpack_require__(214);
+}
 
 module.exports = {
 
@@ -31667,9 +31937,9 @@ module.exports = {
  * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
  */
 
-var CounterClockwise = __webpack_require__(7);
-var RadToDeg = __webpack_require__(9);
-var Wrap = __webpack_require__(4);
+var CounterClockwise = __webpack_require__(5);
+var RadToDeg = __webpack_require__(6);
+var Wrap = __webpack_require__(3);
 
 /**
  * Renders this Game Object with the WebGL Renderer to the given Camera.
@@ -31823,6 +32093,137 @@ var SpineGameObjectWebGLRenderer = function (renderer, src, interpolationPercent
 };
 
 module.exports = SpineGameObjectWebGLRenderer;
+
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2019 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
+
+var CounterClockwise = __webpack_require__(5);
+var RadToDeg = __webpack_require__(6);
+var Wrap = __webpack_require__(3);
+
+/**
+ * Renders this Game Object with the Canvas Renderer to the given Camera.
+ * The object will not render if any of its renderFlags are set or it is being actively filtered out by the Camera.
+ * This method should not be called directly. It is a utility function of the Render module.
+ *
+ * @method SpineGameObject#renderCanvas
+ * @since 3.19.0
+ * @private
+ *
+ * @param {Phaser.Renderer.Canvas.CanvasRenderer} renderer - A reference to the current active Canvas renderer.
+ * @param {SpineGameObject} src - The Game Object being rendered in this call.
+ * @param {number} interpolationPercentage - Reserved for future use and custom pipelines.
+ * @param {Phaser.Cameras.Scene2D.Camera} camera - The Camera that is rendering the Game Object.
+ * @param {Phaser.GameObjects.Components.TransformMatrix} parentMatrix - This transform matrix is defined if the game object is nested
+ */
+var SpineGameObjectCanvasRenderer = function (renderer, src, interpolationPercentage, camera, parentMatrix)
+{
+    var context = renderer.currentContext;
+
+    var plugin = src.plugin;
+    var skeleton = src.skeleton;
+    var skeletonRenderer = plugin.skeletonRenderer;
+
+    var GameObjectRenderMask = 15;
+
+    var willRender = !(GameObjectRenderMask !== src.renderFlags || (src.cameraFilter !== 0 && (src.cameraFilter & camera.id)));
+
+    if (!skeleton || !willRender)
+    {
+        return;
+    }
+
+    var camMatrix = renderer._tempMatrix1;
+    var spriteMatrix = renderer._tempMatrix2;
+    var calcMatrix = renderer._tempMatrix3;
+
+    spriteMatrix.applyITRS(src.x, src.y, src.rotation, Math.abs(src.scaleX), Math.abs(src.scaleY));
+
+    camMatrix.copyFrom(camera.matrix);
+
+    if (parentMatrix)
+    {
+        //  Multiply the camera by the parent matrix
+        camMatrix.multiplyWithOffset(parentMatrix, -camera.scrollX * src.scrollFactorX, -camera.scrollY * src.scrollFactorY);
+
+        //  Undo the camera scroll
+        spriteMatrix.e = src.x;
+        spriteMatrix.f = src.y;
+
+        //  Multiply by the Sprite matrix, store result in calcMatrix
+        camMatrix.multiply(spriteMatrix, calcMatrix);
+    }
+    else
+    {
+        spriteMatrix.e -= camera.scrollX * src.scrollFactorX;
+        spriteMatrix.f -= camera.scrollY * src.scrollFactorY;
+
+        //  Multiply by the Sprite matrix, store result in calcMatrix
+        camMatrix.multiply(spriteMatrix, calcMatrix);
+    }
+
+    skeleton.x = calcMatrix.tx;
+    skeleton.y = calcMatrix.ty;
+
+    skeleton.scaleX = calcMatrix.scaleX;
+
+    //  Inverse or we get upside-down skeletons
+    skeleton.scaleY = calcMatrix.scaleY * -1;
+
+    if (src.scaleX < 0)
+    {
+        skeleton.scaleX *= -1;
+
+        src.root.rotation = RadToDeg(calcMatrix.rotationNormalized);
+    }
+    else
+    {
+        //  +90 degrees to account for the difference in Spine vs. Phaser rotation
+        src.root.rotation = Wrap(RadToDeg(CounterClockwise(calcMatrix.rotationNormalized)) + 90, 0, 360);
+    }
+
+    if (src.scaleY < 0)
+    {
+        skeleton.scaleY *= -1;
+
+        if (src.scaleX < 0)
+        {
+            src.root.rotation -= (RadToDeg(calcMatrix.rotationNormalized) * 2);
+        }
+        else
+        {
+            src.root.rotation += (RadToDeg(calcMatrix.rotationNormalized) * 2);
+        }
+    }
+
+    if (camera.renderToTexture)
+    {
+        skeleton.y = calcMatrix.ty;
+        skeleton.scaleY *= -1;
+    }
+
+    //  Add autoUpdate option
+    skeleton.updateWorldTransform();
+
+    skeletonRenderer.ctx = context;
+    skeletonRenderer.debugRendering = (plugin.drawDebug || src.drawDebug);
+
+    context.save();
+
+    skeletonRenderer.draw(skeleton);
+
+    context.restore();
+};
+
+module.exports = SpineGameObjectCanvasRenderer;
 
 
 /***/ })

@@ -6,26 +6,27 @@
  */
 
 import "phaser";
-import "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
+import "~/plugins/spine/SpineWebGLPlugin";
+//import "phaser/plugins/spine/dist/SpineWebGLPlugin";
 // @ts-ignore
-import SpineWebGLPlugin from "./plugins/spine/SpineWebGLPlugin";
+//import SpineWebGLPlugin from "~/plugins/spine/SpineWebGLPlugin";
 // @ts-ignore
 
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 
-import { ExternalGameConfig, GameMode } from "./externalgameconfig";
-import { GlobalStateIdentifier } from "./gamestate";
+import { ExternalGameConfig, GameMode } from "~/externalgameconfig";
+import { GlobalStateIdentifier } from "~/gamestate";
 
-import { Engine } from "./engine/engine";
+import { Engine } from "~/engine/engine";
 
-import { Welcome } from "./scenes/welcome/welcome";
-import { ServerConsole } from "./scenes/serverconsole/serverconsole";
-import { Menu } from "./scenes/menu/menu";
-import { Harness } from "./scenes/gameplay/harness";
-import { Scores } from "./scenes/scores/scores";
-import { Pause } from "./scenes/pause/pause";
-import { Canvas } from "./scenes/gameplay/canvas";
+import { Welcome } from "~/scenes/welcome/welcome";
+import { ServerConsole } from "~/scenes/serverconsole/serverconsole";
+import { Menu } from "~/scenes/menu/menu";
+import { Harness } from "~/scenes/gameplay/harness";
+import { Scores } from "~/scenes/scores/scores";
+import { Pause } from "~/scenes/pause/pause";
+import { Canvas } from "~/scenes/gameplay/canvas";
 
 // represents the entire game
 export class Game extends Phaser.Game {
@@ -36,9 +37,8 @@ export class Game extends Phaser.Game {
     plugins: {
       scene: [
         {
-          key: 'SpineWebGLPlugin',
-          plugin: SpineWebGLPlugin,
-          start: true,
+          key: 'SpinePlugin',
+          plugin: window.SpinePlugin,
           sceneKey: 'spine'
         },
         {
