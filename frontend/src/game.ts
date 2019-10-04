@@ -6,7 +6,7 @@
  */
 
 import "phaser";
-import "~/plugins/spine/SpineWebGLPlugin";
+import "~/plugins/spine/SpinePlugin";
 
 import { ExternalGameConfig, GameMode } from "~/externalgameconfig";
 import { GlobalStateIdentifier } from "~/gamestate";
@@ -25,7 +25,7 @@ import { Canvas } from "~/scenes/gameplay/canvas";
 export class Game extends Phaser.Game {
   // main game configuration (internal behaviour; external appearance/embedding should be defined in CSS)
   static readonly defaults: Phaser.Types.Core.GameConfig = {
-    type: Phaser.WEBGL,
+    type: Phaser.AUTO,
     backgroundColor: '#222244',
     plugins: {
       scene: [
