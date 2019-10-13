@@ -1,265 +1,265 @@
 
 Template.png
-size: 2017,831
+size: 798,531
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Template/Template_arm_lower_far
-  rotate: false
-  xy: 608, 8
-  size: 130, 105
-  orig: 130, 105
+  rotate: true
+  xy: 563, 3
+  size: 65, 52
+  orig: 65, 52
   offset: 0, 0
   index: -1
 Template/Template_arm_lower_near
-  rotate: false
-  xy: 1171, 9
-  size: 129, 104
-  orig: 129, 104
+  rotate: true
+  xy: 617, 3
+  size: 65, 52
+  orig: 65, 52
   offset: 0, 0
   index: -1
 Template/Template_arm_upper_far
-  rotate: false
-  xy: 1865, 688
-  size: 150, 141
-  orig: 150, 141
+  rotate: true
+  xy: 561, 70
+  size: 75, 71
+  orig: 75, 71
   offset: 0, 0
   index: -1
 Template/Template_arm_upper_near
   rotate: false
-  xy: 1865, 545
-  size: 150, 141
-  orig: 150, 141
+  xy: 712, 350
+  size: 75, 71
+  orig: 75, 71
   offset: 0, 0
   index: -1
 Template/Template_foot_far_1
   rotate: false
-  xy: 1545, 252
-  size: 162, 88
-  orig: 162, 88
+  xy: 480, 18
+  size: 81, 44
+  orig: 81, 44
   offset: 0, 0
   index: -1
 Template/Template_foot_far_2_bent
   rotate: false
-  xy: 740, 28
-  size: 153, 98
-  orig: 153, 98
+  xy: 251, 2
+  size: 76, 49
+  orig: 76, 49
   offset: 0, 0
   index: -1
 Template/Template_foot_near_1
   rotate: false
-  xy: 1380, 153
-  size: 162, 88
-  orig: 162, 88
+  xy: 712, 304
+  size: 81, 44
+  orig: 81, 44
   offset: 0, 0
   index: -1
 Template/Template_foot_near_2_bent
   rotate: false
-  xy: 1016, 15
-  size: 153, 98
-  orig: 153, 98
+  xy: 402, 13
+  size: 76, 49
+  orig: 76, 49
   offset: 0, 0
   index: -1
 Template/Template_gun
   rotate: false
-  xy: 1433, 342
-  size: 304, 213
-  orig: 304, 213
+  xy: 558, 285
+  size: 152, 106
+  orig: 152, 106
   offset: 0, 0
   index: -1
 Template/Template_gun_shoot
   rotate: false
-  xy: 717, 128
-  size: 304, 213
-  orig: 304, 213
+  xy: 638, 423
+  size: 152, 106
+  orig: 152, 106
   offset: 0, 0
   index: -1
 Template/Template_hand_far_1_fistBack
-  rotate: false
-  xy: 1540, 60
-  size: 102, 80
-  orig: 102, 80
+  rotate: true
+  xy: 753, 251
+  size: 51, 40
+  orig: 51, 40
   offset: 0, 0
   index: -1
 Template/Template_hand_far_2_fistPalm
-  rotate: false
-  xy: 1644, 44
-  size: 102, 80
-  orig: 102, 80
+  rotate: true
+  xy: 753, 198
+  size: 51, 40
+  orig: 51, 40
   offset: 0, 0
   index: -1
 Template/Template_hand_far_3_open
-  rotate: false
-  xy: 1302, 9
-  size: 117, 110
-  orig: 117, 110
+  rotate: true
+  xy: 634, 95
+  size: 58, 55
+  orig: 58, 55
   offset: 0, 0
   index: -1
 Template/Template_hand_near_1_fistBack
   rotate: false
-  xy: 1748, 44
-  size: 102, 80
-  orig: 102, 80
+  xy: 718, 156
+  size: 51, 40
+  orig: 51, 40
   offset: 0, 0
   index: -1
 Template/Template_hand_near_2_fistPalm
-  rotate: false
-  xy: 1852, 44
-  size: 102, 80
-  orig: 102, 80
+  rotate: true
+  xy: 753, 103
+  size: 51, 40
+  orig: 51, 40
   offset: 0, 0
   index: -1
 Template/Template_hand_near_3_open
-  rotate: false
-  xy: 1421, 41
-  size: 117, 110
-  orig: 117, 110
+  rotate: true
+  xy: 671, 35
+  size: 58, 55
+  orig: 58, 55
   offset: 0, 0
   index: -1
 Template/Template_head_1
   rotate: false
-  xy: 443, 115
-  size: 272, 272
-  orig: 272, 272
+  xy: 224, 393
+  size: 136, 136
+  orig: 136, 136
   offset: 0, 0
   index: -1
 Template/Template_head_2_injured
   rotate: false
-  xy: 769, 557
-  size: 272, 272
-  orig: 272, 272
+  xy: 362, 393
+  size: 136, 136
+  orig: 136, 136
   offset: 0, 0
   index: -1
 Template/Template_head_3_happy
   rotate: false
-  xy: 1043, 557
-  size: 272, 272
-  orig: 272, 272
+  xy: 327, 147
+  size: 136, 136
+  orig: 136, 136
   offset: 0, 0
   index: -1
 Template/Template_head_4_wideEyes
   rotate: false
-  xy: 1317, 557
-  size: 272, 272
-  orig: 272, 272
+  xy: 500, 393
+  size: 136, 136
+  orig: 136, 136
   offset: 0, 0
   index: -1
 Template/Template_head_5_sad
   rotate: false
-  xy: 1591, 557
-  size: 272, 272
-  orig: 272, 272
+  xy: 465, 147
+  size: 136, 136
+  orig: 136, 136
   offset: 0, 0
   index: -1
 Template/Template_leg_lower_far
   rotate: true
-  xy: 443, 16
-  size: 97, 163
-  orig: 97, 163
+  xy: 2, 2
+  size: 49, 81
+  orig: 49, 81
   offset: 0, 0
   index: -1
 Template/Template_leg_lower_near_1
-  rotate: false
-  xy: 1281, 178
-  size: 97, 163
-  orig: 97, 163
+  rotate: true
+  xy: 85, 2
+  size: 49, 81
+  orig: 49, 81
   offset: 0, 0
   index: -1
 Template/Template_leg_lower_near_2
   rotate: true
-  xy: 1380, 243
-  size: 97, 163
-  orig: 97, 163
+  xy: 168, 2
+  size: 49, 81
+  orig: 49, 81
   offset: 0, 0
   index: -1
 Template/Template_leg_upper_far
   rotate: true
-  xy: 1689, 126
-  size: 89, 136
-  orig: 89, 136
+  xy: 728, 54
+  size: 44, 68
+  orig: 44, 68
   offset: 0, 0
   index: -1
 Template/Template_leg_upper_near
   rotate: true
-  xy: 1827, 126
-  size: 89, 136
-  orig: 89, 136
+  xy: 728, 8
+  size: 44, 68
+  orig: 44, 68
   offset: 0, 0
   index: -1
 Template/Template_machineGun
   rotate: false
-  xy: 769, 343
-  size: 330, 212
-  orig: 330, 212
+  xy: 224, 285
+  size: 165, 106
+  orig: 165, 106
   offset: 0, 0
   index: -1
 Template/Template_machineGun_clip
   rotate: false
-  xy: 895, 21
-  size: 119, 105
-  orig: 119, 105
+  xy: 691, 100
+  size: 60, 53
+  orig: 60, 53
   offset: 0, 0
   index: -1
 Template/Template_machineGun_shoot
   rotate: false
-  xy: 1101, 343
-  size: 330, 212
-  orig: 330, 212
+  xy: 391, 285
+  size: 165, 106
+  orig: 165, 106
   offset: 0, 0
   index: -1
 Template/Template_neck
   rotate: false
-  xy: 1281, 121
-  size: 65, 55
-  orig: 65, 55
+  xy: 638, 393
+  size: 33, 28
+  orig: 33, 28
   offset: 0, 0
   index: -1
 Template/Template_pistol
   rotate: false
-  xy: 1739, 381
-  size: 231, 162
-  orig: 231, 162
+  xy: 327, 64
+  size: 115, 81
+  orig: 115, 81
   offset: 0, 0
   index: -1
 Template/Template_pistol_shoot
   rotate: false
-  xy: 1739, 217
-  size: 231, 162
-  orig: 231, 162
+  xy: 444, 64
+  size: 115, 81
+  orig: 115, 81
   offset: 0, 0
   index: -1
 Template/Template_sword_1
   rotate: false
-  xy: 511, 389
-  size: 256, 440
-  orig: 256, 440
+  xy: 197, 53
+  size: 128, 220
+  orig: 128, 220
   offset: 0, 0
   index: -1
 Template/Template_sword_2_swing
-  rotate: true
-  xy: 2, 2
-  size: 385, 439
-  orig: 385, 439
+  rotate: false
+  xy: 2, 53
+  size: 193, 220
+  orig: 193, 220
   offset: 0, 0
   index: -1
 Template/Template_sword_3_bigSwing
-  rotate: false
-  xy: 2, 389
-  size: 507, 440
-  orig: 507, 440
+  rotate: true
+  xy: 2, 275
+  size: 254, 220
+  orig: 254, 220
   offset: 0, 0
   index: -1
 Template/Template_torso
-  rotate: false
-  xy: 1023, 115
-  size: 256, 226
-  orig: 256, 226
+  rotate: true
+  xy: 603, 155
+  size: 128, 113
+  orig: 128, 113
   offset: 0, 0
   index: -1
 Template/Template_waist
   rotate: false
-  xy: 1545, 142
-  size: 142, 108
-  orig: 142, 108
+  xy: 329, 8
+  size: 71, 54
+  orig: 71, 54
   offset: 0, 0
   index: -1
