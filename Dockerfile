@@ -1,7 +1,7 @@
 ############################################################
 ## build the front end
 ############################################################
-FROM node:12.10.0 AS frontendbuilder
+FROM node:12.13.0 AS frontendbuilder
 WORKDIR /build
 
 COPY ./frontend/*.json /build/
