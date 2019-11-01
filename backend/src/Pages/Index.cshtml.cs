@@ -17,7 +17,7 @@ namespace backend.Pages {
         }
 
         public void OnGet() {
-           Message = "Login.";
+            Message = "Login.";
         }
 
         public string GetRandomPlayerName() {

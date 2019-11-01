@@ -4,15 +4,15 @@ using Backend.GameLogic;
 using System.Numerics;
 
 public interface IGameHubClient {
-        Task setGameConfig(int level, double x, double y);
-        Task updateOpponentPosition(string user, double worldwidth, double worldheight);
+    Task setGameConfig(int level, double x, double y);
+    Task updateOpponentPosition(string user, double worldwidth, double worldheight);
 }
 
 namespace Backend.Hubs {
     public class GameHub : Hub<IGameHubClient> {
 
         private readonly GameState _game = GameState.GetInstance();
-        
+
         public override Task OnConnectedAsync() {
             _game.RegisterClient(ClientType.Player, Context.ConnectionId);
             return base.OnConnectedAsync();

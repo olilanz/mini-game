@@ -6,13 +6,10 @@ using System.IO.Compression;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.FileProviders;
 using Backend.Hubs;
 
 namespace Backend {
@@ -51,13 +48,13 @@ namespace Backend {
 
             app.UseCookiePolicy();
 
-/** 
-            DefaultFilesOptions options = new DefaultFilesOptions();
-            options.DefaultFileNames.Clear();
-            options.DefaultFileNames.Add("index.html");
-            options.DefaultFileNames.Add("fallback.html");
-            app.UseDefaultFiles(options);
- */
+            /** 
+                        DefaultFilesOptions options = new DefaultFilesOptions();
+                        options.DefaultFileNames.Clear();
+                        options.DefaultFileNames.Add("index.html");
+                        options.DefaultFileNames.Add("fallback.html");
+                        app.UseDefaultFiles(options);
+             */
 
             // Set up custom content types - associating file extension to MIME type
             var provider = new FileExtensionContentTypeProvider();

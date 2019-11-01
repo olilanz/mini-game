@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 using Backend.GameLogic;
 
 public interface IConsoleHubClient {
-        Task setStats(EngineStats stats);
+    Task setStats(EngineStats stats);
 }
 
 namespace Backend.Hubs {
     public class ConsoleHub : Hub<IConsoleHubClient> {
 
         private readonly GameState _game = GameState.GetInstance();
-        
+
         public override Task OnConnectedAsync() {
             _game.RegisterClient(ClientType.Administrator, Context.ConnectionId);
             return base.OnConnectedAsync();
