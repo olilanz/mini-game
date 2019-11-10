@@ -7,13 +7,12 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@Model.Message</h3>
 
-<p>
-    <iframe id="gameContainer" src="/gamecore/index.html"></iframe>
-</p>
-
-<p>Open the game on its own: <a id="gameFullscreen" href="/gamecore/index.html">link</a></p>
+<p><iframe id="gameContainer"></iframe></p>
+<p>Open the server console on its own: <a id="gameFullscreen">link</a></p>
 
 <script>
+    const BASE_URL = "/gamecore/index.html";
+
     // copies the url query string from the page into the iframe, 
     // so that it can be picked up by the game
     var params = window.location.search;
@@ -24,6 +23,7 @@
     }
     params += "gameMode=server";
 
-    iframe = document.getElementById("gameContainer");
-    iframe.src = iframe.src + params;
+    var url = BASE_URL + params;
+    document.getElementById("gameContainer").src = url;
+    document.getElementById("gameFullscreen").href = url;
 </script>
