@@ -13,33 +13,33 @@ namespace Backend.Hubs {
 
         private readonly GameState _game = GameState.GetInstance();
 
-        public override Task OnConnectedAsync() {
+        public override async Task OnConnectedAsync() {
             _game.RegisterClient(ClientType.Player, Context.ConnectionId);
-            return base.OnConnectedAsync();
+            await base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(System.Exception exception) {
+        public override async Task OnDisconnectedAsync(System.Exception exception) {
             _game.UnregisterClient(ClientType.Player, Context.ConnectionId);
-            return base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception);
         }
 
-        public Task UpdatePlayerDetails(string playerName) {
-            return Task.Run(
+        public async Task UpdatePlayerDetails(string playerName) {
+            await Task.Run(
                 () => {
                     _game.SetPlayerName(Context.ConnectionId, playerName);
                 }
             );
         }
 
-        Task RequestGameAdmission(int level) {
+        public async Task RequestGameAdmission(int level) {
             double worldwidth = 4000; // [m]
             double worldheight = 1500; // [m]
-            return Clients.Caller.setGameConfig(level, worldwidth, worldheight);
+            await Clients.Caller.setGameConfig(level, worldwidth, worldheight);
         }
 
-        public Task UpdatePosition(double x, double y) {
+        public async Task UpdatePosition(double x, double y) {
             _game.SetPlayerPosition(Context.ConnectionId, new Vector2((float)x, (float)y));
-            return Clients.Others.updateOpponentPosition(_game.GetPlayerName(Context.ConnectionId), x, y);
+            await Clients.Others.updateOpponentPosition(_game.GetPlayerName(Context.ConnectionId), x, y);
         }
     }
 }
