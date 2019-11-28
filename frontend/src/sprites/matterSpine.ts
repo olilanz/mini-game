@@ -107,7 +107,9 @@ export class MatterSpine {
     }
 
     setFlipX(flip: boolean) {
-        this.spine.flipX = flip;
+        // this.spine.flipX = flip;
+        let scaleX = Math.abs(this.spine.scaleX);
+        this.spine.scaleX = flip ? -scaleX : scaleX;
     }
 
     setAttachment(slotName: string, attachmentName: string) {
