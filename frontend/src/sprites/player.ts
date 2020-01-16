@@ -35,6 +35,7 @@ export class Player extends Phaser.Physics.Matter.Image {
 
     preUpdate() {
         const MARGIN = 0.1;
+
         // @ts-ignore
         let vx = this.body.velocity.x;
         if (vx > MARGIN) {

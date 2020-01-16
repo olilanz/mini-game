@@ -7,7 +7,6 @@
 
 import "phaser";
 import "phaser/plugins/spine/dist/SpinePlugin";
-//import "~/plugins/spine/SpinePlugin";
 
 import { ExternalGameConfig, GameMode } from "~/externalgameconfig";
 import { GlobalStateIdentifier } from "~/gamestate";
