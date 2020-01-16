@@ -52,7 +52,7 @@ export class Player extends Phaser.Physics.Matter.Image {
     }
 
     public stomp() {
-        this.setVelocity(0, 40);
+        this.setVelocity(0, 80);
         this.__playerSpine.setAnimation("land");
     }
 
