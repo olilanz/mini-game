@@ -47,22 +47,22 @@ export class Player extends Phaser.Physics.Matter.Image {
     }
 
     public jump() {
-        this.setVelocity(0, -30);
+        this.setVelocityY(-30);
         this.__playerSpine.setAnimation("jump2");
     }
 
     public stomp() {
-        this.setVelocity(0, 80);
+        this.setVelocityY(80);
         this.__playerSpine.setAnimation("land");
     }
 
     public leapLeft() {
-        this.setVelocity(-20, 0);
+        this.setVelocityX(-20);
         this.__playerSpine.setAnimation("run");
     }
 
     public leapRight() {
-        this.setVelocity(20, 0);
+        this.setVelocityX(20);
         this.__playerSpine.setAnimation("run");
     }
 }
