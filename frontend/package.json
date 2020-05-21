@@ -20,7 +20,7 @@
     "npm": "6.14.5",
     "parcel-bundler": "1.12.4",
     "parcel-plugin-static-files-copy": "2.3.1",
-    "typescript": "3.9.2"
+    "typescript": "3.9.3"
   },
   "dependencies": {
     "@aspnet/signalr": "1.1.4",

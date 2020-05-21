@@ -15,7 +15,7 @@ RUN npm run build
 ############################################################
 ## build the back end
 ############################################################
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1.202 AS backendbuilder
+FROM mcr.microsoft.com/dotnet/sdk:5.0.100-preview.4 AS backendbuilder
 WORKDIR /build
 
 COPY ./backend/src/*.csproj /build/
@@ -27,7 +27,7 @@ RUN dotnet publish --output /dist --configuration Debug
 ############################################################
 ## build runtime 
 ############################################################
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.4
+FROM mcr.microsoft.com/dotnet/aspnet:5.0.0-preview.4
 COPY --from=backendbuilder /dist /app
 COPY --from=frontendbuilder /build/dist /app/wwwroot/gamecore
 
