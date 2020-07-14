@@ -31,7 +31,7 @@
     "build": "parcel build ./src/index.html --target browser --public-url ./",
     "watch-build": "parcel watch ./src/index.html --target browser --public-url ./",
     "clean": "rm -rf ./dist/* && rm -rf ./.cache",
-    "docker-build": "docker build -t olilanz/mini-game .",
+    "docker-build": "docker build -t olilanz/mini-game ..",
     "docker-push": "docker push olilanz/mini-game"
   },
   "repository": {
