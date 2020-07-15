@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Login";
@@ -7,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@Model.Message</h3>
 
-<form id="login_form" action="/Game" method="GET">
+<form class="text-center"id="login_form" action="/Game" method="GET">
     <caption>Player Name:</caption>
     <input type="text" name="playerName" value="@Model.GetRandomPlayerName()">
     <br>

@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.StaticFiles;
 using Backend.Hubs;
+using Microsoft.Extensions.Hosting;
 
 namespace Backend {
     public class Startup {
@@ -39,14 +41,16 @@ namespace Backend {
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            if (env.EnvironmentName.Equals("Development")) {
+            if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             } else {
                 app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
-            app.UseCookiePolicy();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             /** 
                         DefaultFilesOptions options = new DefaultFilesOptions();
@@ -55,6 +59,7 @@ namespace Backend {
                         options.DefaultFileNames.Add("fallback.html");
                         app.UseDefaultFiles(options);
              */
+            app.UseRouting();
 
             // Set up custom content types - associating file extension to MIME type
             var provider = new FileExtensionContentTypeProvider();
@@ -66,6 +71,7 @@ namespace Backend {
             app.UseStaticFiles(new StaticFileOptions {
                 ContentTypeProvider = provider
             });
+            // app.UseAuthorization();
 
             app.UseRouting();
             // app.UseHttpsRedirection();
@@ -74,7 +80,6 @@ namespace Backend {
                 endpoints.MapHub<GameHub>("/gamehub");
                 endpoints.MapHub<ConsoleHub>("/consolehub");
             });
-
         }
     }
 }
