@@ -13,4 +13,3 @@ export type NavigationState = {
     currentLevel: number,
     numberOfLevels: number
 }
-

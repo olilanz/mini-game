@@ -7,10 +7,104 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@Model.Message</h3>
 
-<form class="text-center"id="login_form" action="/Game" method="GET">
+<form class="text-center" name="login_form" onsubmit="return validateForm()" action="/Game" method="GET">
     <caption>Player Name:</caption>
-    <input type="text" name="playerName" value="@Model.GetRandomPlayerName()">
+    <input type="text" name="playerName" value="">
     <br>
     <input type="submit" value="Start Game" />
+    <input type="button" onclick="randomizeName()" value="Randomize Name" />
 </form>
 
+<script>
+    function validateForm() {
+        var playerName = document.forms["login_form"]["playerName"].value;
+        if (playerName == "") {
+            alert("Player name must be filled out!");
+            return false;
+        }        
+    }
+
+    function randomizeName() {
+        var textField = document.getElementsByName("playerName")[0];
+
+        var names = [
+            "Pete",
+            "Prince",
+            "Luke",
+            "Noah",
+            "Johnson",
+            "Kid",
+            "Fish",
+            "Hank",
+            "Kitkat",
+            "Brian",
+            "Elvis",
+            "Salad",
+            "Pumpkin",
+            "Viking",
+            "Bob",
+            "Zombie",
+            "Mustache",
+            "Snoopy",
+            "Rumplestiltskin",
+            "Pork Chop",
+            "Chef",
+            "Spiderpig",
+            "Chewbacca",
+            "Flanders",
+            "Hulk",
+            "Goonie",
+            "Wonka",
+            "Taco",
+            "Derp",
+            "Jimmy",
+            "Bruce",
+            "Beaver"
+            ];
+
+        var adjectives = [
+            "Jolly",
+            "Ugly",
+            "Greedy",
+            "Filthy",
+            "Smelly",
+            "Stingy",
+            "Smart",
+            "Exotic",
+            "Humpy",
+            "Hunky",
+            "Looney",
+            "Spunky",
+            "Sparkly",
+            "Funny",
+            "Awesome",
+            "Smirky",
+            "Falling",
+            "Rolling",
+            "Wreck-it",
+            "Crunchy",
+            "Happy",
+            "Tiny",
+            "Dangerous",
+            "Powerful",
+            "Deliscious",
+            "Scary",
+            "Angry",
+            "Famous",
+            "Hungry",
+            "Excited",
+            "Bored",
+            "Invincible",
+            "Mighty",
+            "Dramatic",
+            "Impossible",
+            "Crying",
+            "Sneezy"
+        ];
+
+        var name = names[Math.floor(Math.random() * names.length)]
+        var adjective = adjectives[Math.floor(Math.random() * adjectives.length)]
+
+        textField.value = adjective + " " + name;
+    }
+</script>
