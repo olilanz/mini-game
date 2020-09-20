@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 
 import { Canvas } from './canvas';
 import { Player } from '~/sprites/player';

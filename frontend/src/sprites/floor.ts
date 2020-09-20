@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import { Assets } from '~/assets/assets';
 
 export class Floor extends Phaser.Physics.Matter.Image {

@@ -2,7 +2,7 @@
  * Progress indicator implemented as a group of game objects.
  */
 
-import "phaser";
+import Phaser from 'phaser';
 
 export class PercentageBar {
 

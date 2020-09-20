@@ -8,6 +8,7 @@
     "isolatedModules": true,
     "noImplicitAny": true,
     "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./src",
     "paths": {
       "~*": ["./*"]

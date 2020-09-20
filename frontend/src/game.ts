@@ -5,7 +5,7 @@
  * Global settigns are to be found here.
  */
 
-import "phaser";
+import Phaser from 'phaser';
 import "phaser/plugins/spine/dist/SpinePlugin";
 
 import { ExternalGameConfig, GameMode } from "~/externalgameconfig";

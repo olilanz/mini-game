@@ -6,6 +6,8 @@
  * native support of Phaser.Physics.Matter.Spine (a class that does not yet exist)...
  */
 
+import Phaser from 'phaser';
+ 
 // @ts-ignore
 import SpineGameObject from "phaser/plugins/spine/dist/SpineWebGLPlugin";
 

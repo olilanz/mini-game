@@ -4,6 +4,8 @@
  * This is the scene that harnesses tyhe actual gameplay. 
  */
 
+import Phaser from 'phaser';
+
 import { Player } from '~/sprites/player';
 import { Bot } from '~/sprites/bot';
 import { Cookie } from '~/sprites/cookie';

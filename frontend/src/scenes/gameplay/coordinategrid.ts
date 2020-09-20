@@ -4,6 +4,8 @@
  * This can be useful for construction and design of game elements. 
  */
 
+import Phaser from 'phaser';
+
 export class CoordinateGrid extends Phaser.GameObjects.Group {
 
   constructor(scene: Phaser.Scene, posx: number, posy: number, width: number, height: number) {

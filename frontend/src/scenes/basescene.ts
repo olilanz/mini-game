@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import { ExternalGameConfig } from "~/externalgameconfig";
 import { GlobalStateIdentifier, NavigationState } from "~/gamestate";
 

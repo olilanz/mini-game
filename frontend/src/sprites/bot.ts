@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 import { MatterSpine } from './matterSpine'
 import { Assets } from '~/assets/assets';
 

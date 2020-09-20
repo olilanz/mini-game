@@ -20,11 +20,11 @@
     "npm": "6.14.8",
     "parcel-bundler": "1.12.4",
     "parcel-plugin-static-files-copy": "2.5.0",
-    "typescript": "4.0.2"
+    "typescript": "4.0.3"
   },
   "dependencies": {
     "@aspnet/signalr": "1.1.4",
-    "phaser": "3.24.1"
+    "phaser": "3.50.0-beta.4"
   },
   "scripts": {
     "start": "parcel ./src/index.html -p 1234 --public-url ./",

@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "xeR47frq0ha14vgPh8+ExTd5fy4", "spine": "3.8.75", "x": -300.98, "y": -73.03, "width": 620.39, "height": 1043.64 },
+"skeleton": { "hash": "dqIYMwtZPxJwkAGBwrx7ZE0sSUA", "spine": "3.8.97", "x": -300.98, "y": -73.03, "width": 620.39, "height": 1043.64 },
 "bones": [
 	{ "name": "root", "x": -1.93 },
 	{ "name": "Character_midpoint", "parent": "root", "x": 7.67, "y": 372.56 },
@@ -162,15 +162,25 @@
 	{
 		"name": "Template",
 		"attachments": {
-			"waist": {
-				"head_2_injured": { "name": "Template/Template_waist", "x": -6.24, "y": -7.61, "rotation": 93.6, "width": 283, "height": 216 }
+			"arm_lower_far": {
+				"arm_lower_far": { "name": "Template/Template_arm_lower_far", "x": 44.71, "y": 6.21, "rotation": 92.05, "width": 259, "height": 209 }
 			},
-			"item_part_far": {
-				"machineGun_clip": { "name": "Template/Template_machineGun_clip", "x": -4.69, "y": 2.01, "rotation": -10.78, "width": 238, "height": 210 }
+			"arm_lower_near": {
+				"arm_lower_near": { "name": "Template/Template_arm_lower_near", "x": 41.27, "y": 4.61, "rotation": 90.38, "width": 258, "height": 208 }
+			},
+			"arm_upper_far": {
+				"upper_far": { "name": "Template/Template_arm_upper_far", "x": 36.96, "y": 6, "rotation": 89.15, "width": 299, "height": 282 }
+			},
+			"arm_upper_near": {
+				"arm_upper_near": { "name": "Template/Template_arm_upper_near", "x": 46.85, "y": 3.12, "rotation": 89.81, "width": 299, "height": 282 }
 			},
 			"foot_far": {
 				"foot_far_1": { "name": "Template/Template_foot_far_1", "x": 43.91, "y": 1.14, "rotation": 25.39, "width": 324, "height": 176 },
 				"foot_far_2_bent": { "name": "Template/Template_foot_far_2_bent", "x": 46.53, "y": 18.12, "rotation": 25.39, "width": 305, "height": 195 }
+			},
+			"foot_near": {
+				"foot_near_1": { "name": "Template/Template_foot_near_1", "x": 34.62, "y": -0.72, "rotation": 20.57, "width": 324, "height": 176 },
+				"foot_near_2_bent": { "name": "Template/Template_foot_near_2_bent", "x": 37.54, "y": 16.76, "rotation": 20.57, "width": 305, "height": 195 }
 			},
 			"hand_far": {
 				"hand_1_fistBack": { "name": "Template/Template_hand_far_1_fistBack", "x": 48, "y": 2.59, "rotation": 83.77, "width": 203, "height": 160 },
@@ -185,35 +195,10 @@
 					"height": 220
 				}
 			},
-			"item_part_near": {
-				"machineGun_clip": { "name": "Template/Template_machineGun_clip", "x": 3.93, "y": 3.79, "rotation": -13.99, "width": 238, "height": 210 }
-			},
-			"leg_upper_far": {
-				"leg_upper_far": { "name": "Template/Template_leg_upper_far", "x": 53.18, "y": -0.59, "rotation": 90.49, "width": 177, "height": 271 }
-			},
-			"item_near": {
-				"gun_1": { "name": "Template/Template_gun", "x": 155.69, "y": 76.61, "rotation": 2.26, "width": 608, "height": 425 },
-				"gun_2_shoot": { "name": "Template/Template_gun_shoot", "x": 155.69, "y": 76.61, "rotation": 2.26, "width": 608, "height": 425 },
-				"machineGun_1": { "name": "Template/Template_machineGun", "x": 170.78, "y": 72.08, "rotation": 2.26, "width": 660, "height": 424 },
-				"machineGun_2_shoot": { "name": "Template/Template_machineGun_shoot", "x": 170.78, "y": 72.08, "rotation": 2.26, "width": 660, "height": 424 },
-				"pistol_1": { "name": "Template/Template_pistol", "x": 67.45, "y": 69.85, "rotation": 6.32, "width": 461, "height": 323 },
-				"pistol_2_shoot": { "name": "Template/Template_pistol_shoot", "x": 67.46, "y": 69.85, "rotation": 6.32, "width": 461, "height": 323 },
-				"sword_1": { "name": "Template/Template_sword_1", "x": 8.54, "y": 262.34, "width": 512, "height": 880 },
-				"sword_2_swing": { "name": "Template/Template_sword_2_swing", "x": -120.31, "y": 262.22, "width": 770, "height": 878 },
-				"sword_3_bigSwing": { "name": "Template/Template_sword_3_bigSwing", "x": -242.47, "y": 262.77, "width": 1014, "height": 879 }
-			},
-			"leg_upper_near": {
-				"leg_upper_near": { "name": "Template/Template_leg_upper_near", "x": 52.31, "y": -5.25, "rotation": 86.73, "width": 177, "height": 271 }
-			},
-			"arm_upper_far": {
-				"upper_far": { "name": "Template/Template_arm_upper_far", "x": 36.96, "y": 6, "rotation": 89.15, "width": 299, "height": 282 }
-			},
-			"foot_near": {
-				"foot_near_1": { "name": "Template/Template_foot_near_1", "x": 34.62, "y": -0.72, "rotation": 20.57, "width": 324, "height": 176 },
-				"foot_near_2_bent": { "name": "Template/Template_foot_near_2_bent", "x": 37.54, "y": 16.76, "rotation": 20.57, "width": 305, "height": 195 }
-			},
-			"neck": {
-				"neck": { "name": "Template/Template_neck", "x": 18.74, "y": 1.98, "rotation": -90, "width": 130, "height": 110 }
+			"hand_near": {
+				"hand_1_fistBack": { "name": "Template/Template_hand_near_1_fistBack", "x": 40.05, "y": 8.68, "rotation": 91.61, "width": 203, "height": 160 },
+				"hand_2_fistPalm": { "name": "Template/Template_hand_near_2_fistPalm", "x": 39.37, "y": 7.66, "rotation": 91.61, "width": 203, "height": 160 },
+				"hand_3_open": { "name": "Template/Template_hand_near_3_open", "x": 66.4, "y": 10.63, "rotation": -140.74, "width": 233, "height": 220 }
 			},
 			"head": {
 				"head_1": { "name": "Template/Template_head_1", "x": 161.16, "y": -20.89, "rotation": 276.72, "width": 543, "height": 543 },
@@ -221,12 +206,6 @@
 				"head_3_happy": { "name": "Template/Template_head_3_happy", "x": 161.16, "y": -20.89, "rotation": 276.72, "width": 543, "height": 543 },
 				"head_4_wideEyes": { "name": "Template/Template_head_4_wideEyes", "x": 161.16, "y": -20.89, "rotation": 276.72, "width": 543, "height": 543 },
 				"head_5_sad": { "name": "Template/Template_head_5_sad", "x": 161.16, "y": -20.89, "rotation": 276.72, "width": 543, "height": 543 }
-			},
-			"arm_upper_near": {
-				"arm_upper_near": { "name": "Template/Template_arm_upper_near", "x": 46.85, "y": 3.12, "rotation": 89.81, "width": 299, "height": 282 }
-			},
-			"arm_lower_near": {
-				"arm_lower_near": { "name": "Template/Template_arm_lower_near", "x": 41.27, "y": 4.61, "rotation": 90.38, "width": 258, "height": 208 }
 			},
 			"item_far": {
 				"gun_1": { "name": "Template/Template_gun", "x": 167.07, "y": 50.31, "rotation": -2.22, "width": 608, "height": 425 },
@@ -239,23 +218,44 @@
 				"sword_2": { "name": "Template/Template_sword_2_swing", "x": -88.66, "y": 263.35, "rotation": 352, "width": 770, "height": 878 },
 				"sword_3_bigSwing": { "name": "Template/Template_sword_3_bigSwing", "x": -209.47, "y": 281.39, "rotation": 352, "width": 1014, "height": 879 }
 			},
+			"item_near": {
+				"gun_1": { "name": "Template/Template_gun", "x": 155.69, "y": 76.61, "rotation": 2.26, "width": 608, "height": 425 },
+				"gun_2_shoot": { "name": "Template/Template_gun_shoot", "x": 155.69, "y": 76.61, "rotation": 2.26, "width": 608, "height": 425 },
+				"machineGun_1": { "name": "Template/Template_machineGun", "x": 170.78, "y": 72.08, "rotation": 2.26, "width": 660, "height": 424 },
+				"machineGun_2_shoot": { "name": "Template/Template_machineGun_shoot", "x": 170.78, "y": 72.08, "rotation": 2.26, "width": 660, "height": 424 },
+				"pistol_1": { "name": "Template/Template_pistol", "x": 67.45, "y": 69.85, "rotation": 6.32, "width": 461, "height": 323 },
+				"pistol_2_shoot": { "name": "Template/Template_pistol_shoot", "x": 67.46, "y": 69.85, "rotation": 6.32, "width": 461, "height": 323 },
+				"sword_1": { "name": "Template/Template_sword_1", "x": 8.54, "y": 262.34, "width": 512, "height": 880 },
+				"sword_2_swing": { "name": "Template/Template_sword_2_swing", "x": -120.31, "y": 262.22, "width": 770, "height": 878 },
+				"sword_3_bigSwing": { "name": "Template/Template_sword_3_bigSwing", "x": -242.47, "y": 262.77, "width": 1014, "height": 879 }
+			},
+			"item_part_far": {
+				"machineGun_clip": { "name": "Template/Template_machineGun_clip", "x": -4.69, "y": 2.01, "rotation": -10.78, "width": 238, "height": 210 }
+			},
+			"item_part_near": {
+				"machineGun_clip": { "name": "Template/Template_machineGun_clip", "x": 3.93, "y": 3.79, "rotation": -13.99, "width": 238, "height": 210 }
+			},
 			"leg_lower_far": {
 				"leg_lower_far": { "name": "Template/Template_leg_lower_far", "x": 60.76, "y": -3.44, "rotation": 90.14, "width": 194, "height": 325 }
-			},
-			"torso": {
-				"torso": { "name": "Template/Template_torso", "x": 99.39, "y": 4.98, "rotation": -90, "width": 512, "height": 452 }
-			},
-			"arm_lower_far": {
-				"arm_lower_far": { "name": "Template/Template_arm_lower_far", "x": 44.71, "y": 6.21, "rotation": 92.05, "width": 259, "height": 209 }
 			},
 			"leg_lower_near": {
 				"leg_lower_near_1": { "name": "Template/Template_leg_lower_near_1", "x": 79.04, "y": -7.42, "rotation": 88.77, "width": 194, "height": 325 },
 				"leg_lower_near_2": { "name": "Template/Template_leg_lower_near_2", "x": 79.04, "y": -7.42, "rotation": 88.77, "width": 194, "height": 325 }
 			},
-			"hand_near": {
-				"hand_1_fistBack": { "name": "Template/Template_hand_near_1_fistBack", "x": 40.05, "y": 8.68, "rotation": 91.61, "width": 203, "height": 160 },
-				"hand_2_fistPalm": { "name": "Template/Template_hand_near_2_fistPalm", "x": 39.37, "y": 7.66, "rotation": 91.61, "width": 203, "height": 160 },
-				"hand_3_open": { "name": "Template/Template_hand_near_3_open", "x": 66.4, "y": 10.63, "rotation": -140.74, "width": 233, "height": 220 }
+			"leg_upper_far": {
+				"leg_upper_far": { "name": "Template/Template_leg_upper_far", "x": 53.18, "y": -0.59, "rotation": 90.49, "width": 177, "height": 271 }
+			},
+			"leg_upper_near": {
+				"leg_upper_near": { "name": "Template/Template_leg_upper_near", "x": 52.31, "y": -5.25, "rotation": 86.73, "width": 177, "height": 271 }
+			},
+			"neck": {
+				"neck": { "name": "Template/Template_neck", "x": 18.74, "y": 1.98, "rotation": -90, "width": 130, "height": 110 }
+			},
+			"torso": {
+				"torso": { "name": "Template/Template_torso", "x": 99.39, "y": 4.98, "rotation": -90, "width": 512, "height": 452 }
+			},
+			"waist": {
+				"head_2_injured": { "name": "Template/Template_waist", "x": -6.24, "y": -7.61, "rotation": 93.6, "width": 283, "height": 216 }
 			}
 		}
 	}
@@ -2103,17 +2103,17 @@
 	},
 	"crouchWalk": {
 		"slots": {
+			"foot_far": {
+				"attachment": [
+					{ "time": 0.4333, "name": "foot_far_2_bent" },
+					{ "time": 0.7667, "name": "foot_far_1" }
+				]
+			},
 			"foot_near": {
 				"attachment": [
 					{ "name": "foot_near_2_bent" },
 					{ "time": 0.1667, "name": "foot_near_1" },
 					{ "time": 1.0333, "name": "foot_near_2_bent" }
-				]
-			},
-			"foot_far": {
-				"attachment": [
-					{ "time": 0.4333, "name": "foot_far_2_bent" },
-					{ "time": 0.7667, "name": "foot_far_1" }
 				]
 			},
 			"leg_lower_near": {
@@ -3302,16 +3302,16 @@
 	},
 	"floorGetUp": {
 		"slots": {
-			"leg_lower_near": {
-				"attachment": [
-					{ "name": "leg_lower_near_2" },
-					{ "time": 0.4, "name": "leg_lower_near_1" }
-				]
-			},
 			"head": {
 				"attachment": [
 					{ "name": "head_2_injured" },
 					{ "time": 0.0871, "name": "head_1" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "name": "leg_lower_near_2" },
+					{ "time": 0.4, "name": "leg_lower_near_1" }
 				]
 			}
 		},
@@ -3567,14 +3567,14 @@
 	},
 	"floorIdle": {
 		"slots": {
-			"leg_lower_near": {
-				"attachment": [
-					{ "name": "leg_lower_near_2" }
-				]
-			},
 			"head": {
 				"attachment": [
 					{ "name": "head_2_injured" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "name": "leg_lower_near_2" }
 				]
 			}
 		},
@@ -4249,14 +4249,14 @@
 	},
 	"hitBig": {
 		"slots": {
-			"leg_lower_near": {
-				"attachment": [
-					{ "time": 0.0333, "name": "leg_lower_near_2" }
-				]
-			},
 			"head": {
 				"attachment": [
 					{ "time": 0.0333, "name": "head_2_injured" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "time": 0.0333, "name": "leg_lower_near_2" }
 				]
 			}
 		},
@@ -4753,14 +4753,14 @@
 					{ "time": 0.0667, "name": "foot_near_1" }
 				]
 			},
-			"leg_lower_near": {
-				"attachment": [
-					{ "name": "leg_lower_near_2" }
-				]
-			},
 			"head": {
 				"attachment": [
 					{ "time": 0.0667, "name": "head_3_happy" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "name": "leg_lower_near_2" }
 				]
 			}
 		},
@@ -4991,11 +4991,6 @@
 					{ "time": 0.0667, "name": "foot_near_1" }
 				]
 			},
-			"leg_lower_near": {
-				"attachment": [
-					{ "name": "leg_lower_near_2" }
-				]
-			},
 			"hand_near": {
 				"attachment": [
 					{ "time": 0.0667, "name": "hand_2_fistPalm" }
@@ -5004,6 +4999,11 @@
 			"head": {
 				"attachment": [
 					{ "time": 0.0667, "name": "head_3_happy" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "name": "leg_lower_near_2" }
 				]
 			}
 		},
@@ -5640,14 +5640,14 @@
 	},
 	"machineGunIdle": {
 		"slots": {
-			"item_part_near": {
-				"attachment": [
-					{ "name": "machineGun_clip" }
-				]
-			},
 			"item_near": {
 				"attachment": [
 					{ "name": "machineGun_1" }
+				]
+			},
+			"item_part_near": {
+				"attachment": [
+					{ "name": "machineGun_clip" }
 				]
 			}
 		},
@@ -5687,6 +5687,11 @@
 	},
 	"machineGunReload": {
 		"slots": {
+			"item_near": {
+				"attachment": [
+					{ "name": "machineGun_1" }
+				]
+			},
 			"item_part_near": {
 				"color": [
 					{ "time": 0.3, "color": "ffffffff", "curve": 0.601, "c2": 0.07, "c3": 0.931, "c4": 0.62 },
@@ -5695,11 +5700,6 @@
 				],
 				"attachment": [
 					{ "name": "machineGun_clip" }
-				]
-			},
-			"item_near": {
-				"attachment": [
-					{ "name": "machineGun_1" }
 				]
 			}
 		},
@@ -5894,15 +5894,15 @@
 	},
 	"machineGunShoot": {
 		"slots": {
-			"item_part_near": {
-				"attachment": [
-					{ "name": "machineGun_clip" }
-				]
-			},
 			"item_near": {
 				"attachment": [
 					{ "name": "machineGun_2_shoot" },
 					{ "time": 0.1, "name": "machineGun_1" }
+				]
+			},
+			"item_part_near": {
+				"attachment": [
+					{ "name": "machineGun_clip" }
 				]
 			}
 		},
@@ -6480,12 +6480,6 @@
 	},
 	"meleeSwing2-fullBody": {
 		"slots": {
-			"leg_lower_near": {
-				"attachment": [
-					{ "time": 0.0838, "name": "leg_lower_near_2" },
-					{ "time": 0.4, "name": "leg_lower_near_1" }
-				]
-			},
 			"item_near": {
 				"attachment": [
 					{ "name": "sword_1" },
@@ -6493,6 +6487,12 @@
 					{ "time": 0.1667, "name": "sword_1" },
 					{ "time": 0.3829, "name": "sword_2_swing" },
 					{ "time": 0.4333, "name": "sword_1" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "time": 0.0838, "name": "leg_lower_near_2" },
+					{ "time": 0.4, "name": "leg_lower_near_1" }
 				]
 			}
 		},
@@ -6987,18 +6987,18 @@
 					{ "time": 0.6, "name": "foot_near_1" }
 				]
 			},
-			"leg_lower_near": {
-				"attachment": [
-					{ "name": "leg_lower_near_2" },
-					{ "time": 0.6333, "name": "leg_lower_near_1" }
-				]
-			},
 			"item_near": {
 				"attachment": [
 					{ "name": "sword_1" },
 					{ "time": 0.1, "name": "sword_2_swing" },
 					{ "time": 0.1333, "name": "sword_3_bigSwing" },
 					{ "time": 0.2, "name": "sword_1" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "name": "leg_lower_near_2" },
+					{ "time": 0.6333, "name": "leg_lower_near_1" }
 				]
 			}
 		},
@@ -7478,17 +7478,17 @@
 	},
 	"pull": {
 		"slots": {
+			"foot_far": {
+				"attachment": [
+					{ "time": 0.3159, "name": "foot_far_2_bent" },
+					{ "time": 1.0667, "name": "foot_far_1" }
+				]
+			},
 			"foot_near": {
 				"attachment": [
 					{ "name": "foot_near_2_bent" },
 					{ "time": 0.3, "name": "foot_near_1" },
 					{ "time": 1.2333, "name": "foot_near_2_bent" }
-				]
-			},
-			"foot_far": {
-				"attachment": [
-					{ "time": 0.3159, "name": "foot_far_2_bent" },
-					{ "time": 1.0667, "name": "foot_far_1" }
 				]
 			},
 			"leg_lower_near": {
@@ -8858,17 +8858,17 @@
 	},
 	"push": {
 		"slots": {
+			"foot_far": {
+				"attachment": [
+					{ "time": 0.3, "name": "foot_far_2_bent" },
+					{ "time": 0.9667, "name": "foot_far_1" }
+				]
+			},
 			"foot_near": {
 				"attachment": [
 					{ "name": "foot_near_2_bent" },
 					{ "time": 0.2, "name": "foot_near_1" },
 					{ "time": 1.0667, "name": "foot_near_2_bent" }
-				]
-			},
-			"foot_far": {
-				"attachment": [
-					{ "time": 0.3, "name": "foot_far_2_bent" },
-					{ "time": 0.9667, "name": "foot_far_1" }
 				]
 			},
 			"leg_lower_near": {
@@ -9951,26 +9951,26 @@
 	},
 	"run": {
 		"slots": {
-			"foot_near": {
-				"attachment": [
-					{ "time": 0.4333, "name": "foot_near_2_bent" },
-					{ "time": 0.5, "name": "foot_near_1" }
-				]
-			},
 			"foot_far": {
 				"attachment": [
 					{ "time": 0.1667, "name": "foot_far_2_bent" },
 					{ "time": 0.2333, "name": "foot_far_1" }
 				]
 			},
-			"leg_lower_near": {
+			"foot_near": {
 				"attachment": [
-					{ "name": "leg_lower_near_2" }
+					{ "time": 0.4333, "name": "foot_near_2_bent" },
+					{ "time": 0.5, "name": "foot_near_1" }
 				]
 			},
 			"head": {
 				"attachment": [
 					{ "name": "head_4_wideEyes" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "name": "leg_lower_near_2" }
 				]
 			}
 		},
@@ -10326,27 +10326,27 @@
 	},
 	"run2": {
 		"slots": {
-			"foot_near": {
-				"attachment": [
-					{ "time": 0.3037, "name": "foot_near_2_bent" },
-					{ "time": 0.3425, "name": "foot_near_1" }
-				]
-			},
 			"foot_far": {
 				"attachment": [
 					{ "time": 0.1063, "name": "foot_far_2_bent" },
 					{ "time": 0.1462, "name": "foot_far_1" }
 				]
 			},
-			"leg_lower_near": {
+			"foot_near": {
 				"attachment": [
-					{ "name": "leg_lower_near_2" }
+					{ "time": 0.3037, "name": "foot_near_2_bent" },
+					{ "time": 0.3425, "name": "foot_near_1" }
 				]
 			},
 			"head": {
 				"attachment": [
 					{ "name": "head_4_wideEyes" },
 					{ "time": 0.4, "name": "head_1" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "name": "leg_lower_near_2" }
 				]
 			}
 		},
@@ -11342,17 +11342,17 @@
 	},
 	"walk": {
 		"slots": {
-			"foot_near": {
-				"attachment": [
-					{ "time": 0.2667, "name": "foot_near_2_bent" },
-					{ "time": 0.6, "name": "foot_near_1" }
-				]
-			},
 			"foot_far": {
 				"attachment": [
 					{ "name": "foot_far_2_bent" },
 					{ "time": 0.1667, "name": "foot_far_1" },
 					{ "time": 0.6836, "name": "foot_far_2_bent" }
+				]
+			},
+			"foot_near": {
+				"attachment": [
+					{ "time": 0.2667, "name": "foot_near_2_bent" },
+					{ "time": 0.6, "name": "foot_near_1" }
 				]
 			},
 			"leg_lower_near": {
@@ -11723,12 +11723,6 @@
 	},
 	"walk2": {
 		"slots": {
-			"foot_near": {
-				"attachment": [
-					{ "time": 0.2, "name": "foot_near_2_bent" },
-					{ "time": 0.5333, "name": "foot_near_1" }
-				]
-			},
 			"foot_far": {
 				"attachment": [
 					{ "name": "foot_far_2_bent" },
@@ -11736,14 +11730,20 @@
 					{ "time": 0.6333, "name": "foot_far_2_bent" }
 				]
 			},
-			"leg_lower_near": {
+			"foot_near": {
 				"attachment": [
-					{ "name": "leg_lower_near_2" }
+					{ "time": 0.2, "name": "foot_near_2_bent" },
+					{ "time": 0.5333, "name": "foot_near_1" }
 				]
 			},
 			"head": {
 				"attachment": [
 					{ "name": "head_4_wideEyes" }
+				]
+			},
+			"leg_lower_near": {
+				"attachment": [
+					{ "name": "leg_lower_near_2" }
 				]
 			}
 		},

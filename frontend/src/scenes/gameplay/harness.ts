@@ -4,6 +4,8 @@
  * Entry page of the game.
  */
 
+import Phaser from 'phaser';
+
 import { BaseScene } from '~/scenes/basescene';
 import { Canvas, ICanvasStats } from './canvas';
 import { SoundHelper } from '~/helpers/soundhelper';
