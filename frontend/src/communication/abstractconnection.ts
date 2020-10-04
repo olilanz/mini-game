@@ -85,7 +85,7 @@ export abstract class AbstractConnection {
         // check if connection attempt is needed
         if (!this._connection) {
             console.log("Terminating connection loop. Connection has been stopped.");
-            return; 
+            return;
         } else if (this._connection.state == signalR.HubConnectionState.Connected) {
             console.log("Terminating connection loop. The connection is seccessfully established.");
             return;
@@ -122,7 +122,7 @@ export abstract class AbstractConnection {
     }
 
     /**
-     * wires up the callbacks that were regustered in the deriving class.
+     * Wires up the callbacks that were regustered in the deriving class.
      */
     private attachCallbacks() {
         if (this._connection === null) {
@@ -135,7 +135,7 @@ export abstract class AbstractConnection {
     }
 
     /**
-     * wires up the callbacks that were regustered in the deriving class.
+     * Wires up the callbacks that were regustered in the deriving class.
      */
     private detachCallbacks() {
         if (this._connection === null) {

@@ -8,8 +8,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Backend.Pages {
     public class ServerModel : PageModel {
-        public string Message { get; set; }
-
         private readonly ILogger<ServerModel> _logger;
 
         public ServerModel(ILogger<ServerModel> logger) {
@@ -17,7 +15,6 @@ namespace Backend.Pages {
         }
 
         public void OnGet() {
-            Message = "Server internal workings.";
         }
     }
 }

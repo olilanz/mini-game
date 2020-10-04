@@ -7,8 +7,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Backend.Pages {
     public class AboutModel : PageModel {
-        public string Message { get; set; }
-
         private readonly ILogger<AboutModel> _logger;
 
         public AboutModel(ILogger<AboutModel> logger) {
@@ -16,7 +14,6 @@ namespace Backend.Pages {
         }
 
         public void OnGet() {
-            Message = "There you go.";
         }
     }
 }

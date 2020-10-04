@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Backend.Pages {
     public class GameModel : PageModel {
-        public string Message { get; set; }
 
         private readonly ILogger<IndexModel> _logger;
 
@@ -18,7 +17,6 @@ namespace Backend.Pages {
         }
 
         public void OnGet() {
-            Message = "Embedded game.";
         }
     }
 }
