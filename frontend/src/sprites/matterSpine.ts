@@ -7,7 +7,7 @@
  */
 
 import Phaser from 'phaser';
- 
+
 // @ts-ignore
 import SpineGameObject from "phaser/plugins/spine/dist/SpineWebGLPlugin";
 
@@ -32,8 +32,8 @@ export class MatterSpine {
             this.spine.setMix('kill', 'idle', 0.2)
             this.setSkin('blue')
         */
-       this.spine.drawDebug = true;
-       this.spine.drawBones = true;
+        this.spine.drawDebug = true;
+        this.spine.drawBones = true;
     }
 
     /**
@@ -52,9 +52,9 @@ export class MatterSpine {
         );
 
         let scale = this.calculateScale(
-            this.spine.getBounds().size.x, 
+            this.spine.getBounds().size.x,
             this.spine.getBounds().size.y,
-            size.x, 
+            size.x,
             size.y
         ) * scaleCorrection;
         this.spine.setScale(scale, scale);
@@ -72,10 +72,10 @@ export class MatterSpine {
         let anchor = this.scene.matter.add.gameObject(this.spine, anchorConfig).body;
 
         // connect anchor to the body
-        let factory = new Phaser.Physics.Matter.Factory(this.scene.matter.world); 
+        let factory = new Phaser.Physics.Matter.Factory(this.scene.matter.world);
 
         let jointConfig = {
-            pointA: { x: 0, y: size.y / 2 }, 
+            pointA: { x: 0, y: size.y / 2 },
             pointB: { x: 0, y: 0 }
         };
 
@@ -97,7 +97,7 @@ export class MatterSpine {
         let scaleY = y2 / y1;
         return scaleX < scaleY ? scaleY : scaleX;
     }
-        
+
     getAttachments() {
         return this.spine.skeleton.skin.attachments
     }

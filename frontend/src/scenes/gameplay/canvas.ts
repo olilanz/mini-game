@@ -39,7 +39,7 @@ export class Canvas extends BaseScene {
   public readonly PLAYER_HEIGHT: integer = this.PLAYER_WIDTH * 1.7; // [cm]
 
   public readonly BOT_NAME_PREFIX: string = 'bot_';
-  
+
   public readonly COOKIE_NAME_PREFIX: string = 'cookie_';
   public readonly COOKIE_SIZE: integer = 100; // [cm]
 
@@ -75,7 +75,7 @@ export class Canvas extends BaseScene {
       .matter
       .world
       .setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
-    
+
     this.add.tileSprite(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT, Assets.IMAGE_BACKGROUND)
       .setName('background')
       .setOrigin(0, 0)
@@ -86,15 +86,15 @@ export class Canvas extends BaseScene {
     grid.setDepth(-1, 0);
 
     let floor = new Floor(
-      this, 
-      new Phaser.Math.Vector2(0, this.WORLD_HEIGHT - this.FLOOR_HEIGHT), 
+      this,
+      new Phaser.Math.Vector2(0, this.WORLD_HEIGHT - this.FLOOR_HEIGHT),
       new Phaser.Math.Vector2(this.WORLD_WIDTH, this.FLOOR_HEIGHT + this.FLOOR_DEPTH));
     floor.setName('floor');
 
     // player
     let player = new Player(
-      this, 
-      new Phaser.Math.Vector2(400, this.WORLD_HEIGHT - 200), 
+      this,
+      new Phaser.Math.Vector2(400, this.WORLD_HEIGHT - 200),
       new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT));
     player.setName(this.PLAYER_NAME)
       .setInteractive();
@@ -113,8 +113,8 @@ export class Canvas extends BaseScene {
       .startFollow(player, false, 0.15, 0.15);
 
     this.onResize(this.scale.gameSize,
-      this.scale.baseSize, 
-      this.scale.displaySize, 
+      this.scale.baseSize,
+      this.scale.displaySize,
       this.scale.resolution);
   }
 
@@ -134,8 +134,8 @@ export class Canvas extends BaseScene {
   createBots(count: integer) {
     for (let i = 0; i < count; i++) {
       let bot = new Bot(
-        this, 
-        new Phaser.Math.Vector2(i * Phaser.Math.Between(100, 500), this.WORLD_HEIGHT - 500), 
+        this,
+        new Phaser.Math.Vector2(i * Phaser.Math.Between(100, 500), this.WORLD_HEIGHT - 500),
         new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT));
       bot.setName(this.PLAYER_NAME)
         .setInteractive();
@@ -145,7 +145,7 @@ export class Canvas extends BaseScene {
   createCookies(count: integer): void {
     for (let i = 0; i < count; i++) {
       this.createCookie(
-        this.COOKIE_NAME_PREFIX + i, 
+        this.COOKIE_NAME_PREFIX + i,
         i * Phaser.Math.Between(30, 60),
         i * Phaser.Math.Between(20, 40));
     }
@@ -157,11 +157,11 @@ export class Canvas extends BaseScene {
     let size = this.COOKIE_SIZE * Phaser.Math.FloatBetween(0.9, 1.25);
     let cookie = new Cookie(
       this,
-      new Phaser.Math.Vector2(x, y), 
+      new Phaser.Math.Vector2(x, y),
       size);
     cookie.setName(name)
       .setInteractive();
-    
+
     this._stats.cookieCount++;
     return this._stats.cookieCount;
   }
@@ -207,7 +207,7 @@ export class Canvas extends BaseScene {
       let opponent = opponents[id];
 
       let opponentName = this.OPPONENT_PREFIX + id;
-      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Image | null);      
+      let opponentSprite = (this.children.getByName(opponentName) as Phaser.GameObjects.Image | null);
       if (opponentSprite) {
         // opponent found, update it position
         opponentSprite.setPosition(opponent.posX, opponent.posY);
@@ -215,7 +215,7 @@ export class Canvas extends BaseScene {
         // opponent player
         let player = new Player(
           this,
-          new Phaser.Math.Vector2(opponent.posX, opponent.posY), 
+          new Phaser.Math.Vector2(opponent.posX, opponent.posY),
           new Phaser.Math.Vector2(this.PLAYER_WIDTH, this.PLAYER_HEIGHT));
         player.setName(opponentName)
           .setStatic(true);

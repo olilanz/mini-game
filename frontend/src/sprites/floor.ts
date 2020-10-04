@@ -12,7 +12,7 @@ export class Floor extends Phaser.Physics.Matter.Image {
         scene.add.existing(this);
 
         // add customized body
-        let factory = new Phaser.Physics.Matter.Factory(scene.matter.world); 
+        let factory = new Phaser.Physics.Matter.Factory(scene.matter.world);
         let config = {
             isStatic: true,
             isActive: false
