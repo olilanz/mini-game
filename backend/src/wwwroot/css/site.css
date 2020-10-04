@@ -71,7 +71,7 @@ body {
 }
 
 /* maximizing the game within usable area */
-iframe#gameContainer {
+iframe.gameContainer {
   width: 100%; 
-  height: 100%; 
-}
+  height: calc(70vh); /* 70% of viewport height */
+ }
