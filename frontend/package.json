@@ -10,11 +10,8 @@
     "Parcel"
   ],
   "browserslist": [
-    "last 3 Chrome version",
-    "Firefox ESR",
-    "last 3 safari version",
-    "last 3 opera version",
-    "last 3 edge version"
+    "defaults",
+    "> 5%"
   ],
   "devDependencies": {
     "npm": "6.14.8",
