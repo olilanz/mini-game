@@ -2,9 +2,9 @@
 
 [![Build status](https://dev.azure.com/ocl-simcorp/mini-game/_apis/build/status/mini-game%20-%20CI)](https://dev.azure.com/ocl-simcorp/mini-game/_build/latest?definitionId=2)
 
-An evolving game that is being built with the intent of learning, and the purpose to identify the limitations of web technologies in the space of multi-player, high-fps, mobile gaming.
+An evolving game that is being built with the intent of learning, and the purpose to identify the sweet-spots and limitations of web technologies in the space of multi-player, high-fps, mobile gaming.
 
-The game mechanics consist of parallel universes, where each player lives its own universe with own physics and interactions in that universe. But the universes are connected through portals, trhough which players can interact to achieve shared goals. 
+The game mechanics consist of parallel universes, where each player lives its own universe with own physics and interactions in that universe. But the universes are connected through portals, through which players can interact to achieve shared goals. 
 
 On touch screens, the character jumps when tapping on it. On devices with keyboards, the arrow keys can be used in addition.
 
@@ -12,7 +12,7 @@ At this still early stage, all players are visible in all universes. Focus is cu
 
 The running example is hosted here: https://mini-game.oliverlanz.ch
 
-Try it out by connecting multiples devices simultaneously.
+Try it out by connecting multiple devices simultaneously.
 
 
 ## Code and Architecture
