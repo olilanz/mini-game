@@ -12,8 +12,8 @@ export class Cookie extends Phaser.Physics.Matter.Image {
         scene.add.existing(this);
 
         // add customized body
-        let factory = new Phaser.Physics.Matter.Factory(scene.matter.world); 
-        let body = factory.circle(pos.x, pos.y, size / 2.3, {} );
+        let factory = new Phaser.Physics.Matter.Factory(scene.matter.world);
+        let body = factory.circle(pos.x, pos.y, size / 2.3, {});
         this.setExistingBody(body, true);
         factory.destroy();
 

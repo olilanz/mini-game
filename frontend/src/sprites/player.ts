@@ -20,8 +20,8 @@ export class Player extends Phaser.Physics.Matter.Image {
         this.setAlpha(0.001);
 
         // add customized body
-        let factory = new Phaser.Physics.Matter.Factory(scene.matter.world); 
-        let body = factory.trapezoid(pos.x, pos.y, size.x, size.y, 0.3, {} );
+        let factory = new Phaser.Physics.Matter.Factory(scene.matter.world);
+        let body = factory.trapezoid(pos.x, pos.y, size.x, size.y, 0.3, {});
         this.setExistingBody(body, true);
         factory.destroy();
 
@@ -40,10 +40,10 @@ export class Player extends Phaser.Physics.Matter.Image {
         // @ts-ignore
         let vx = this.body.velocity.x;
         if (vx > MARGIN) {
-            this.__playerSpine.setFlipX(false);            
-        } 
+            this.__playerSpine.setFlipX(false);
+        }
         if (vx < -MARGIN) {
-            this.__playerSpine.setFlipX(true);            
+            this.__playerSpine.setFlipX(true);
         }
     }
 

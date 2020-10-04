@@ -28,8 +28,8 @@
   },
   "scripts": {
     "start": "parcel ./src/index.html -p 1234 --public-url ./",
-    "build": "parcel build ./src/index.html --target browser --public-url ./",
-    "watch-build": "parcel watch ./src/index.html --target browser --public-url ./",
+    "build": "parcel build ./src/index.html --public-url ./",
+    "watch": "parcel watch ./src/index.html --public-url ./",
     "clean": "rm -rf ./dist/* && rm -rf ./.cache",
     "docker-build": "docker build -t olilanz/mini-game ..",
     "docker-push": "docker push olilanz/mini-game"

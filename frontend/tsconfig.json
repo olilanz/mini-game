@@ -4,14 +4,19 @@
     "module": "es2015",
     "moduleResolution": "node",
     "strict": true,
-    "removeComments": true, 
+    "removeComments": true,
     "isolatedModules": true,
     "noImplicitAny": true,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./src",
     "paths": {
-      "~*": ["./*"]
+      "~*": [
+        "./*"
+      ]
     }
-  }
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
