@@ -74,7 +74,7 @@ namespace Backend {
             // app.UseAuthorization();
 
             app.UseRouting();
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseEndpoints(endpoints => {
                 endpoints.MapRazorPages();
                 endpoints.MapHub<GameHub>("/gamehub");
