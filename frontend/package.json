@@ -25,9 +25,9 @@
     "phaser": "3.50.0-beta.9"
   },
   "scripts": {
-    "start": "parcel ./src/index.html -p 1234 --public-url ./",
+    "start": "parcel ./src/index.html -p 1234 --no-hmr --public-url ./",
     "build": "parcel build ./src/index.html --public-url ./",
-    "watch": "parcel watch ./src/index.html --public-url ./",
+    "watch": "parcel watch ./src/index.html --no-hmr --public-url ./",
     "clean": "rm -rf ./dist/* && rm -rf ./.cache",
     "docker-build": "docker build -t olilanz/mini-game ..",
     "docker-push": "docker push olilanz/mini-game"
