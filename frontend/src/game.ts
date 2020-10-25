@@ -13,6 +13,7 @@ import { GlobalStateIdentifier } from "~/gamestate";
 
 import { Engine } from "~/engine/engine";
 
+import { Loader } from "~/scenes/loader/loader";
 import { Welcome } from "~/scenes/welcome/welcome";
 import { ServerConsole } from "~/scenes/serverconsole/serverconsole";
 import { Menu } from "~/scenes/menu/menu";
@@ -63,30 +64,30 @@ export class Game extends Phaser.Game {
     super(Game.getGameConfig(renderTarget, externalConfig.gameMode));
 
     this.registry.set(
-      GlobalStateIdentifier.Engine, 
+      GlobalStateIdentifier.Engine,
       new Engine(
-        "/gamehub", 
+        "/gamehub",
         externalConfig.playerName));
 
     this.registry.set(
-      GlobalStateIdentifier.ExternalConfig, 
-      externalConfig);  
+      GlobalStateIdentifier.ExternalConfig,
+      externalConfig);
   }
 
   static getGameConfig(renderTarget: string, mode: GameMode): Phaser.Types.Core.GameConfig {
     let config = Game.defaults;
 
     if (renderTarget !== "" && config.scale) {
-        config.scale.parent = renderTarget;
-        config.scale.fullscreenTarget = renderTarget;
+      config.scale.parent = renderTarget;
+      config.scale.fullscreenTarget = renderTarget;
     }
 
     if (mode == GameMode.server) {
-      config.scene = [ Welcome, ServerConsole ];
+      config.scene = [Loader, Welcome, ServerConsole];
     } else {
-      config.scene = [ Welcome, Menu, Harness, Canvas, Pause, Scores ];
+      config.scene = [Loader, Welcome, Menu, Harness, Canvas, Pause, Scores];
     }
 
-    return config;    
+    return config;
   }
 }
