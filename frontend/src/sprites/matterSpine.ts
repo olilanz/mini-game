@@ -9,7 +9,7 @@
 import Phaser from 'phaser';
 
 // @ts-ignore
-import SpineGameObject from "phaser/plugins/spine/dist/SpineWebGLPlugin";
+import SpineGameObject from "phaser/plugins/spine/dist/SpinePlugin";
 
 export class MatterSpine {
     spine: SpineGameObject;
