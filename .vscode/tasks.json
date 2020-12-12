@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cleanweb",
+            "command": "npm",
+            "type": "process",
+            "args": [
+                "--prefix",
+                "${workspaceFolder}/frontend",
+                "run",
+                "clean"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildweb",
+            "command": "npm",
+            "type": "process",
+            "args": [
+                "--prefix",
+                "${workspaceFolder}/frontend",
+                "run",
+                "build"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "cleanweb"
+            ]
+        },
+        {
+            "label": "buildsvc",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/backend"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "buildweb"
+            ]
+        }
+    ]
+}
