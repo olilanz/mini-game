@@ -2,6 +2,7 @@
 Singleton instance of the actual game implementation
  */
 
+using System;
 using System.Numerics;
 using System.Collections.Generic;
 
@@ -12,14 +13,14 @@ public enum ClientType {
 
 
 namespace Backend.GameLogic {
-    
+
     public struct Player {
         public string Name;
         public Vector2 Position;
     }
 
     public struct EngineStats {
-        public System.DateTime StatsTimeStampUtc; 
+        public System.DateTime StatsTimeStampUtc;
         public int PlayerCount;
         public int AdminCount;
         public long CPUTimeMs;
@@ -43,29 +44,33 @@ namespace Backend.GameLogic {
         public void RegisterClient(ClientType client, string playerId) {
             switch (client) {
                 case ClientType.Player: {
-                    _players.Add(playerId, new Player {
-                        Name = "playerId",
-                        Position = new Vector2(0, 0)
-                    });
-                    break;
-                }
+                        _players.Add(playerId, new Player {
+                            Name = "playerId",
+                            Position = new Vector2(0, 0)
+                        });
+                        System.Console.WriteLine($"Player joined (id: {playerId}).");
+                        break;
+                    }
                 case ClientType.Administrator: {
-                    _adminCount++;
-                    break;
-                }
+                        _adminCount++;
+                        System.Console.WriteLine($"Administrator joined.");
+                        break;
+                    }
             }
         }
 
         public void UnregisterClient(ClientType client, string playerId) {
             switch (client) {
                 case ClientType.Player: {
-                    _players.Remove(playerId);
-                    break;
-                }
+                        _players.Remove(playerId);
+                        System.Console.WriteLine($"Player left (id: {playerId}).");
+                        break;
+                    }
                 case ClientType.Administrator: {
-                    _adminCount--;
-                    break;
-                }
+                        _adminCount--;
+                        System.Console.WriteLine($"Administrator left.");
+                        break;
+                    }
             }
         }
 

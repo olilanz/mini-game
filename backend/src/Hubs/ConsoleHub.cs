@@ -22,9 +22,9 @@ namespace Backend.Hubs {
         }
 
         public async Task UpdatePlayerDetails(string playerName) {
-            await Task.Run(
-                () => System.Console.WriteLine($"ConsoleHub: New user logged on: {playerName} ({Context.User.Identity.ToString()})")
-            );
+            //await Task.Run(
+            //    () => System.Console.WriteLine($"ConsoleHub: New user logged on: {playerName} ({Context.User.Identity.ToString()})")
+            //);
         }
 
         public async Task RequestStats() {
