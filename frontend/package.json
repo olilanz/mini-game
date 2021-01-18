@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@aspnet/signalr": "1.1.4",
-    "phaser": "3.50.1"
+    "phaser": "3.52.0"
   },
   "scripts": {
     "start": "parcel ./src/index.html -p 1234 --no-hmr --public-url ./",
