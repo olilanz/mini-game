@@ -1,6 +1,6 @@
 # mini-game
 
-[![Build status](https://dev.azure.com/ocl-simcorp/mini-game/_apis/build/status/mini-game%20-%20CI)](https://dev.azure.com/ocl-simcorp/mini-game/_build/latest?definitionId=2)
+[![Build status](https://dev.azure.com/ocl-simcorp/Private%20HomeServer/_apis/build/status/mini-game%20CI)](https://dev.azure.com/ocl-simcorp/Private%20HomeServer/_build/latest?definitionId=6)
 
 An evolving game that is being built with the intent of learning, and the purpose to identify the sweet-spots and limitations of web technologies in the space of multi-player, high-fps, mobile gaming.
 
