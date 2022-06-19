@@ -22,7 +22,6 @@ The game runs from a single Docker container, which serves a web service endpoin
 * Source Code: https://github.com/olilanz/mini-game
 * Public Docker image: https://hub.docker.com/r/olilanz/mini-game/
 
-
 The front-end could be hosted separately. Such as for development and testing. But for the game to work, the back-end must be available to connect to.
 
 * [front-end](./frontend/README.md): Is a TypeScript app, running the physics simulations, doing the user input, sound, animations, rendering, and communication with the back-end. Located in ./fronted folder.
