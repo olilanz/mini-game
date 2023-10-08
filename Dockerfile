@@ -11,6 +11,7 @@ RUN npm i -g npm \
     && npm i
 RUN npx browserslist@latest --update-db
 
+COPY ./frontend/.parcelrc /build/
 COPY ./frontend/src /build/src/
 COPY ./frontend/static /build/static/
 RUN npm run build

@@ -6,11 +6,11 @@
 
 import Phaser from 'phaser';
 
-import { BaseScene } from '~/scenes/basescene';
+import { BaseScene } from '../../scenes/basescene';
 import { Canvas, ICanvasStats } from './canvas';
-import { SoundHelper } from '~/helpers/soundhelper';
+import { SoundHelper } from '../../helpers/soundhelper';
 
-import { Assets } from '~/assets/assets';
+import { Assets } from '../../assets/assets';
 
 interface IHarnessStats extends ICanvasStats {
   harnessFps: integer;

@@ -4,9 +4,9 @@
  * Provides monitoring and control for the backend
  */
 
-import { BaseScene } from '~/scenes/basescene';
-import { ConsoleProxy, EngineStats } from '~/communication/consoleproxy';
-import { ConnectionState } from '~/communication/abstractconnection';
+import { BaseScene } from '../../scenes/basescene';
+import { ConsoleProxy, EngineStats } from '../../communication/consoleproxy';
+import { ConnectionState } from '../../communication/abstractconnection';
 
 export class ServerConsole extends BaseScene {
 

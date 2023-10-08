@@ -6,17 +6,17 @@
 
 import Phaser from 'phaser';
 
-import { Player } from '~/sprites/player';
-import { Bot } from '~/sprites/bot';
-import { Cookie } from '~/sprites/cookie';
-import { Floor } from '~/sprites/floor';
+import { Player } from '../../sprites/player';
+import { Bot } from '../../sprites/bot';
+import { Cookie } from '../../sprites/cookie';
+import { Floor } from '../../sprites/floor';
 
-import { BaseScene } from '~/scenes/basescene';
+import { BaseScene } from '../../scenes/basescene';
 
 import { InputController } from './inputcontroller';
 import { CoordinateGrid } from './coordinategrid';
 
-import { Assets } from '~/assets/assets';
+import { Assets } from '../../assets/assets';
 
 export interface ICanvasStats {
   opponentCount: integer;

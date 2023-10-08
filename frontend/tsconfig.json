@@ -9,14 +9,7 @@
     "noImplicitAny": true,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src",
-    "paths": {
-      "~*": [
-        "./*"
-      ]
-    }
+    "baseUrl": "./src"
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": [ "src/**/*" ]
 }

@@ -1,4 +1,4 @@
-import { GameProxy } from '~/communication/gameproxy';
+import { GameProxy } from '../communication/gameproxy';
 
 export type IOpponent = {
     name: string,

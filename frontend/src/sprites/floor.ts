@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { Assets } from '~/assets/assets';
+import { Assets } from '../assets/assets';
 
 export class Floor extends Phaser.Physics.Matter.Image {
     constructor(scene: Phaser.Scene, pos: Phaser.Math.Vector2, size: Phaser.Math.Vector2) {

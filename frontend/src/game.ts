@@ -8,19 +8,19 @@
 import Phaser from 'phaser';
 import "phaser/plugins/spine/dist/SpinePlugin";
 
-import { ExternalGameConfig, GameMode } from "~/externalgameconfig";
-import { GlobalStateIdentifier } from "~/gamestate";
+import { ExternalGameConfig, GameMode } from "./externalgameconfig";
+import { GlobalStateIdentifier } from "./gamestate";
 
-import { Engine } from "~/engine/engine";
+import { Engine } from "./engine/engine";
 
-import { Loader } from "~/scenes/loader/loader";
-import { Welcome } from "~/scenes/welcome/welcome";
-import { ServerConsole } from "~/scenes/serverconsole/serverconsole";
-import { Menu } from "~/scenes/menu/menu";
-import { Harness } from "~/scenes/gameplay/harness";
-import { Scores } from "~/scenes/scores/scores";
-import { Pause } from "~/scenes/pause/pause";
-import { Canvas } from "~/scenes/gameplay/canvas";
+import { Loader } from "./scenes/loader/loader";
+import { Welcome } from "./scenes/welcome/welcome";
+import { ServerConsole } from "./scenes/serverconsole/serverconsole";
+import { Menu } from "./scenes/menu/menu";
+import { Harness } from "./scenes/gameplay/harness";
+import { Scores } from "./scenes/scores/scores";
+import { Pause } from "./scenes/pause/pause";
+import { Canvas } from "./scenes/gameplay/canvas";
 
 // represents the entire game
 export class Game extends Phaser.Game {

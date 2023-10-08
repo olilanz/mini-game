@@ -4,9 +4,9 @@
  * Entry page of the game.
  */
 
-import { Asset, Assets } from '~/assets/assets';
-import { BaseScene } from '~/scenes/basescene';
-import { PercentageBar } from '~/widgets/percentagebar';
+import { Asset, Assets } from '../../assets/assets';
+import { BaseScene } from '../../scenes/basescene';
+import { PercentageBar } from '../../widgets/percentagebar';
 
 export class Loader extends BaseScene {
 

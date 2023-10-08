@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 import { Canvas } from './canvas';
-import { Player } from '~/sprites/player';
+import { Player } from '../../sprites/player';
 
 export class InputController {
     private _canvas: Canvas | undefined;

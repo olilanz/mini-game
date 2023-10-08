@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { MatterSpine } from './matterSpine'
-import { Assets } from '~/assets/assets';
+import { Assets } from '../assets/assets';
 
 export class Player extends Phaser.Physics.Matter.Image {
     __playerSpine: MatterSpine;

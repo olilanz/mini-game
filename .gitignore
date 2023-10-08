@@ -1,6 +1,7 @@
 .vs
 .DS_Store
 .cache
+.parcel-cache
 
 frontend/node_modules
 frontend/dist
