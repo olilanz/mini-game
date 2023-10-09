@@ -2,7 +2,7 @@
  * Base class to deal with connection and callback management
  */
 
-import * as signalR from "@aspnet/signalr";
+import * as signalR from "@microsoft/signalr";
 
 export enum ConnectionState {
     stopped = 0,
