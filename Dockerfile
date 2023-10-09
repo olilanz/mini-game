@@ -20,7 +20,7 @@ RUN npm run build
 ## build the back end
 ############################################################
 # https://hub.docker.com/_/microsoft-dotnet-sdk/
-FROM mcr.microsoft.com/dotnet/sdk:6.0.414 AS backendbuilder
+FROM mcr.microsoft.com/dotnet/sdk:7.0.401 AS backendbuilder
 
 WORKDIR /build
 
@@ -34,7 +34,7 @@ RUN dotnet publish --output /dist --configuration Debug
 ## build runtime 
 ############################################################
 # https://hub.docker.com/_/microsoft-dotnet-aspnet/
-FROM mcr.microsoft.com/dotnet/aspnet:6.0.22
+FROM mcr.microsoft.com/dotnet/aspnet:7.0.11
 
 COPY --from=backendbuilder /dist /app
 COPY --from=frontendbuilder /build/dist /app/wwwroot/gamecore
