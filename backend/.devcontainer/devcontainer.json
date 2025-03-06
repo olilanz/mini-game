@@ -4,14 +4,15 @@
   "workspaceFolder": "/workspace",
   "workspaceMount": "source=${localWorkspaceFolder}/..,target=/workspace,type=bind",
   "features": {},
-  "postCreateCommand": "cd backend/src && dotnet restore",
+  "postCreateCommand": "cd backend/src && dotnet dev-certs https && dotnet restore",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-dotnettools.csharp",
         "RooVeterinaryInc.roo-cline",
         "yzhang.markdown-all-in-one",
-        "bierner.markdown-mermaid"
+        "bierner.markdown-mermaid",
+        "ms-dotnettools.csdevkit"
       ]
     }
   }
