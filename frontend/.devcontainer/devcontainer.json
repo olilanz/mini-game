@@ -1,0 +1,19 @@
+{
+  "name": "Frontend Development Container",
+  "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:latest",
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder}/..,target=/workspace,type=bind",
+  "features": {},
+  "postCreateCommand": "cd frontend && npm update npm && npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "RooVeterinaryInc.roo-cline",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid"
+      ]
+    }
+  }
+}
