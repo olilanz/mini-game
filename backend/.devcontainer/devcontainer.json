@@ -1,0 +1,18 @@
+{
+  "name": "Backend Development Container",
+  "image": "mcr.microsoft.com/dotnet/sdk:7.0",
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder}/..,target=/workspace,type=bind",
+  "features": {},
+  "postCreateCommand": "cd backend/src && dotnet restore",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "RooVeterinaryInc.roo-cline",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid"
+      ]
+    }
+  }
+}
